@@ -4,6 +4,11 @@
 
 { config, pkgs, ... }:
 
+let
+  compiledLayout = pkgs.runCommand "keyboard-layout" {} ''
+    ${pkgs.xorg.xkbcomp}/bin/xkbcomp ${ ./keyboard/symbols/real-prog-dvorak.xkb} $out
+  '';
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -12,11 +17,16 @@
 
   # Enable Flakes and the new command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.trusted-users = [ "root" "przemek" ];
 
   # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/vda";
   boot.loader.grub.useOSProber = true;
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # Limit the number of generations to keep
+  boot.loader.systemd-boot.configurationLimit = 10;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -46,27 +56,40 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
+  # Perform garbage collection weekly to maintain low disk usage
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 1w";
+  };
+
+  # Optimize storage
+  # You can also manually optimize the store via:
+  #    nix-store --optimise
+  # Refer to the following link for more details:
+  # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-auto-optimise-store
+  nix.settings.auto-optimise-store = true;
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
   # Enable the XFCE Desktop Environment.
-  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.lightdm = {
+    enable = true;
+    greeters.slick.enable = true;
+  };
   services.xserver.displayManager.defaultSession = "none+bspwm";
   services.xserver.desktopManager.xfce.enable = true;
+  services.xserver.displayManager.sessionCommands = "${pkgs.xorg.xkbcomp}/bin/xkbcomp ${compiledLayout} $DISPLAY";
 
   # Tiling window manager
   services.xserver.windowManager.bspwm.enable = true;
-  # services.xserver.windowManager = {
-  #   bspwm.enable = true;
-  #   bspwm.configFile = ./config/bspwmrc;
-  #   # bspwm.sxhkd.configFile = ./config/sxhkdrc;
-  #   # bspwm.sxhkd.configFile = "/home/przemek/.config/sxkhd/sxhkdrc";
-  #   # bspwm.sxhkd.package = pkgs.sxhkd;
-  # };
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us";
+    autoRepeatDelay = 200;
+    autoRepeatInterval = 25;
+    layout = "pl";
     xkbVariant = "dvp";
   };
 
@@ -103,12 +126,20 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       firefox
-    #  thunderbird
     ];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  fonts.packages = with pkgs; [
+    noto-fonts-emoji
+    dejavu_fonts
+    liberation_ttf
+    source-code-pro
+    siji
+    (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" ]; })
+  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -117,15 +148,74 @@
     git
     killall
     fish
-  #  wget
+    fzf
+    wget
 
     # Desktop Environment
     rofi
-    polybar
+    polybarFull
+    eww
     ksuperkey
     picom
     feh
-    nerdfonts
+    font-awesome
+
+    direnv
+    neovim
+    tabnine
+    any-nix-shell
+    ripgrep
+    firefox
+    starship
+    autojump
+    youtube-dl
+    keepassxc
+
+    xorg.xbacklight
+    blueman
+
+    gcc
+    clang-tools
+    clang
+    cmake
+    ninja
+    ccache
+    sccache
+    cargo
+    rustup
+    rustfmt
+    rust-analyzer
+    go
+    gopls
+    black
+    mypy
+    nodejs
+    nodePackages_latest.pyright
+
+    geany
+    git
+    bat
+    exa
+    htop
+    arandr
+
+    tmux
+    kitty
+    wezterm
+    pavucontrol
+    blueberry
+    xclip
+    dunst
+    zathura
+    flameshot
+    nitrogen
+    unzip
+    ranger
+    rsync
+    xfce.thunar
+    xfce.thunar-volman
+    xfce.thunar-archive-plugin
+    xfce.xfce4-power-manager
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

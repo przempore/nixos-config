@@ -1,5 +1,13 @@
 { config, pkgs, ... }:
 
+let
+  catppuccin-bat = pkgs.fetchFromGitHub {
+    owner = "catppuccin";
+    repo = "bat";
+    rev = "ba4d16880d63e656acced2b7d4e034e4a93f74b1";
+    sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=";
+  };
+in
 {
   imports = [
     ./nvim
@@ -7,6 +15,10 @@
     ./fish.nix
     ./bspwm.nix
     ./sxhkd.nix
+    ./kitty
+    ./firefox.nix
+    # ./eww
+    ./polybar
   ];
 
   # basic configuration of git, please change to your own
@@ -15,6 +27,11 @@
     userName = "Przemek";
     userEmail = "przempore@gmail.com";
   };
+  home.file.".config/ranger/rc.conf".text = ''
+    set preview_images true
+    set preview_images_method kitty
+    set show_hidden true
+  '';
 
   # Packages that should be installed to the user profile.
   home = {
@@ -32,20 +49,20 @@
       # here is some command line tools I use frequently
       # feel free to add your own or remove some of them
 
+      cachix
+      neocmakelsp
+
       neofetch
       nnn # terminal file manager
 
       # archives
       zip
       xz
-      unzip
       p7zip
 
       # utils
-      ripgrep # recursively searches directories for a regex pattern
       jq # A lightweight and flexible command-line JSON processor
       yq-go # yaml processer https://github.com/mikefarah/yq
-      exa # A modern replacement for ‘ls’
       fzf # A command-line fuzzy finder
 
       # networking tools
@@ -68,9 +85,6 @@
       gawk
       zstd
       gnupg
-
-      tmux
-      kitty
 
       # nix related
       #
@@ -100,41 +114,27 @@
     ];
   };
 
-  # starship - an customizable prompt for any shell
-  programs.starship = {
-    enable = true;
-    # custom settings
-    settings = {
-      add_newline = false;
-      aws.disabled = true;
-      gcloud.disabled = true;
-      line_break.disabled = true;
-    };
-  };
-
-  # alacritty - a cross-platform, GPU-accelerated terminal emulator
-  programs.alacritty = {
-    enable = true;
-    # custom settings
-    settings = {
-      env.TERM = "xterm-256color";
-      font = {
-        size = 12;
-        draw_bold_text_with_bright_colors = true;
+  programs = {
+    bat = {
+      enable = true;
+      config = { theme = "catppuccin"; };
+      themes = {
+        catppuccin = builtins.readFile
+          (catppuccin-bat + "/Catppuccin-mocha.tmTheme");
       };
-      scrolling.multiplier = 5;
-      selection.save_to_clipboard = true;
+    };
+    starship = {
+      enable = true;
+      # custom settings
+      settings = {
+        add_newline = false;
+        aws.disabled = true;
+        gcloud.disabled = true;
+        line_break.disabled = true;
+      };
     };
   };
 
-  programs.bash = {
-    enable = true;
-    enableCompletion = true;
-    # TODO add your cusotm bashrc here
-    bashrcExtra = ''
-      export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
-    '';
-  };
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage

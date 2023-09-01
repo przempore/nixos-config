@@ -25,7 +25,6 @@
       vimPlugins.telescope-nvim
       vimPlugins.telescope-fzf-native-nvim
       vimPlugins.lualine-nvim
-      vimPlugins.nvim-fzf
       vimPlugins.vim-qml
       vimPlugins.catppuccin-nvim
       vimPlugins.vim-be-good

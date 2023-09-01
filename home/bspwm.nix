@@ -1,7 +1,10 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   xsession.windowManager.bspwm = {
     enable = true;
     extraConfigEarly = ''
+      ~/.screenlayout/script.sh;
+
       bspc config border_width         2
       bspc config window_gap           4
       bspc config top_padding          30
@@ -30,7 +33,7 @@
       bspc monitor -d 1 2 3 4 5 6 7 8 9 10
       '';
     extraConfig = ''
-      kitty &
+      polybar mainbar &
       '';
   };
 }
