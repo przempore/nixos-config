@@ -3,6 +3,12 @@
   imports = [
     ./colors.nix
   ];
+
+  home.file.".config/polybar" = {
+    source = ./config;
+    recursive = true;
+  };
+
   services.polybar = {
     enable = true;
     package = pkgs.polybar.override { alsaSupport = true; };
@@ -12,8 +18,6 @@
 
     config = {
       "settings" = {
-# include-file = builtins.readFile
-#   (catppuccin-polybar + "/themes/mocha.ini");
         margin-top = 0;
         margin-bottom = 0;
 
@@ -61,8 +65,8 @@
         font-3 = "JetBrains Mono Nerd:size=10;0";
 
         modules-left = "bspwm xwindow";
-        # modules-center = kernel temperature2;
-        modules-right = "pavolume memory2 cpu2"; #xkeyboard date";
+        modules-center = "kernel";
+        modules-right = "pavolume memory2 cpu2 date";
 
         tray-detached = false;
         tray-offset-x = 0;
@@ -180,6 +184,51 @@
        label = "Cpu %percentage:3%%";
      };
 
+     "module/date" = {
+        #https://github.com/jaagr/polybar/wiki/Module:-date
+       type = "internal/date";
+        # Seconds to sleep between updates
+       interval = 5;
+        # See "http://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
+        # NOTE: if you want to use syntax tags here you need to use %%{...}
+       date = " %d-%m-%Y";
+       date-alt = " %Y-%m-%d%";
+       time = "%H:%M";
+       time-alt = "%H:%M";
+       format-prefix = " ";
+       format-prefix-foreground = "#c1941a";
+       format-underline = "#c1941a";
+       format-foreground = "\${colors.foreground}";
+       format-background = "\${colors.background}";
+       label = "%date% %time%";
+     };
+
+     "module/pavolume" = {
+       type = "custom/script";
+       tail = true;
+       label = "%output%";
+       exec = "~/.config/polybar/scripts/pavolume.sh --listen";
+       click-right = "exec pavucontrol";
+       click-left = "~/.config/polybar/scripts/pavolume.sh --togmute";
+       scroll-up = "~/.config/polybar/scripts/pavolume.sh --up";
+       scroll-down = "~/.config/polybar/scripts/pavolume.sh --down";
+       format-underline = "#3EC13F";
+       format-foreground = "\${colors.foreground}";
+       format-background = "\${colors.background}";
+     };
+
+     "module/kernel" = {
+       type = "custom/script";
+       exec = "uname -r";
+       tail = false;
+       interval = 1024;
+
+       format-foreground = "\${colors.foreground}";
+       format-background = "\${colors.background}";
+       format-prefix = "  ";
+       format-prefix-foreground = "#0084FF";
+       format-underline = "#0084FF";
+     };
     };
   };
 }
