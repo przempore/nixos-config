@@ -13,7 +13,7 @@
 #Rofi theme selector
       "super + r" = "rofi-theme-selector";
 #Pavucontrol
-      "super + v" = "xfce4-popup-clipman";
+      "super + v" = "clipster -s -c";
       "super + Return" =  "kitty";
       "super + Escape" =  "xkill";
       "super + KP_Enter" =  "kitty";

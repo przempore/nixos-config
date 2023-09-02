@@ -42,6 +42,7 @@
       feh --bg-scale $HOME/.dotfiles/variety/.config/variety/Favorites/6gz4757ztdx91.jpg
       keepassxc &
       blueberry-tray &
+      clipster -d &
       '';
   };
 }

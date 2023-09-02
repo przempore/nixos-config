@@ -167,6 +167,7 @@ in
     feh
     freetype
     lxappearance
+    clipster
 
     direnv
     neovim
