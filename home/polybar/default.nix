@@ -59,10 +59,10 @@
         module-margin-left = 3;
         module-margin-right = 3;
 
-        font-0 = "JetBrains Mono Nerd:size=10;0";
-        font-1 = "JetBrains Mono Nerd:size=13;0";
-        font-2 = "JetBrains Mono Nerd:size=10;0";
-        font-3 = "JetBrains Mono Nerd:size=10;0";
+        font-0 = "Noto Sans:size=10;0";
+        font-1 = "Font Awesome 6 Free Solid:size=13;0";
+        font-2 = "Noto Sans:size=10;0";
+        font-3 = "Noto Sans Mono:size=10;0";
 
         modules-left = "bspwm xwindow";
         modules-center = "kernel";
@@ -90,14 +90,14 @@
         pin-workspaces = true;
 
         ws-icon-0 = "1;";
-        ws-icon-1 = "2;";
+        ws-icon-1 = "2;";
         ws-icon-2 = "3;";
         ws-icon-3 = "4;";
         ws-icon-4 = "5;";
         ws-icon-5 = "6;";
         ws-icon-6 = "7;";
         ws-icon-7 = "8;";
-        ws-icon-8 = "9;";
+        ws-icon-8 = "9;";
         ws-icon-9 = "10;";
         ws-icon-default = " ";
 

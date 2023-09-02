@@ -133,6 +133,7 @@ in
   nixpkgs.config.allowUnfree = true;
 
   fonts.packages = with pkgs; [
+    noto-fonts
     noto-fonts-emoji
     dejavu_fonts
     liberation_ttf
@@ -141,6 +142,10 @@ in
     nerdfonts
     powerline-fonts
     powerline-symbols
+    font-awesome
+    line-awesome
+    material-icons
+    material-symbols
   ];
 
   # List packages installed in system profile. To search, run:
@@ -160,7 +165,6 @@ in
     ksuperkey
     picom
     feh
-    font-awesome
     freetype
     lxappearance
 
