@@ -60,7 +60,7 @@
         module-margin-right = 3;
 
         font-0 = "Noto Sans:size=10;0";
-        font-1 = "Font Awesome 6 Free Solid:size=13;0";
+        font-1 = "Font Awesome 6 Free Solid:size=12;0";
         font-2 = "Noto Sans:size=10;0";
         font-3 = "Noto Sans Mono:size=10;0";
 
