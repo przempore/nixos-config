@@ -1,8 +1,27 @@
+{ pkgs, config, ... }:
+let
+  cscope_maps-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "cscope_maps-nvim";
+    nativeBuildInputs = with pkgs; [ pkg-config readline ];
+    src = pkgs.fetchFromGitHub {
+      owner = "dhananjaylatkar";
+      repo = "cscope_maps.nvim";
+      rev = "1fd974804638d70a3873e6b6390ce08042307b55";
+      sha256 = "sha256-K/kJ4SX1Iyirwtm0yTldvwKX71MgGuOmZM0jB2wQTc4=";
+    };
+  };
+  wf-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "wf-nvim";
+    nativeBuildInputs = with pkgs; [ pkg-config readline ];
+    src = pkgs.fetchFromGitHub {
+      owner = "Cassin01";
+      repo = "wf.nvim";
+      rev = "01882d2a5e6dd4f45663a652a4b358cefbb97ce2";
+      sha256 = "sha256-8PzsDPJXb8kpVus7b4Fon785j8JPTZM4fZ7PM5A67YU=";
+    };
+  };
+in
 {
-  pkgs,
-  config,
-  ...
-}: {
   home.file.".config/nvim" = {
     source = ./config;
     recursive = true;
@@ -16,7 +35,8 @@
     vimdiffAlias = true;
 
     plugins = with pkgs; [
-      # tabnine-nvim
+      cscope_maps-nvim
+      wf-nvim
       vimPlugins.copilot-vim
       vimPlugins.vim-fugitive
       vimPlugins.vim-rhubarb
