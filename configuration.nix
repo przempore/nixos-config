@@ -138,7 +138,9 @@ in
     liberation_ttf
     source-code-pro
     siji
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" ]; })
+    nerdfonts
+    powerline-fonts
+    powerline-symbols
   ];
 
   # List packages installed in system profile. To search, run:
@@ -159,6 +161,8 @@ in
     picom
     feh
     font-awesome
+    freetype
+    lxappearance
 
     direnv
     neovim
@@ -191,6 +195,7 @@ in
     mypy
     nodejs
     nodePackages_latest.pyright
+    blueberry
 
     geany
     git
