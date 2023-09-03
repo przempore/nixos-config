@@ -38,11 +38,23 @@
       bspc monitor -d 1 2 3 4 5 6 7 8 9 10
       '';
     extraConfig = ''
+      function get_location {
+          location=$(curl -s "https://location.services.mozilla.com/v1/geolocate?key=geoclue" | jq -r '"\(.location.lat):\(.location.lng)"')
+          if [ -z $location ]; then
+              location="52.5196:13.4069"
+              echo "[bspwm autostart] no internet connection, setting location to Berlin [$location" | systemd-cat
+          fi
+          echo "[bspwm autostart] location for redshift: $location" | systemd-cat
+      }
+
       polybar mainbar 2>/dev/null &
       feh --bg-scale $HOME/.dotfiles/variety/.config/variety/Favorites/6gz4757ztdx91.jpg
       keepassxc &
       blueberry-tray &
       clipster -d &
+      nm-applet &
+      get_location
+      redshift -l $location &
       '';
   };
 }

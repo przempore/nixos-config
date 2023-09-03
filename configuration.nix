@@ -168,6 +168,8 @@ in
     freetype
     lxappearance
     clipster
+    networkmanagerapplet
+    redshift
 
     direnv
     neovim
@@ -181,6 +183,7 @@ in
     keepassxc
 
     xorg.xbacklight
+    xorg.xmodmap
     blueman
 
     gcc
@@ -215,7 +218,7 @@ in
     pavucontrol
     blueberry
     xclip
-    dunst
+    # dunst # using xfce4-notifyd instead
     zathura
     flameshot
     nitrogen
@@ -226,6 +229,7 @@ in
     xfce.thunar-volman
     xfce.thunar-archive-plugin
     xfce.xfce4-power-manager
+    xfce.xfce4-notifyd
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
