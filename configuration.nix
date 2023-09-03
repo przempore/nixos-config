@@ -3,12 +3,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-
-let
-  compiledLayout = pkgs.runCommand "keyboard-layout" {} ''
-    ${pkgs.xorg.xkbcomp}/bin/xkbcomp ${ ./keyboard/symbols/real-prog-dvorak.xkb} $out
-  '';
-in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -80,7 +74,11 @@ in
   };
   services.xserver.displayManager.defaultSession = "none+bspwm";
   services.xserver.desktopManager.xfce.enable = true;
-  services.xserver.displayManager.sessionCommands = "${pkgs.xorg.xkbcomp}/bin/xkbcomp ${compiledLayout} $DISPLAY";
+  services.xserver.extraLayouts.real-prog-dvorak = {
+    description = "Real proogrammer dvorak";
+    languages = [ "pl" ];
+    symbolsFile = ./keyboard/symbols/real-prog-dvorak.xkb;
+  };
 
   # Tiling window manager
   services.xserver.windowManager.bspwm.enable = true;
@@ -89,8 +87,7 @@ in
   services.xserver = {
     autoRepeatDelay = 200;
     autoRepeatInterval = 25;
-    layout = "pl";
-    xkbVariant = "dvp";
+    layout = "real-prog-dvorak";
   };
 
   # Enable CUPS to print documents.
