@@ -11,6 +11,7 @@ in
 {
   imports = [
     ./nvim
+    ./git.nix
     ./tmux.nix
     ./fish.nix
     ./bspwm
@@ -84,12 +85,6 @@ in
     # };
   };
 
-  # basic configuration of git, please change to your own
-  programs.git = {
-    enable = true;
-    userName = "Przemek";
-    userEmail = "przempore@gmail.com";
-  };
   home.file.".config/ranger/rc.conf".text = ''
     set preview_images true
     set preview_images_method kitty
