@@ -3,7 +3,7 @@
   programs.fish = {
     enable = true;
     shellAliases = {
-      ll = "exa --tree --level=1 --long --icons --git -lh";
+      ll = "eza --tree --level=1 --long --icons --git -lh";
       lh = "ll -lah";
     };
     interactiveShellInit = ''

@@ -205,7 +205,7 @@
     geany
     git
     bat
-    exa
+    eza
     htop
     arandr
 
