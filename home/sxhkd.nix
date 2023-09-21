@@ -45,8 +45,8 @@
       "alt + shift + u" =  "wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&";
       #Xcfe4-TaskManager
       "ctrl + shift + Escape" =  "xfce4-taskmanager";
-      "alt + Up" =  "amixer set Master 10%+";
-      "alt + Down" =  "amixer set Master 10%-";
+      "alt + Up" =  "bash -c \"if [ $(pactl list sinks | grep '^[[:space:]]Volume:' | sed -e 's,.* \\([0-9][0-9]*\\)%.*,\\1,') -lt 100 ]; then pactl set-sink-volume @DEFAULT_SINK@ +7%; fi\"";
+      "alt + Down" =  "pactl set-sink-volume @DEFAULT_SINK@ -7%";
       #Hide polybar
       "super + y" =  "polybar-msg cmd toggle";
       #Picom Toggle
