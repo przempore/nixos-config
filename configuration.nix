@@ -185,6 +185,11 @@
 
     xorg.xbacklight
     xorg.xmodmap
+    autorandr
+
+    sshfs
+    backblaze-b2
+
     blueman
 
     gcc
@@ -225,6 +230,7 @@
     nitrogen
     unzip
     ranger
+    lf
     rsync
     xfce.thunar
     xfce.thunar-volman

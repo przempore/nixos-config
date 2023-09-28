@@ -80,7 +80,7 @@ in
       gawk
       zstd
       gnupg
-      whatsapp-for-linux
+      brave
       signal-desktop-beta
       caprine-bin
 
