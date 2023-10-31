@@ -12,10 +12,16 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  let
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+  in
+  {
+    # export NIXPKGS_ALLOW_UNFREE=1 && nix build .#homeConfigurations.przemek.activationPackage --impure --show-trace
     homeConfigurations = {
       przemek = home-manager.lib.homeManagerConfiguration {
-        pkgs = home-manager.pkgs;
+        pkgs = pkgs;
         modules = [
           ./home
         ];
@@ -35,5 +41,4 @@
         ];
       };
     };
-  };
 }
