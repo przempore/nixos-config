@@ -49,6 +49,9 @@ in
 
       neofetch
       nnn # terminal file manager
+      eza
+      ripgrep
+      any-nix-shell
 
       # archives
       zip

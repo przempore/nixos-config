@@ -12,10 +12,22 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
-    nixosConfigurations = {
-      #   sudo nixos-rebuild switch --flake .#nixos
-      "nixos" = nixpkgs.lib.nixosSystem {
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  let
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+  in
+  {
+    # export NIXPKGS_ALLOW_UNFREE=1 && nix build .#homeConfigurations.przemek.activationPackage --impure --show-trace
+    homeConfigurations = {
+      przemek = home-manager.lib.homeManagerConfiguration {
+        pkgs = pkgs;
+        modules = [
+          ./home
+        ];
+      };
+    };
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
@@ -29,5 +41,4 @@
         ];
       };
     };
-  };
 }
