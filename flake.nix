@@ -13,9 +13,15 @@
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: {
-    nixosConfigurations = {
-      #   sudo nixos-rebuild switch --flake .#nixos
-      "nixos" = nixpkgs.lib.nixosSystem {
+    homeConfigurations = {
+      przemek = home-manager.lib.homeManagerConfiguration {
+        pkgs = home-manager.pkgs;
+        modules = [
+          ./home
+        ];
+      };
+    };
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
