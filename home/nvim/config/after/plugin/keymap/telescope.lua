@@ -101,7 +101,7 @@ nnoremap("<leader>gs", ":lua require('telescope.builtin').grep_string({ hidden=t
 nnoremap("<leader>gr", ":lua require('telescope.builtin').lsp_references()<cr>",
     { noremap = true, silent = true, desc = "[telescope] grep lsp references"})
 
-nnoremap("<leader>fg", ":lua require('telescope.builtin').live_grep({ hidden=true })<cr>",
+nnoremap("<leader>fs", ":lua require('telescope.builtin').live_grep({ hidden=true })<cr>",
     { noremap = true, silent = true, desc = "[telescope] grep string"})
 nnoremap("<leader>gf", ":lua require('telescope.builtin').git_files({ hidden=true })<cr>",
     { noremap = true, silent = true, desc = "[telescope] git files"})

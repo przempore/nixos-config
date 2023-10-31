@@ -90,11 +90,13 @@
     layout = "real-prog-dvorak";
   };
 
+  services.qemuGuest.enable = true;
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
+  sound.enable = false;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -116,11 +118,13 @@
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
+  virtualisation.docker.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.przemek = {
     isNormalUser = true;
     description = "przemek";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       firefox
     ];
@@ -181,6 +185,11 @@
 
     xorg.xbacklight
     xorg.xmodmap
+    autorandr
+
+    sshfs
+    backblaze-b2
+
     blueman
 
     gcc
@@ -205,7 +214,7 @@
     geany
     git
     bat
-    exa
+    eza
     htop
     arandr
 
@@ -221,6 +230,7 @@
     nitrogen
     unzip
     ranger
+    lf
     rsync
     xfce.thunar
     xfce.thunar-volman

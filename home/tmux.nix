@@ -8,11 +8,30 @@
     # Stop tmux+escape craziness.
     escapeTime = 0;
 
-    plugins = with pkgs; [
-      tmuxPlugins.better-mouse-mode
-      tmuxPlugins.catppuccin
-      tmuxPlugins.resurrect
-      tmuxPlugins.continuum
+    plugins = with pkgs.tmuxPlugins; [
+      better-mouse-mode
+      catppuccin
+      {
+        plugin = resurrect;
+        extraConfig = ''
+          # source: https://github.com/p3t33/nixos_flake/blob/master/home/modules/tmux.nix
+          set -g @resurrect-strategy-nvim 'session'
+          set -g @resurrect-strategy-vim 'session'
+
+          set -g @resurrect-capture-pane-contents 'on'
+
+          resurrect_dir="$HOME/.tmux/resurrect"
+          set -g @resurrect-dir $resurrect_dir
+          set -g @resurrect-hook-post-save-all 'target=$(readlink -f $resurrect_dir/last); sed "s| --cmd .*-vim-pack-dir||g; s|/etc/profiles/per-user/$USER/bin/||g" $target | sponge $target'
+          '';
+      }
+      {
+        plugin = continuum;
+        extraConfig = ''
+          set -g @continuum-restore 'on'
+          set -g @continuum-save-interval '10'
+          '';
+      }
     ];
 
     extraConfig = ''
@@ -29,16 +48,6 @@
       set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q'
       set-environment -g COLORTERM "truecolor"
 
-      set -g @resurrect-strategy-nvim 'session'
-      set -g @resurrect-capture-pane-contents 'on'
-      set -g @continuum-restore 'on'
-
-
-      resurrect_dir="$HOME/.tmux/resurrect"
-      set -g @resurrect-dir $resurrect_dir
-      set -g @resurrect-hook-post-save-all 'target=$(readlink -f $resurrect_dir/last); sed "s| --cmd .*-vim-pack-dir||g; s|/etc/profiles/per-user/$USER/bin/||g; s|/home/$USER/.nix-profile/bin/||g" $target | sponge $target'
-
-
       # Mouse works as expected
       set-option -g mouse on
       # easy-to-remember split pane commands
@@ -46,20 +55,21 @@
       bind - split-window -v -c "#{pane_current_path}"
       bind c new-window -c "#{pane_current_path}"
 
-      set -g @catppuccin_flavour 'mocha' # or frappe, macchiato, mocha
-      set -g @catppuccin_window_left_separator "█"
-      set -g @catppuccin_window_right_separator "█ "
+      bind b set-option -g status
+
+      set -g @catppuccin_window_right_separator "█☠"
       set -g @catppuccin_window_number_position "right"
-      set -g @catppuccin_window_middle_separator "  █"
-      set -g @catppuccin_window_default_fill "number"
-      set -g @catppuccin_window_current_fill "number"
-      set -g @catppuccin_window_current_text "#{pane_current_path}"
-      set -g @catppuccin_status_modules "application session date_time"
-      set -g @catppuccin_status_left_separator  ""
-      set -g @catppuccin_status_right_separator " "
-      set -g @catppuccin_status_right_separator_inverse "yes"
-      set -g @catppuccin_status_fill "all"
-      set -g @catppuccin_status_connect_separator "no"
+      set -g @catppuccin_window_middle_separator " | "
+
+      set -g @catppuccin_window_default_fill "none"
+
+      set -g @catppuccin_window_current_fill "all"
+
+      set -g @catppuccin_status_modules_right "application session user host date_time"
+      set -g @catppuccin_status_left_separator "█"
+      set -g @catppuccin_status_right_separator "█"
+
+      set -g @catppuccin_date_time_text "%Y-%m-%d %H:%M:%S"
     '';
   };
 }
