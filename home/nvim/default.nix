@@ -44,7 +44,6 @@ in
       vimPlugins.plenary-nvim
       vimPlugins.telescope-nvim
       vimPlugins.telescope-fzf-native-nvim
-      vimPlugins.lualine-nvim
       vimPlugins.vim-qml
       vimPlugins.catppuccin-nvim
       vimPlugins.vim-be-good
@@ -86,7 +85,6 @@ in
       vimPlugins.zen-mode-nvim
       vimPlugins.comment-nvim
       vimPlugins.vim-sleuth
-      vimPlugins.lualine-nvim
       vimPlugins.lspsaga-nvim
       vimPlugins.nvim-notify
       vimPlugins.nvim-lint
