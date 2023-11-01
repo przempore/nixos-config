@@ -18,7 +18,7 @@
     pkgs = nixpkgs.legacyPackages.${system};
   in
   {
-    # export NIXPKGS_ALLOW_UNFREE=1 && nix build .#homeConfigurations.przemek.activationPackage --impure --show-trace
+    # export NIXPKGS_ALLOW_UNFREE=1 && nix build .#homeConfigurations.przemek.activationPackage --impure --show-trace && ./result/activate
     homeConfigurations = {
       przemek = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgs;
