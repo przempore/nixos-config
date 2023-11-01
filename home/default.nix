@@ -52,6 +52,7 @@ in
       eza
       ripgrep
       any-nix-shell
+      rofi
 
       # archives
       zip
