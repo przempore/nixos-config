@@ -5,7 +5,7 @@
     shellAliases = {
       ll = "eza --tree --level=1 --long --icons --git -lh";
       lh = "ll -lah";
-      tree = "eza --tree"
+      tree = "eza --tree";
     };
     interactiveShellInit = ''
       any-nix-shell fish --info-right | source

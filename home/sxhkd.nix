@@ -1,4 +1,23 @@
 { config, pkgs, ... }: {
+
+  home.file.".config/bspwm/scripts/bspwm_resize".text = ''
+    #usr/bin/env dash
+    if bspc query -N -n focused.floating > /dev/null; then
+            step=20
+    else
+            step=100
+    fi
+
+    case "$1" in
+            west) dir=right; falldir=left; x="-$step"; y=0;;
+            east) dir=right; falldir=left; x="$step"; y=0;;
+            north) dir=top; falldir=bottom; x=0; y="-$step";;
+            south) dir=top; falldir=bottom; x=0; y="$step";;
+    esac
+
+    bspc node -z "$dir" "$x" "$y" || bspc node -z "$falldir" "$x" "$y"
+  '';
+
   services.sxhkd = {
     enable = true;
     keybindings = {
@@ -87,7 +106,7 @@
       # Move focused window to other monitor
       "super + shift + Down" =  "bspc node -m next --follow";
       # Focus/swap windows by direction
-      "super + ctrl + {Left,Down,Up,Right}" =  "bspc node --{focus} {west,south,north,east}";
+      # "super + ctrl + {Left,Down,Up,Right}" =  "bspc node --{focus} {west,south,north,east}";
       # Contract tiled space
       "super + ctrl + {h,j,k,l}" =  "bspc node {@east -r -10,@north -r +10,@south -r -10,@west -r +10}";
       # Focus parent/brother/first/second for preselection
@@ -119,6 +138,10 @@
                                   [ $(bspc config -d focused window_gap) -ge 2 ] && \
                                   bspc config -d focused window_gap (math (bspc config -d focused window_gap) - 2); \
                                   };";
+      # move a floating window
+      "super + ctrl + {Left,Down,Up,Right}" = "bspc node -v {-20 0,0 20,0 -20,20 0};";
+      # Custom move/resize
+      "super + alt + {Left,Down,Up,Right}" =  "$HOME/.config/bspwm/scripts/bspwm_resize {west,south,north,east};";
     };
   };
 }

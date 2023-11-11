@@ -46,7 +46,7 @@ in
       macos_traditional_fullscreen = "yes";
       macos_show_window_title_in = "none";
 
-      map ctrl+shift+c new_tab
+      map = "ctrl+shift+c new_tab";
 
 # map = f1 new_window_with_cwd
 # map f2 new_tab_with_cwd

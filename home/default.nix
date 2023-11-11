@@ -53,6 +53,9 @@ in
       ripgrep
       any-nix-shell
       rofi
+      betterlockscreen
+      netflix
+      dash
 
       # archives
       zip

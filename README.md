@@ -1,7 +1,12 @@
 # nix-config
 
-### Install Qt
+### home-manager
+To run home-manager from this flake:
+``` bash
+export NIXPKGS_ALLOW_UNFREE=1 && nix build .#homeConfigurations.przemek.activationPackage --impure --show-trace && ./result/activate
+```
 
+### Install Qt
 ``` bash
 nix run \
 --impure github:guibou/nixGL \
@@ -29,7 +34,6 @@ install \
 [source](https://reflexivereflection.com/posts/2015-02-28-deb-installation-nixos.html)
 
 ## Installation
-
 ```bash
 sudo nixos-rebuild switch --flake .#nixos
 ```
