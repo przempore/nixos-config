@@ -12,6 +12,14 @@
 
     userEmail = "przempore@gmail.com";
     userName = "Przemek";
+    
+    ignores = [".envrc" ".direnv/"];
+    extraConfig = {
+      push.default = "current";
+
+      init.defaultBranch = "main";
+      submodule.recurse = "true";
+    };
 
     delta = {
       enable = true;

@@ -43,10 +43,12 @@
     #   "window_type = 'desktop'";
     #   "_GTK_FRAME_EXTENTS@:c"
     # ];
-    backend = "xrender";
+    backend = "glx";
     vsync = false;
     mark-wmwin-focused = true;
     mark-ovredir-focused = true;
+    corner-radius = 10;
+    rounded-corners-exclude = [ "class_g = 'Roffi'" ];
     detect-rounded-corners = true;
     detect-client-opacity = true;
     refresh-rate = 0;

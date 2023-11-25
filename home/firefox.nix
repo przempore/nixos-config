@@ -19,6 +19,15 @@
       '';
       settings = {
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+        "browser.urlbar.placeholderName" = "DuckDuckGo";
+        "browser.ctrlTab.recentlyUsedOrder" = true;
+        "browser.toolbars.bookmarks.visibility" = "never";
+        "datareporting.policy.dataSubmissionEnable" = false;
+        "datareporting.policy.dataSubmissionPolicyAcceptedVersion" = 2;
+        "dom.security.https_only_mode" = true;
+        "dom.security.https_only_mode_ever_enabled" = true;
+        "privacy.trackingprotection.enabled" = true;
+        "privacy.trackingprotection.socialtracking.enabled" = true;
       };
     };
   };
