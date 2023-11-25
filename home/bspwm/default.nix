@@ -50,7 +50,7 @@
       }
 
       polybar mainbar 2>/dev/null &
-      feh --bg-scale $HOME/.dotfiles/variety/.config/variety/Favorites/6gz4757ztdx91.jpg
+      feh --bg-scale $HOME/Projects/nixos-config/home/bspwm/wallpapers/OHR.WychwoodForest_EN-US6378774990_1920x1080.jpg
       keepassxc &
       blueberry-tray &
       clipster -d &
