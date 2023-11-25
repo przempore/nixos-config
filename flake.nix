@@ -14,21 +14,22 @@
   };
 
   outputs = { self, nixpkgs, home-manager, nixos-hardware, ... }@inputs:
-  let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-  in
-  {
-    # export NIXPKGS_ALLOW_UNFREE=1 && nix build .#homeConfigurations.przemek.activationPackage --impure --show-trace && ./result/activate
-    homeConfigurations = {
-      przemek = home-manager.lib.homeManagerConfiguration {
-        pkgs = pkgs;
-        modules = [
-          ./home
-        ];
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
+    {
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+      # export NIXPKGS_ALLOW_UNFREE=1 && nix build .#homeConfigurations.przemek.activationPackage --impure --show-trace && ./result/activate
+      homeConfigurations = {
+        przemek = home-manager.lib.homeManagerConfiguration {
+          pkgs = pkgs;
+          modules = [
+            ./home
+          ];
+        };
       };
-    };
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./configuration.nix

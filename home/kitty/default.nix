@@ -1,11 +1,11 @@
 { pkgs, ... }:
-let 
-catppuccin-kitty = pkgs.fetchFromGitHub {
-  owner = "catppuccin";
-  repo = "kitty";
-  rev = "4820b3ef3f4968cf3084b2239ce7d1e99ea04dda";
-  sha256 = "sha256-uZSx+fuzcW//5/FtW98q7G4xRRjJjD5aQMbvJ4cs94U=";
-};
+let
+  catppuccin-kitty = pkgs.fetchFromGitHub {
+    owner = "catppuccin";
+    repo = "kitty";
+    rev = "4820b3ef3f4968cf3084b2239ce7d1e99ea04dda";
+    sha256 = "sha256-uZSx+fuzcW//5/FtW98q7G4xRRjJjD5aQMbvJ4cs94U=";
+  };
 in
 {
   home.file.".config/kitty/scripts" = {
@@ -18,14 +18,14 @@ in
       include = builtins.readFile
         (catppuccin-kitty + "/themes/mocha.conf");
 
-      background_opacity =  "0.95";
+      background_opacity = "0.95";
       dynamic_background_opacity = "yes";
       font_family = "JetBrainsMono Nerd Font Mono";
       font_size = 11;
       # https://github.com/kovidgoyal/kitty/issues/719#issuecomment-952039731
       # scrollback_pager = "bash -c \"exec nvim 63<&0 0</dev/null -u NONE -c 'map <silent> q :qa!<CR>' -c 'set shell=bash scrollback=100000 termguicolors laststatus=0 clipboard+=unnamedplus' -c 'autocmd TermEnter * stopinsert' -c 'autocmd TermClose * call cursor(max([0,INPUT_LINE_NUMBER-1])+CURSOR_LINE, CURSOR_COLUMN)' -c 'terminal sed </dev/fd/63 -e \"s/'$'\x1b'']8;;file:[^\]*[\]//g\" && sleep 0.01 && printf \"'$'\x1b'']2;\"'\"";
-      scrollback_pager =  "$HOME/.config/kitty/scripts/scrollback_pager.sh 'INPUT_LINE_NUMBER' 'CURSOR_LINE' 'CURSOR_COLUMN'";
-# NO BELLS!
+      scrollback_pager = "$HOME/.config/kitty/scripts/scrollback_pager.sh 'INPUT_LINE_NUMBER' 'CURSOR_LINE' 'CURSOR_COLUMN'";
+      # NO BELLS!
       enable_audio_bell = "no";
       copy_on_select = "yes";
       enabled_layouts = "tall:bias=70, tall:bias=30, horizontal, stack";
@@ -48,8 +48,8 @@ in
 
       map = "ctrl+shift+c new_tab";
 
-# map = f1 new_window_with_cwd
-# map f2 new_tab_with_cwd
+      # map = f1 new_window_with_cwd
+      # map f2 new_tab_with_cwd
     };
   };
 }

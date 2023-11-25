@@ -1,6 +1,5 @@
-{
-  pkgs,
-  ...
+{ pkgs
+, ...
 }: {
   services.picom.enable = true;
   services.picom.settings = {
@@ -9,26 +8,26 @@
     shadow-offset-x = -7;
     shadow-offset-y = -7;
     shadow-exclude = [
-        "name = 'Notification'"
-        "class_g ?= 'Notify-osd'"
-        "name = 'Plank'"
-        "name = 'Docky'"
-        "name = 'Kupfer'"
-        "name = 'xfce4-notifyd'"
-        "name *= 'VLC'"
-        "name *= 'compton'"
-        "name *= 'Chromium'"
-        "name *= 'Chrome'"
-        "class_g = 'Firefox' && argb"
-        "class_g = 'Conky'"
-        "class_g = 'Kupfer'"
-        "class_g = 'Synapse'"
-        "class_g ?= 'Notify-osd'"
-        "class_g ?= 'Cairo-dock'"
-        "class_g = 'Cairo-clock'"
-        "class_g ?= 'Xfce4-notifyd'"
-        "class_g ?= 'Xfce4-power-manager'"
-        "_GTK_FRAME_EXTENTS@:c"
+      "name = 'Notification'"
+      "class_g ?= 'Notify-osd'"
+      "name = 'Plank'"
+      "name = 'Docky'"
+      "name = 'Kupfer'"
+      "name = 'xfce4-notifyd'"
+      "name *= 'VLC'"
+      "name *= 'compton'"
+      "name *= 'Chromium'"
+      "name *= 'Chrome'"
+      "class_g = 'Firefox' && argb"
+      "class_g = 'Conky'"
+      "class_g = 'Kupfer'"
+      "class_g = 'Synapse'"
+      "class_g ?= 'Notify-osd'"
+      "class_g ?= 'Cairo-dock'"
+      "class_g = 'Cairo-clock'"
+      "class_g ?= 'Xfce4-notifyd'"
+      "class_g ?= 'Xfce4-power-manager'"
+      "_GTK_FRAME_EXTENTS@:c"
     ];
     fading = true;
     fade-in-step = 0.04;

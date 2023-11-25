@@ -1,9 +1,8 @@
-{
-  pkgs,
-  config,
-  ...
+{ pkgs
+, config
+, ...
 }: {
-  home.packages = [pkgs.firefox];
+  home.packages = [ pkgs.firefox ];
 
   programs.firefox = {
     enable = true;
@@ -17,9 +16,9 @@
                 rev = "932a99851b5f2db8b58aa456e5d897e278c69574";
             }
           }/userChrome.css";
-          '';
+      '';
       settings = {
-          "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
       };
     };
   };

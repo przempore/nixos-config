@@ -33,107 +33,107 @@
       "super + r" = "rofi-theme-selector";
       #Pavucontrol
       "super + v" = "clipster -s -c";
-      "super + Return" =  "kitty";
-      "super + Escape" =  "xkill";
-      "super + KP_Enter" =  "kitty";
+      "super + Return" = "kitty";
+      "super + Escape" = "xkill";
+      "super + KP_Enter" = "kitty";
       #File-Manager
-      "super + shift + Return" =  "thunar";
+      "super + shift + Return" = "thunar";
       #dmenu
-      "super + m" =  "dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'";
+      "super + m" = "dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'";
       #reload sxhkd:
-      "alt + r" =  "pkill -USR1 -x sxhkd";
-      "ctrl + alt + g" =  "brave";
-      "ctrl + alt + f" =  "firefox";
-      "ctrl + alt + k" =  "keepassxc";
-      "ctrl + alt + p" =  "flameshot gui";
-      "ctrl + alt + shift + p" =  "shutter -s";
-      "ctrl + alt + m" =  "xfce4-settings-manager";
-      "ctrl + alt + r" =  "rofi-theme-selector";
-      "ctrl + alt + s" =  "spotify";
-      "ctrl + alt + v" =  "pavucontrol";
-      "ctrl + alt + a" =  "xfce4-appfinder";
+      "alt + r" = "pkill -USR1 -x sxhkd";
+      "ctrl + alt + g" = "brave";
+      "ctrl + alt + f" = "firefox";
+      "ctrl + alt + k" = "keepassxc";
+      "ctrl + alt + p" = "flameshot gui";
+      "ctrl + alt + shift + p" = "shutter -s";
+      "ctrl + alt + m" = "xfce4-settings-manager";
+      "ctrl + alt + r" = "rofi-theme-selector";
+      "ctrl + alt + s" = "spotify";
+      "ctrl + alt + v" = "pavucontrol";
+      "ctrl + alt + a" = "xfce4-appfinder";
       #Wallpaper trash
-      "alt + shift + t" =  "variety -t && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&";
+      "alt + shift + t" = "variety -t && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&";
       #Wallpaper next
-      "alt + shift + n" =  "variety -n && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&";
+      "alt + shift + n" = "variety -n && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&";
       #Wallpaper previous
-      "alt + shift + p" =  "variety -p && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&";
+      "alt + shift + p" = "variety -p && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&";
       #Wallpaper favorite
-      "alt + shift + f" =  "variety -f && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&";
+      "alt + shift + f" = "variety -f && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&";
       #Wallpaper update
-      "alt + shift + u" =  "wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&";
+      "alt + shift + u" = "wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&";
       #Xcfe4-TaskManager
-      "ctrl + shift + Escape" =  "xfce4-taskmanager";
-      "alt + Up" =  "bash -c \"if [ $(pactl list sinks | grep '^[[:space:]]Volume:' | sed -e 's,.* \\([0-9][0-9]*\\)%.*,\\1,') -lt 100 ]; then pactl set-sink-volume @DEFAULT_SINK@ +7%; fi\"";
-      "alt + Down" =  "pactl set-sink-volume @DEFAULT_SINK@ -7%";
+      "ctrl + shift + Escape" = "xfce4-taskmanager";
+      "alt + Up" = "bash -c \"if [ $(pactl list sinks | grep '^[[:space:]]Volume:' | sed -e 's,.* \\([0-9][0-9]*\\)%.*,\\1,') -lt 100 ]; then pactl set-sink-volume @DEFAULT_SINK@ +7%; fi\"";
+      "alt + Down" = "pactl set-sink-volume @DEFAULT_SINK@ -7%";
       #Hide polybar
-      "super + y" =  "polybar-msg cmd toggle";
+      "super + y" = "polybar-msg cmd toggle";
       #Picom Toggle
-      "ctrl + alt + o" =  "~/.config/bspwm/scripts/picom-toggle.sh";
+      "ctrl + alt + o" = "~/.config/bspwm/scripts/picom-toggle.sh";
       #Toggle fullscreen of window
-      "super + f" =  "bspc node --state \~fullscreen";
+      "super + f" = "bspc node --state \~fullscreen";
       # Toggle pseudo tiling of window
-      "super + p" =  "bspc node --state \~pseudo_tiled";
-      "super + o" =  "bspc node --state \~floating";
+      "super + p" = "bspc node --state \~pseudo_tiled";
+      "super + o" = "bspc node --state \~floating";
       #kill
-      "super + q" =  "bspc node -c";
+      "super + q" = "bspc node -c";
       # Rotate windows layout
-      "super + {_,shift + }e" =  "bspc node '@parent' -R {_,-}90";
+      "super + {_,shift + }e" = "bspc node '@parent' -R {_,-}90";
       #Focus selected desktop
-      "super + Tab" =  "rofi -show window -show-icons";
+      "super + Tab" = "rofi -show window -show-icons";
       # set the window state
-      "super + space" =  "bspc node -t {tiled,pseudo_tiled,floating,fullscreen}";
+      "super + space" = "bspc node -t {tiled,pseudo_tiled,floating,fullscreen}";
       # Move focus to other monitor
-      "super + BackSpace" =  "bspc monitor -f next";
+      "super + BackSpace" = "bspc monitor -f next";
       # Move floating window
-      "super + alt + {_,shift + }{Left,Down,Up,Right}" =  "~/.config/bspwm/scripts/move-window {_,edge-}{west,south,north,east}";
+      "super + alt + {_,shift + }{Left,Down,Up,Right}" = "~/.config/bspwm/scripts/move-window {_,edge-}{west,south,north,east}";
       # Cancel preselection
-      "super + ctrl + space" =  "bspc node --presel-dir cancel";
+      "super + ctrl + space" = "bspc node --presel-dir cancel";
       #Reload bspwm
-      "super + shift + x" =  "betterlockscreen -l --dim";
+      "super + shift + x" = "betterlockscreen -l --dim";
       #kill
-      "super + shift + q" =  "bspc node -c";
+      "super + shift + q" = "bspc node -c";
       # Focus/swap windows by direction
-      "super + {_,shift + }{h,j,k,l}" =  "bspc node --{focus,swap} {west,south,north,east}";
+      "super + {_,shift + }{h,j,k,l}" = "bspc node --{focus,swap} {west,south,north,east}";
       # Flip layout vertically/horizontally
-      "super + {_,shift + }a" =  "bspc node @/ --flip {vertical,horizontal}";
+      "super + {_,shift + }a" = "bspc node @/ --flip {vertical,horizontal}";
       # Move focused window to other monitor
-      "super + shift + Left" =  "bspc node -m next --follow";
+      "super + shift + Left" = "bspc node -m next --follow";
       # Move focused window to other monitor
-      "super + shift + Right" =  "bspc node -m next --follow";
+      "super + shift + Right" = "bspc node -m next --follow";
       # Move focused window to other monitor
-      "super + shift + Up" =  "bspc node -m next --follow";
+      "super + shift + Up" = "bspc node -m next --follow";
       # Move focused window to other monitor
-      "super + shift + Down" =  "bspc node -m next --follow";
+      "super + shift + Down" = "bspc node -m next --follow";
       # Focus/swap windows by direction
       # "super + ctrl + {Left,Down,Up,Right}" =  "bspc node --{focus} {west,south,north,east}";
       # Contract tiled space
-      "super + ctrl + {h,j,k,l}" =  "bspc node {@east -r -10,@north -r +10,@south -r -10,@west -r +10}";
+      "super + ctrl + {h,j,k,l}" = "bspc node {@east -r -10,@north -r +10,@south -r -10,@west -r +10}";
       # Focus parent/brother/first/second for preselection
-      "super + ctrl + {comma,period,p,y}" =  "bspc node --focus @{parent,brother,first,second}";
+      "super + ctrl + {comma,period,p,y}" = "bspc node --focus @{parent,brother,first,second}";
       # Preselect the splitting area for next window on leaf/parent
-      "super + ctrl + {f,g,c,r}" =  "bspc node --presel-dir \~{west,south,north,east}";
+      "super + ctrl + {f,g,c,r}" = "bspc node --presel-dir \~{west,south,north,east}";
       # Define splitting ratio for next window on leaf/parent
-      "super + ctrl + {_,shift +}{plus,bracketleft,braceleft,parenleft,ampersand,equal,parenright,braceright,bracketright,asterisk}" =  "bspc node {_,@/} --presel-ratio 0.{1-9}";
+      "super + ctrl + {_,shift +}{plus,bracketleft,braceleft,parenleft,ampersand,equal,parenright,braceright,bracketright,asterisk}" = "bspc node {_,@/} --presel-ratio 0.{1-9}";
       #Focus selected desktop
-      "alt + Tab" =  "bspc desktop -f '^{1-9,10}'";
+      "alt + Tab" = "bspc desktop -f '^{1-9,10}'";
       #Focus selected desktop
-      "alt + shift + Tab" =  "bspc desktop -f '^{1-9,10}'";
-      "alt + k" =  "$HOME/.config/bspwm/scripts/refresh-keyboard.sh";
-      "alt + c" =  "$HOME/.config/bspwm/scripts/refresh-keyboard.sh --set_CTRL";
+      "alt + shift + Tab" = "bspc desktop -f '^{1-9,10}'";
+      "alt + k" = "$HOME/.config/bspwm/scripts/refresh-keyboard.sh";
+      "alt + c" = "$HOME/.config/bspwm/scripts/refresh-keyboard.sh --set_CTRL";
       # Expand tiled space
-      "alt + shift + {h,j,k,l}" =  "bspc node {@west -r -10,@south -r +10,@north -r -10,@east -r +10}";
+      "alt + shift + {h,j,k,l}" = "bspc node {@west -r -10,@south -r +10,@north -r -10,@east -r +10}";
       # Focus next/previous window
-      "ctrl + alt + Left" =  "bspc node --focus west";
+      "ctrl + alt + Left" = "bspc node --focus west";
       # Focus next/previous window
-      "ctrl + alt + Right" =  "bspc node --focus east";
+      "ctrl + alt + Right" = "bspc node --focus east";
       # Focus Up window
-      "ctrl + alt + Up" =  "bspc node --focus north";
+      "ctrl + alt + Up" = "bspc node --focus north";
       # Focus Down window
-      "ctrl + alt + Down" =  "bspc node --focus south";
-      "super + {plus,bracketleft,braceleft,parenleft,ampersand,equal,parenright,braceright,bracketright,asterisk}" =  "bspc desktop -f '^{1-9,10}'";
+      "ctrl + alt + Down" = "bspc node --focus south";
+      "super + {plus,bracketleft,braceleft,parenleft,ampersand,equal,parenright,braceright,bracketright,asterisk}" = "bspc desktop -f '^{1-9,10}'";
       # super + shift + {1-9,0}
-      "super + shift + {plus,bracketleft,braceleft,parenleft,ampersand,equal,parenright,braceright,bracketright,asterisk}" =  "bspc node -d '^{1-9,10}' -f";
+      "super + shift + {plus,bracketleft,braceleft,parenleft,ampersand,equal,parenright,braceright,bracketright,asterisk}" = "bspc node -d '^{1-9,10}' -f";
       "super + {_, shift +} g" = "{ bspc config -d focused window_gap (math (bspc config -d focused window_gap) + 2); \
                                   [ $(bspc config -d focused window_gap) -ge 2 ] && \
                                   bspc config -d focused window_gap (math (bspc config -d focused window_gap) - 2); \
@@ -141,7 +141,7 @@
       # move a floating window
       "super + ctrl + {Left,Down,Up,Right}" = "bspc node -v {-20 0,0 20,0 -20,20 0};";
       # Custom move/resize
-      "super + alt + {Left,Down,Up,Right}" =  "$HOME/.config/bspwm/scripts/bspwm_resize {west,south,north,east};";
+      "super + alt + {Left,Down,Up,Right}" = "$HOME/.config/bspwm/scripts/bspwm_resize {west,south,north,east};";
     };
   };
 }

@@ -106,7 +106,7 @@
 
         label-focused = "%icon%";
         label-focused-background = "\${colors.background}";
-        label-focused-underline= "#6790eb";
+        label-focused-underline = "#6790eb";
         label-focused-padding = 4;
         label-focused-foreground = "#6790EB";
 
@@ -136,7 +136,7 @@
         label-locked-foreground = "\${colors.foreground}";
         label-sticky = "  ";
         label-sticky-foreground = "\${colors.foreground}";
-        label-private =  "     ";
+        label-private = "     ";
         label-private-foreground = "\${colors.foreground}";
 
         format-foreground = "\${colors.foreground}";
@@ -166,69 +166,69 @@
         format-background = "\${colors.background}";
       };
 
-     "module/cpu2" = {
-       type = "internal/cpu";
-       interval = 1;
-       format-foreground = "\${colors.foreground}";
-       format-background = "\${colors.background}";
-       format-prefix = "  ";
-       format-prefix-foreground = "#cd1f3f";
-       format-underline = "#cd1f3f";
+      "module/cpu2" = {
+        type = "internal/cpu";
+        interval = 1;
+        format-foreground = "\${colors.foreground}";
+        format-background = "\${colors.background}";
+        format-prefix = "  ";
+        format-prefix-foreground = "#cd1f3f";
+        format-underline = "#cd1f3f";
 
-       label-font = 3;
+        label-font = 3;
 
-       format = "<label>";
+        format = "<label>";
 
-       format-padding = 2;
+        format-padding = 2;
 
-       label = "Cpu %percentage:3%%";
-     };
+        label = "Cpu %percentage:3%%";
+      };
 
-     "module/date" = {
+      "module/date" = {
         #https://github.com/jaagr/polybar/wiki/Module:-date
-       type = "internal/date";
+        type = "internal/date";
         # Seconds to sleep between updates
-       interval = 5;
+        interval = 5;
         # See "http://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
         # NOTE: if you want to use syntax tags here you need to use %%{...}
-       date = " %d-%m-%Y";
-       date-alt = " %Y-%m-%d%";
-       time = "%H:%M";
-       time-alt = "%H:%M";
-       format-prefix = " ";
-       format-prefix-foreground = "#c1941a";
-       format-underline = "#c1941a";
-       format-foreground = "\${colors.foreground}";
-       format-background = "\${colors.background}";
-       label = "%date% %time%";
-     };
+        date = " %d-%m-%Y";
+        date-alt = " %Y-%m-%d%";
+        time = "%H:%M";
+        time-alt = "%H:%M";
+        format-prefix = " ";
+        format-prefix-foreground = "#c1941a";
+        format-underline = "#c1941a";
+        format-foreground = "\${colors.foreground}";
+        format-background = "\${colors.background}";
+        label = "%date% %time%";
+      };
 
-     "module/pavolume" = {
-       type = "custom/script";
-       tail = true;
-       label = "%output%";
-       exec = "~/.config/polybar/pavolume.sh --listen";
-       click-right = "exec pavucontrol";
-       click-left = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
-       scroll-up = "bash -c \"if [ $(pactl list sinks | grep '^[[:space:]]Volume:' | sed -e 's,.* \\([0-9][0-9]*\\)%.*,\\1,') -lt 100 ]; then pactl set-sink-volume @DEFAULT_SINK@ +7%; fi\"";
-       scroll-down = "pactl set-sink-volume @DEFAULT_SINK@ -5%";
-       format-underline = "#3EC13F";
-       format-foreground = "\${colors.foreground}";
-       format-background = "\${colors.background}";
-     };
+      "module/pavolume" = {
+        type = "custom/script";
+        tail = true;
+        label = "%output%";
+        exec = "~/.config/polybar/pavolume.sh --listen";
+        click-right = "exec pavucontrol";
+        click-left = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
+        scroll-up = "bash -c \"if [ $(pactl list sinks | grep '^[[:space:]]Volume:' | sed -e 's,.* \\([0-9][0-9]*\\)%.*,\\1,') -lt 100 ]; then pactl set-sink-volume @DEFAULT_SINK@ +7%; fi\"";
+        scroll-down = "pactl set-sink-volume @DEFAULT_SINK@ -5%";
+        format-underline = "#3EC13F";
+        format-foreground = "\${colors.foreground}";
+        format-background = "\${colors.background}";
+      };
 
-     "module/kernel" = {
-       type = "custom/script";
-       exec = "uname -r";
-       tail = false;
-       interval = 1024;
+      "module/kernel" = {
+        type = "custom/script";
+        exec = "uname -r";
+        tail = false;
+        interval = 1024;
 
-       format-foreground = "\${colors.foreground}";
-       format-background = "\${colors.background}";
-       format-prefix = "  ";
-       format-prefix-foreground = "#0084FF";
-       format-underline = "#0084FF";
-     };
+        format-foreground = "\${colors.foreground}";
+        format-background = "\${colors.background}";
+        format-prefix = "  ";
+        format-prefix-foreground = "#0084FF";
+        format-underline = "#0084FF";
+      };
     };
   };
 }
