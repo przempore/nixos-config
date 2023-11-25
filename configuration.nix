@@ -14,13 +14,16 @@
   nix.settings.trusted-users = [ "root" "przemek" ];
 
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/vda";
-  boot.loader.grub.useOSProber = true;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  # boot.loader.grub.enable = true;
+  # boot.loader.grub.device = "/dev/vda";
+  # boot.loader.grub.useOSProber = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
   # Limit the number of generations to keep
-  boot.loader.systemd-boot.configurationLimit = 10;
+  # boot.loader.systemd-boot.configurationLimit = 10;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -73,7 +76,7 @@
     greeters.slick.enable = true;
   };
   services.xserver.displayManager.defaultSession = "none+bspwm";
-  services.xserver.desktopManager.xfce.enable = true;
+  services.xserver.desktopManager.cinnamon.enable = true;
   services.xserver.extraLayouts.real-prog-dvorak = {
     description = "Real proogrammer dvorak";
     languages = [ "pl" ];
@@ -96,7 +99,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = false;
+  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {

@@ -46,6 +46,7 @@ in
 
       cachix
       neocmakelsp
+      rnix-lsp
 
       neofetch
       nnn # terminal file manager

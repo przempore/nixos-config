@@ -31,7 +31,7 @@
         compositing-border = "over";
       };
       "bar/mainbar" = {
-        monitor = "Virtual-1";
+        monitor = "eDP-1";
         width = "100%";
         height = 30;
         radius = "0.0";

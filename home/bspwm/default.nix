@@ -8,7 +8,9 @@
   xsession.windowManager.bspwm = {
     enable = true;
     extraConfigEarly = ''
-      ~/.screenlayout/script.sh;
+      if [ -e ~/.screenlayout/script.sh ]; then
+        ~/.screenlayout/script.sh
+      fi
 
       bspc config border_width         2
       bspc config window_gap           4

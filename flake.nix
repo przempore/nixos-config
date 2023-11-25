@@ -10,9 +10,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixos-hardware, ... }@inputs:
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
@@ -31,6 +32,7 @@
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
+          nixos-hardware.nixosModules.dell-e7240
 
           home-manager.nixosModules.home-manager
           {
