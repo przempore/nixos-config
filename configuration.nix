@@ -24,7 +24,7 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
   # Limit the number of generations to keep
-  # boot.loader.systemd-boot.configurationLimit = 10;
+  boot.loader.systemd-boot.configurationLimit = 10;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -76,6 +76,9 @@
     enable = true;
     greeters.slick.enable = true;
   };
+  # Tiling window manager
+  services.xserver.windowManager.bspwm.enable = true;
+
   services.xserver.displayManager.defaultSession = "none+bspwm";
   services.xserver.desktopManager.cinnamon.enable = true;
   services.xserver.extraLayouts.real-prog-dvorak = {
@@ -83,9 +86,6 @@
     languages = [ "pl" ];
     symbolsFile = ./keyboard/symbols/real-prog-dvorak.xkb;
   };
-
-  # Tiling window manager
-  services.xserver.windowManager.bspwm.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
