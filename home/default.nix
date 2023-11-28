@@ -7,6 +7,9 @@ let
     rev = "ba4d16880d63e656acced2b7d4e034e4a93f74b1";
     sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=";
   };
+  nix-alien-pkgs = import (
+    builtins.fetchTarball "https://github.com/thiagokokada/nix-alien/tarball/master"
+  ) { };
 in
 {
   imports = [
@@ -44,9 +47,13 @@ in
       # here is some command line tools I use frequently
       # feel free to add your own or remove some of them
 
+      nix-alien-pkgs.nix-alien
+
       cachix
       neocmakelsp
       rnix-lsp
+
+      barrier
 
       neofetch
       nnn # terminal file manager
