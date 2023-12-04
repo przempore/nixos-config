@@ -57,6 +57,7 @@
       nm-applet &
       get_location
       redshift -l $location &
+      xfce4-power-manager &
     '';
   };
 }

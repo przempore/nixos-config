@@ -64,6 +64,7 @@ in
       betterlockscreen
       netflix
       dash
+      mpv
 
       # archives
       zip

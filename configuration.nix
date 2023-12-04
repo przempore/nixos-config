@@ -16,6 +16,8 @@
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
+  # Limit the number of generations to keep
+  boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # boot.loader.grub.enable = true;
@@ -23,8 +25,6 @@
   # boot.loader.grub.useOSProber = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  # Limit the number of generations to keep
-  boot.loader.systemd-boot.configurationLimit = 10;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -68,18 +68,30 @@
   # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-auto-optimise-store
   nix.settings.auto-optimise-store = true;
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # Tiling window manager
+  # services.xserver.windowManager.bspwm.enable = true;
 
   # Enable the XFCE Desktop Environment.
+  services.xserver = {
+    enable = true;   
+    desktopManager = {
+      xterm.enable = false;
+      xfce = {
+        enable = true;
+        noDesktop = true;
+        enableXfwm = false;
+      };
+    };
+    windowManager.bspwm.enable = true;
+    displayManager.defaultSession = "none+bspwm";
+  };
+
   services.xserver.displayManager.lightdm = {
     enable = true;
     greeters.slick.enable = true;
   };
-  # Tiling window manager
-  services.xserver.windowManager.bspwm.enable = true;
 
-  services.xserver.displayManager.defaultSession = "none+bspwm";
+  # services.xserver.displayManager.defaultSession = "none+bspwm";
   services.xserver.desktopManager.cinnamon.enable = true;
   services.xserver.extraLayouts.real-prog-dvorak = {
     description = "Real proogrammer dvorak";
