@@ -31,6 +31,11 @@ in
     set show_hidden true
   '';
 
+  home.file.".config/mpv/mpv.conf".text = ''
+    ytdl-format=bestvideo[height<=?1080]+bestaudio/best
+    --save-position-on-quit
+  '';
+
   # Packages that should be installed to the user profile.
   home = {
     username = "przemek";
