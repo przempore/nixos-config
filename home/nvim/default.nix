@@ -89,6 +89,7 @@ in
       vimPlugins.nvim-notify
       vimPlugins.nvim-lint
       vimPlugins.vim-go
+      vimPlugins.oil-nvim
     ];
 
     extraPackages = with pkgs; [

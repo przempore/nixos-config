@@ -6,6 +6,8 @@
       ll = "eza --tree --level=1 --long --icons --git -lh";
       lh = "ll -lah";
       tree = "eza --tree";
+      asdf = "setxkbmap";
+      asdfc = "setxkbmap -option ctrl:nocaps && setxkbmap -option altwin:swap_lalt_lwin";
     };
     interactiveShellInit = ''
       any-nix-shell fish --info-right | source
