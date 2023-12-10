@@ -54,6 +54,7 @@
       bind - split-window -v -c "#{pane_current_path}"
       bind c new-window -c "#{pane_current_path}"
 
+      set -g status off
       bind b set-option -g status
 
       set -g @catppuccin_window_right_separator "█☠"
