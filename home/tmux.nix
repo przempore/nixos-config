@@ -47,6 +47,11 @@
       set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q'
       set-environment -g COLORTERM "truecolor"
 
+      # choose only windows in current session
+      bind-key -r -T prefix w run-shell 'tmux choose-tree -Nwf"##{==:##{session_name},#{session_name}}"'
+      # choose both session and windows
+      bind-key -r -T prefix S choose-window
+
       # Mouse works as expected
       set-option -g mouse on
       # easy-to-remember split pane commands
