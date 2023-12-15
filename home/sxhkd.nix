@@ -32,7 +32,7 @@
       #Rofi theme selector
       "super + r" = "rofi-theme-selector";
       #Pavucontrol
-      "super + v" = "clipster -s -c";
+      "super + v" = "xfce4-popup-clipman";
       "super + Return" = "kitty";
       "super + Escape" = "xkill";
       "super + KP_Enter" = "kitty";
@@ -119,8 +119,8 @@
       "alt + Tab" = "bspc desktop -f '^{1-9,10}'";
       #Focus selected desktop
       "alt + shift + Tab" = "bspc desktop -f '^{1-9,10}'";
-      "alt + k" = "$HOME/.config/bspwm/scripts/refresh-keyboard.sh";
-      "alt + c" = "$HOME/.config/bspwm/scripts/refresh-keyboard.sh --set_CTRL";
+      # "alt + k" = "$HOME/.config/bspwm/scripts/refresh-keyboard.sh";
+      # "alt + c" = "$HOME/.config/bspwm/scripts/refresh-keyboard.sh --set_CTRL";
       # Expand tiled space
       "alt + shift + {h,j,k,l}" = "bspc node {@west -r -10,@south -r +10,@north -r -10,@east -r +10}";
       # Focus next/previous window

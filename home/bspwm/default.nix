@@ -53,7 +53,7 @@
       feh --bg-scale $HOME/Projects/nixos-config/home/bspwm/wallpapers/OHR.WychwoodForest_EN-US6378774990_1920x1080.jpg
       keepassxc &
       blueberry-tray &
-      clipster -d &
+      xfce4-clipman &
       nm-applet &
       get_location
       redshift -l $location &

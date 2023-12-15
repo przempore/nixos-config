@@ -52,6 +52,7 @@ in
       cachix
       neocmakelsp
       rnix-lsp
+      xfce.xfce4-clipman-plugin
 
       barrier
 
