@@ -38,7 +38,7 @@ config.font =
 --   'nonicons',
 -- }
 
-config.leader = { key="a", mods="CTRL", timeout_milliseconds=1000 }
+config.leader = { key="o", mods="CTRL", timeout_milliseconds=1000 }
 config.keys = {
   {
     key = '|',
