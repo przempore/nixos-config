@@ -98,7 +98,7 @@ in
       zstd
       gnupg
       brave
-      signal-desktop-beta
+      signal-desktop
       caprine-bin
 
       # nix related
