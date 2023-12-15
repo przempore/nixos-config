@@ -49,7 +49,7 @@ in
       vimPlugins.vim-be-good
       vimPlugins.cmp-git
       vimPlugins.git-worktree-nvim
-      vimPlugins.harpoon
+      vimPlugins.harpoon2
       vimPlugins.gitsigns-nvim
       vimPlugins.fzf-checkout-vim
       vimPlugins.firenvim
