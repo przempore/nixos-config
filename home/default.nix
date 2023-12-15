@@ -10,16 +10,17 @@ let
 in
 {
   imports = [
-    ./nvim
-    ./git.nix
-    ./tmux.nix
-    ./fish.nix
     ./bspwm
-    ./sxhkd.nix
-    ./kitty
     ./firefox.nix
+    ./fish.nix
+    ./git.nix
+    ./kitty
+    ./nvim
     ./picom.nix
     ./polybar
+    ./sxhkd.nix
+    ./tmux.nix
+    ./wezterm
   ];
 
   home.file.".config/ranger/rc.conf".text = ''
