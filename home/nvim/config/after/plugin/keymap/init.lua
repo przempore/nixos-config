@@ -6,6 +6,8 @@ local xnoremap = Remap.xnoremap
 local tnoremap = Remap.tnoremap
 local nmap = Remap.nmap
 
+nnoremap("<leader>pv", ":Ex<CR>",
+    { noremap = true, silent = true, desc = "[misc] File explorer"})
 nnoremap("<leader>u", ":UndotreeShow<CR>",
     { noremap = true, silent = true, desc = "[Undotree] Show"})
 
@@ -41,7 +43,6 @@ vnoremap("<leader>d", "\"_d")
 
 vnoremap("<leader>d", "\"_d")
 
--- This is going to get me cancelled
 inoremap("<C-c>", "<Esc>")
 
 tnoremap("<Esc>", "<C-\\><C-n>")
