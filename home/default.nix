@@ -56,6 +56,7 @@ in
       xfce.xfce4-clipman-plugin
 
       barrier
+      onlyoffice-bin_7_5
 
       neofetch
       nnn # terminal file manager
