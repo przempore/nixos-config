@@ -174,7 +174,19 @@
     fish
     fzf
     wget
+    ripgrep
 
+    xorg.xbacklight
+    xorg.xmodmap
+    autorandr
+    rsync
+    bat
+    git
+    eza
+    htop
+    arandr
+
+    # all from here goes to home-manager
     # Desktop Environment
     rofi
     polybarFull
@@ -187,27 +199,20 @@
     clipster
     networkmanagerapplet
     redshift
-
     direnv
     neovim
     tabnine
     any-nix-shell
-    ripgrep
     firefox
     starship
     autojump
     youtube-dl
     keepassxc
-
-    xorg.xbacklight
-    xorg.xmodmap
-    autorandr
-
     sshfs
     backblaze-b2
-
     blueman
 
+    # this can be installed by flakes
     gcc
     clang-tools
     clang
@@ -226,28 +231,21 @@
     nodejs
     nodePackages_latest.pyright
     blueberry
-
     geany
-    git
-    bat
-    eza
-    htop
-    arandr
 
+    # all from here goes to home-manager
     tmux
     kitty
     wezterm
     pavucontrol
     blueberry
     xclip
-    # dunst # using xfce4-notifyd instead
     zathura
     flameshot
     nitrogen
     unzip
     ranger
     lf
-    rsync
     xfce.thunar
     xfce.thunar-volman
     xfce.thunar-archive-plugin
