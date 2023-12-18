@@ -24,7 +24,7 @@ config.set_environment_variables = {
 config.color_scheme = 'Catppuccin Mocha'
 config.window_background_opacity = 0.95
 
-config.font_size = 10.0
+config.font_size = 8.0
 config.font =
   wezterm.font('JetBrainsMono Nerd Font Mono')
   -- wezterm.font('Iosevka Nerd Font Mono', { weight = 'Bold', italic = false })
