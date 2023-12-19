@@ -155,6 +155,13 @@ in
         line_break.disabled = true;
       };
     };
+    zathura = {
+      enable = true;
+      # custom settings
+      options = {
+        selection-clipboard = "clipboard";
+      };
+    };
   };
 
 
