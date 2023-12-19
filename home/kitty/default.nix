@@ -8,6 +8,23 @@ let
   };
 in
 {
+  home.packages = with pkgs; [
+    any-nix-shell
+    autojump
+    direnv
+    eza
+    fzf # A command-line fuzzy finder
+    kitty
+    lf
+    neofetch
+    nnn # terminal file manager
+    ranger
+    ripgrep
+    sshfs
+    starship
+    tmux
+  ];
+
   home.file.".config/kitty/scripts" = {
     source = ./config;
   };

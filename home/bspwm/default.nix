@@ -1,5 +1,24 @@
 { config, pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    barrier
+    betterlockscreen
+    blueberry
+    flameshot
+    lxappearance
+    mpv
+    networkmanagerapplet
+    pavucontrol
+    pulseaudioFull
+    rofi
+    xclip
+    xfce.thunar
+    xfce.thunar-archive-plugin
+    xfce.thunar-volman
+    xfce.xfce4-clipman-plugin
+    xfce.xfce4-notifyd
+    xfce.xfce4-power-manager
+  ];
 
   home.file.".config/bspwm/wallpapers" = {
     source = ./wallpapers;
@@ -50,7 +69,7 @@
       }
 
       polybar mainbar 2>/dev/null &
-      feh --bg-scale $HOME/Projects/nixos-config/home/bspwm/wallpapers/OHR.WychwoodForest_EN-US6378774990_1920x1080.jpg
+      feh --bg-scale $HOME/Projects/dotfiles/screenlayout/.screenlayout/deep_blue_Original.png
       keepassxc &
       blueberry-tray &
       xfce4-clipman &

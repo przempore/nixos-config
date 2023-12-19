@@ -18,6 +18,7 @@ in
     ./nvim
     ./picom.nix
     ./polybar
+    ./screen_settings
     ./sxhkd.nix
     ./tmux.nix
     ./wezterm
@@ -51,23 +52,9 @@ in
       # feel free to add your own or remove some of them
 
       cachix
-      neocmakelsp
-      rnix-lsp
-      xfce.xfce4-clipman-plugin
-
-      barrier
       onlyoffice-bin_7_5
-
-      neofetch
-      nnn # terminal file manager
-      eza
-      ripgrep
-      any-nix-shell
-      rofi
-      betterlockscreen
       netflix
       dash
-      mpv
 
       # archives
       zip
@@ -77,7 +64,6 @@ in
       # utils
       jq # A lightweight and flexible command-line JSON processor
       yq-go # yaml processer https://github.com/mikefarah/yq
-      fzf # A command-line fuzzy finder
 
       # networking tools
       mtr # A network diagnostic tool
@@ -90,15 +76,6 @@ in
       ipcalc # it is a calculator for the IPv4/v6 addresses
 
       # misc
-      cowsay
-      file
-      which
-      tree
-      gnused
-      gnutar
-      gawk
-      zstd
-      gnupg
       brave
       signal-desktop
       caprine-bin
@@ -113,23 +90,49 @@ in
       hugo # static site generator
       glow # markdown previewer in terminal
 
-      btop # replacement of htop/nmon
-      iotop # io monitoring
-      iftop # network monitoring
-
-      # system call monitoring
-      strace # system call monitoring
-      ltrace # library call monitoring
-      lsof # list open files
-
-      pulseaudioFull
-
       # system tools
       sysstat
       lm_sensors # for `sensors` command
       ethtool
       pciutils # lspci
       usbutils # lsusb
+
+      # all from here goes to home-manager
+      # Desktop Environment
+      # eww
+      ksuperkey
+      freetype
+      clipster
+      redshift
+      keepassxc
+      backblaze-b2
+      blueman
+
+      # this can be installed by flakes
+      # gcc
+      # clang-tools
+      # clang
+      # cmake
+      # ninja
+      # ccache
+      # sccache
+      # cargo
+      # rustup
+      # rustfmt
+      # rust-analyzer
+      # go
+      # gopls
+      # black
+      # mypy
+      # nodejs
+      # nodePackages_latest.pyright
+      blueberry
+      geany
+
+      # all from here goes to home-manager
+      zathura
+      nitrogen
+      unzip
     ];
   };
 

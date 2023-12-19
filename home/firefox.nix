@@ -2,7 +2,10 @@
 , config
 , ...
 }: {
-  home.packages = [ pkgs.firefox ];
+  home.packages = with pkgs; [
+    firefox
+    youtube-dl
+  ];
 
   programs.firefox = {
     enable = true;

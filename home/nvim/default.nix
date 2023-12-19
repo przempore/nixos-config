@@ -22,6 +22,13 @@ let
   };
 in
 {
+  home.packages = with pkgs; [
+    # neovim
+    tabnine
+    neocmakelsp
+    rnix-lsp
+  ];
+
   home.file.".config/nvim" = {
     source = ./config;
     recursive = true;

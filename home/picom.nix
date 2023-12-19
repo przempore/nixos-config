@@ -1,6 +1,10 @@
 { pkgs
 , ...
 }: {
+  home.packages = with pkgs; [
+    picom
+  ];
+
   services.picom.enable = true;
   services.picom.settings = {
     shadow = true;

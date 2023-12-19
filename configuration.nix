@@ -168,89 +168,37 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    git
-    killall
+    # system call monitoring
+    arandr
+    autorandr
+    bat
+    btop # replacement of htop/nmon
+    cowsay
+    eza
+    file
     fish
     fzf
-    wget
+    gawk
+    git
+    gnupg
+    gnused
+    gnutar
+    htop
+    iftop # network monitoring
+    iotop # io monitoring
+    killall
+    lsof # list open files
+    ltrace # library call monitoring
     ripgrep
-
+    rsync
+    strace # system call monitoring
+    tree
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    wget
+    which
     xorg.xbacklight
     xorg.xmodmap
-    autorandr
-    rsync
-    bat
-    git
-    eza
-    htop
-    arandr
-
-    # all from here goes to home-manager
-    # Desktop Environment
-    rofi
-    polybarFull
-    eww
-    ksuperkey
-    picom
-    feh
-    freetype
-    lxappearance
-    clipster
-    networkmanagerapplet
-    redshift
-    direnv
-    neovim
-    tabnine
-    any-nix-shell
-    firefox
-    starship
-    autojump
-    youtube-dl
-    keepassxc
-    sshfs
-    backblaze-b2
-    blueman
-
-    # this can be installed by flakes
-    gcc
-    clang-tools
-    clang
-    cmake
-    ninja
-    ccache
-    sccache
-    cargo
-    rustup
-    rustfmt
-    rust-analyzer
-    go
-    gopls
-    black
-    mypy
-    nodejs
-    nodePackages_latest.pyright
-    blueberry
-    geany
-
-    # all from here goes to home-manager
-    tmux
-    kitty
-    wezterm
-    pavucontrol
-    blueberry
-    xclip
-    zathura
-    flameshot
-    nitrogen
-    unzip
-    ranger
-    lf
-    xfce.thunar
-    xfce.thunar-volman
-    xfce.thunar-archive-plugin
-    xfce.xfce4-power-manager
-    xfce.xfce4-notifyd
+    zstd
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
