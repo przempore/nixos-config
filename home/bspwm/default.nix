@@ -6,7 +6,6 @@
     blueberry
     flameshot
     lxappearance
-    mpv
     networkmanagerapplet
     pavucontrol
     pulseaudioFull

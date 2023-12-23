@@ -15,13 +15,17 @@ in
     ./fish.nix
     ./git.nix
     ./kitty
+    ./mpv.nix
     ./nvim
     ./picom.nix
     ./polybar
+    ./ranger.nix
     ./screen_settings
     ./sxhkd.nix
+    ./teleport.nix
     ./tmux.nix
     ./wezterm
+    ./zathura.nix
   ];
 
   dconf.settings = {
@@ -30,17 +34,6 @@ in
       uris = ["qemu:///system"];
     };
   };
-
-  home.file.".config/ranger/rc.conf".text = ''
-    set preview_images true
-    set preview_images_method kitty
-    set show_hidden true
-  '';
-
-  home.file.".config/mpv/mpv.conf".text = ''
-    ytdl-format=bestvideo[height<=?1080]+bestaudio/best
-    --save-position-on-quit
-  '';
 
   # Packages that should be installed to the user profile.
   home = {
@@ -160,13 +153,6 @@ in
         aws.disabled = true;
         gcloud.disabled = true;
         line_break.disabled = true;
-      };
-    };
-    zathura = {
-      enable = true;
-      # custom settings
-      options = {
-        selection-clipboard = "clipboard";
       };
     };
   };

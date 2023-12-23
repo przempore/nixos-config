@@ -18,7 +18,6 @@ in
     lf
     neofetch
     nnn # terminal file manager
-    ranger
     ripgrep
     sshfs
     starship
