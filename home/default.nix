@@ -37,8 +37,8 @@ in
 
   # Packages that should be installed to the user profile.
   home = {
-    username = "przemek";
-    homeDirectory = "/home/przemek";
+    username = "porebski";
+    homeDirectory = "/home/porebski";
 
 
     sessionVariables = {

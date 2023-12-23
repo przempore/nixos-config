@@ -12,7 +12,7 @@
 
   # Enable Flakes and the new command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.settings.trusted-users = [ "root" "przemek" ];
+  nix.settings.trusted-users = [ "root" "porebski" ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -20,13 +20,11 @@
   boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # boot.loader.grub.enable = true;
-  # boot.loader.grub.device = "/dev/vda";
-  # boot.loader.grub.useOSProber = true;
+  boot.initrd.luks.devices."luks-49bd7c90-424e-49ea-ad4a-df346efbf6d3".device = "/dev/disk/by-uuid/49bd7c90-424e-49ea-ad4a-df346efbf6d3";
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "dooku"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -68,10 +66,6 @@
   # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-auto-optimise-store
   nix.settings.auto-optimise-store = true;
 
-  # Tiling window manager
-  # services.xserver.windowManager.bspwm.enable = true;
-
-  # Enable the XFCE Desktop Environment.
   services.xserver = {
     enable = true;   
     desktopManager = {
@@ -82,6 +76,8 @@
         enableXfwm = false;
       };
     };
+    # displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
     windowManager.bspwm.enable = true;
     displayManager.defaultSession = "none+bspwm";
   };
@@ -91,8 +87,6 @@
     greeters.slick.enable = true;
   };
 
-  # services.xserver.displayManager.defaultSession = "none+bspwm";
-  services.xserver.desktopManager.cinnamon.enable = true;
   services.xserver.extraLayouts.real-prog-dvorak = {
     description = "Real proogrammer dvorak";
     languages = [ "pl" ];
@@ -105,6 +99,9 @@
     autoRepeatInterval = 25;
     layout = "real-prog-dvorak";
   };
+
+  # Configure console keymap
+  console.keyMap = "dvorak";
 
   services.qemuGuest.enable = true;
 
@@ -137,12 +134,13 @@
   virtualisation.docker.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.przemek = {
+  users.users.porebski = {
     isNormalUser = true;
-    description = "przemek";
+    description = "Porebski";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       firefox
+      keepassxc
     ];
   };
 
@@ -226,6 +224,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
+  system.stateVersion = "23.11"; # Did you read the comment?
 
 }

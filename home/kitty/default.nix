@@ -38,7 +38,7 @@ in
       background_opacity = "0.97";
       dynamic_background_opacity = "yes";
       font_family = "JetBrainsMono Nerd Font Mono";
-      font_size = 8;
+      font_size = 10;
       # https://github.com/kovidgoyal/kitty/issues/719#issuecomment-952039731
       # scrollback_pager = "bash -c \"exec nvim 63<&0 0</dev/null -u NONE -c 'map <silent> q :qa!<CR>' -c 'set shell=bash scrollback=100000 termguicolors laststatus=0 clipboard+=unnamedplus' -c 'autocmd TermEnter * stopinsert' -c 'autocmd TermClose * call cursor(max([0,INPUT_LINE_NUMBER-1])+CURSOR_LINE, CURSOR_COLUMN)' -c 'terminal sed </dev/fd/63 -e \"s/'$'\x1b'']8;;file:[^\]*[\]//g\" && sleep 0.01 && printf \"'$'\x1b'']2;\"'\"";
       scrollback_pager = "$HOME/.config/kitty/scripts/scrollback_pager.sh 'INPUT_LINE_NUMBER' 'CURSOR_LINE' 'CURSOR_COLUMN'";
