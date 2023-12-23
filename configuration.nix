@@ -132,12 +132,15 @@
   users.defaultUserShell = pkgs.fish;
 
   virtualisation.docker.enable = true;
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.porebski = {
     isNormalUser = true;
     description = "Porebski";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" ];
     packages = with pkgs; [
       firefox
       keepassxc
