@@ -224,9 +224,9 @@
         label = "%output%";
         exec = "~/.config/polybar/pavolume.sh --listen";
         click-right = "exec pavucontrol";
-        click-left = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
-        scroll-up = "bash -c \"if [ $(pactl list sinks | grep '^[[:space:]]Volume:' | sed -e 's,.* \\([0-9][0-9]*\\)%.*,\\1,') -lt 100 ]; then pactl set-sink-volume @DEFAULT_SINK@ +7%; fi\"";
-        scroll-down = "pactl set-sink-volume @DEFAULT_SINK@ -5%";
+        click-left = "~/.config/polybar/pavolume.sh --togmute";
+        scroll-up = "~/.config/polybar/pavolume.sh --up";
+        scroll-down = "~/.config/polybar/pavolume.sh --down";
         format-underline = "#3EC13F";
         format-foreground = "\${colors.foreground}";
         format-background = "\${colors.background}";
