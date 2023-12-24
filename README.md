@@ -43,3 +43,7 @@ sudo nixos-rebuild switch --flake .#nixos
 
 ## devenv
 [source](https://devenv.sh/getting-started/)
+
+[broken symbolic links](https://github.com/NixOS/nix/issues/7166) <br/>
+use this command to remove them: <br/>
+`find -L /nix/var/nix/gcroots/per-user/$USER -maxdepth 1 -type l -delete`
