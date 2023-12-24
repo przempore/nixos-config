@@ -23,13 +23,13 @@
     source = ./wallpapers;
   };
 
+  home.file.".config/bspwm/autostart.sh" = {
+    source = ./autostart.sh;
+  };
+
   xsession.windowManager.bspwm = {
     enable = true;
     extraConfigEarly = ''
-            if [ -e ~/.screenlayout/script.sh ]; then
-              ~/.screenlayout/script.sh
-            fi
-
             bspc config border_width         2
             bspc config window_gap           4
             bspc config top_padding          30
@@ -58,13 +58,17 @@
             bspc monitor -d 1 2 3 4 5 6 7 8 9 10
     '';
     extraConfig = ''
+      if [ -e ~/.screenlayout/script.sh ]; then
+        ~/.screenlayout/script.sh
+      fi
+
       function get_location {
-          location=$(curl -s "https://location.services.mozilla.com/v1/geolocate?key=geoclue" | jq -r '"\(.location.lat):\(.location.lng)"')
-          if [ -z $location ]; then
-              location="52.5196:13.4069"
-              echo "[bspwm autostart] no internet connection, setting location to Berlin [$location" | systemd-cat
-          fi
-          echo "[bspwm autostart] location for redshift: $location" | systemd-cat
+        location=$(curl -s "https://location.services.mozilla.com/v1/geolocate?key=geoclue" | jq -r '"\(.location.lat):\(.location.lng)"')
+        if [ -z $location ]; then
+            location="52.5196:13.4069"
+            echo "[bspwm autostart] no internet connection, setting location to Berlin [$location" | systemd-cat
+        fi
+        echo "[bspwm autostart] location for redshift: $location" | systemd-cat
       }
 
       polybar mainbar 2>/dev/null &
@@ -76,6 +80,11 @@
       get_location
       redshift -l $location &
       xfce4-power-manager &
+
+      firefox &
+
+      signal-desktop &
+      caprine &
     '';
   };
 }
