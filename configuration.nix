@@ -142,8 +142,6 @@
     description = "Porebski";
     extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" ];
     packages = with pkgs; [
-      firefox
-      keepassxc
     ];
   };
 

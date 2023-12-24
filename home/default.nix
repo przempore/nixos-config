@@ -26,7 +26,7 @@ in
     ./tmux.nix
     ./wezterm
     ./zathura.nix
-  ];
+  ] ++ lib.optional (builtins.pathExists ./private) ./private;
 
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {
