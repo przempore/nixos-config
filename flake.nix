@@ -22,8 +22,14 @@
       formatter.${system} = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
       # export NIXPKGS_ALLOW_UNFREE=1 && nix build .#homeConfigurations.porebski.activationPackage --impure --show-trace && ./result/activate
       homeConfigurations = {
+        przemek = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./home
+          ];
+        };
         porebski = home-manager.lib.homeManagerConfiguration {
-          pkgs = pkgs;
+          inherit pkgs;
           modules = [
             ./home
           ];
@@ -31,7 +37,11 @@
       };
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
-        modules = [
+        modules =
+        let 
+          user = "przemek";
+        in 
+        [
           ./configuration.nix
           nixos-hardware.nixosModules.dell-e7240
 
@@ -39,21 +49,24 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.przemek = import ./home;
+            home-manager.users.${user} = import ./home;
           }
         ];
       };
       nixosConfigurations.dooku = nixpkgs.lib.nixosSystem {
         inherit system;
-        modules = [
+        modules =
+        let 
+          user = "porebski";
+        in 
+        [
           ./configuration.nix
-          nixos-hardware.nixosModules.dell-e7240
 
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.porebski = import ./home;
+            home-manager.users.${user} = import ./home;
           }
         ];
       };
