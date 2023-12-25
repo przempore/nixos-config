@@ -11,7 +11,6 @@ in
   home.packages = with pkgs; [
     any-nix-shell
     autojump
-    direnv
     eza
     fzf # A command-line fuzzy finder
     kitty

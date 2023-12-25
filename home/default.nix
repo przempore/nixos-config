@@ -40,11 +40,17 @@ in
     username = "porebski";
     homeDirectory = "/home/porebski";
 
-
     sessionVariables = {
       EDITOR = "nvim";
       SHELL = "fish";
       VISUAL = "nvim";
+      TERMINAL = "kitty";
+    };
+
+    pointerCursor = {                         # This will set cursor systemwide so applications can not choose their own
+      name = "Catppuccin-Mocha-Dark-Cursors";
+      package = pkgs.catppuccin-cursors.mochaDark;
+      size = 16;
     };
 
     packages = with pkgs; [

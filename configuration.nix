@@ -135,6 +135,17 @@
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
 
+  programs.direnv = {
+    enable = true;
+    package = pkgs.direnv;
+    silent = true;
+    loadInNixShell = true;
+    direnvrcExtra = "";
+    nix-direnv = {
+      enable = true;
+      package = pkgs.nix-direnv;
+    };
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.porebski = {
