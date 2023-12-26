@@ -21,6 +21,19 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.luks.devices."luks-49bd7c90-424e-49ea-ad4a-df346efbf6d3".device = "/dev/disk/by-uuid/49bd7c90-424e-49ea-ad4a-df346efbf6d3";
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelParams = [ "i915.force_probe=4626" ];
+
+  boot.initrd.kernelModules = [ "i915" ];
+
+  environment.variables = {
+    VDPAU_DRIVER = pkgs.lib.mkIf config.hardware.opengl.enable (pkgs.lib.mkDefault "va_gl");
+  };
+
+  hardware.opengl.extraPackages = with pkgs; [
+    (if (pkgs.lib.versionOlder (pkgs.lib.versions.majorMinor pkgs.lib.version) "23.11") then vaapiIntel else intel-vaapi-driver)
+    libvdpau-va-gl
+    intel-media-driver
+  ];
 
   services.tlp = {
     # enable = true;
