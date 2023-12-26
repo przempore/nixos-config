@@ -19,44 +19,43 @@
   # Limit the number of generations to keep
   boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.luks.devices."luks-49bd7c90-424e-49ea-ad4a-df346efbf6d3".device = "/dev/disk/by-uuid/49bd7c90-424e-49ea-ad4a-df346efbf6d3";
+  boot.initrd.luks.devices."luks-7e5a1347-6f7b-4c7b-acdb-125fa70f58c2".device = "/dev/disk/by-uuid/7e5a1347-6f7b-4c7b-acdb-125fa70f58c2";
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelParams = [ "i915.force_probe=4626" ];
+  # boot.kernelParams = [ "i915.force_probe=4626" ];
 
   boot.initrd.kernelModules = [ "i915" ];
 
-  environment.variables = {
-    VDPAU_DRIVER = pkgs.lib.mkIf config.hardware.opengl.enable (pkgs.lib.mkDefault "va_gl");
-  };
+  # environment.variables = {
+  #  VDPAU_DRIVER = pkgs.lib.mkIf config.hardware.opengl.enable (pkgs.lib.mkDefault "va_gl");
+  # };
+  # hardware.opengl.extraPackages = with pkgs; [
+  #   (if (pkgs.lib.versionOlder (pkgs.lib.versions.majorMinor pkgs.lib.version) "23.11") then vaapiIntel else intel-vaapi-driver)
+  #   libvdpau-va-gl
+  #   intel-media-driver
+  # ];
 
-  hardware.opengl.extraPackages = with pkgs; [
-    (if (pkgs.lib.versionOlder (pkgs.lib.versions.majorMinor pkgs.lib.version) "23.11") then vaapiIntel else intel-vaapi-driver)
-    libvdpau-va-gl
-    intel-media-driver
-  ];
+  # services.tlp = {
+  #   # enable = true;
+  #   enable = pkgs.lib.mkDefault ((pkgs.lib.versionOlder (pkgs.lib.versions.majorMinor pkgs.lib.version) "21.05")
+  #                                    || !config.services.power-profiles-daemon.enable);
+  #   settings = {
+  #     CPU_SCALING_GOVERNOR_ON_AC = "performance";
+  #     CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
 
-  services.tlp = {
-    # enable = true;
-    enable = pkgs.lib.mkDefault ((pkgs.lib.versionOlder (pkgs.lib.versions.majorMinor pkgs.lib.version) "21.05")
-                                     || !config.services.power-profiles-daemon.enable);
-    settings = {
-      CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+  #     CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+  #     CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
 
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+  #     CPU_MIN_PERF_ON_AC = 0;
+  #     CPU_MAX_PERF_ON_AC = 100;
+  #     CPU_MIN_PERF_ON_BAT = 0;
+  #     CPU_MAX_PERF_ON_BAT = 20;
 
-      CPU_MIN_PERF_ON_AC = 0;
-      CPU_MAX_PERF_ON_AC = 100;
-      CPU_MIN_PERF_ON_BAT = 0;
-      CPU_MAX_PERF_ON_BAT = 20;
+  #    #Optional helps save long term battery health
+  #    START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
+  #    STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
 
-     #Optional helps save long term battery health
-     START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
-     STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
-
-    };
-  };
+  #   };
+  # };
 
   networking.hostName = "dooku"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -69,21 +68,21 @@
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  time.timeZone = "Europe/Berlin";
+  time.timeZone = "Europe/Warsaw";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
-    LC_ADDRESS = "de_DE.UTF-8";
-    LC_IDENTIFICATION = "de_DE.UTF-8";
-    LC_MEASUREMENT = "de_DE.UTF-8";
-    LC_MONETARY = "de_DE.UTF-8";
-    LC_NAME = "de_DE.UTF-8";
-    LC_NUMERIC = "de_DE.UTF-8";
-    LC_PAPER = "de_DE.UTF-8";
-    LC_TELEPHONE = "de_DE.UTF-8";
-    LC_TIME = "de_DE.UTF-8";
+    LC_ADDRESS = "pl_PL.UTF-8";
+    LC_IDENTIFICATION = "pl_PL.UTF-8";
+    LC_MEASUREMENT = "pl_PL.UTF-8";
+    LC_MONETARY = "pl_PL.UTF-8";
+    LC_NAME = "pl_PL.UTF-8";
+    LC_NUMERIC = "pl_PL.UTF-8";
+    LC_PAPER = "pl_PL.UTF-8";
+    LC_TELEPHONE = "pl_PL.UTF-8";
+    LC_TIME = "pl_PL.UTF-8";
   };
 
   # Perform garbage collection weekly to maintain low disk usage
@@ -100,28 +99,31 @@
   # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-auto-optimise-store
   nix.settings.auto-optimise-store = true;
 
-  services.xserver = {
-    enable = true;   
+  services.xserver.enable = true;
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.desktopManager.xfce.enable = true;
+  services.xserver.windowManager.bspwm.enable = true;
+  # services.xserver = {
+    # enable = true;   
     # displayManager.gdm.enable = true;
     # displayManager.defaultSession = "none+bspwm";
-    displayManager = {
-      lightdm = {
-        enable = true;
-        greeters.slick.enable = true;
-      };
-      defaultSession = "none+bspwm";
-    };
-    desktopManager = {
-      xterm.enable = false;
-      xfce = {
-        enable = true;
-        noDesktop = true;
-        enableXfwm = false;
-      };
-      # gnome.enable = true;
-    };
-    windowManager.bspwm.enable = true;
-  };
+    # displayManager = {
+    #   lightdm = {
+    #     enable = true;
+    #     greeters.slick.enable = true;
+    #   };
+    #   defaultSession = "none+bspwm";
+    # };
+    # desktopManager = {
+    #   xterm.enable = false;
+    #   xfce = {
+    #     enable = true;
+    #     noDesktop = true;
+    #     enableXfwm = false;
+    #   };
+    # };
+    # windowManager.bspwm.enable = true;
+  # };
 
   services.xserver.extraLayouts.real-prog-dvorak = {
     description = "Real proogrammer dvorak";
