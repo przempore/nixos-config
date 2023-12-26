@@ -19,10 +19,31 @@
   # Limit the number of generations to keep
   boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
-
   boot.initrd.luks.devices."luks-49bd7c90-424e-49ea-ad4a-df346efbf6d3".device = "/dev/disk/by-uuid/49bd7c90-424e-49ea-ad4a-df346efbf6d3";
-
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  services.tlp = {
+    # enable = true;
+    enable = pkgs.lib.mkDefault ((pkgs.lib.versionOlder (pkgs.lib.versions.majorMinor pkgs.lib.version) "21.05")
+                                     || !config.services.power-profiles-daemon.enable);
+    settings = {
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+
+      CPU_MIN_PERF_ON_AC = 0;
+      CPU_MAX_PERF_ON_AC = 100;
+      CPU_MIN_PERF_ON_BAT = 0;
+      CPU_MAX_PERF_ON_BAT = 20;
+
+     #Optional helps save long term battery health
+     START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
+     STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+
+    };
+  };
 
   networking.hostName = "dooku"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -68,6 +89,15 @@
 
   services.xserver = {
     enable = true;   
+    # displayManager.gdm.enable = true;
+    # displayManager.defaultSession = "none+bspwm";
+    displayManager = {
+      lightdm = {
+        enable = true;
+        greeters.slick.enable = true;
+      };
+      defaultSession = "none+bspwm";
+    };
     desktopManager = {
       xterm.enable = false;
       xfce = {
@@ -75,16 +105,9 @@
         noDesktop = true;
         enableXfwm = false;
       };
+      # gnome.enable = true;
     };
-    # displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
     windowManager.bspwm.enable = true;
-    displayManager.defaultSession = "none+bspwm";
-  };
-
-  services.xserver.displayManager.lightdm = {
-    enable = true;
-    greeters.slick.enable = true;
   };
 
   services.xserver.extraLayouts.real-prog-dvorak = {
