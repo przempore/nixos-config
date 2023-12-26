@@ -20,6 +20,16 @@ let
       sha256 = "sha256-8PzsDPJXb8kpVus7b4Fon785j8JPTZM4fZ7PM5A67YU=";
     };
   };
+  harpoon2 = pkgs.vimUtils.buildVimPlugin {
+    name = "harpoon2";
+    nativeBuildInputs = with pkgs; [ pkg-config readline ];
+    src = pkgs.fetchFromGitHub {
+      owner = "ThePrimeagen";
+      repo = "harpoon";
+      rev = "31701337377991c66eebb57ebd23ef01eb587352";
+      sha256 = "sha256-dJDawg76OcMKaAtbvKdJmUrNp6TBA2NHJvupmGCvYEc=";
+    };
+  };
 in
 {
   home.packages = with pkgs; [
@@ -56,7 +66,8 @@ in
       vimPlugins.vim-be-good
       vimPlugins.cmp-git
       vimPlugins.git-worktree-nvim
-      vimPlugins.harpoon2
+      # vimPlugins.harpoon2
+      harpoon2
       vimPlugins.gitsigns-nvim
       vimPlugins.fzf-checkout-vim
       vimPlugins.firenvim
@@ -103,8 +114,8 @@ in
       # languages
       jsonnet
       nodejs
-      python311Full
-      rustc
+      # python311Full
+      # rustc
       marksman
 
       # language servers
@@ -128,22 +139,22 @@ in
       gofumpt
       golines
       nixpkgs-fmt
-      python310Packages.black
-      rustfmt
+      # python310Packages.black
+      # rustfmt
 
       # tools
-      cmake
-      cmake-language-server
-      gnumake
-      checkmake
-      cargo
-      gcc
-      llvmPackages.clang-unwrapped # c/c++ tools with clang-tools such as clangd
-      gdb
-      lldb
-      ghc
-      lazydocker
-      yarn
+      # cmake
+      # cmake-language-server
+      # gnumake
+      # checkmake
+      # cargo
+      # gcc
+      # llvmPackages.clang-unwrapped # c/c++ tools with clang-tools such as clangd
+      # gdb
+      # lldb
+      # ghc
+      # lazydocker
+      # yarn
     ];
   };
 }
