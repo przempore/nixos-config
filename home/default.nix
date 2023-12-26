@@ -115,6 +115,7 @@ in
       keepassxc
       backblaze-b2
       blueman
+      spotify
 
       # this can be installed by flakes
       # gcc
