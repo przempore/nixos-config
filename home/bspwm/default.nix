@@ -74,7 +74,8 @@
       polybar mainbar 2>/dev/null &
       feh --bg-scale $HOME/Projects/dotfiles/screenlayout/.screenlayout/deep_blue_Original.png
       keepassxc &
-      blueberry-tray &
+      # blueberry-tray &
+      blueman-adapters
       xfce4-clipman &
       nm-applet &
       get_location
