@@ -1,4 +1,3 @@
-# { config, pkgs, lib, ... }:
 { config, pkgs, user, ... }:
 
 let
@@ -28,7 +27,7 @@ in
     ./wezterm
     ./zathura.nix
     ./google-cloud.nix
-  ]; # ++ lib.optional (builtins.pathExists ./private) ./private;
+  ] ++ (if builtins.pathExists ./private/default.nix then [ ./private ] else []);
 
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {
