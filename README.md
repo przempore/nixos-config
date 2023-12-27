@@ -3,7 +3,7 @@
 ### home-manager
 To run home-manager from this flake:
 ``` bash
-export NIXPKGS_ALLOW_UNFREE=1 && nix build .#homeConfigurations.przemek.activationPackage --impure --show-trace && ./result/activate
+export NIXPKGS_ALLOW_UNFREE=1 && nix build '.?submodules=1#homeConfigurations.przemek.activationPackage' --impure --show-trace && ./result/activate
 ```
 
 ### Install Qt
