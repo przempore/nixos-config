@@ -52,3 +52,5 @@ use this command to remove them: <br/>
 
 ## Flake templates
 [github flake template](https://github.com/NixOS/templates)
+
+`nix flake init --template templates#full`
