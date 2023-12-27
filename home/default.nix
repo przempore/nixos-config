@@ -88,6 +88,8 @@ in
       signal-desktop
       caprine-bin
 
+      pnmixer
+
       # nix related
       #
       # it provides the command `nom` works just like `nix`
