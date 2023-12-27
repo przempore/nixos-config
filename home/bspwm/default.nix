@@ -3,7 +3,6 @@
   home.packages = with pkgs; [
     barrier
     betterlockscreen
-    blueberry
     flameshot
     lxappearance
     networkmanagerapplet

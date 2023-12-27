@@ -68,7 +68,7 @@
 
         modules-left = "bspwm xwindow";
         modules-center = "kernel";
-        modules-right = "pavolume memory2 cpu2 date";
+        modules-right = "memory2 cpu2 date";
 
         tray-detached = false;
         tray-offset-x = 0;
