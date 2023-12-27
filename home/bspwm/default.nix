@@ -72,7 +72,6 @@
 
       polybar mainbar 2>/dev/null &
       keepassxc &
-      # blueberry-tray &
       blueman-adapters &
       xfce4-clipman &
       nm-applet &
