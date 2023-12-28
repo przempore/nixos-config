@@ -36,38 +36,30 @@
           ];
         };
       };
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.dathomir = nixpkgs.lib.nixosSystem {
         inherit system;
-        modules =
-        let 
-          user = "przemek";
-        in 
-        [
-          ./configuration.nix
+        modules = [
+          ./hosts/dathomir/configuration.nix
           nixos-hardware.nixosModules.dell-e7240
 
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.${user} = import ./home;
+            home-manager.users.przemek = import ./home;
           }
         ];
       };
       nixosConfigurations.dooku = nixpkgs.lib.nixosSystem {
         inherit system;
-        modules =
-        let 
-          user = "porebski";
-        in 
-        [
-          ./configuration.nix
+        modules = [
+          ./hosts/dooku/configuration.nix
 
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.${user} = import ./home;
+            home-manager.users.porebski = import ./home;
           }
         ];
       };

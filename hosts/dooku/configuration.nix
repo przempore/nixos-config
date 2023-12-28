@@ -6,21 +6,14 @@
 {
   imports =
     [
+      ../common_configuration.nix
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
-  # Enable Flakes and the new command-line tool
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.trusted-users = [ "root" "porebski" ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  # Limit the number of generations to keep
-  boot.loader.systemd-boot.configurationLimit = 10;
-  boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.luks.devices."luks-7e5a1347-6f7b-4c7b-acdb-125fa70f58c2".device = "/dev/disk/by-uuid/7e5a1347-6f7b-4c7b-acdb-125fa70f58c2";
-  boot.kernelPackages = pkgs.linuxPackages_latest;
   # boot.kernelParams = [ "i915.force_probe=4626" ];
 
   boot.initrd.kernelModules = [ "i915" ];

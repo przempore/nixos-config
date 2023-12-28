@@ -108,7 +108,6 @@ in
 
       # all from here goes to home-manager
       # Desktop Environment
-      # eww
       ksuperkey
       freetype
       clipster
@@ -118,24 +117,6 @@ in
       blueman
       spotify
 
-      # this can be installed by flakes
-      # gcc
-      # clang-tools
-      # clang
-      # cmake
-      # ninja
-      # ccache
-      # sccache
-      # cargo
-      # rustup
-      # rustfmt
-      # rust-analyzer
-      # go
-      # gopls
-      # black
-      # mypy
-      # nodejs
-      # nodePackages_latest.pyright
       blueberry
       geany
 
