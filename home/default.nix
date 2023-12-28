@@ -27,12 +27,12 @@ in
     ./wezterm
     ./zathura.nix
     ./google-cloud.nix
-  ] ++ (if builtins.pathExists ./private/default.nix then [ ./private ] else []);
+  ] ++ (if builtins.pathExists ./private/default.nix then [ ./private ] else [ ]);
 
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {
-      autoconnect = ["qemu:///system"];
-      uris = ["qemu:///system"];
+      autoconnect = [ "qemu:///system" ];
+      uris = [ "qemu:///system" ];
     };
   };
 
@@ -48,7 +48,8 @@ in
       TERMINAL = "kitty";
     };
 
-    pointerCursor = {                         # This will set cursor systemwide so applications can not choose their own
+    pointerCursor = {
+      # This will set cursor systemwide so applications can not choose their own
       name = "Catppuccin-Mocha-Dark-Cursors";
       package = pkgs.catppuccin-cursors.mochaDark;
       size = 16;
@@ -133,7 +134,7 @@ in
       config = { theme = "catppuccin"; };
       themes = {
         catppuccin = {
-          src = catppuccin-bat; 
+          src = catppuccin-bat;
           file = "Catppuccin-mocha.tmTheme";
         };
       };
