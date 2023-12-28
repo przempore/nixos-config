@@ -152,32 +152,31 @@ function volMuteStatus {
 # Prints output for bar
 # Listens for events for fast update speed
 function listen {
-    output
-    # firstrun=0
-    #
-    # pactl subscribe 2>/dev/null | {
-    #     while true; do
-    #         {
-    #             # If this is the first time just continue
-    #             # and print the current state
-    #             # Otherwise wait for events
-    #             # This is to prevent the module being empty until
-    #             # an event occurs
-    #             if [ $firstrun -eq 0 ]
-    #             then
-    #                 firstrun=1
-    #             else
-    #                 read -r event || break
-    #                 if ! echo "$event" | grep -e "on card" -e "on sink"
-    #                 then
-    #                     # Avoid double events
-    #                     continue
-    #                 fi
-    #             fi
-    #         } &>/dev/null
-    #         output
-    #     done
-    # }
+    firstrun=0
+
+    pactl subscribe 2>/dev/null | {
+        while true; do
+            {
+                # If this is the first time just continue
+                # and print the current state
+                # Otherwise wait for events
+                # This is to prevent the module being empty until
+                # an event occurs
+                if [ $firstrun -eq 0 ]
+                then
+                    firstrun=1
+                else
+                    read -r event || break
+                    if ! echo "$event" | grep -e "on card" -e "on sink"
+                    then
+                        # Avoid double events
+                        continue
+                    fi
+                fi
+            } &>/dev/null
+            output
+        done
+    }
 }
 
 function output() {
