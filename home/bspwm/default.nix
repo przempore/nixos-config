@@ -75,6 +75,7 @@
       blueman-adapters &
       xfce4-clipman &
       nm-applet &
+      pnmixer & 
       get_location
       redshift -l $location &
       xfce4-power-manager &
