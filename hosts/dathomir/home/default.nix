@@ -25,7 +25,7 @@ in
     ../../common/home/tmux.nix
     ../../common/home/wezterm
     ../../common/home/zathura.nix
-  ] ++ (if builtins.pathExists ./private/default.nix then [ ./private ] else [ ]);
+  ] ++ (if builtins.pathExists ../../common/home/private/default.nix then [ ../../common/home/private ] else [ ]);
 
   # Packages that should be installed to the user profile.
   home = {
