@@ -10,11 +10,11 @@ let
 in
 {
   imports = [
+    ./kitty.nix
     ../../common/home/bspwm
     ../../common/home/firefox.nix
     ../../common/home/fish.nix
     ../../common/home/git.nix
-    ../../common/home/kitty
     ../../common/home/mpv.nix
     ../../common/home/nvim
     ../../common/home/picom.nix
@@ -25,7 +25,10 @@ in
     ../../common/home/tmux.nix
     ../../common/home/wezterm
     ../../common/home/zathura.nix
-  ] ++ (if builtins.pathExists ../../common/home/private/default.nix then [ ../../common/home/private ] else [ ]);
+  ] ++ (if builtins.pathExists ../../common/home/private/default.nix then
+          [ ../../common/home/private ]
+        else
+          [ ]);
 
   # Packages that should be installed to the user profile.
   home = {

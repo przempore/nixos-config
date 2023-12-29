@@ -87,25 +87,8 @@ function volSync {
 }
 
 function getCurVol {
-    # curVol=$(pacmd list-sinks | grep -A 15 "index: $active_sink$" | grep 'volume:' | grep -E -v 'base volume:' | awk -F : '{print $3}' | grep -o -P '.{0,3}%'| sed s/.$// | tr -d ' ')
-
-    curVol=$(pactl list sinks | awk -v sink_name="alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp__sink" '
-        BEGIN { 
-            found_sink = 0; 
-        }
-        /Sink #/ {
-            current_sink = $0;  # Store the current sink line
-            next_line = 1;  # Flag to track the next line
-        }
-        next_line && $0 ~ sink_name {
-            found_sink = 1;
-        }
-        found_sink && /Volume:/ {
-            gsub(/%/, "", $5);  # Remove the percentage sign
-            print $5;
-            exit;
-        }
-        ')
+    reloadSink
+    curVol=$(pactl get-sink-volume "$active_sink" | grep -oP '(\d+)%' | head -n1 | sed 's/.$//')
 }
 
 function volMute {
@@ -131,22 +114,8 @@ function volMute {
 
 function volMuteStatus {
     # curStatus=$(pacmd list-sinks | grep -A 15 "index: $active_sink$" | awk '/muted/{ print $2}')
-    curStatus=$(pactl list sinks | awk -v sink_name="alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp__sink" '
-        BEGIN { 
-            found_sink = 0; 
-        }
-        /Sink #/ {
-            current_sink = $0;  # Store the current sink line
-            next_line = 1;  # Flag to track the next line
-        }
-        next_line && $0 ~ sink_name {
-            found_sink = 1;
-        }
-        found_sink && /Mute: / {
-            print $2
-            exit;
-        }
-        ')
+    reloadSink
+    curStatus=$(pactl get-sink-mute $active_sink | grep -oP 'Mute:\s+\K[yes|no]+')
 }
 
 # Prints output for bar

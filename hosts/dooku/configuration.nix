@@ -68,7 +68,7 @@
   services.xserver.extraLayouts.real-prog-dvorak = {
     description = "Real proogrammer dvorak";
     languages = [ "pl" ];
-    symbolsFile = ./keyboard/symbols/real-prog-dvorak.xkb;
+    symbolsFile = ../common/keyboard/symbols/real-prog-dvorak.xkb;
   };
 
   # Configure keymap in X11
