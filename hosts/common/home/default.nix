@@ -7,6 +7,8 @@ let
     rev = "ba4d16880d63e656acced2b7d4e034e4a93f74b1";
     sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=";
   };
+
+  lib = pkgs.lib;
 in
 {
   imports = [
@@ -29,18 +31,8 @@ in
     ./google-cloud.nix
   ] ++ (if builtins.pathExists ./private/default.nix then [ ./private ] else [ ]);
 
-  dconf.settings = {
-    "org/virt-manager/virt-manager/connections" = {
-      autoconnect = [ "qemu:///system" ];
-      uris = [ "qemu:///system" ];
-    };
-  };
-
   # Packages that should be installed to the user profile.
   home = {
-    username = "porebski";
-    homeDirectory = "/home/porebski";
-
     sessionVariables = {
       EDITOR = "nvim";
       SHELL = "fish";
@@ -52,7 +44,7 @@ in
       # This will set cursor systemwide so applications can not choose their own
       name = "Catppuccin-Mocha-Dark-Cursors";
       package = pkgs.catppuccin-cursors.mochaDark;
-      size = 16;
+      size = lib.mkDefault 16;
     };
 
     packages = with pkgs; [
