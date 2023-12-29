@@ -7,7 +7,7 @@
     # which represents the GitHub repository URL + branch/commit-id/tag.
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-23.11";
       # inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     };
@@ -26,13 +26,13 @@
         przemek = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
-            ./home
+            ./hosts/dathomir/home
           ];
         };
         porebski = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
-            ./home
+            ./home/dooku/home
           ];
         };
       };
@@ -46,7 +46,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.przemek = import ./home;
+            home-manager.users.przemek = import ./hosts/dathomir/home;
           }
         ];
       };
@@ -59,7 +59,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.porebski = import ./home;
+            home-manager.users.porebski = import ./hosts/dooku/home;
           }
         ];
       };
