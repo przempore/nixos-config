@@ -7,6 +7,8 @@ let
     rev = "ba4d16880d63e656acced2b7d4e034e4a93f74b1";
     sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=";
   };
+
+  lib = pkgs.lib;
 in
 {
   imports = [
@@ -22,25 +24,13 @@ in
     ./ranger.nix
     ./screen_settings
     ./sxhkd.nix
-    ./teleport.nix
     ./tmux.nix
     ./wezterm
     ./zathura.nix
-    ./google-cloud.nix
-  ] ++ (if builtins.pathExists ./private/default.nix then [ ./private ] else []);
-
-  dconf.settings = {
-    "org/virt-manager/virt-manager/connections" = {
-      autoconnect = ["qemu:///system"];
-      uris = ["qemu:///system"];
-    };
-  };
+  ] ++ (if builtins.pathExists ./private/default.nix then [ ./private ] else [ ]);
 
   # Packages that should be installed to the user profile.
   home = {
-    username = "porebski";
-    homeDirectory = "/home/porebski";
-
     sessionVariables = {
       EDITOR = "nvim";
       SHELL = "fish";
@@ -48,10 +38,11 @@ in
       TERMINAL = "kitty";
     };
 
-    pointerCursor = {                         # This will set cursor systemwide so applications can not choose their own
+    pointerCursor = {
+      # This will set cursor systemwide so applications can not choose their own
       name = "Catppuccin-Mocha-Dark-Cursors";
       package = pkgs.catppuccin-cursors.mochaDark;
-      size = 16;
+      size = lib.mkDefault 16;
     };
 
     packages = with pkgs; [
@@ -108,7 +99,6 @@ in
 
       # all from here goes to home-manager
       # Desktop Environment
-      # eww
       ksuperkey
       freetype
       clipster
@@ -118,24 +108,6 @@ in
       blueman
       spotify
 
-      # this can be installed by flakes
-      # gcc
-      # clang-tools
-      # clang
-      # cmake
-      # ninja
-      # ccache
-      # sccache
-      # cargo
-      # rustup
-      # rustfmt
-      # rust-analyzer
-      # go
-      # gopls
-      # black
-      # mypy
-      # nodejs
-      # nodePackages_latest.pyright
       blueberry
       geany
 
@@ -152,7 +124,7 @@ in
       config = { theme = "catppuccin"; };
       themes = {
         catppuccin = {
-          src = catppuccin-bat; 
+          src = catppuccin-bat;
           file = "Catppuccin-mocha.tmTheme";
         };
       };

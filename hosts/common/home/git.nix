@@ -12,8 +12,8 @@
 
     userEmail = "przempore@gmail.com";
     userName = "Przemek";
-    
-    ignores = [".envrc" ".direnv/"];
+
+    ignores = [ ".envrc" ".direnv/" ];
     extraConfig = {
       push.default = "current";
 
