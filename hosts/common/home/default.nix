@@ -24,11 +24,9 @@ in
     ./ranger.nix
     ./screen_settings
     ./sxhkd.nix
-    ./teleport.nix
     ./tmux.nix
     ./wezterm
     ./zathura.nix
-    ./google-cloud.nix
   ] ++ (if builtins.pathExists ./private/default.nix then [ ./private ] else [ ]);
 
   # Packages that should be installed to the user profile.
