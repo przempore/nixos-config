@@ -99,6 +99,9 @@
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
+  hardware.pulseaudio.extraConfig = "
+    load-module module-switch-on-connect
+  ";
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
