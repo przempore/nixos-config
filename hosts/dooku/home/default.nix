@@ -17,5 +17,9 @@
   home = {
     username = "porebski";
     homeDirectory = "/home/porebski";
+
+    packages = with pkgs; [
+      remmina
+    ];
   };
 }
