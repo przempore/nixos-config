@@ -13,4 +13,9 @@
       uris = [ "qemu:///system" ];
     };
   };
+
+  home = {
+    username = "porebski";
+    homeDirectory = "/home/porebski";
+  };
 }

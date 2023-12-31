@@ -32,7 +32,7 @@
         porebski = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
-            ./home/dooku/home
+            ./hosts/dooku/home
           ];
         };
       };
