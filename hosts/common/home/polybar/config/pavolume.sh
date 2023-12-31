@@ -87,7 +87,6 @@ function volSync {
 }
 
 function getCurVol {
-    reloadSink
     curVol=$(pactl get-sink-volume "$active_sink" | grep -oP '(\d+)%' | head -n1 | sed 's/.$//')
 }
 
@@ -114,7 +113,6 @@ function volMute {
 
 function volMuteStatus {
     # curStatus=$(pacmd list-sinks | grep -A 15 "index: $active_sink$" | awk '/muted/{ print $2}')
-    reloadSink
     curStatus=$(pactl get-sink-mute $active_sink | grep -oP 'Mute:\s+\K[yes|no]+')
 }
 
@@ -149,7 +147,6 @@ function listen {
 }
 
 function output() {
-    reloadSink
     getCurVol
     volMuteStatus
     # curStatus=$(pactl list sinks | grep '^[[:space:]]Mute:' | sed -e 's,.* \([yes|no]\),\1,')
