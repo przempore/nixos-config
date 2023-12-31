@@ -58,6 +58,7 @@ in
       vimPlugins.vim-fugitive
       vimPlugins.vim-rhubarb
       vimPlugins.nvim-fzf
+      vimPlugins.fzf-vim
       vimPlugins.plenary-nvim
       vimPlugins.telescope-nvim
       vimPlugins.telescope-fzf-native-nvim
