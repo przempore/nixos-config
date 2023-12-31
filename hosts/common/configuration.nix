@@ -83,6 +83,18 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  programs.direnv = {
+    enable = true;
+    package = pkgs.direnv;
+    silent = true;
+    loadInNixShell = true;
+    direnvrcExtra = "";
+    nix-direnv = {
+      enable = true;
+      package = pkgs.nix-direnv;
+    };
+  };
+
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-emoji
@@ -147,4 +159,11 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
+
 }
