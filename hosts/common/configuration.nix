@@ -1,5 +1,13 @@
 { config, pkgs, ... }: {
 
+  nixpkgs = {
+    # Configure your nixpkgs instance
+    config = {
+      # Disable if you don't want unfree packages
+      allowUnfree = true;
+    };
+  };
+
   # Enable Flakes and the new command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -82,9 +90,6 @@
 
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   programs.direnv = {
     enable = true;

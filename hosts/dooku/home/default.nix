@@ -1,6 +1,7 @@
-{ config, pkgs, user, ... }:
+{ config, pkgs, outputs, ... }:
 
 {
+
   imports = [
     ../../common/home
     ../../common/home/teleport.nix

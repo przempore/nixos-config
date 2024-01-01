@@ -1,4 +1,4 @@
-{ config, pkgs, user, ... }:
+{ config, pkgs, ... }:
 
 let
   catppuccin-bat = pkgs.fetchFromGitHub {
@@ -9,6 +9,7 @@ let
   };
 
   lib = pkgs.lib;
+  sentinel = pkgs.callPackage ../../../pkgs/sentinel { };
 in
 {
   imports = [
@@ -29,6 +30,32 @@ in
     ./zathura.nix
   ] ++ (if builtins.pathExists ./private/default.nix then [ ./private ] else [ ]);
 
+  nixpkgs = {
+    # You can add overlays here
+    # overlays = [
+      # Add overlays your own flake exports (from overlays and pkgs dir):
+      # outputs.overlays.additions
+      # outputs.overlays.modifications
+      # outputs.overlays.unstable-packages
+
+      # You can also add overlays exported from other flakes:
+      # neovim-nightly-overlay.overlays.default
+
+      # Or define it inline, for example:
+      # (final: prev: {
+      #   hi = final.hello.overrideAttrs (oldAttrs: {
+      #     patches = [ ./change-hello-to-hi.patch ];
+      #   });
+      # })
+    # ];
+    # Configure your nixpkgs instance
+    config = {
+      # Workaround for https://github.com/nix-community/home-manager/issues/2942
+      allowUnfreePredicate = _: true;
+    };
+  };
+
+
   # Packages that should be installed to the user profile.
   home = {
     sessionVariables = {
@@ -48,6 +75,8 @@ in
     packages = with pkgs; [
       # here is some command line tools I use frequently
       # feel free to add your own or remove some of them
+
+      sentinel
 
       cachix
       onlyoffice-bin_7_5
