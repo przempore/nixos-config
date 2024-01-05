@@ -34,9 +34,10 @@ in
 {
   home.packages = with pkgs; [
     # neovim
-    tabnine
-    neocmakelsp
-    rnix-lsp
+    # tabnine
+    # neocmakelsp
+    # rnix-lsp
+    # cscope
   ];
 
   home.file.".config/nvim" = {
@@ -112,6 +113,11 @@ in
     ];
 
     extraPackages = with pkgs; [
+      tabnine
+      neocmakelsp
+      rnix-lsp
+      cscope
+
       # languages
       jsonnet
       nodejs
@@ -120,26 +126,26 @@ in
       marksman
 
       # language servers
-      gopls
-      haskell-language-server
-      jsonnet-language-server
+      # gopls
+      # haskell-language-server
+      # jsonnet-language-server
       lua-language-server
       nil
       nodePackages."bash-language-server"
       nodePackages."diagnostic-languageserver"
       nodePackages."dockerfile-language-server-nodejs"
       nodePackages."pyright"
-      nodePackages."typescript"
-      nodePackages."typescript-language-server"
+      # nodePackages."typescript"
+      # nodePackages."typescript-language-server"
       nodePackages."vscode-langservers-extracted"
       nodePackages."yaml-language-server"
-      rust-analyzer
+      # rust-analyzer
       terraform-ls
 
       # formatters
-      gofumpt
-      golines
-      nixpkgs-fmt
+      # gofumpt
+      # golines
+      # nixpkgs-fmt
       # python310Packages.black
       # rustfmt
 

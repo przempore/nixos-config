@@ -77,6 +77,7 @@ in
       brave
       signal-desktop
       caprine-bin
+      discord
 
       pnmixer
 
