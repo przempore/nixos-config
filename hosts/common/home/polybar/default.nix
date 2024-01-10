@@ -17,7 +17,7 @@
   services.polybar = {
     enable = true;
     package = pkgs.polybar.override { alsaSupport = true; };
-    script = "$HOME/.config/polybar/launcher.sh";
+    script = "";
     config = {
       "settings" = {
         margin-top = 0;

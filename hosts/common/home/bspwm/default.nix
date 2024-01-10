@@ -54,10 +54,6 @@
       bspc config presel_feedback_color	"#5e81ac"
     '';
     extraConfig = ''
-      if [ -e ~/.screenlayout/script.sh ]; then
-        ~/.screenlayout/script.sh
-      fi
-
       function get_location {
         location=$(curl -s "https://location.services.mozilla.com/v1/geolocate?key=geoclue" | jq -r '"\(.location.lat):\(.location.lng)"')
         if [ -z $location ]; then
@@ -88,7 +84,8 @@
         bspc monitor $(echo $connectedMonitors | cut -d" " -f3) -d 8 9 10
       fi
 
-      polybar mainbar 2>/dev/null &
+      $HOME/.config/polybar/launcher.sh &
+
       keepassxc &
       blueman-adapters &
       xfce4-clipman &
