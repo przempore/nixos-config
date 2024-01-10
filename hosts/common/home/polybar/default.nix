@@ -23,8 +23,6 @@
         margin-top = 0;
         margin-bottom = 0;
 
-        throttle-output = 5;
-        throttle-output-for = 10;
         screenchange-reload = "true";
         compositing-background = "over";
         compositing-foreground = "over";
@@ -68,16 +66,7 @@
 
         modules-left = "bspwm xwindow";
         modules-center = "kernel";
-        modules-right = "pavolume memory2 cpu2 date";
-
-        tray-detached = false;
-        tray-offset-x = 0;
-        tray-offset-y = 0;
-        tray-padding = 2;
-        tray-maxsize = 20;
-        tray-scale = "1.0";
-        tray-position = "right";
-        tray-background = "\${colors.background}";
+        modules-right = "pavolume memory2 cpu2 date tray";
 
         scroll-up = "bspwm-desknext";
         scroll-down = "bspwm-deskprev";
@@ -230,6 +219,19 @@
         format-prefix = "  ";
         format-prefix-foreground = "#0084FF";
         format-underline = "#0084FF";
+      };
+
+      "module/tray" = {
+        type = "internal/tray";
+
+        tray-detached = false;
+        tray-offset-x = 0;
+        tray-offset-y = 0;
+        tray-padding = 2;
+        tray-maxsize = 20;
+        tray-scale = "1.0";
+        tray-position = "right";
+        tray-background = "\${colors.background}";
       };
     };
   };
