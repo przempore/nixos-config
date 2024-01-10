@@ -84,21 +84,26 @@
         bspc monitor $(echo $connectedMonitors | cut -d" " -f3) -d 8 9 10
       fi
 
-      $HOME/.config/polybar/launcher.sh &
+      function run {
+        if ! pgrep $1 ;
+        then
+          $@&
+        fi
+      }
 
-      keepassxc &
-      blueman-adapters &
-      xfce4-clipman &
-      nm-applet &
-      pnmixer & 
-      get_location
-      redshift -l $location &
-      xfce4-power-manager &
+      autorandr --change | systemd-cat -p info
 
-      firefox &
+      run $HOME/.config/polybar/launcher.sh &
 
-      signal-desktop &
-      caprine &
+      run keepassxc &
+      run blueman-adapters &
+      run xfce4-clipman &
+      run nm-applet &
+      run pnmixer & 
+      run get_location
+      run redshift -l $location &
+      run xfce4-power-manager &
+      run firefox &
     '';
   };
 }
