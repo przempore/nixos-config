@@ -53,63 +53,64 @@ in
     vimdiffAlias = true;
 
     plugins = with pkgs; [
-      cscope_maps-nvim
-      wf-nvim
-      vimPlugins.copilot-vim
-      vimPlugins.vim-fugitive
-      vimPlugins.vim-rhubarb
-      vimPlugins.nvim-fzf
-      vimPlugins.fzf-vim
-      vimPlugins.plenary-nvim
-      vimPlugins.telescope-nvim
-      vimPlugins.telescope-fzf-native-nvim
-      vimPlugins.vim-qml
-      vimPlugins.catppuccin-nvim
-      vimPlugins.vim-be-good
-      vimPlugins.cmp-git
-      vimPlugins.git-worktree-nvim
       # vimPlugins.harpoon2
+      cscope_maps-nvim
       harpoon2
-      vimPlugins.gitsigns-nvim
-      vimPlugins.fzf-checkout-vim
-      vimPlugins.firenvim
-      vimPlugins.fidget-nvim
-      vimPlugins.neodev-nvim
-      vimPlugins.lsp-zero-nvim
-      vimPlugins.mason-tool-installer-nvim
-      vimPlugins.mason-nvim
-      vimPlugins.mason-lspconfig-nvim
-      vimPlugins.nvim-lspconfig
-      vimPlugins.nvim-cmp
+      vimPlugins.catppuccin-nvim
       vimPlugins.cmp-buffer
-      vimPlugins.cmp-path
-      vimPlugins.cmp_luasnip
-      vimPlugins.cmp-nvim-lsp
-      vimPlugins.cmp-nvim-lua
-      vimPlugins.luasnip
-      vimPlugins.friendly-snippets
-      vimPlugins.rust-vim
       vimPlugins.cmp-cmdline
-      vimPlugins.lspkind-nvim
-      vimPlugins.lsp_extensions-nvim
+      vimPlugins.cmp-git
+      vimPlugins.cmp-nvim-lsp
       vimPlugins.cmp-nvim-lsp-document-symbol
+      vimPlugins.cmp-nvim-lua
+      vimPlugins.cmp-path
       vimPlugins.cmp-tabnine
-      vimPlugins.vim-clang-format
-      vimPlugins.undotree
-      vimPlugins.nvim-web-devicons
-      vimPlugins.nvim-treesitter.withAllGrammars
+      vimPlugins.cmp_luasnip
+      vimPlugins.comment-nvim
+      vimPlugins.copilot-vim
+      vimPlugins.fidget-nvim
+      vimPlugins.firenvim
+      vimPlugins.friendly-snippets
+      vimPlugins.fzf-checkout-vim
+      vimPlugins.fzf-vim
+      vimPlugins.git-worktree-nvim
+      vimPlugins.gitsigns-nvim
+      vimPlugins.lsp-zero-nvim
+      vimPlugins.lsp_extensions-nvim
+      vimPlugins.lspkind-nvim
+      vimPlugins.lspsaga-nvim
+      vimPlugins.luasnip
+      vimPlugins.markdown-preview-nvim
+      vimPlugins.mason-lspconfig-nvim
+      vimPlugins.mason-nvim
+      vimPlugins.mason-tool-installer-nvim
+      vimPlugins.neodev-nvim
+      vimPlugins.nvim-cmp
+      vimPlugins.nvim-fzf
+      vimPlugins.nvim-lint
+      vimPlugins.nvim-lspconfig
+      vimPlugins.nvim-notify
       vimPlugins.nvim-treesitter-context
       vimPlugins.nvim-treesitter-textobjects
-      vimPlugins.playground
-      vimPlugins.markdown-preview-nvim
-      vimPlugins.zen-mode-nvim
-      vimPlugins.comment-nvim
-      vimPlugins.vim-sleuth
-      vimPlugins.lspsaga-nvim
-      vimPlugins.nvim-notify
-      vimPlugins.nvim-lint
-      vimPlugins.vim-go
+      vimPlugins.nvim-treesitter.withAllGrammars
+      vimPlugins.nvim-web-devicons
       vimPlugins.oil-nvim
+      vimPlugins.playground
+      vimPlugins.plenary-nvim
+      vimPlugins.project-nvim
+      vimPlugins.rust-vim
+      vimPlugins.telescope-fzf-native-nvim
+      vimPlugins.telescope-nvim
+      vimPlugins.undotree
+      vimPlugins.vim-be-good
+      vimPlugins.vim-clang-format
+      vimPlugins.vim-fugitive
+      vimPlugins.vim-go
+      vimPlugins.vim-qml
+      vimPlugins.vim-rhubarb
+      vimPlugins.vim-sleuth
+      vimPlugins.zen-mode-nvim
+      wf-nvim
     ];
 
     extraPackages = with pkgs; [

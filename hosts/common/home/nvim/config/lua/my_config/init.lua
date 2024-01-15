@@ -100,3 +100,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
     require("lint").try_lint()
   end,
 })
+
+require("project_nvim").setup {
+  show_hidden = false,
+}
