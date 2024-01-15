@@ -3,6 +3,7 @@
 }: {
   programs.git = {
     enable = true;
+    lfs.enable = true;
 
     aliases = {
       lg = "log --graph --pretty=format:'%C(auto)%h -%d %s"
