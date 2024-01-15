@@ -1,5 +1,6 @@
 require "my_config.set"
 require "my_config.lsp"
+require "my_config.project_nvim"
 
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
@@ -100,7 +101,3 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
     require("lint").try_lint()
   end,
 })
-
-require("project_nvim").setup {
-  show_hidden = false,
-}
