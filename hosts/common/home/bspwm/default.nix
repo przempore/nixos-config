@@ -63,8 +63,12 @@
         echo "[bspwm autostart] location for redshift: $location" | systemd-cat
       }
 
+      echo "[bspwm autostart] starting" | systemd-cat
+
       connectedMonitors=$(xrandr --query | grep " connected" | cut -d" " -f1)
       count=$(echo $connectedMonitors | wc -w)
+
+      echo "[bspwm autostart] connected monitors: $connectedMonitors" | systemd-cat
 
       #Single monitor
       if [ $count -eq 1 ]; then
@@ -93,17 +97,20 @@
 
       autorandr --change | systemd-cat -p info
 
-      run $HOME/.config/polybar/launcher.sh &
+      run $HOME/.config/polybar/launcher.sh
 
-      run keepassxc &
-      run blueman-adapters &
-      run xfce4-clipman &
-      run nm-applet &
-      run pnmixer & 
-      run get_location
-      run redshift -l $location &
-      run xfce4-power-manager &
-      run firefox &
+      run keepassxc
+      run blueman-adapters
+      run xfce4-clipman
+      run nm-applet
+      run pnmixer
+      run xfce4-power-manager
+      run firefox
+
+      get_location
+      run redshift -l $location
+
+      echo "[bspwm autostart] finished" | systemd-cat
     '';
   };
 }
