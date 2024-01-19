@@ -7,6 +7,7 @@
   imports =
     [
       ../common/configuration.nix
+      ../common/laptop
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];

@@ -13,7 +13,6 @@ in
     autojump
     eza
     fzf # A command-line fuzzy finder
-    kitty
     lf
     neofetch
     nnn # terminal file manager
