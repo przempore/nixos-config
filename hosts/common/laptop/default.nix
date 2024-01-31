@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 let
-  pkgs = import <nixpkgs> {};
+  pkgs = import <nixpkgs> { };
   nixos-hardware = pkgs.fetchFromGitHub {
     owner = "NixOS";
     repo = "nixos-hardware";
