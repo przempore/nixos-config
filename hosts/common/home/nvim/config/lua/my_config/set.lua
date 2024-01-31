@@ -35,6 +35,7 @@ vim.opt.updatetime = 50
 vim.opt.shortmess:append("c")
 
 vim.o.completeopt = 'menuone,noselect'
+vim.opt.equalalways = false
 
 vim.opt.colorcolumn = "100"
 
