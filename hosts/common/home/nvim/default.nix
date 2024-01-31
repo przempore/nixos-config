@@ -16,8 +16,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "Cassin01";
       repo = "wf.nvim";
-      rev = "01882d2a5e6dd4f45663a652a4b358cefbb97ce2";
-      sha256 = "sha256-8PzsDPJXb8kpVus7b4Fon785j8JPTZM4fZ7PM5A67YU=";
+      rev = "fe5d94278f33446c3afdb34dac9f3a953907f720";
+      sha256 = "sha256-QssI2cF4PjKT0TAo9CveKeLwcIN8DQl7loi77fiIoo4=";
     };
   };
   harpoon2 = pkgs.vimUtils.buildVimPlugin {
