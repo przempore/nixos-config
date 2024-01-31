@@ -32,13 +32,8 @@ let
   };
 in
 {
-  home.packages = with pkgs; [
-    # neovim
-    # tabnine
-    # neocmakelsp
-    # rnix-lsp
-    # cscope
-  ];
+  # home.packages = with pkgs; [
+  # ];
 
   home.file.".config/nvim" = {
     source = ./config;
