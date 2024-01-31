@@ -54,7 +54,6 @@ require('lspconfig').neocmake.setup{}
 require('lspconfig').jsonls.setup{}
 require('lspconfig').marksman.setup{}
 require('lspconfig').ruby_ls.setup{}
-require('lspconfig').rnix.setup{}
 
 require('lspconfig').rust_analyzer.setup({
     on_attach=on_attach,
@@ -104,3 +103,5 @@ vim.api.nvim_create_autocmd('BufWritePre', {
         vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
     end
 })
+
+require('lspconfig').nixd.setup{}

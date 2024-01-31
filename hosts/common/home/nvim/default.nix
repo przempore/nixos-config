@@ -111,7 +111,7 @@ in
     extraPackages = with pkgs; [
       tabnine
       neocmakelsp
-      rnix-lsp
+      nixd
       cscope
 
       # languages
