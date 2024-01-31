@@ -6,6 +6,7 @@
     # The most widely used is `github:owner/name/reference`,
     # which represents the GitHub repository URL + branch/commit-id/tag.
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
       # inputs.nixpkgs.follows = "nixpkgs";
@@ -14,17 +15,19 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = { self, nixpkgs, home-manager, nixos-hardware, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+      config = pkgs.config;
     in
     {
       formatter.${system} = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
       # export NIXPKGS_ALLOW_UNFREE=1 && nix build '.?submodules=1#homeConfigurations.porebski.activationPackage' --impure --show-trace && ./result/activate
       homeConfigurations = {
         przemek = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+          inherit pkgs system;
           modules = [
             ./hosts/dathomir/home
           ];
@@ -32,7 +35,8 @@
         porebski = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
-            ./hosts/dooku/home
+            (import ./hosts/dooku/home { inherit pkgs config pkgs-unstable; })
+            # ./hosts/dooku/home
           ];
         };
       };

@@ -1,8 +1,8 @@
-{ config, pkgs, user, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
 {
   imports = [
-    ../../common/home
+    (import ../../common/home { inherit config pkgs pkgs-unstable; })
     ../../common/home/teleport.nix
     ../../common/home/google-cloud.nix
   ];

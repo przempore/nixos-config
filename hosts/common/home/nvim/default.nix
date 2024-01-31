@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, pkgs-unstable, config, ... }:
 let
   cscope_maps-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "cscope_maps-nvim";
@@ -41,6 +41,7 @@ in
   };
 
   programs.neovim = {
+    package = pkgs-unstable.neovim-unwrapped;
     enable = true;
     defaultEditor = true;
     viAlias = true;

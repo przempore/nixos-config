@@ -1,4 +1,4 @@
-{ config, pkgs, user, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
 let
   catppuccin-bat = pkgs.fetchFromGitHub {
@@ -9,6 +9,7 @@ let
   };
 
   lib = pkgs.lib;
+  config = pkgs.config;
 in
 {
   imports = [
@@ -18,7 +19,7 @@ in
     ./git.nix
     ./kitty
     ./mpv.nix
-    ./nvim
+    (import ./nvim { inherit pkgs pkgs-unstable config; })
     ./picom.nix
     ./polybar
     ./ranger.nix
