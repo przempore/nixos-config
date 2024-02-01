@@ -32,7 +32,7 @@
     in
     {
       formatter.${system} = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
-      # export NIXPKGS_ALLOW_UNFREE=1 && nix build '.?submodules=1#homeConfigurations.porebski.activationPackage' --impure --show-trace && ./result/activate
+      # nix build '.?submodules=1#homeConfigurations.porebski.activationPackage' --show-trace && ./result/activate
       homeConfigurations = {
         przemek = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
