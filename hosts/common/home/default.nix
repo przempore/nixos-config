@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-unstable, ... }:
+{ config, pkgs, pkgs-unstable, allowed-unfree-packages, ... }:
 
 let
   catppuccin-bat = pkgs.fetchFromGitHub {
@@ -29,6 +29,8 @@ in
     ./wezterm
     ./zathura.nix
   ] ++ (if builtins.pathExists ./private/default.nix then [ ./private ] else [ ]);
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) allowed-unfree-packages;
 
   # Packages that should be installed to the user profile.
   home = {

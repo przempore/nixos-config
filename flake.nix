@@ -21,22 +21,31 @@
       pkgs = nixpkgs.legacyPackages.${system};
       pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
       config = pkgs.config;
+      allowed-unfree-packages = [
+        "netflix-via-google-chrome"
+        "netflix-icon"
+        "discord"
+        "google-chrome"
+        "spotify"
+        "tabnine"
+      ];
     in
     {
       formatter.${system} = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
       # export NIXPKGS_ALLOW_UNFREE=1 && nix build '.?submodules=1#homeConfigurations.porebski.activationPackage' --impure --show-trace && ./result/activate
       homeConfigurations = {
         przemek = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs system;
+          inherit pkgs;
+          extraSpecialArgs = {inherit allowed-unfree-packages pkgs-unstable;};
           modules = [
             ./hosts/dathomir/home
           ];
         };
         porebski = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
+          extraSpecialArgs = {inherit allowed-unfree-packages pkgs-unstable;};
           modules = [
-            (import ./hosts/dooku/home { inherit pkgs config pkgs-unstable; })
-            # ./hosts/dooku/home
+            ./hosts/dooku/home
           ];
         };
       };
@@ -52,7 +61,8 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.przemek = import ./hosts/dathomir/home;
+              home-manager.users.przemek = ./hosts/dathomir/home;
+              home-manager.extraSpecialArgs = {inherit allowed-unfree-packages pkgs-unstable;};
             }
           ];
         };
@@ -66,6 +76,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.porebski = import ./hosts/dooku/home;
+              home-manager.extraSpecialArgs = {inherit allowed-unfree-packages pkgs-unstable;};
             }
           ];
         };
