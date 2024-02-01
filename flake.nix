@@ -36,14 +36,14 @@
       homeConfigurations = {
         przemek = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = {inherit allowed-unfree-packages pkgs-unstable;};
+          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable; };
           modules = [
             ./hosts/dathomir/home
           ];
         };
         porebski = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = {inherit allowed-unfree-packages pkgs-unstable;};
+          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable; };
           modules = [
             ./hosts/dooku/home
           ];
@@ -62,7 +62,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.przemek = ./hosts/dathomir/home;
-              home-manager.extraSpecialArgs = {inherit allowed-unfree-packages pkgs-unstable;};
+              home-manager.extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable; };
             }
           ];
         };
@@ -76,7 +76,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.porebski = import ./hosts/dooku/home;
-              home-manager.extraSpecialArgs = {inherit allowed-unfree-packages pkgs-unstable;};
+              home-manager.extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable; };
             }
           ];
         };
