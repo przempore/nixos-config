@@ -105,3 +105,5 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 require("wf").setup({
   theme = "chad",
 })
+
+require("lspsaga").setup({})

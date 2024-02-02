@@ -135,4 +135,4 @@ require("oil").setup({
   },
 })
 
-vim.keymap.set("n", "<leader>ov", ":Oil<CR>", { noremap = true, silent = true, desc = "[misc] File explorer" })
+vim.keymap.set("n", "<leader>ov", ":Oil --float<CR>", { noremap = true, silent = true, desc = "[misc] File explorer" })
