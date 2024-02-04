@@ -34,6 +34,13 @@
       formatter.${system} = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
       # nix build '.?submodules=1#homeConfigurations.porebski.activationPackage' --show-trace && ./result/activate
       homeConfigurations = {
+        arch_linux = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable; };
+          modules = [
+            ./hosts/arch_linux/home
+          ];
+        };
         przemek = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable; };

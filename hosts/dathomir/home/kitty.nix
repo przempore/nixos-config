@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ../../common/home/kitty
+    ../../common/home/apps/kitty
   ];
 
   programs.kitty = {

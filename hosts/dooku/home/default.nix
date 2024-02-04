@@ -2,9 +2,10 @@
 
 {
   imports = [
-    (import ../../common/home { inherit config pkgs pkgs-unstable allowed-unfree-packages; })
-    ../../common/home/teleport.nix
-    ../../common/home/google-cloud.nix
+    ../../common/home
+    ../../common/home/desktop
+    ../../common/home/apps/teleport.nix
+    ../../common/home/apps/google-cloud.nix
   ];
 
   dconf.settings = {

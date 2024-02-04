@@ -27,4 +27,7 @@ require("go").setup {
   lsp_gofumpt = false, -- true: set default gofmt in gopls format to gofumpt
   lsp_on_attach = false, -- if a on_attach function provided:  attach on_attach function to gopls
   gopls_cmd = nil, -- if you need to specify gopls path and cmd, e.g {"/home/user/lsp/gopls", "-logfile", "/var/log/gopls.log" }
+
 }
+
+vim.g.go_def_mapping_enabled=1;

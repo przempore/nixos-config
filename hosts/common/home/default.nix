@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-unstable, allowed-unfree-packages, ... }:
+{ config, pkgs, allowed-unfree-packages, ... }:
 
 let
   catppuccin-bat = pkgs.fetchFromGitHub {
@@ -13,21 +13,7 @@ let
 in
 {
   imports = [
-    ./bspwm
-    ./firefox.nix
-    ./fish.nix
-    ./git.nix
-    ./kitty
-    ./mpv.nix
-    (import ./nvim { inherit pkgs pkgs-unstable config; })
-    ./picom.nix
-    ./polybar
-    ./ranger.nix
-    ./screen_settings
-    ./sxhkd.nix
-    ./tmux.nix
-    ./wezterm
-    ./zathura.nix
+    ./apps
   ] ++ (if builtins.pathExists ./private/default.nix then [ ./private ] else [ ]);
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) allowed-unfree-packages;
@@ -136,6 +122,7 @@ in
     starship = {
       enable = true;
       # custom settings
+      enableFishIntegration = true;
       settings = {
         add_newline = false;
         aws.disabled = true;

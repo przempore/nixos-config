@@ -1,7 +1,6 @@
 { config, pkgs, pkgs-unstable, allowed-unfree-packages, ... }:
 {
   imports = [
-    ./kitty.nix
     ../../common/home
   ];
 
@@ -9,10 +8,6 @@
   home = {
     username = "przemek";
     homeDirectory = "/home/przemek";
-
-    pointerCursor = {
-      size = 8;
-    };
   };
 
   # This value determines the home Manager release that your
