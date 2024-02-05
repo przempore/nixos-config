@@ -11,7 +11,9 @@
       aoeu = "setxkbmap pl";
     };
     interactiveShellInit = ''
-      any-nix-shell fish --info-right | source
+      if type -q any-nix-shell
+        any-nix-shell fish --info-right | source
+      end
     '';
   };
 }
