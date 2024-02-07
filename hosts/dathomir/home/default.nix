@@ -1,8 +1,9 @@
-{ config, pkgs, pkgs-unstable, allowed-unfree-packages, ... }:
+{ config, pkgs, ... }:
 {
   imports = [
-    ./kitty.nix
     ../../common/home
+    ../../common/home/desktop
+    ./kitty.nix
   ];
 
   # Packages that should be installed to the user profile.
