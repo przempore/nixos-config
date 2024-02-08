@@ -6,8 +6,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "dhananjaylatkar";
       repo = "cscope_maps.nvim";
-      rev = "c3922f1decbbcedca3aba5cd4534f397e5a903b4";
-      sha256 = "sha256-FyQZ3zm8aXbfHh192Xw9LVVOsmz6O9h//0oLU9wBAms=";
+      rev = "065fcdd059eb69d013a10d94846d20f1b8fd8ef6";
+      sha256 = "sha256-xl9eDmBCOxJ0lNHDdnHxonHMn1Iz5lW/oUOdwoRknH4=";
     };
   };
   wf-nvim = pkgs.vimUtils.buildVimPlugin {
@@ -18,16 +18,6 @@ let
       repo = "wf.nvim";
       rev = "fe5d94278f33446c3afdb34dac9f3a953907f720";
       sha256 = "sha256-QssI2cF4PjKT0TAo9CveKeLwcIN8DQl7loi77fiIoo4=";
-    };
-  };
-  harpoon2 = pkgs.vimUtils.buildVimPlugin {
-    name = "harpoon2";
-    nativeBuildInputs = with pkgs; [ pkg-config readline ];
-    src = pkgs.fetchFromGitHub {
-      owner = "ThePrimeagen";
-      repo = "harpoon";
-      rev = "a38be6e0dd4c6db66997deab71fc4453ace97f9c";
-      sha256 = "sha256-RjwNUuKQpLkRBX3F9o25Vqvpu3Ah1TCFQ5Dk4jXhsbI=";
     };
   };
 in
@@ -48,10 +38,9 @@ in
     vimAlias = true;
     vimdiffAlias = true;
 
-    plugins = with pkgs; [
-      # vimPlugins.harpoon2
+    plugins = with pkgs-unstable; [
       cscope_maps-nvim
-      harpoon2
+      vimPlugins.harpoon2
       vimPlugins.catppuccin-nvim
       vimPlugins.cmp-buffer
       vimPlugins.cmp-cmdline
@@ -60,7 +49,7 @@ in
       vimPlugins.cmp-nvim-lsp-document-symbol
       vimPlugins.cmp-nvim-lua
       vimPlugins.cmp-path
-      vimPlugins.cmp-tabnine
+      # vimPlugins.cmp-tabnine
       vimPlugins.cmp_luasnip
       vimPlugins.comment-nvim
       vimPlugins.copilot-vim
@@ -110,7 +99,7 @@ in
     ];
 
     extraPackages = with pkgs; [
-      tabnine
+      # tabnine
       neocmakelsp
       nixd
       cscope

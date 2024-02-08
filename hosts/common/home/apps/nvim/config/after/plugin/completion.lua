@@ -20,19 +20,19 @@ vim.opt.shortmess:append "c"
 --   { noremap = true }
 -- )
 
-local tabnine = require('cmp_tabnine.config')
-tabnine:setup({
-  max_lines = 1000;
-  max_num_results = 20;
-  sort = true;
-  run_on_every_keystroke = true;
-  snippet_placeholder = '..';
-  ignored_file_types = { -- default is not to ignore
-    -- uncomment to ignore in lua:
-    -- lua = true
-  };
-  show_prediction_strength = false;
-})
+-- local tabnine = require('cmp_tabnine.config')
+-- tabnine:setup({
+--   max_lines = 1000;
+--   max_num_results = 20;
+--   sort = true;
+--   run_on_every_keystroke = true;
+--   snippet_placeholder = '..';
+--   ignored_file_types = { -- default is not to ignore
+--     -- uncomment to ignore in lua:
+--     -- lua = true
+--   };
+--   show_prediction_strength = false;
+-- })
 
 local ok, lspkind = pcall(require, "lspkind")
 if not ok then
@@ -135,7 +135,7 @@ cmp.setup {
     { name = "gh_issues" },
 
     { name = "path" },
-    { name = "cmp_tabnine" },
+    -- { name = "cmp_tabnine" },
     { name = "luasnip" },
     -- { name = "buffer", keyword_length = 5 },
   },
@@ -186,7 +186,7 @@ cmp.setup {
         path = "[path]",
         luasnip = "[snip]",
         gh_issues = "[issues]",
-        cmp_tabnine = "[TabNine]",
+        -- cmp_tabnine = "[TabNine]",
       },
     },
   },

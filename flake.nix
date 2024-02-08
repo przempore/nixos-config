@@ -27,7 +27,8 @@
         "discord"
         "google-chrome"
         "spotify"
-        "tabnine"
+        # "tabnine-4.10.0"
+        # "tabnine"
       ];
     in
     {
