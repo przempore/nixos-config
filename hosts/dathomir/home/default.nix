@@ -12,7 +12,7 @@
     homeDirectory = "/home/przemek";
 
     pointerCursor = {
-      size = 8;
+      size = 6;
     };
   };
 

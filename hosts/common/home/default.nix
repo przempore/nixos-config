@@ -35,8 +35,20 @@ in
     };
 
     packages = with pkgs; [
-      # here is some command line tools I use frequently
-      # feel free to add your own or remove some of them
+      # fonts
+      noto-fonts
+      noto-fonts-emoji
+      dejavu_fonts
+      liberation_ttf
+      source-code-pro
+      siji
+      nerdfonts
+      powerline-fonts
+      powerline-symbols
+      font-awesome
+      line-awesome
+      material-icons
+      material-symbols
 
       cachix
       onlyoffice-bin_7_5
