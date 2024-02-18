@@ -40,7 +40,8 @@ in
 
     plugins = with pkgs-unstable; [
       cscope_maps-nvim
-      vimPlugins.harpoon2
+      # vimPlugins.cmp-tabnine
+      # vimPlugins.copilot-vim
       vimPlugins.catppuccin-nvim
       vimPlugins.cmp-buffer
       vimPlugins.cmp-cmdline
@@ -49,10 +50,10 @@ in
       vimPlugins.cmp-nvim-lsp-document-symbol
       vimPlugins.cmp-nvim-lua
       vimPlugins.cmp-path
-      # vimPlugins.cmp-tabnine
       vimPlugins.cmp_luasnip
       vimPlugins.comment-nvim
-      vimPlugins.copilot-vim
+      vimPlugins.copilot-cmp
+      vimPlugins.copilot-lua
       vimPlugins.fidget-nvim
       vimPlugins.firenvim
       vimPlugins.friendly-snippets
@@ -60,6 +61,7 @@ in
       vimPlugins.fzf-vim
       vimPlugins.git-worktree-nvim
       vimPlugins.gitsigns-nvim
+      vimPlugins.harpoon2
       vimPlugins.lsp-zero-nvim
       vimPlugins.lsp_extensions-nvim
       vimPlugins.lspkind-nvim

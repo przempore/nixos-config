@@ -5,35 +5,6 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }
 -- Don't show the dumb matching stuff.
 vim.opt.shortmess:append "c"
 
--- Complextras.nvim configuration
--- vim.api.nvim_set_keymap(
---   "i",
---   "<C-x><C-m>",
---   [[<c-r>=luaeval("require('complextras').complete_matching_line()")<CR>]],
---   { noremap = true }
--- )
--- 
--- vim.api.nvim_set_keymap(
---   "i",
---   "<C-x><C-d>",
---   [[<c-r>=luaeval("require('complextras').complete_line_from_cwd()")<CR>]],
---   { noremap = true }
--- )
-
--- local tabnine = require('cmp_tabnine.config')
--- tabnine:setup({
---   max_lines = 1000;
---   max_num_results = 20;
---   sort = true;
---   run_on_every_keystroke = true;
---   snippet_placeholder = '..';
---   ignored_file_types = { -- default is not to ignore
---     -- uncomment to ignore in lua:
---     -- lua = true
---   };
---   show_prediction_strength = false;
--- })
-
 local ok, lspkind = pcall(require, "lspkind")
 if not ok then
   return
@@ -42,7 +13,6 @@ end
 lspkind.init()
 
 local cmp = require "cmp"
-
 
 cmp.setup {
   mapping = {
@@ -59,16 +29,16 @@ cmp.setup {
       { "i", "c" }
     ),
 
-    ["<C-j>"] = cmp.mapping(function(fallback)
-      cmp.mapping.abort()
-      local copilot_keys = vim.fn["copilot#Accept"]()
-      if copilot_keys ~= "" then
-        vim.api.nvim_feedkeys(copilot_keys, "i", true)
-      else
-        fallback()
-      end
-    end
-    ),
+    -- ["<C-j>"] = cmp.mapping(function(fallback)
+    --   cmp.mapping.abort()
+    --   local copilot_keys = vim.fn["copilot#Accept"]()
+    --   if copilot_keys ~= "" then
+    --     vim.api.nvim_feedkeys(copilot_keys, "i", true)
+    --   else
+    --     fallback()
+    --   end
+    -- end
+    -- ),
 
     ["<c-space>"] = cmp.mapping {
       i = cmp.mapping.complete(),
@@ -88,36 +58,11 @@ cmp.setup {
     -- ["<tab>"] = false,
     ["<tab>"] = cmp.config.disable,
 
-    -- ["<tab>"] = cmp.mapping {
-    --   i = cmp.config.disable,
-    --   c = function(fallback)
-    --     fallback()
-    --   end,
-    -- },
-
     -- Testing
     ["<c-q>"] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-
-    -- If you want tab completion :'(
-    --  First you have to just promise to read `:help ins-completion`.
-    --
-    -- ["<Tab>"] = function(fallback)
-    --   if cmp.visible() then
-    --     cmp.select_next_item()
-    --   else
-    --     fallback()
-    --   end
-    -- end,
-    -- ["<S-Tab>"] = function(fallback)
-    --   if cmp.visible() then
-    --     cmp.select_prev_item()
-    --   else
-    --     fallback()
-    --   end
-    -- end,
   },
 
   -- Youtube:
@@ -128,6 +73,8 @@ cmp.setup {
   --        max_item_count
   --        (more?)
   sources = {
+    -- Copilot Source
+    { name = "copilot", group_index = 2 },
     -- Youtube: Could enable this only for lua, but nvim_lua handles that already.
     { name = "nvim_lua" },
     { name = "nvim_lsp" },
@@ -176,20 +123,71 @@ cmp.setup {
   },
 
   formatting = {
-    -- Youtube: How to set up nice formatting for your sources.
-    format = lspkind.cmp_format {
-      with_text = true,
-      menu = {
-        buffer = "[buf]",
-        nvim_lsp = "[LSP]",
-        nvim_lua = "[api]",
-        path = "[path]",
-        luasnip = "[snip]",
-        gh_issues = "[issues]",
-        -- cmp_tabnine = "[TabNine]",
-      },
-    },
+    format = lspkind.cmp_format({
+      mode = 'symbol', -- show only symbol annotations
+      maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+      symbol_map = { Copilot = "" },
+                     -- can also be a function to dynamically calculate max width such as 
+                     -- maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
+      ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+      show_labelDetails = true, -- show labelDetails in menu. Disabled by default
+
+      -- The function below will be called before any actual modifications from lspkind
+      -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+      -- before = function (entry, vim_item)
+      --   ...
+      --   return vim_item
+      -- end
+    })
   },
+
+
+  -- formatting = {
+  --   -- Youtube: How to set up nice formatting for your sources.
+  --   format = lspkind.cmp_format {
+  --     
+  --     with_text = true,
+  --     mode = "symbol_text",
+  --     max_width = 50,
+  --     -- menu = {
+  --     --   buffer = "[buf]",
+  --     --   nvim_lsp = "[LSP]",
+  --     --   nvim_lua = "[api]",
+  --     --   path = "[path]",
+  --     --   luasnip = "[snip]",
+  --     --   gh_issues = "[issues]",
+  --     -- },
+  --     preset = 'codicons',
+  --     symbol_map = {
+  --       Copilot = "",
+  --       Text = "󰉿",
+  --       Method = "󰆧",
+  --       Function = "󰊕",
+  --       Constructor = "",
+  --       Field = "󰜢",
+  --       Variable = "󰀫",
+  --       Class = "󰠱",
+  --       Interface = "",
+  --       Module = "",
+  --       Property = "󰜢",
+  --       Unit = "󰑭",
+  --       Value = "󰎠",
+  --       Enum = "",
+  --       Keyword = "󰌋",
+  --       Snippet = "",
+  --       Color = "󰏘",
+  --       File = "󰈙",
+  --       Reference = "󰈇",
+  --       Folder = "󰉋",
+  --       EnumMember = "",
+  --       Constant = "󰏿",
+  --       Struct = "󰙅",
+  --       Event = "",
+  --       Operator = "󰆕",
+  --       TypeParameter = "",
+  --     },
+  --   },
+  -- },
 
   experimental = {
     -- I like the new menu better! Nice work hrsh7th
@@ -199,53 +197,6 @@ cmp.setup {
     ghost_text = true,
   },
 }
-
--- cmp.setup.cmdline("/", {
---   completion = {
---     -- Might allow this later, but I don't like it right now really.
---     -- Although, perhaps if it just triggers w/ @ then we could.
---     --
---     -- I will have to come back to this.
---     autocomplete = false,
---   },
---   sources = cmp.config.sources({
---     { name = "nvim_lsp_document_symbol" },
---   }, {
---     -- { name = "buffer", keyword_length = 5 },
---   }),
--- })
-
--- cmp.setup.cmdline(":", {
---   completion = {
---     autocomplete = false,
---   },
---
---   sources = cmp.config.sources({
---     {
---       name = "path",
---     },
---   }, {
---     {
---       name = "cmdline",
---       max_item_count = 20,
---       keyword_length = 4,
---     },
---   }),
--- })
-
---[[
-" Setup buffer configuration (nvim-lua source only enables in Lua filetype).
-"
-" ON YOUTUBE I SAID: This only _adds_ sources for a filetype, not removes the global ones.
-"
-" BUT I WAS WRONG! This will override the global setup. Sorry for any confusion.
-autocmd FileType lua lua require'cmp'.setup.buffer {
-\   sources = {
-\     { name = 'nvim_lua' },
-\     { name = 'buffer' },
-\   },
-\ }
---]]
 
 -- Add vim-dadbod-completion in sql files
 _ = vim.cmd [[
@@ -261,21 +212,3 @@ _ = vim.cmd [[
     autocmd Filetype zsh lua require'cmp'.setup.buffer { sources = { { name = "zsh" }, } }
   augroup END
 ]]
-
---[[
-" Disable cmp for a buffer
-autocmd FileType TelescopePrompt lua require('cmp').setup.buffer { enabled = false }
---]]
-
--- Youtube: customizing appearance
---
--- nvim-cmp highlight groups.
--- local Group = require("colorbuddy.group").Group
--- local g = require("colorbuddy.group").groups
--- local s = require("colorbuddy.style").styles
--- 
--- Group.new("CmpItemAbbr", g.Comment)
--- Group.new("CmpItemAbbrDeprecated", g.Error)
--- Group.new("CmpItemAbbrMatchFuzzy", g.CmpItemAbbr.fg:dark(), nil, s.italic)
--- Group.new("CmpItemKind", g.Special)
--- Group.new("CmpItemMenu", g.NonText)

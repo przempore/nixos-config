@@ -91,11 +91,6 @@ cmp.setup.filetype('gitcommit', {
     })
 })
 
--- load cscope maps
-if vim.loop.os_uname().sysname == "Linux" then
-  require('cscope_maps').setup({})
-end
-
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   callback = function()
     require("lint").try_lint()

@@ -44,9 +44,9 @@ vim.g.maplocalleader = " "
 
 vim.notify = require("notify")
 
-vim.g.copilot_no_tab_map = true
-vim.g.copilot_assume_mapped = true
-vim.g.copilot_tab_fallback = ""
+-- vim.g.copilot_no_tab_map = true
+-- vim.g.copilot_assume_mapped = true
+-- vim.g.copilot_tab_fallback = ""
 
 vim.g.go_def_mode='gopls'
 vim.g.go_info_mode='gopls'
