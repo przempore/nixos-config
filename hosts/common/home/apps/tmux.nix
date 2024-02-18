@@ -1,8 +1,10 @@
 { pkgs
+, pkgs-unstable
 , ...
 }: {
   programs.tmux = {
     enable = true;
+    package = pkgs-unstable.tmux;
     shortcut = "a";
     # Stop tmux+escape craziness.
     escapeTime = 0;

@@ -19,7 +19,6 @@ in
     ripgrep
     sshfs
     starship
-    tmux
   ];
 
   home.file.".config/kitty/scripts" = {
