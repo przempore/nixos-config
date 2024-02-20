@@ -3,8 +3,8 @@ let
   catppuccin-kitty = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "kitty";
-    rev = "4820b3ef3f4968cf3084b2239ce7d1e99ea04dda";
-    sha256 = "sha256-uZSx+fuzcW//5/FtW98q7G4xRRjJjD5aQMbvJ4cs94U=";
+    rev = "d7d61716a83cd135344cbb353af9d197c5d7cec1";
+    sha256 = "sha256-mRFa+40fuJCUrR1o4zMi7AlgjRtFmii4fNsQyD8hIjM=";
   };
 in
 {
