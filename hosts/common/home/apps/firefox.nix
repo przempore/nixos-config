@@ -16,7 +16,7 @@
             builtins.fetchGit {
                 url = "https://github.com/rockofox/firefox-minima";
                 ref = "main";
-                rev = "932a99851b5f2db8b58aa456e5d897e278c69574";
+                rev = "c5580fd04e9b198320f79d441c78a641517d7af5";
             }
           }/userChrome.css";
       '';
