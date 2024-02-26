@@ -76,7 +76,28 @@ require('telescope').setup {
                         ["<C-w>"] = require("telescope.actions").delete_buffer,
                     }
                 }
-            }
+            },
+            find_files = {
+                theme = "dropdown",
+            },
+            current_buffer_fuzzy_find = {
+                theme = "dropdown",
+            },
+            grep_string = {
+                theme = "dropdown",
+            },
+            live_grep = {
+                theme = "dropdown",
+            },
+            lsp_references = {
+                theme = "dropdown",
+            },
+            git_files = {
+                theme = "dropdown",
+            },
+            lsp_document_symbols = {
+                theme = "dropdown",
+            },
         },
         extensions = {
             fzf = {
@@ -94,48 +115,25 @@ local telescope = require "telescope.builtin";
 
 nnoremap("<C-p>", ":Telescope<cr>",
     { noremap = true, silent = true, desc = "[telescope] Telescope"})
--- nnoremap("<C-_>", ":lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>",
---     { noremap = true, silent = true, desc = "[telescope] current buffer fuzzy find"})
 nnoremap("<C-_>", function() telescope.current_buffer_fuzzy_find(); end,
     { noremap = true, silent = true, desc = "[telescope] current buffer fuzzy find"})
--- Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍
--- nnoremap("<leader>ff", ":lua require('telescope.builtin').find_files({ hidden=true })<cr>",
---     { noremap = true, silent = true, desc = "[telescope] find files"})
 nnoremap("<leader>ff", function() telescope.find_files({ hidden=true }); end,
     { noremap = true, silent = true, desc = "[telescope] find files"})
--- nnoremap("<leader>gs", ":lua require('telescope.builtin').grep_string({ hidden=true })<cr>",
---     { noremap = true, silent = true, desc = "[telescope] grep given string"})
 nnoremap("<leader>gs", function() telescope.grep_string({ hidden=true }); end,
     { noremap = true, silent = true, desc = "[telescope] grep given string"})
--- nnoremap("<leader>gr", ":lua require('telescope.builtin').lsp_references()<cr>",
---     { noremap = true, silent = true, desc = "[telescope] grep lsp references"})
 nnoremap("<leader>gr", function() telescope.lsp_references(); end,
     { noremap = true, silent = true, desc = "[telescope] grep lsp references"})
 
--- nnoremap("<leader>fs", ":lua require('telescope.builtin').live_grep({ hidden=true })<cr>",
---     { noremap = true, silent = true, desc = "[telescope] grep string"})
 nnoremap("<leader>fs", function() telescope.live_grep({ hidden=true }); end,
     { noremap = true, silent = true, desc = "[telescope] grep string"})
--- nnoremap("<leader>gf", ":lua require('telescope.builtin').git_files({ hidden=true })<cr>",
---     { noremap = true, silent = true, desc = "[telescope] git files"})
 nnoremap("<leader>gf", function() telescope.git_files({ hidden=true }); end,
     { noremap = true, silent = true, desc = "[telescope] git files"})
--- nnoremap("<leader>gb", ":lua require('telescope.builtin').git_branches()<cr>")
--- nnoremap("<leader>fs ,":lua require('telescope.builtin') grep_string<cr>
--- nnoremap("<leader>fb", ":lua require('telescope.builtin').buffers()<cr>",
---     { noremap = true, silent = true, desc = "[telescope] buffers"})
 nnoremap("<leader>fb", function() telescope.buffers(); end,
     { noremap = true, silent = true, desc = "[telescope] buffers"})
--- nnoremap("<leader>fh", ":lua require('telescope.builtin').help_tags()<cr>",
---     { noremap = true, silent = true, desc = "[telescope] help tags"})
 nnoremap("<leader>fh", function() telescope.help_tags(); end,
     { noremap = true, silent = true, desc = "[telescope] help tags"})
--- nnoremap("<leader>fm", ":lua require('telescope.builtin').marks()<cr>",
---     { noremap = true, silent = true, desc = "[telescope] marks"})
 nnoremap("<leader>fm", function() telescope.marks(); end,
     { noremap = true, silent = true, desc = "[telescope] marks"})
--- nnoremap("<leader>ws", ":lua require('telescope.builtin').lsp_document_symbols()<cr>",
---     { noremap = true, silent = true, desc = "[telescope] lsp document symbols"})
 nnoremap("<leader>ws", function() telescope.lsp_document_symbols(); end,
     { noremap = true, silent = true, desc = "[telescope] lsp document symbols"})
 -- https://stackoverflow.com/a/25941875
