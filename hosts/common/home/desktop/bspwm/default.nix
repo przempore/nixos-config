@@ -103,7 +103,6 @@
       run blueman-adapters
       run xfce4-clipman
       run nm-applet
-      run pnmixer
       run xfce4-power-manager
       run firefox
 

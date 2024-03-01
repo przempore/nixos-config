@@ -4,11 +4,6 @@
     ./colors.nix
   ];
 
-
-  home.packages = with pkgs; [
-    polybar
-  ];
-
   home.file.".config/polybar" = {
     source = ./config;
     recursive = true;
