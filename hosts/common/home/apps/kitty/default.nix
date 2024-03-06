@@ -18,7 +18,6 @@ in
     nnn # terminal file manager
     ripgrep
     sshfs
-    starship
   ];
 
   home.file.".config/kitty/scripts" = {

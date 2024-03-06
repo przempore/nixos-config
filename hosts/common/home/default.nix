@@ -133,6 +133,7 @@ in
       enable = true;
       # custom settings
       enableFishIntegration = true;
+      enableZshIntegration = true;
       settings = {
         add_newline = false;
         aws.disabled = true;
