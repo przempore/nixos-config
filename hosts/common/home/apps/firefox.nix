@@ -1,14 +1,15 @@
 { pkgs
+, pkgs-unstable
 , config
 , ...
 }: {
   home.packages = with pkgs; [
-    firefox
     youtube-dl
   ];
 
   programs.firefox = {
     enable = true;
+    package = pkgs-unstable.firefox-devedition-unwrapped;
     profiles.default = {
       isDefault = true;
       userChrome = ''
