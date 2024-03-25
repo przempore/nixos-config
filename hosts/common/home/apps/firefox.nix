@@ -9,7 +9,6 @@
 
   programs.firefox = {
     enable = true;
-    package = pkgs-unstable.firefox-devedition-unwrapped;
     profiles.default = {
       isDefault = true;
       userChrome = ''
