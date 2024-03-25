@@ -3,7 +3,7 @@ local nnoremap = require "my_config.keymap".nnoremap
 require('telescope').setup {
     defaults = {
         layout_config = {
-            vertical = { width = 0.5 },
+            vertical = { width = 0.8 },
         },
         -- other layout configuration here
         file_ignore_patterns = {
