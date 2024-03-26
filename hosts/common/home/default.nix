@@ -129,24 +129,37 @@ in
         };
       };
     };
-    starship = {
-      enable = true;
-      # custom settings
-      enableFishIntegration = true;
-      enableZshIntegration = true;
-      settings = {
-        add_newline = false;
-        aws.disabled = true;
-        gcloud.disabled = true;
-        line_break.disabled = true;
+    starship =
+      let
+        flavour = "mocha"; # One of `latte`, `frappe`, `macchiato`, or `mocha`
+      in
+      {
+        enable = true;
+        # custom settings
+        enableFishIntegration = true;
+        enableZshIntegration = true;
+        settings = {
+          format = "$all"; # Remove this line to disable the default prompt format
+          palette = "catppuccin_${flavour}";
+          add_newline = false;
+          aws.disabled = true;
+          gcloud.disabled = true;
+          line_break.disabled = true;
+        } // builtins.fromTOML (builtins.readFile
+          (pkgs.fetchFromGitHub
+            {
+              owner = "catppuccin";
+              repo = "starship";
+              rev = "5629d2356f62a9f2f8efad3ff37476c19969bd4f";
+              sha256 = "sha256-nsRuxQFKbQkyEI4TXgvAjcroVdG+heKX5Pauq/4Ota0=";
+            } + /palettes/${flavour}.toml));
       };
-    };
     command-not-found.enable = false;
     nix-index =
-    {
-      enable = true;
-      enableFishIntegration = true;
-    };
+      {
+        enable = true;
+        enableFishIntegration = true;
+      };
   };
 
 
