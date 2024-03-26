@@ -6,8 +6,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "dhananjaylatkar";
       repo = "cscope_maps.nvim";
-      rev = "065fcdd059eb69d013a10d94846d20f1b8fd8ef6";
-      sha256 = "sha256-xl9eDmBCOxJ0lNHDdnHxonHMn1Iz5lW/oUOdwoRknH4=";
+      rev = "b2568dadcac84c511533b726e279d38e9e67a37c";
+      sha256 = "sha256-WRJP6wcSIGX4TZD0U2Fi9JI/C+enqW8EZZGlQ5HfCoA=";
     };
   };
   wf-nvim = pkgs.vimUtils.buildVimPlugin {
@@ -22,9 +22,6 @@ let
   };
 in
 {
-  # home.packages = with pkgs; [
-  # ];
-
   home.file.".config/nvim" = {
     source = ./config;
     recursive = true;
@@ -40,8 +37,6 @@ in
 
     plugins = with pkgs-unstable; [
       cscope_maps-nvim
-      # vimPlugins.cmp-tabnine
-      # vimPlugins.copilot-vim
       vimPlugins.catppuccin-nvim
       vimPlugins.cmp-buffer
       vimPlugins.cmp-cmdline
@@ -109,47 +104,18 @@ in
       # languages
       jsonnet
       nodejs
-      # python311Full
-      # rustc
       marksman
 
       # language servers
-      # gopls
-      # haskell-language-server
-      # jsonnet-language-server
       lua-language-server
       nil
       nodePackages."bash-language-server"
       nodePackages."diagnostic-languageserver"
       nodePackages."dockerfile-language-server-nodejs"
       nodePackages."pyright"
-      # nodePackages."typescript"
-      # nodePackages."typescript-language-server"
       nodePackages."vscode-langservers-extracted"
       nodePackages."yaml-language-server"
-      # rust-analyzer
       terraform-ls
-
-      # formatters
-      # gofumpt
-      # golines
-      # nixpkgs-fmt
-      # python310Packages.black
-      # rustfmt
-
-      # tools
-      # cmake
-      # cmake-language-server
-      # gnumake
-      # checkmake
-      # cargo
-      # gcc
-      # llvmPackages.clang-unwrapped # c/c++ tools with clang-tools such as clangd
-      # gdb
-      # lldb
-      # ghc
-      # lazydocker
-      # yarn
     ];
   };
 }
