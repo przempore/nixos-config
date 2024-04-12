@@ -26,6 +26,10 @@ in
 
   programs.kitty = {
     enable = true;
+    keybindings = {
+      "ctrl+shift+c" = "new_tab";
+      "ctrl+shift+w" = "no_op";
+    };
     settings = {
       include = builtins.readFile
         (catppuccin-kitty + "/themes/mocha.conf");
@@ -57,8 +61,6 @@ in
       macos_quit_when_last_window_closed = "yes";
       macos_traditional_fullscreen = "yes";
       macos_show_window_title_in = "none";
-
-      map = "ctrl+shift+c new_tab";
 
       # map = f1 new_window_with_cwd
       # map f2 new_tab_with_cwd
