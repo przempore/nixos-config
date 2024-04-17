@@ -21,8 +21,6 @@ config.audible_bell = "Disabled"
 -- For example, changing the color scheme:
 -- config.color_scheme = 'Batman'
 
--- config.colors = {}
--- config.colors.background = '#111111'
 config.color_scheme = 'Catppuccin Mocha'
 config.window_background_opacity = 0.95
 
@@ -44,12 +42,12 @@ config.leader = { key=";", mods="CTRL", timeout_milliseconds=1000 }
 config.keys = {
   {
     key = '|',
-    mods = 'LEADER|SHIFT',
+    mods = 'SHIFT|LEADER',
     action = wezterm.action.SplitHorizontal{domain="CurrentPaneDomain"},
   },
   {
-    key = '_',
-    mods = 'LEADER|SHIFT',
+    key = '-',
+    mods = 'LEADER',
     action = wezterm.action.SplitVertical{domain="CurrentPaneDomain"},
   },
   {
@@ -62,12 +60,25 @@ config.keys = {
     mods = 'ALT',
     action = wezterm.action.DisableDefaultAssignment,
   },
+  {
+    key = 'w',
+    mods = 'LEADER',
+    action = wezterm.action.ShowTabNavigator,
+  },
+  {
+    key = 'b',
+    mods = 'LEADER',
+    action = wezterm.action_callback(function(window, _)
+      local overrides = window:get_config_overrides() or {}
+      overrides.enable_tab_bar = not overrides.enable_tab_bar
+      window:set_config_overrides(overrides)
+    end),
+  },
 }
 
 -- default is true, has more "native" look
 config.use_fancy_tab_bar = false
 
--- I don't like putting anything at the ege if I can help it.
 config.enable_scroll_bar = false
 config.window_padding = {
   left = 2,
@@ -76,7 +87,6 @@ config.window_padding = {
   bottom = 2,
 }
 
--- config.use_fancy_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
 config.freetype_load_target = "HorizontalLcd"
