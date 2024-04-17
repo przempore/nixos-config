@@ -33,9 +33,11 @@
       "super + r" = "rofi-theme-selector";
       #Pavucontrol
       "super + v" = "xfce4-popup-clipman";
-      "super + Return" = "kitty";
+      # "super + Return" = "kitty";
+      "super + Return" = "wezterm";
       "super + Escape" = "xkill";
-      "super + KP_Enter" = "kitty";
+      # "super + KP_Enter" = "kitty";
+      "super + KP_Enter" = "wezterm";
       #File-Manager
       "super + shift + Return" = "thunar";
       #dmenu
