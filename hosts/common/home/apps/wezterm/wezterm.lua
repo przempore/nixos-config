@@ -16,6 +16,8 @@ config.set_environment_variables = {
   IS_WEZTERM = "true"
 }
 
+config.audible_bell = "Disabled"
+
 -- For example, changing the color scheme:
 -- config.color_scheme = 'Batman'
 
