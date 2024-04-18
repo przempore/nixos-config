@@ -24,7 +24,7 @@ in
       EDITOR = "nvim";
       SHELL = "fish";
       VISUAL = "nvim";
-      TERMINAL = "kitty";
+      TERMINAL = "wezterm";
     };
 
     pointerCursor = {
