@@ -26,7 +26,7 @@ config.window_background_opacity = 0.95
 
 config.font_size = 10.0
 config.font =
-  wezterm.font('JetBrainsMono Nerd Font Mono', { weight = 'Bold' })
+  wezterm.font('JetBrainsMono Nerd Font Mono', { weight = 'Medium' })
   -- wezterm.font('Iosevka Nerd Font Mono', { weight = 'Medium' })
 
 
