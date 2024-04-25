@@ -33,7 +33,7 @@ in
       # This will set cursor systemwide so applications can not choose their own
       name = "Catppuccin-Mocha-Dark-Cursors";
       package = pkgs.catppuccin-cursors.mochaDark;
-      size = lib.mkDefault 16;
+      size = lib.mkDefault 12;
     };
 
     packages = with pkgs; [
