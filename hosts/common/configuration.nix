@@ -1,7 +1,7 @@
 { config, pkgs, ... }: {
 
   # Enable Flakes and the new command-line tool
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ]; # here for nixos-rebuild
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;

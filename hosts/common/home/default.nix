@@ -1,4 +1,4 @@
-{ config, pkgs, allowed-unfree-packages, ... }:
+{ config, pkgs, allowed-unfree-packages, permittedInsecurePackages, ... }:
 
 let
   catppuccin-bat = pkgs.fetchFromGitHub {
@@ -17,6 +17,8 @@ in
   ] ++ (if builtins.pathExists ./private/default.nix then [ ./private ] else [ ]);
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) allowed-unfree-packages;
+  nixpkgs.config.permittedInsecurePackages = permittedInsecurePackages; # here for home-manager
+
 
   # Packages that should be installed to the user profile.
   home = {

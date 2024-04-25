@@ -27,7 +27,13 @@
         "discord"
         "google-chrome"
         "spotify"
+        "obsidian"
       ];
+      permittedInsecurePackages = [
+        "nix-2.16.2"
+        "electron-25.9.0"
+      ];
+
     in
     {
       formatter.${system} = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
@@ -42,14 +48,14 @@
         };
         przemek = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable; };
+          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages; };
           modules = [
             ./hosts/dathomir/home
           ];
         };
         porebski = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable; };
+          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages; };
           modules = [
             ./hosts/dooku/home
           ];
