@@ -78,7 +78,6 @@ in
       brave
       signal-desktop
       caprine-bin
-      discord
 
       # nix related
       #
