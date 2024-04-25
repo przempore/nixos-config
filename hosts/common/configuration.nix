@@ -85,7 +85,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [ "nix-2.16.2" ];
+  nixpkgs.config.permittedInsecurePackages = [ "nix-2.16.2" "electron-25.9.0" ];
 
   programs.direnv = {
     enable = true;
