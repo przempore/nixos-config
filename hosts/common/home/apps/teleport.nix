@@ -2,6 +2,6 @@
 , ...
 }: {
   home.packages = with pkgs; [
-    teleport_13
+    teleport_12
   ];
 }
