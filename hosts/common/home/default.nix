@@ -115,6 +115,8 @@ in
       zathura
       nitrogen
       unzip
+
+      obsidian
     ];
   };
 
