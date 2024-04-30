@@ -74,6 +74,11 @@ config.keys = {
       window:set_config_overrides(overrides)
     end),
   },
+  {
+    key = 'l',
+    mods = 'LEADER',
+    action = wezterm.action.ActivateLastTab,
+  },
 }
 
 -- default is true, has more "native" look
