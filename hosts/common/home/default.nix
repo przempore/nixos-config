@@ -27,6 +27,7 @@ in
       SHELL = "fish";
       VISUAL = "nvim";
       TERMINAL = "wezterm";
+      TERM = "xterm-256color";
     };
 
     pointerCursor = {
