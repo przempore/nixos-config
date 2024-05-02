@@ -24,7 +24,6 @@ in
   home = {
     sessionVariables = {
       EDITOR = "nvim";
-      SHELL = "fish";
       VISUAL = "nvim";
       TERMINAL = "wezterm";
       TERM = "xterm-256color";
