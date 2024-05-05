@@ -5,7 +5,7 @@
     extraConfig = builtins.readFile ./wezterm.lua;
   };
 
-  xdg.configFile."wezterm/session-manager.lua".source = (pkgs.fetchFromGitHub {
+  xdg.configFile."wezterm/wezterm-session-manager/session-manager.lua".source = (pkgs.fetchFromGitHub {
       owner = "danielcopper";
       repo = "wezterm-session-manager";
       rev = "main";
