@@ -39,31 +39,36 @@ config.font =
 -- }
 
 config.leader = { key=";", mods="CTRL", timeout_milliseconds=1000 }
+
+local act = wezterm.action
+wezterm.on('update-right-status', function(window, pane)
+  window:set_right_status(window:active_workspace())
+end)
 config.keys = {
   {
     key = '|',
     mods = 'SHIFT|LEADER',
-    action = wezterm.action.SplitHorizontal{domain="CurrentPaneDomain"},
+    action = act.SplitHorizontal{domain="CurrentPaneDomain"},
   },
   {
     key = '-',
     mods = 'LEADER',
-    action = wezterm.action.SplitVertical{domain="CurrentPaneDomain"},
+    action = act.SplitVertical{domain="CurrentPaneDomain"},
   },
   {
     key = 'h',
     mods = 'SHIFT|CTRL',
-    action = wezterm.action.ActivateCopyMode,
+    action = act.ActivateCopyMode,
   },
   {
     key = 'Enter',
     mods = 'ALT',
-    action = wezterm.action.DisableDefaultAssignment,
+    action = act.DisableDefaultAssignment,
   },
   {
     key = 'w',
     mods = 'LEADER',
-    action = wezterm.action.ShowTabNavigator,
+    action = act.ShowTabNavigator,
   },
   {
     key = 'b',
@@ -77,7 +82,62 @@ config.keys = {
   {
     key = 'l',
     mods = 'LEADER',
-    action = wezterm.action.ActivateLastTab,
+    action = act.ActivateLastTab,
+  },
+  -- Switch to the default workspace
+  {
+    key = 'y',
+    mods = 'CTRL|SHIFT',
+    action = act.SwitchToWorkspace {
+      name = 'default',
+    },
+  },
+  -- Switch to a monitoring workspace, which will have `top` launched into it
+  {
+    key = 'u',
+    mods = 'CTRL|SHIFT',
+    action = act.SwitchToWorkspace {
+      name = 'monitoring',
+      spawn = {
+        args = { 'btop' },
+      },
+    },
+  },
+  -- Create a new workspace with a random name and switch to it
+  { key = 'i', mods = 'CTRL|SHIFT', action = act.SwitchToWorkspace },
+  -- Show the launcher in fuzzy selection mode and have it list all workspaces
+  -- and allow activating one.
+  {
+    key = ']',
+    mods = 'ALT',
+    action = act.ShowLauncherArgs {
+      flags = 'FUZZY|WORKSPACES',
+    },
+  },
+    -- Prompt for a name to use for a new workspace and switch to it.
+  {
+    key = 'W',
+    mods = 'CTRL|SHIFT',
+    action = act.PromptInputLine {
+      description = wezterm.format {
+        { Attribute = { Intensity = 'Bold' } },
+        { Foreground = { AnsiColor = 'Fuchsia' } },
+        { Text = 'Enter name for new workspace' },
+      },
+      action = wezterm.action_callback(function(window, pane, line)
+        -- line will be `nil` if they hit escape without entering anything
+        -- An empty string if they just hit enter
+        -- Or the actual line of text they wrote
+        if line then
+          window:perform_action(
+            act.SwitchToWorkspace {
+              name = line,
+            },
+            pane
+          )
+        end
+      end),
+    },
   },
 }
 
@@ -178,6 +238,11 @@ config.unix_domains = {
     name = 'localhost',
   },
 }
+
+local session_manager = require("wezterm-session-manager/session-manager")
+wezterm.on("save_session", function(window) session_manager.save_state(window) end)
+wezterm.on("load_session", function(window) session_manager.load_state(window) end)
+wezterm.on("restore_session", function(window) session_manager.restore_state(window) end)
 
 -- and finally, return the configuration to wezterm
 return config

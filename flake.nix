@@ -37,7 +37,7 @@
     in
     {
       formatter.${system} = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
-      # nix build '.?submodules=1#homeConfigurations.porebski.activationPackage' --show-trace && ./result/activate
+      # nix run '.?submodules=1#homeConfigurations.<configuration>.activationPackage' --show-trace --impure -- switch
       homeConfigurations = {
         arch_linux = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
@@ -61,7 +61,7 @@
           ];
         };
       };
-      # sudo nixos-rebuild switch --flake '.?submodules=1#dooku' --show-trace
+      # sudo nixos-rebuild switch --flake '.?submodules=1#<host_name>' --show-trace
       nixosConfigurations = {
         dathomir = nixpkgs.lib.nixosSystem {
           inherit system;
