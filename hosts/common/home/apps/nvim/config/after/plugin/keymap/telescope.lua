@@ -117,6 +117,8 @@ nnoremap("<C-p>", ":Telescope<cr>",
     { noremap = true, silent = true, desc = "[telescope] Telescope"})
 nnoremap("<C-_>", function() telescope.current_buffer_fuzzy_find(); end,
     { noremap = true, silent = true, desc = "[telescope] current buffer fuzzy find"})
+nnoremap("<C-/>", function() telescope.current_buffer_fuzzy_find(); end,
+    { noremap = true, silent = true, desc = "[telescope] current buffer fuzzy find"})
 nnoremap("<leader>ff", function() telescope.find_files({ hidden=true }); end,
     { noremap = true, silent = true, desc = "[telescope] find files"})
 nnoremap("<leader>gs", function() telescope.grep_string({ hidden=true }); end,
