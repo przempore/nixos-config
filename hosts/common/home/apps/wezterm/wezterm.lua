@@ -139,6 +139,9 @@ config.keys = {
       end),
     },
   },
+  {key = "S", mods = "LEADER", action = act{EmitEvent = "save_session"}},
+  {key = "L", mods = "LEADER", action = act{EmitEvent = "load_session"}},
+  {key = "R", mods = "LEADER", action = act{EmitEvent = "restore_session"}},
 }
 
 -- default is true, has more "native" look
@@ -239,7 +242,7 @@ config.unix_domains = {
   },
 }
 
-local session_manager = require("wezterm-session-manager/session-manager")
+local session_manager = require("session-manager")
 wezterm.on("save_session", function(window) session_manager.save_state(window) end)
 wezterm.on("load_session", function(window) session_manager.load_state(window) end)
 wezterm.on("restore_session", function(window) session_manager.restore_state(window) end)
