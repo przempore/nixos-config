@@ -2,6 +2,12 @@
 local wezterm = require 'wezterm'
 local mux = wezterm.mux
 
+local lfs = require('lfs')
+local function directory_exists(path)
+  local mode = lfs.attributes(path, "mode")
+  return mode == "directory"
+end
+
 -- This table will hold the configuration.
 local config = {}
 
@@ -93,16 +99,6 @@ config.keys = {
     },
   },
   -- Switch to a monitoring workspace, which will have `top` launched into it
-  {
-    key = 'u',
-    mods = 'CTRL|SHIFT',
-    action = act.SwitchToWorkspace {
-      name = 'monitoring',
-      spawn = {
-        args = { 'btop' },
-      },
-    },
-  },
   -- Create a new workspace with a random name and switch to it
   { key = 'i', mods = 'CTRL|SHIFT', action = act.SwitchToWorkspace },
   -- Show the launcher in fuzzy selection mode and have it list all workspaces
@@ -143,6 +139,21 @@ config.keys = {
   {key = "L", mods = "LEADER", action = act{EmitEvent = "load_session"}},
   {key = "R", mods = "LEADER", action = act{EmitEvent = "restore_session"}},
 }
+
+local second_brain_path = os.getenv("HOME") .. '/Projects/second-brain'
+if directory_exists(second_brain_path) then
+  table.insert(config.keys, {
+    key = 's',
+    mods = 'CTRL|SHIFT',
+    action = act.SwitchToWorkspace {
+      name = 'second-brain',
+      spawn = {
+        args = { 'nvim', '.' },
+        cwd = second_brain_path,
+      },
+    },
+  })
+end
 
 -- default is true, has more "native" look
 config.use_fancy_tab_bar = false
