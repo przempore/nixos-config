@@ -170,8 +170,6 @@ config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
 config.freetype_load_target = "HorizontalLcd"
 
-local system_username = os.getenv('USERNAME');
-print(system_username);
 config.ssh_domains = {
   {
     -- This name identifies the domain
