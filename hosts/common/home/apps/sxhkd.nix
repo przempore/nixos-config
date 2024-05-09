@@ -34,10 +34,10 @@
       #Pavucontrol
       "super + v" = "xfce4-popup-clipman";
       # "super + Return" = "kitty";
-      "super + Return" = "wezterm";
+      "super + Return" = "wezterm start --always-new-process";
       "super + Escape" = "xkill";
       # "super + KP_Enter" = "kitty";
-      "super + KP_Enter" = "wezterm";
+      "super + KP_Enter" = "wezterm start --always-new-process";
       #File-Manager
       "super + shift + Return" = "thunar";
       #dmenu
