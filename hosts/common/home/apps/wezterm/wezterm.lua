@@ -143,6 +143,7 @@ config.keys = {
   {key = "S", mods = "LEADER", action = act{EmitEvent = "save_session"}},
   {key = "L", mods = "LEADER", action = act{EmitEvent = "load_session"}},
   {key = "R", mods = "LEADER", action = act{EmitEvent = "restore_session"}},
+  {key = "x", mods = "LEADER", action = act.CloseCurrentTab { confirm = true }},
 }
 
 -- default is true, has more "native" look
