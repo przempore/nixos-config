@@ -82,6 +82,7 @@
           inherit system;
           modules = [
             ./hosts/dooku/configuration.nix
+            nixos-hardware.nixosModules.lenovo-thinkpad
 
             home-manager.nixosModules.home-manager
             {

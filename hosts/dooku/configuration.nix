@@ -7,7 +7,6 @@
   imports =
     [
       ../common/configuration.nix
-      ../common/laptop
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
@@ -17,7 +16,7 @@
   boot.initrd.luks.devices."luks-7e5a1347-6f7b-4c7b-acdb-125fa70f58c2".device = "/dev/disk/by-uuid/7e5a1347-6f7b-4c7b-acdb-125fa70f58c2";
   # boot.kernelParams = [ "i915.force_probe=4626" ];
 
-  boot.initrd.kernelModules = [ "i915" ];
+  # boot.initrd.kernelModules = [ "i915" ];
 
   networking.hostName = "dooku"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
