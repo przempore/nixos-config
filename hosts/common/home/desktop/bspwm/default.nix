@@ -104,7 +104,7 @@
       run xfce4-clipman
       run nm-applet
       run xfce4-power-manager
-      run firefox
+      run firefox-nightly
 
       get_location
       run redshift -l $location
