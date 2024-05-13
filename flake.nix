@@ -13,13 +13,24 @@
       inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    mozilla-overlay.url = "github:mozilla/nixpkgs-mozilla";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, mozilla-overlay, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+
+      mozillaOverlay = final: prev: {
+        # Assuming the firefox-overlay.nix exports the overlay properly
+        firefox = (import "${mozilla-overlay.outPath}/firefox-overlay.nix")(final)(prev);
+      };
+
+      myOverlays = [
+        (import "${mozilla-overlay.outPath}/firefox-overlay.nix")
+      ];
+      pkgs = nixpkgs.legacyPackages.${system} // { overlays = myOverlays; };
+      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system} // { overlays = myOverlays; };
+
       config = pkgs.config;
       allowed-unfree-packages = [
         "netflix-via-google-chrome"
@@ -33,7 +44,6 @@
         "nix-2.16.2"
         "electron-25.9.0"
       ];
-
     in
     {
       formatter.${system} = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
@@ -81,16 +91,18 @@
         dooku = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
+          
+            ({ config, pkgs, ... }: { nixpkgs.overlays = [ mozillaOverlay ]; })
             ./hosts/dooku/configuration.nix
             nixos-hardware.nixosModules.lenovo-thinkpad
 
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.porebski = import ./hosts/dooku/home;
-              home-manager.extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable; };
-            }
+            # home-manager.nixosModules.home-manager
+            # {
+            #   home-manager.useGlobalPkgs = true;
+            #   home-manager.useUserPackages = true;
+            #   home-manager.users.porebski = import ./hosts/dooku/home;
+            #   home-manager.extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable; };
+            # }
           ];
         };
       };
