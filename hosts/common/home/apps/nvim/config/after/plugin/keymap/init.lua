@@ -53,10 +53,10 @@ nnoremap("<F8>", function() vim.opt.wrap = not vim.wo.wrap; print("line wrap:", 
 nnoremap("<F10>", ":ClangdSwitchSourceHeader<CR>")
 
 -- resizing
-nnoremap("<A-k>", ":resize +5 <cr>")
 nnoremap("<A-j>", ":resize -5 <cr>")
-nnoremap("<A-l>", ":vertical:resize -5 <cr>")
-nnoremap("<A-h>", ":vertical:resize +5 <cr>")
+nnoremap("<A-k>", ":resize +5 <cr>")
+nnoremap("<A-h>", ":vertical:resize -5 <cr>")
+nnoremap("<A-l>", ":vertical:resize +5 <cr>")
 
 nnoremap("<leader>nt", ":NERDTreeToggle<CR>")
 nnoremap("<leader>0", ":NERDTreeFind<CR>")
