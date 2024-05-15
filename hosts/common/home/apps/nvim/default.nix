@@ -20,6 +20,15 @@ let
       sha256 = "sha256-QssI2cF4PjKT0TAo9CveKeLwcIN8DQl7loi77fiIoo4=";
     };
   };
+  telescope-git-worktrees = pkgs.vimUtils.buildVimPlugin {
+    name = "telescope-git-worktrees";
+    src = pkgs.fetchFromGitHub {
+      owner = "awerebea";
+      repo = "git-worktree.nvim";
+      rev = "a3917d0b7ca32e7faeed410cd6b0c572bf6384ac";
+      sha256 = "sha256-CC9+h1i+l9TbE60LABZnwjkHy94VGQ7Hqd5jVHEW+mw=";
+    };
+  };
 in
 {
   home.file.".config/nvim" = {
@@ -37,6 +46,7 @@ in
 
     plugins = with pkgs-unstable; [
       cscope_maps-nvim
+      telescope-git-worktrees
       vimPlugins.catppuccin-nvim
       vimPlugins.cmp-buffer
       vimPlugins.cmp-cmdline
@@ -54,7 +64,7 @@ in
       vimPlugins.friendly-snippets
       vimPlugins.fzf-checkout-vim
       vimPlugins.fzf-vim
-      vimPlugins.git-worktree-nvim
+      # vimPlugins.git-worktree-nvim
       vimPlugins.gitsigns-nvim
       vimPlugins.harpoon2
       vimPlugins.lsp-zero-nvim
