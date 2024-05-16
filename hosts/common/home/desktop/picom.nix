@@ -30,8 +30,9 @@
       "_GTK_FRAME_EXTENTS@:c"
     ];
     fading = true;
-    fade-in-step = 0.03;
-    fade-out-step = 0.03;
+    fade-in-step = 0.04;
+    fade-out-step = 0.04;
+    fade-delta = 4;
     inactive-opacity = 1;
     frame-opacity = 0.95;
     inactive-opacity-override = true;
