@@ -42,8 +42,8 @@
 
   # Configure keymap in X11
   services.xserver = {
-    autoRepeatDelay = 200;
-    autoRepeatInterval = 25;
+    autoRepeatDelay = 250;
+    autoRepeatInterval = 30;
     layout = "real-prog-dvorak";
   };
 
