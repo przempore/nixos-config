@@ -9,8 +9,8 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
-      # inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     mozilla-overlay.url = "github:mozilla/nixpkgs-mozilla";
@@ -19,11 +19,6 @@
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, mozilla-overlay, ... }@inputs:
     let
       system = "x86_64-linux";
-
-      mozillaOverlay = final: prev: {
-        # Assuming the firefox-overlay.nix exports the overlay properly
-        firefox = (import "${mozilla-overlay.outPath}/firefox-overlay.nix")(final)(prev);
-      };
 
       myOverlays = [
         (import "${mozilla-overlay.outPath}/firefox-overlay.nix")
@@ -92,17 +87,17 @@
           inherit system;
           modules = [
           
-            ({ config, pkgs, ... }: { nixpkgs.overlays = [ mozillaOverlay ]; })
+            ({ config, pkgs, ... }: { nixpkgs.overlays = myOverlays; })
             ./hosts/dooku/configuration.nix
             nixos-hardware.nixosModules.lenovo-thinkpad
 
-            # home-manager.nixosModules.home-manager
-            # {
-            #   home-manager.useGlobalPkgs = true;
-            #   home-manager.useUserPackages = true;
-            #   home-manager.users.porebski = import ./hosts/dooku/home;
-            #   home-manager.extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable; };
-            # }
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.porebski = import ./hosts/dooku/home;
+              home-manager.extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable; };
+            }
           ];
         };
       };
