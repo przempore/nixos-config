@@ -71,3 +71,5 @@ nnoremap("<leader>gh", "<cmd>diffget //3<CR>",
 
 nnoremap("<leader>cr", "<cmd>!find . -name \"*.c\" -o -name \"*.cpp\" -o -name \"*.h\" -o -name \"*.hpp\" > cscope.files; cscope -q -R -b -i cscope.files<CR>",
     { noremap = true, silent = true, desc = "[cscope] Create database"})
+
+nnoremap("<leader>h", function () vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end)
