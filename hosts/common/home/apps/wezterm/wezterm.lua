@@ -109,8 +109,8 @@ config.keys = {
   -- Show the launcher in fuzzy selection mode and have it list all workspaces
   -- and allow activating one.
   {
-    key = ']',
-    mods = 'ALT',
+    key = 's',
+    mods = 'LEADER',
     action = act.ShowLauncherArgs {
       flags = 'FUZZY|WORKSPACES',
     },
