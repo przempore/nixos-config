@@ -71,6 +71,7 @@
         dathomir = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
+            ({ config, pkgs, ... }: { nixpkgs.overlays = myOverlays; })
             ./hosts/dathomir/configuration.nix
             nixos-hardware.nixosModules.dell-e7240
 
