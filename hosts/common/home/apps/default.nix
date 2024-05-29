@@ -20,7 +20,6 @@
     ./mpv.nix
     ./nvim
     ./ranger.nix
-    ./sxhkd.nix
     ./tmux.nix
     ./wezterm
     ./zathura.nix

@@ -71,7 +71,7 @@
       #Hide polybar
       "super + y" = "polybar-msg cmd toggle";
       #Picom Toggle
-      "ctrl + alt + o" = "~/.config/bspwm/scripts/picom-toggle.sh";
+      "ctrl + alt + o" = "obsidian";
       #Toggle fullscreen of window
       "super + f" = "bspc node --state \~fullscreen";
       # Toggle pseudo tiling of window
