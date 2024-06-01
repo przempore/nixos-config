@@ -6,8 +6,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "dhananjaylatkar";
       repo = "cscope_maps.nvim";
-      rev = "b2568dadcac84c511533b726e279d38e9e67a37c";
-      sha256 = "sha256-WRJP6wcSIGX4TZD0U2Fi9JI/C+enqW8EZZGlQ5HfCoA=";
+      rev = "67fecf61bac73cd191bfb4918f19b515019f2d89";
+      sha256 = "sha256-i7EiBS114jRIm1l9hAifW12Eydfu0bGLkV/dZJznCp8=";
     };
   };
   wf-nvim = pkgs.vimUtils.buildVimPlugin {
@@ -16,8 +16,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "Cassin01";
       repo = "wf.nvim";
-      rev = "fe5d94278f33446c3afdb34dac9f3a953907f720";
-      sha256 = "sha256-QssI2cF4PjKT0TAo9CveKeLwcIN8DQl7loi77fiIoo4=";
+      rev = "716f2151bef7b38426a99802e89566ac9211978a";
+      sha256 = "sha256-4RwTZP3Oz0Rj/PB9NV+FsdOsLMZZQMW+y25A7MWt9qo=";
     };
   };
   telescope-git-worktrees = pkgs.vimUtils.buildVimPlugin {
