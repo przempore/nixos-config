@@ -53,7 +53,7 @@ in
       material-symbols
 
       cachix
-      onlyoffice-bin_7_5
+      onlyoffice-bin_latest
       netflix
       dash
 

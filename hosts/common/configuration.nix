@@ -34,17 +34,18 @@
   services.xserver.desktopManager.xfce.enable = true;
   services.xserver.windowManager.bspwm.enable = true;
 
-  services.xserver.extraLayouts.real-prog-dvorak = {
-    description = "Real proogrammer dvorak";
-    languages = [ "pl" ];
-    symbolsFile = ./keyboard/symbols/real-prog-dvorak.xkb;
-  };
-
   # Configure keymap in X11
   services.xserver = {
     autoRepeatDelay = 250;
     autoRepeatInterval = 30;
-    layout = "real-prog-dvorak";
+    xkb = {
+      layout = "real-prog-dvorak";
+      extraLayouts.real-prog-dvorak = {
+          description = "Real proogrammer dvorak";
+          languages = [ "pl" ];
+          symbolsFile = ./keyboard/symbols/real-prog-dvorak.xkb;
+        };
+    };
   };
 
   # Configure console keymap
