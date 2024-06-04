@@ -51,7 +51,7 @@
   users.users.porebski = {
     isNormalUser = true;
     description = "Porebski";
-    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "dialout" ];
     packages = with pkgs; [
     ];
   };
