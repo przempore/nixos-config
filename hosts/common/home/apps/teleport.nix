@@ -1,4 +1,4 @@
-{ pkgs, legacyPkgs, ... }: {
+{ legacyPkgs, ... }: {
   home.packages = [
     legacyPkgs.teleport_13
   ];

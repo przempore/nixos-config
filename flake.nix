@@ -18,13 +18,12 @@
   };
 
   outputs =
-    { self
-    , nixpkgs
+    { nixpkgs
     , nixpkgs-unstable
+    , legacy-nixpkgs
     , home-manager
     , nixos-hardware
     , mozilla-overlay
-    , legacy-nixpkgs
     , ...
     }@inputs:
     let
@@ -37,7 +36,6 @@
       pkgs-unstable = nixpkgs-unstable.legacyPackages.${system} // { overlays = myOverlays; };
       legacyPkgs = legacy-nixpkgs.legacyPackages.${system};
 
-      config = pkgs.config;
       allowed-unfree-packages = [
         "netflix-via-google-chrome"
         "netflix-icon"
