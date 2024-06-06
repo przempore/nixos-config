@@ -22,7 +22,7 @@
     # set rdp_use_client_keymap=1 in ~/.config/remmina/remmina.pref
     packages = with pkgs; [
       remmina
-      dbeaver
+      dbeaver-bin
     ];
   };
 }

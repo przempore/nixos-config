@@ -41,10 +41,10 @@
     xkb = {
       layout = "real-prog-dvorak";
       extraLayouts.real-prog-dvorak = {
-          description = "Real proogrammer dvorak";
-          languages = [ "pl" ];
-          symbolsFile = ./keyboard/symbols/real-prog-dvorak.xkb;
-        };
+        description = "Real proogrammer dvorak";
+        languages = [ "pl" ];
+        symbolsFile = ./keyboard/symbols/real-prog-dvorak.xkb;
+      };
     };
   };
 

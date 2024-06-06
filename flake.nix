@@ -7,6 +7,7 @@
     # which represents the GitHub repository URL + branch/commit-id/tag.
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    legacy-nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,7 +17,16 @@
     mozilla-overlay.url = "github:mozilla/nixpkgs-mozilla";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, mozilla-overlay, ... }@inputs:
+  outputs =
+    { self
+    , nixpkgs
+    , nixpkgs-unstable
+    , home-manager
+    , nixos-hardware
+    , mozilla-overlay
+    , legacy-nixpkgs
+    , ...
+    }@inputs:
     let
       system = "x86_64-linux";
 
@@ -25,6 +35,7 @@
       ];
       pkgs = nixpkgs.legacyPackages.${system} // { overlays = myOverlays; };
       pkgs-unstable = nixpkgs-unstable.legacyPackages.${system} // { overlays = myOverlays; };
+      legacyPkgs = legacy-nixpkgs.legacyPackages.${system};
 
       config = pkgs.config;
       allowed-unfree-packages = [
@@ -60,7 +71,7 @@
         };
         porebski = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages; };
+          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages legacyPkgs; };
           modules = [
             ./hosts/dooku/home
           ];
@@ -87,7 +98,7 @@
         dooku = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-          
+
             ({ config, pkgs, ... }: { nixpkgs.overlays = myOverlays; })
             ./hosts/dooku/configuration.nix
             nixos-hardware.nixosModules.lenovo-thinkpad
@@ -97,7 +108,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.porebski = import ./hosts/dooku/home;
-              home-manager.extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable; };
+              home-manager.extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable legacyPkgs; };
             }
           ];
         };

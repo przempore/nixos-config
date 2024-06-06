@@ -1,7 +1,5 @@
-{ pkgs
-, ...
-}: {
-  home.packages = with pkgs; [
-    teleport_12
+{ pkgs, legacyPkgs, ... }: {
+  home.packages = [
+    legacyPkgs.teleport_13
   ];
 }
