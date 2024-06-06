@@ -22,7 +22,7 @@ function M.format()
     return function()
         if vim.bo.filetype == 'rust' then
             vim.cmd('RustFmt')
-        elseif vim.bo.filetype == 'cpp' then
+        elseif vim.bo.filetype == 'cpp' or vim.bo.filetype == 'arduino' then
             vim.cmd('ClangFormat')
         elseif vim.bo.filetype == 'go' then
             vim.cmd('GoFmt')
