@@ -21,5 +21,3 @@ firefox &
 
 # whatsapp-nativefier &
 signal-desktop &
-caprine &
-

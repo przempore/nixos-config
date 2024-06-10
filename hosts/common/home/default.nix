@@ -79,7 +79,6 @@ in
       # misc
       brave
       signal-desktop
-      caprine-bin
 
       # nix related
       #
