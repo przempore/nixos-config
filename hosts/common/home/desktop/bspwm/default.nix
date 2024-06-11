@@ -10,7 +10,7 @@
     pulseaudioFull
     rofi
     xclip
-    xkill
+    xorg.xkill
     xfce.thunar
     xfce.thunar-archive-plugin
     xfce.thunar-volman
