@@ -52,6 +52,8 @@
     {
       formatter.${system} = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
       # nix run '.?submodules=1#homeConfigurations.<configuration>.activationPackage' --show-trace --impure -- switch
+      # using `nh`
+      # nh home switch --backup-extension bak . -- --show-trace --impure
       homeConfigurations = {
         arch_linux = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
@@ -76,6 +78,8 @@
         };
       };
       # sudo nixos-rebuild switch --flake '.?submodules=1#<host_name>' --show-trace
+      # using nh
+      # nh os switch --update . -- --impure --show-trace
       nixosConfigurations = {
         dathomir = nixpkgs.lib.nixosSystem {
           inherit system;
