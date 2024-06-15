@@ -10,8 +10,6 @@
     nnn # terminal file manager
     ripgrep
     sshfs
-
-    nh
   ];
 
   imports = [
