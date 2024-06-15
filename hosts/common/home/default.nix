@@ -9,7 +9,6 @@ let
   };
 
   lib = pkgs.lib;
-  config = pkgs.config;
 in
 {
   imports = [

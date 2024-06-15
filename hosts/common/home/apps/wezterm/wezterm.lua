@@ -24,7 +24,7 @@ config.audible_bell = "Disabled"
 config.color_scheme = 'Catppuccin Mocha'
 config.window_background_opacity = 0.95
 
-config.font_size = 9.5
+config.font_size = 8
 config.font =
   wezterm.font('JetBrainsMono Nerd Font Mono', { weight = 'Medium' })
   -- wezterm.font('Iosevka Nerd Font Mono', { weight = 'Medium' })
@@ -54,6 +54,8 @@ wezterm.on('update-status', function(window, pane)
   if cwd_uri and cwd_uri.host then
     hostname = cwd_uri.host
   end
+  local workspace = window:active_workspace()
+  table.insert(cells, '󰍺 ' .. workspace)
   table.insert(cells, ' ' .. hostname)
 
   -- Format date/time in this style: "Wed Mar 3 08:14"
@@ -67,7 +69,6 @@ wezterm.on('update-status', function(window, pane)
     table.insert(cells, string.format('%s %.0f%%', curr_batt_icon, b.state_of_charge * 100))
   end
 
-  
   local TITLEBAR_COLOR = '#333333'
   -- Color palette for each cell
   local text_fg = '#c0c0c0'
