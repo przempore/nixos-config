@@ -53,7 +53,7 @@
       formatter.${system} = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
       # nix run '.?submodules=1#homeConfigurations.<configuration>.activationPackage' --show-trace --impure -- switch
       # using `nh`
-      # nh home switch --backup-extension bak . -- --show-trace --impure
+      # nh home switch --backup-extension bak '.?submodules=1' -- --show-trace --impure
       homeConfigurations = {
         arch_linux = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
