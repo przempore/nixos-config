@@ -13,7 +13,7 @@ end
 
 -- This is where you actually apply your config choices
 config.set_environment_variables = {
-  IS_WEZTERM = "true"
+  IS_WEZTERM = 1
 }
 
 config.audible_bell = "Disabled"
