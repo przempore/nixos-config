@@ -144,6 +144,10 @@ config.keys = {
     mods = 'LEADER',
     action = act.ActivateLastTab,
   },
+  { key = 'p', mods = 'LEADER|SHIFT', action = act.MoveTabRelative(-1) },
+  { key = 'n', mods = 'LEADER|SHIFT', action = act.MoveTabRelative(1) },
+  { key = 'p', mods = 'LEADER', action = act.ActivateTabRelative(-1) },
+  { key = 'n', mods = 'LEADER', action = act.ActivateTabRelative(1) },
   -- Switch to the default workspace
   {
     key = 'y',
