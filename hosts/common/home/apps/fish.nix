@@ -14,6 +14,9 @@
       if type -q any-nix-shell
         any-nix-shell fish --info-right | source
       end
+
+      # enable vi mode
+      fish_vi_key_bindings
     '';
   };
 }
