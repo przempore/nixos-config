@@ -78,7 +78,7 @@
       };
       # sudo nixos-rebuild switch --flake '.?submodules=1#<host_name>' --show-trace
       # using nh
-      # nh os switch --update . -- --impure --show-trace
+      # nh os switch --update '.?submodules=1' -- --impure --show-trace
       nixosConfigurations = {
         dathomir = nixpkgs.lib.nixosSystem {
           inherit system;
