@@ -3,7 +3,7 @@
 ### home-manager
 To run home-manager from this flake:
 ``` bash
-export NIXPKGS_ALLOW_UNFREE=1 && nix build '.?submodules=1#homeConfigurations.przemek.activationPackage' --impure --show-trace && ./result/activate
+nh home switch --backup-extension backup_$(date +"%Y%M%H%M%S") '.?submodules=1' -- --show-trace --impure
 ```
 
 ### Install Qt
@@ -35,7 +35,7 @@ install \
 
 ## Installation
 ```bash
-sudo nixos-rebuild switch --flake .#nixos
+nh os switch --update '.?submodules=1' -- --impure --show-trace
 ```
 
 ## Flakes Book
