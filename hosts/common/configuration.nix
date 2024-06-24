@@ -140,7 +140,6 @@
     killall
     lsof # list open files
     ltrace # library call monitoring
-    ripgrep
     rsync
     strace # system call monitoring
     tree
