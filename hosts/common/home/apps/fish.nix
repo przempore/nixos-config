@@ -16,7 +16,7 @@
       end
 
       # enable vi mode
-      fish_vi_key_bindings
+      # fish_vi_key_bindings
     '';
   };
 }
