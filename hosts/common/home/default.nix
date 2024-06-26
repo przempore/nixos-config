@@ -150,7 +150,7 @@ in
           custom.qt-fhs-env = {
             command = "echo $QT_ENV";
             when = "test -n \"$QT_ENV\"";
-            symbol = "🔔 ";
+            symbol = " ";
             style = "bold red";
             format = "[$symbol($output)]($style) ";
           };
