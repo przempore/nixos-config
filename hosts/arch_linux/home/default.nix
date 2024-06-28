@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-unstable, allowed-unfree-packages, ... }:
+{ ... }:
 {
   imports = [
     ../../common/home
