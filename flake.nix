@@ -85,7 +85,7 @@
         dathomir = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            ({ config, pkgs, ... }: { nixpkgs.overlays = myOverlays; })
+            ({ ... }: { nixpkgs.overlays = myOverlays; })
             ./hosts/dathomir/configuration.nix
             nixos-hardware.nixosModules.dell-e7240
 
@@ -102,7 +102,7 @@
           inherit system;
           modules = [
 
-            ({ config, pkgs, ... }: { nixpkgs.overlays = myOverlays; })
+            ({ ... }: { nixpkgs.overlays = myOverlays; })
             ./hosts/dooku/configuration.nix
             nixos-hardware.nixosModules.lenovo-thinkpad
 
