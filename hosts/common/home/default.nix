@@ -1,23 +1,27 @@
-{ config, pkgs, allowed-unfree-packages, permittedInsecurePackages, ... }:
+{ pkgs, allowed-unfree-packages, permittedInsecurePackages, catppuccin, ... }:
 
 let
-  catppuccin-bat = pkgs.fetchFromGitHub {
-    owner = "catppuccin";
-    repo = "bat";
-    rev = "ba4d16880d63e656acced2b7d4e034e4a93f74b1";
-    sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=";
-  };
-
   lib = pkgs.lib;
 in
 {
   imports = [
     ./apps
+    catppuccin.homeManagerModules.catppuccin
   ] ++ (if builtins.pathExists ./private/default.nix then [ ./private ] else [ ]);
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) allowed-unfree-packages;
   nixpkgs.config.permittedInsecurePackages = permittedInsecurePackages; # here for home-manager
 
+
+  catppuccin = {
+    enable = true;
+    flavor = "macchiato";
+    accent = "pink";
+    pointerCursor = {
+      enable = true;
+      accent = "dark";
+    };
+  };
 
   # Packages that should be installed to the user profile.
   home = {
@@ -26,13 +30,6 @@ in
       VISUAL = "nvim";
       TERMINAL = "wezterm";
       TERM = "xterm-256color";
-    };
-
-    pointerCursor = {
-      # This will set cursor systemwide so applications can not choose their own
-      name = "catppuccin-mocha-dark-cursors";
-      package = pkgs.catppuccin-cursors.mochaDark;
-      size = lib.mkDefault 12;
     };
 
     packages = with pkgs; [
@@ -123,46 +120,28 @@ in
   programs = {
     bat = {
       enable = true;
-      config = { theme = "catppuccin"; };
-      themes = {
-        catppuccin = {
-          src = catppuccin-bat;
-          file = "Catppuccin-mocha.tmTheme";
+    };
+    starship =
+    {
+      enable = true;
+      # custom settings
+      enableFishIntegration = true;
+      enableZshIntegration = true;
+      settings = {
+        format = "$all"; # Remove this line to disable the default prompt format
+        add_newline = false;
+        aws.disabled = true;
+        gcloud.disabled = true;
+        line_break.disabled = false;
+        custom.qt-fhs-env = {
+          command = "echo $QT_ENV";
+          when = "test -n \"$QT_ENV\"";
+          symbol = " ";
+          style = "bold red";
+          format = "[$symbol($output)]($style) ";
         };
       };
     };
-    starship =
-      let
-        flavour = "mocha"; # One of `latte`, `frappe`, `macchiato`, or `mocha`
-      in
-      {
-        enable = true;
-        # custom settings
-        enableFishIntegration = true;
-        enableZshIntegration = true;
-        settings = {
-          format = "$all"; # Remove this line to disable the default prompt format
-          palette = "catppuccin_${flavour}";
-          add_newline = false;
-          aws.disabled = true;
-          gcloud.disabled = true;
-          line_break.disabled = false;
-          custom.qt-fhs-env = {
-            command = "echo $QT_ENV";
-            when = "test -n \"$QT_ENV\"";
-            symbol = " ";
-            style = "bold red";
-            format = "[$symbol($output)]($style) ";
-          };
-        } // builtins.fromTOML (builtins.readFile
-          (pkgs.fetchFromGitHub
-            {
-              owner = "catppuccin";
-              repo = "starship";
-              rev = "5629d2356f62a9f2f8efad3ff37476c19969bd4f";
-              sha256 = "sha256-nsRuxQFKbQkyEI4TXgvAjcroVdG+heKX5Pauq/4Ota0=";
-            } + /palettes/${flavour}.toml));
-      };
     command-not-found.enable = false;
     nix-index =
       {

@@ -1,12 +1,4 @@
 { pkgs, ... }:
-let
-  catppuccin-kitty = pkgs.fetchFromGitHub {
-    owner = "catppuccin";
-    repo = "kitty";
-    rev = "d7d61716a83cd135344cbb353af9d197c5d7cec1";
-    sha256 = "sha256-mRFa+40fuJCUrR1o4zMi7AlgjRtFmii4fNsQyD8hIjM=";
-  };
-in
 {
   home.file.".config/kitty/scripts" = {
     source = ./config;
@@ -19,8 +11,6 @@ in
       "ctrl+shift+w" = "no_op";
     };
     settings = {
-      include = builtins.readFile
-        (catppuccin-kitty + "/themes/mocha.conf");
 
       background_opacity = "0.97";
       dynamic_background_opacity = "yes";

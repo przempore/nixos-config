@@ -8,6 +8,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     legacy-nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    catppuccin.url = "github:catppuccin/nix";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,6 +24,7 @@
     , home-manager
     , nixos-hardware
     , mozilla-overlay
+    , catppuccin
     , ...
     }@inputs:
     let
@@ -63,14 +65,14 @@
         };
         przemek = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages; };
+          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages catppuccin; };
           modules = [
             ./hosts/dathomir/home
           ];
         };
         porebski = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages legacyPkgs; };
+          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages legacyPkgs catppuccin; };
           modules = [
             ./hosts/dooku/home
           ];
@@ -92,7 +94,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.przemek = ./hosts/dathomir/home;
-              home-manager.extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable; };
+              home-manager.extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable catppuccin; };
             }
           ];
         };
@@ -109,7 +111,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.porebski = import ./hosts/dooku/home;
-              home-manager.extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable legacyPkgs; };
+              home-manager.extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable legacyPkgs catppuccin; };
             }
           ];
         };

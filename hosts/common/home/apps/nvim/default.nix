@@ -47,7 +47,6 @@ in
     plugins = with pkgs-unstable; [
       cscope_maps-nvim
       telescope-git-worktrees
-      vimPlugins.catppuccin-nvim
       vimPlugins.cmp-buffer
       vimPlugins.cmp-cmdline
       vimPlugins.cmp-git
