@@ -30,7 +30,7 @@ in
 
     pointerCursor = {
       # This will set cursor systemwide so applications can not choose their own
-      name = "Catppuccin-Mocha-Dark-Cursors";
+      name = "catppuccin-mocha-dark-cursors";
       package = pkgs.catppuccin-cursors.mochaDark;
       size = lib.mkDefault 12;
     };
