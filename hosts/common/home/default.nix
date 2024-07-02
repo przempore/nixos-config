@@ -1,5 +1,10 @@
-{ pkgs, allowed-unfree-packages, permittedInsecurePackages, catppuccin, ... }:
-
+{
+  pkgs,
+  allowed-unfree-packages,
+  permittedInsecurePackages,
+  catppuccin,
+  ...
+}:
 let
   lib = pkgs.lib;
 in

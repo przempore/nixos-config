@@ -56,11 +56,11 @@
       # using `nh`
       # nh home switch --backup-extension backup_$(date +"%Y%M%H%M%S") '.?submodules=1' -- --show-trace --impure
       homeConfigurations = {
-        arch_linux = home-manager.lib.homeManagerConfiguration {
+        ilum = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable; };
+          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable catppuccin; };
           modules = [
-            ./hosts/arch_linux/home
+            ./hosts/ilum/home
           ];
         };
         przemek = home-manager.lib.homeManagerConfiguration {
