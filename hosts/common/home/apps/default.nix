@@ -22,5 +22,6 @@
     ./tmux.nix
     ./wezterm
     ./zathura.nix
+    ./starship.nix
   ];
 }
