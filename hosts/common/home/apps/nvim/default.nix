@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, config, ... }:
+{ pkgs, pkgs-unstable, ... }:
 let
   cscope_maps-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "cscope_maps-nvim";

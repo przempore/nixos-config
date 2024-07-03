@@ -1,7 +1,8 @@
 { ... }:
 {
   imports = [
-    ../../common/home
+    ../../common/home/apps
+    ../../common/home/catppuccin.nix
   ];
 
   # Packages that should be installed to the user profile.

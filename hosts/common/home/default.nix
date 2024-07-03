@@ -11,22 +11,12 @@ in
 {
   imports = [
     ./apps
-    catppuccin.homeManagerModules.catppuccin
+    ./catppuccin.nix
   ] ++ (if builtins.pathExists ./private/default.nix then [ ./private ] else [ ]);
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) allowed-unfree-packages;
   nixpkgs.config.permittedInsecurePackages = permittedInsecurePackages; # here for home-manager
 
-
-  catppuccin = {
-    enable = true;
-    flavor = "mocha";
-    accent = "pink";
-    pointerCursor = {
-      enable = true;
-      accent = "dark";
-    };
-  };
 
   # Packages that should be installed to the user profile.
   home = {
