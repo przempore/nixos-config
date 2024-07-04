@@ -22,5 +22,27 @@
   home.stateVersion = "23.05";
 
   # Let home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  programs = {
+    fish = {
+      shellAliases = {
+        ll = "eza --tree --level=1 --long --icons --git -lh";
+        lah = "ll -lah";
+        tree = "eza --tree";
+        asdf = "$HOME/.config/bspwm/scripts/refresh-keyboard.sh --variant=dvorak";
+        aoeu = "$HOME/.config/bspwm/scripts/refresh-keyboard.sh --variant=qwerty";
+      };
+ 
+      interactiveShellInit = ''
+        if type -q any-nix-shell
+          any-nix-shell fish --info-right | source
+        end
+
+        fish_default_key_bindings
+
+        set -gx PATH $PATH $HOME/.cargo/bin $HOME/.local/bin $HOME/go/bin
+      '';
+    };
+
+    home-manager.enable = true;
+  };
 }
