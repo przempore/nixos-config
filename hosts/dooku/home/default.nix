@@ -1,4 +1,4 @@
-{ pkgs, nixpkgs-unstable, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 {
   imports = [
@@ -23,7 +23,7 @@
     packages = [
       pkgs.remmina
       pkgs.dbeaver-bin
-      nixpkgs-unstable.zed-editor
+      pkgs-unstable.zed-editor
     ];
   };
 }
