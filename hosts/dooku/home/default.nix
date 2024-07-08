@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, nixpkgs-unstable, ... }:
 
 {
   imports = [
@@ -20,9 +20,10 @@
     homeDirectory = "/home/porebski";
 
     # set rdp_use_client_keymap=1 in ~/.config/remmina/remmina.pref
-    packages = with pkgs; [
-      remmina
-      dbeaver-bin
+    packages = [
+      pkgs.remmina
+      pkgs.dbeaver-bin
+      nixpkgs-unstable.zed-editor
     ];
   };
 }
