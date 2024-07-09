@@ -24,7 +24,7 @@ nnoremap("<C-u>", "<C-u>zz")
 nnoremap("<C-j>", "<cmd>cnext<CR>zz")
 nnoremap("<C-k>", "<cmd>cprev<CR>zz")
 
-nnoremap("<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", 
+nnoremap("<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
     { noremap = true, silent = true, desc = "[misc] Rename in file"})
 nnoremap("<leader>fr", Remap.format(), { noremap = true, silent = true, desc = "[code] format", })
 

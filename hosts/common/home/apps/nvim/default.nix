@@ -47,6 +47,7 @@ in
     plugins = with pkgs-unstable; [
       cscope_maps-nvim
       telescope-git-worktrees
+      wf-nvim
       vimPlugins.cmp-buffer
       vimPlugins.cmp-cmdline
       vimPlugins.cmp-git
@@ -101,7 +102,9 @@ in
       vimPlugins.vim-rhubarb
       vimPlugins.vim-sleuth
       vimPlugins.zen-mode-nvim
-      wf-nvim
+      vimPlugins.nvim-dap
+      vimPlugins.nvim-dap-virtual-text
+      vimPlugins.nvim-dap-ui
     ];
 
     extraPackages = with pkgs; [
