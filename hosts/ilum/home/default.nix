@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, allowed-unfree-packages, permittedInsecurePackages, pkgs-unstable, ... }:
 {
   imports = [
     ../../common/home/apps
@@ -9,7 +9,13 @@
   home = {
     username = "przemek";
     homeDirectory = "/home/przemek";
+    programs = [
+      pkgs-unstable.direnv
+    ];
   };
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) allowed-unfree-packages;
+  nixpkgs.config.permittedInsecurePackages = permittedInsecurePackages; # here for home-manager
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage

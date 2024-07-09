@@ -2,7 +2,6 @@
   pkgs,
   allowed-unfree-packages,
   permittedInsecurePackages,
-  catppuccin,
   ...
 }:
 let

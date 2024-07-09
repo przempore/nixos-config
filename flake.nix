@@ -44,6 +44,7 @@
         "google-chrome"
         "spotify"
         "obsidian"
+        "vscode-extension-ms-vscode-cpptools"
       ];
       permittedInsecurePackages = [
         "nix-2.16.2"
@@ -58,7 +59,7 @@
       homeConfigurations = {
         ilum = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable catppuccin; };
+          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages catppuccin; };
           modules = [
             ./hosts/ilum/home
           ];
