@@ -1,4 +1,4 @@
-{ lib, allowed-unfree-packages, permittedInsecurePackages, pkgs-unstable, ... }:
+{ lib, allowed-unfree-packages, permittedInsecurePackages, ... }:
 {
   imports = [
     ../../common/home/apps
@@ -9,9 +9,7 @@
   home = {
     username = "przemek";
     homeDirectory = "/home/przemek";
-    programs = [
-      pkgs-unstable.direnv
-    ];
+    programs = [ ];
   };
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) allowed-unfree-packages;

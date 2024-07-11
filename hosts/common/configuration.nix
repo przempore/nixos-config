@@ -88,18 +88,6 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [ "nix-2.16.2" "electron-25.9.0" ];
 
-  programs.direnv = {
-    enable = true;
-    package = pkgs.direnv;
-    silent = true;
-    loadInNixShell = true;
-    direnvrcExtra = "";
-    nix-direnv = {
-      enable = true;
-      package = pkgs.nix-direnv;
-    };
-  };
-
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-emoji
