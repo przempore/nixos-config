@@ -23,5 +23,6 @@
     ./wezterm
     ./zathura.nix
     ./starship.nix
+    ./direnv.nix
   ];
 }
