@@ -6,7 +6,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   # Limit the number of generations to keep
-  boot.loader.systemd-boot.configurationLimit = lib.mkDefault 10;
+  boot.loader.systemd-boot.configurationLimit = lib.mkDefault 5;
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
