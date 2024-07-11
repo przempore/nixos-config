@@ -49,10 +49,12 @@
       permittedInsecurePackages = [
         "nix-2.16.2"
         "electron-25.9.0"
+        "python3.11-youtube-dl-2021.12.17"
       ];
     in
     {
-      formatter.${system} = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+      # formatter.${system} = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+      formatter.${system} = pkgs.nixpkgs-fmt;
       # nix run '.?submodules=1#homeConfigurations.<configuration>.activationPackage' --show-trace --impure -- switch
       # using `nh`
       # nh home switch --backup-extension backup_$(date +"%Y%M%H%M%S") '.?submodules=1' -- --show-trace --impure
@@ -102,17 +104,26 @@
         dooku = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-
             ({ ... }: { nixpkgs.overlays = myOverlays; })
-            ./hosts/dooku/configuration.nix
+            ./hosts/dooku/configuration.nix 
             nixos-hardware.nixosModules.lenovo-thinkpad
+            ({lib, ...}: {
+              options.permittedInsecurePackages = lib.mkOption {
+                type = lib.types.listOf lib.types.str;
+                default = permittedInsecurePackages;
+              };
+              options.allowed-unfree-packages = lib.mkOption {
+                type = lib.types.listOf lib.types.str;
+                default = allowed-unfree-packages;
+              };
+            })
 
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.porebski = import ./hosts/dooku/home;
-              home-manager.extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable legacyPkgs catppuccin; };
+              home-manager.extraSpecialArgs = { inherit pkgs-unstable legacyPkgs catppuccin; };
             }
           ];
         };

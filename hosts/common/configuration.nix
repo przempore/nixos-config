@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, config, allowed-unfree-packages, ... }: {
 
   # Enable Flakes and the new command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ]; # here for nixos-rebuild
@@ -86,7 +86,8 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [ "nix-2.16.2" "electron-25.9.0" ];
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.allowed-unfree-packages;
+  nixpkgs.config.permittedInsecurePackages = config.permittedInsecurePackages;
 
   programs.direnv = {
     enable = true;
