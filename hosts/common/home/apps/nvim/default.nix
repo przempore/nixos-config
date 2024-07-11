@@ -36,9 +36,9 @@ in
     recursive = true;
   };
 
-  home.packages = [
-    pkgs-unstable.vscode-extensions.ms-vscode.cpptools
-  ];
+  # home.packages = [
+  #   pkgs-unstable.vscode-extensions.ms-vscode.cpptools
+  # ];
 
   programs.neovim = {
     package = pkgs-unstable.neovim-unwrapped;
