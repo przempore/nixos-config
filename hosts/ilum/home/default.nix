@@ -1,4 +1,4 @@
-{ lib, allowed-unfree-packages, permittedInsecurePackages, ... }:
+{ lib, allowed-unfree-packages, permittedInsecurePackages, catppuccin, ... }:
 {
   imports = [
     ../../common/home/apps
@@ -9,11 +9,14 @@
   home = {
     username = "przemek";
     homeDirectory = "/home/przemek";
-    programs = [ ];
   };
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) allowed-unfree-packages;
   nixpkgs.config.permittedInsecurePackages = permittedInsecurePackages; # here for home-manager
+
+  catppuccin = {
+    enable = false;
+  };
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -28,6 +31,7 @@
   # Let home Manager install and manage itself.
   programs = {
     fish = {
+      catppuccin.enable = true;
       shellAliases = {
         asdf = "$HOME/.config/bspwm/scripts/refresh-keyboard.sh --variant=dvorak";
         aoeu = "$HOME/.config/bspwm/scripts/refresh-keyboard.sh --variant=qwerty";
@@ -36,6 +40,10 @@
       interactiveShellInit = ''
         set -gx PATH $PATH $HOME/.cargo/bin $HOME/.local/bin $HOME/go/bin
       '';
+    };
+
+    neovim = {
+      catppuccin.enable = true;
     };
 
     home-manager.enable = true;
