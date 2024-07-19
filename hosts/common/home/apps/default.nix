@@ -12,6 +12,7 @@
   ];
 
   imports = [
+    ./direnv.nix
     ./firefox.nix
     ./fish.nix
     ./git.nix
@@ -19,10 +20,9 @@
     ./mpv.nix
     ./nvim
     ./ranger.nix
+    ./starship.nix
     ./tmux.nix
     ./wezterm
     ./zathura.nix
-    ./starship.nix
-    ./direnv.nix
   ];
 }

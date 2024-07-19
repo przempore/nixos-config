@@ -1,4 +1,4 @@
-{ lib, allowed-unfree-packages, permittedInsecurePackages, catppuccin, ... }:
+{ pkgs, lib, allowed-unfree-packages, permittedInsecurePackages, ... }:
 {
   imports = [
     ../../common/home/apps

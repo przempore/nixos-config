@@ -91,6 +91,16 @@
             ({ ... }: { nixpkgs.overlays = myOverlays; })
             ./hosts/dathomir/configuration.nix
             nixos-hardware.nixosModules.dell-e7240
+            ({lib, ...}: {
+              options.permittedInsecurePackages = lib.mkOption {
+                type = lib.types.listOf lib.types.str;
+                default = permittedInsecurePackages;
+              };
+              options.allowed-unfree-packages = lib.mkOption {
+                type = lib.types.listOf lib.types.str;
+                default = allowed-unfree-packages;
+              };
+            })
 
             home-manager.nixosModules.home-manager
             {
