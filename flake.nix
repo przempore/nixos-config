@@ -51,6 +51,16 @@
         "electron-25.9.0"
         "python3.11-youtube-dl-2021.12.17"
       ];
+      unfree-config = {lib, ...}: {
+        options.permittedInsecurePackages = lib.mkOption {
+          type = lib.types.listOf lib.types.str;
+          default = permittedInsecurePackages;
+        };
+        options.allowed-unfree-packages = lib.mkOption {
+          type = lib.types.listOf lib.types.str;
+          default = allowed-unfree-packages;
+        };
+      };
     in
     {
       # formatter.${system} = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
@@ -91,16 +101,7 @@
             ({ ... }: { nixpkgs.overlays = myOverlays; })
             ./hosts/dathomir/configuration.nix
             nixos-hardware.nixosModules.dell-e7240
-            ({lib, ...}: {
-              options.permittedInsecurePackages = lib.mkOption {
-                type = lib.types.listOf lib.types.str;
-                default = permittedInsecurePackages;
-              };
-              options.allowed-unfree-packages = lib.mkOption {
-                type = lib.types.listOf lib.types.str;
-                default = allowed-unfree-packages;
-              };
-            })
+            unfree-config
 
             home-manager.nixosModules.home-manager
             {
@@ -117,16 +118,7 @@
             ({ ... }: { nixpkgs.overlays = myOverlays; })
             ./hosts/dooku/configuration.nix 
             nixos-hardware.nixosModules.lenovo-thinkpad
-            ({lib, ...}: {
-              options.permittedInsecurePackages = lib.mkOption {
-                type = lib.types.listOf lib.types.str;
-                default = permittedInsecurePackages;
-              };
-              options.allowed-unfree-packages = lib.mkOption {
-                type = lib.types.listOf lib.types.str;
-                default = allowed-unfree-packages;
-              };
-            })
+            unfree-config
 
             home-manager.nixosModules.home-manager
             {
