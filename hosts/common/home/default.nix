@@ -1,8 +1,7 @@
-{
-  pkgs,
-  allowed-unfree-packages,
-  permittedInsecurePackages,
-  ...
+{ pkgs
+, allowed-unfree-packages
+, permittedInsecurePackages
+, ...
 }:
 let
   lib = pkgs.lib;

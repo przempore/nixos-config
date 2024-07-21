@@ -51,7 +51,7 @@
         "electron-25.9.0"
         "python3.11-youtube-dl-2021.12.17"
       ];
-      unfree-config = {lib, ...}: {
+      unfree-config = { lib, ... }: {
         options.permittedInsecurePackages = lib.mkOption {
           type = lib.types.listOf lib.types.str;
           default = permittedInsecurePackages;
@@ -116,7 +116,7 @@
           inherit system;
           modules = [
             ({ ... }: { nixpkgs.overlays = myOverlays; })
-            ./hosts/dooku/configuration.nix 
+            ./hosts/dooku/configuration.nix
             nixos-hardware.nixosModules.lenovo-thinkpad
             unfree-config
 

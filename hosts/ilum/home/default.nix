@@ -36,7 +36,7 @@
         asdf = "$HOME/.config/bspwm/scripts/refresh-keyboard.sh --variant=dvorak";
         aoeu = "$HOME/.config/bspwm/scripts/refresh-keyboard.sh --variant=qwerty";
       };
- 
+
       interactiveShellInit = ''
         set -gx PATH $PATH $HOME/.cargo/bin $HOME/.local/bin $HOME/go/bin
       '';
