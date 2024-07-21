@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-unstable,
   allowed-unfree-packages,
   permittedInsecurePackages,
   ...
@@ -27,7 +26,7 @@ in
       TERM = "xterm-256color";
     };
 
-    packages = with pkgs-unstable; [
+    packages = with pkgs; [
       # fonts
       noto-fonts
       noto-fonts-emoji
