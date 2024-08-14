@@ -15,6 +15,10 @@
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     mozilla-overlay.url = "github:mozilla/nixpkgs-mozilla";
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -25,6 +29,7 @@
     , nixos-hardware
     , mozilla-overlay
     , catppuccin
+    , lix-module
     , ...
     }@inputs:
     let
@@ -74,6 +79,7 @@
           extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages catppuccin; };
           modules = [
             ./hosts/ilum/home
+            lix-module.nixosModules.default
           ];
         };
         przemek = home-manager.lib.homeManagerConfiguration {
@@ -81,6 +87,7 @@
           extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages catppuccin; };
           modules = [
             ./hosts/dathomir/home
+            lix-module.nixosModules.default
           ];
         };
         porebski = home-manager.lib.homeManagerConfiguration {
@@ -88,6 +95,7 @@
           extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages legacyPkgs catppuccin; };
           modules = [
             ./hosts/dooku/home
+            lix-module.nixosModules.default
           ];
         };
       };
@@ -101,6 +109,7 @@
             ({ ... }: { nixpkgs.overlays = myOverlays; })
             ./hosts/dathomir/configuration.nix
             nixos-hardware.nixosModules.dell-e7240
+            lix-module.nixosModules.default
             unfree-config
 
             home-manager.nixosModules.home-manager
@@ -118,6 +127,7 @@
             ({ ... }: { nixpkgs.overlays = myOverlays; })
             ./hosts/dooku/configuration.nix
             nixos-hardware.nixosModules.lenovo-thinkpad
+            lix-module.nixosModules.default
             unfree-config
 
             home-manager.nixosModules.home-manager
