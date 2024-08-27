@@ -101,7 +101,9 @@
       run $HOME/.config/polybar/launcher.sh
 
       run keepassxc
-      run blueman-adapters
+      # run blueman-adapters
+      run blueman-applet
+      # run blueberry-tray
       run xfce4-clipman
       run nm-applet
       run xfce4-power-manager
