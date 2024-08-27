@@ -107,6 +107,8 @@ in
       unzip
 
       obsidian
+
+      distrobox
     ];
   };
 
