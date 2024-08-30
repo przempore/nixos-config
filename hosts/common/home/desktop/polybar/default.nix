@@ -1,4 +1,12 @@
 { pkgs, ... }:
+# let
+#   weather-plugin = pkgs.writeShellApplication {
+#     name = "weather.sh";
+#     runtimeInputs = [ pkgs.curl pkgs.jq pkgs.bc ];
+#     text = builtins.readFile ./config/weather-plugin.sh;
+#   };
+#
+# in
 {
   imports = [
     ./colors.nix
@@ -60,7 +68,7 @@
         font-3 = "Noto Sans Mono:size=10;0";
 
         modules-left = "bspwm xwindow";
-        modules-center = "kernel";
+        modules-center = "kernel weather";
         modules-right = "pavolume memory2 cpu2 date tray";
 
         scroll-up = "bspwm-desknext";
@@ -228,6 +236,13 @@
         tray-position = "right";
         tray-background = "\${colors.background}";
       };
+
+      # "module/weather" = {
+      #   type = "custom/script";
+      #   exec = "${weather-plugin}";
+      #   tail = "false";
+      #   interval = 960;
+      # };
     };
   };
 }

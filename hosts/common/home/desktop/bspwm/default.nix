@@ -71,6 +71,8 @@
 
       echo "[bspwm autostart] connected monitors: $connectedMonitors" | systemd-cat
 
+      autorandr --change | systemd-cat -p info
+
       #Single monitor
       if [ $count -eq 1 ]; then
         bspc monitor -d 1 2 3 4 5 6 7 8 9 10
@@ -96,8 +98,6 @@
         fi
       }
 
-      autorandr --change | systemd-cat -p info
-
       run $HOME/.config/polybar/launcher.sh
 
       run keepassxc
@@ -107,7 +107,7 @@
       run xfce4-clipman
       run nm-applet
       run xfce4-power-manager
-      run firefox-nightly
+      # run firefox-nightly
 
       get_location
       run redshift -l $location
