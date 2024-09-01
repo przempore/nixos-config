@@ -1,18 +1,18 @@
 { pkgs, ... }:
-  let
-    name = "weather-plugin";
-    weather-plugin = (pkgs.writeScriptBin name (builtins.readFile ./config/weather-plugin.sh)).overrideAttrs (old: {
-      buildCommand = "${old.buildCommand}\n patchShebangs $out";
-    });
-    wrapped-weather-plugin = pkgs.symlinkJoin {
-      inherit name;
-      paths = [ weather-plugin ] ++ (with pkgs; [ jq bc curl ]);
-      buildInputs = [ pkgs.makeWrapper ];
-      postBuild = ''
+let
+  name = "weather-plugin";
+  weather-plugin = (pkgs.writeScriptBin name (builtins.readFile ./config/weather-plugin.sh)).overrideAttrs (old: {
+    buildCommand = "${old.buildCommand}\n patchShebangs $out";
+  });
+  wrapped-weather-plugin = pkgs.symlinkJoin {
+    inherit name;
+    paths = [ weather-plugin ] ++ (with pkgs; [ jq bc curl ]);
+    buildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
       wrapProgram $out/bin/weather-plugin --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.jq pkgs.bc pkgs.curl ]}
-      '';
-    };
-  in
+    '';
+  };
+in
 {
   imports = [
     ./colors.nix
