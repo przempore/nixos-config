@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, zen-browser, ... }:
 {
   home.packages = with pkgs; [
     any-nix-shell
@@ -9,6 +9,7 @@
     fastfetch
     yazi
     sshfs
+    zen-browser.packages.x86_64-linux.default
   ];
 
   imports = [

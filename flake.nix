@@ -19,6 +19,7 @@
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    zen-browser.url = "github:MarceColl/zen-browser-flake";
   };
 
   outputs =
@@ -30,6 +31,7 @@
     , mozilla-overlay
     , catppuccin
     , lix-module
+    , zen-browser
     , ...
     }@inputs:
     let
@@ -76,7 +78,7 @@
       homeConfigurations = {
         ilum = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages catppuccin; };
+          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages catppuccin zen-browser; };
           modules = [
             ./hosts/ilum/home
             lix-module.nixosModules.default
@@ -84,7 +86,7 @@
         };
         przemek = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages catppuccin; };
+          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages catppuccin zen-browser; };
           modules = [
             ./hosts/dathomir/home
             lix-module.nixosModules.default
@@ -92,7 +94,7 @@
         };
         porebski = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages legacyPkgs catppuccin; };
+          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages legacyPkgs catppuccin zen-browser; };
           modules = [
             ./hosts/dooku/home
             lix-module.nixosModules.default
@@ -117,7 +119,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.przemek = ./hosts/dathomir/home;
-              home-manager.extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable catppuccin; };
+              home-manager.extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable catppuccin zen-browser; };
             }
           ];
         };
@@ -135,7 +137,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.porebski = import ./hosts/dooku/home;
-              home-manager.extraSpecialArgs = { inherit pkgs-unstable legacyPkgs catppuccin; };
+              home-manager.extraSpecialArgs = { inherit pkgs-unstable legacyPkgs catppuccin zen-browser; };
             }
           ];
         };
