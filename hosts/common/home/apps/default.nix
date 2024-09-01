@@ -1,17 +1,18 @@
 { pkgs, zen-browser, ... }:
 {
-  home.packages =
-    [ zen-browser.packages.x86_64-linux.default ]
-    ++ (with pkgs; [
-      any-nix-shell
-      autojump
-      eza
-      fzf # A command-line fuzzy finder
-      ripgrep
-      fastfetch
-      yazi
-      sshfs
-    ]);
+  home.packages = [
+    zen-browser.packages.x86_64-linux.default
+  ]
+  ++ (with pkgs; [
+    any-nix-shell
+    autojump
+    eza
+    fzf # A command-line fuzzy finder
+    ripgrep
+    fastfetch
+    yazi
+    sshfs
+  ]);
 
   imports = [
     ./direnv.nix
