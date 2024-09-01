@@ -1,6 +1,8 @@
 { pkgs, zen-browser, ... }:
 {
-  home.packages = with pkgs; [
+  home.packages =
+  [ zen-browser.packages.x86_64-linux.default ]
+  ++ (with pkgs; [
     any-nix-shell
     autojump
     eza
@@ -9,8 +11,7 @@
     fastfetch
     yazi
     sshfs
-    zen-browser.packages.x86_64-linux.default
-  ];
+  ]);
 
   imports = [
     ./direnv.nix
