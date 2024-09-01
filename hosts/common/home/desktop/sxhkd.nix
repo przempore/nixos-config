@@ -46,6 +46,7 @@
       "alt + r" = "pkill -USR1 -x sxhkd";
       "ctrl + alt + g" = "brave";
       "ctrl + alt + f" = "firefox-nightly";
+      "ctrl + alt + z" = "zen";
       "ctrl + alt + k" = "keepassxc";
       "ctrl + alt + p" = "flameshot gui";
       "ctrl + alt + shift + p" = "shutter -s";
