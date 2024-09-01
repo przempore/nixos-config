@@ -1,12 +1,18 @@
 { pkgs, ... }:
-# let
-#   weather-plugin = pkgs.writeShellApplication {
-#     name = "weather.sh";
-#     runtimeInputs = [ pkgs.curl pkgs.jq pkgs.bc ];
-#     text = builtins.readFile ./config/weather-plugin.sh;
-#   };
-#
-# in
+  let
+    name = "weather-plugin";
+    weather-plugin = (pkgs.writeScriptBin name (builtins.readFile ./config/weather-plugin.sh)).overrideAttrs (old: {
+      buildCommand = "${old.buildCommand}\n patchShebangs $out";
+    });
+    wrapped-weather-plugin = pkgs.symlinkJoin {
+      inherit name;
+      paths = [ weather-plugin ] ++ (with pkgs; [ jq bc curl nerdfonts ]);
+      buildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+      wrapProgram $out/bin/weather-plugin --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.jq pkgs.bc pkgs.curl ]}
+      '';
+    };
+  in
 {
   imports = [
     ./colors.nix
@@ -66,6 +72,7 @@
         font-1 = "Font Awesome 6 Free Solid:size=12;0";
         font-2 = "Noto Sans:size=10;0";
         font-3 = "Noto Sans Mono:size=10;0";
+        font-4 = "Symbols Nerd Font Mono:5;1";
 
         modules-left = "bspwm xwindow";
         modules-center = "kernel weather";
@@ -237,12 +244,12 @@
         tray-background = "\${colors.background}";
       };
 
-      # "module/weather" = {
-      #   type = "custom/script";
-      #   exec = "${weather-plugin}";
-      #   tail = "false";
-      #   interval = 960;
-      # };
+      "module/weather" = {
+        type = "custom/script";
+        exec = "${wrapped-weather-plugin}/bin/weather-plugin";
+        tail = "false";
+        interval = 960;
+      };
     };
   };
 }
