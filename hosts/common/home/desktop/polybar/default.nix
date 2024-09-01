@@ -6,7 +6,7 @@
     });
     wrapped-weather-plugin = pkgs.symlinkJoin {
       inherit name;
-      paths = [ weather-plugin ] ++ (with pkgs; [ jq bc curl nerdfonts ]);
+      paths = [ weather-plugin ] ++ (with pkgs; [ jq bc curl ]);
       buildInputs = [ pkgs.makeWrapper ];
       postBuild = ''
       wrapProgram $out/bin/weather-plugin --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.jq pkgs.bc pkgs.curl ]}
