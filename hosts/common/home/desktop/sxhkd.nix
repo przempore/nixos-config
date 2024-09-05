@@ -52,7 +52,7 @@
       "ctrl + alt + shift + p" = "shutter -s";
       "ctrl + alt + m" = "xfce4-settings-manager";
       "ctrl + alt + r" = "rofi-theme-selector";
-      "ctrl + alt + s" = "spotify";
+      # "ctrl + alt + s" = "spotify";
       "ctrl + alt + v" = "pavucontrol";
       "ctrl + alt + a" = "xfce4-appfinder";
       #Wallpaper trash
