@@ -1,14 +1,35 @@
 { pkgs, lib, allowed-unfree-packages, permittedInsecurePackages, ... }:
 {
   imports = [
-    ../../common/home/apps
     ../../common/home/catppuccin.nix
+
+    ../../common/home/apps/direnv.nix
+    ../../common/home/apps/firefox.nix
+    ../../common/home/apps/fish.nix
+    ../../common/home/apps/git.nix
+    ../../common/home/apps/kitty
+    ../../common/home/apps/mpv.nix
+    ../../common/home/apps/nvim
+    ../../common/home/apps/ranger.nix
+    ../../common/home/apps/starship.nix
+    ../../common/home/apps/tmux.nix
+    ../../common/home/apps/zathura.nix
   ];
 
   # Packages that should be installed to the user profile.
   home = {
     username = "przemek";
     homeDirectory = "/home/przemek";
+
+    packages = with pkgs; [
+      autojump
+      eza
+      fzf # A command-line fuzzy finder
+      ripgrep
+      fastfetch
+      yazi
+      sshfs
+    ];
   };
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) allowed-unfree-packages;
