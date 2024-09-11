@@ -118,4 +118,8 @@ require("obsidian").setup({
       path = "~/Projects/second-brain",
     },
   },
+  follow_url_func = function(url)
+    -- vim.fn.jobstart({"xdg-open", url})  -- linux
+    vim.ui.open(url) -- need Neovim 0.10.0+
+  end,
 })
