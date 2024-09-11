@@ -6,8 +6,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "dhananjaylatkar";
       repo = "cscope_maps.nvim";
-      rev = "67fecf61bac73cd191bfb4918f19b515019f2d89";
-      sha256 = "sha256-i7EiBS114jRIm1l9hAifW12Eydfu0bGLkV/dZJznCp8=";
+      rev = "a4e8cf0a48b14696c32ea99edb1bf5d28e2b8384";
+      sha256 = "sha256-Uj3panF1DvagSyrF+SCj1K1gWyTVZVDe6ha4TTRdzow=";
     };
   };
   wf-nvim = pkgs.vimUtils.buildVimPlugin {
