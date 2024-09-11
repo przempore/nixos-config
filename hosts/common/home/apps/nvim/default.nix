@@ -109,6 +109,7 @@ in
       vimPlugins.nvim-dap
       vimPlugins.nvim-dap-virtual-text
       vimPlugins.nvim-dap-ui
+      vimPlugins.obsidian-nvim
     ];
 
     extraPackages = with pkgs; [

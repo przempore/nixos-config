@@ -110,3 +110,12 @@ require('copilot').setup({
 })
 
 require("copilot_cmp").setup()
+
+require("obsidian").setup({
+  workspaces = {
+    {
+      name = "second-brain",
+      path = "~/Projects/second-brain",
+    },
+  },
+})
