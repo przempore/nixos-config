@@ -122,4 +122,7 @@ require("obsidian").setup({
     -- vim.fn.jobstart({"xdg-open", url})  -- linux
     vim.ui.open(url) -- need Neovim 0.10.0+
   end,
+  templates = {
+      folder = "~/Projects/second-brain/extras/templates/daily_note_template",
+  },
 })
