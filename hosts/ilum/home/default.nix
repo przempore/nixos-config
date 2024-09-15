@@ -17,6 +17,7 @@
 
 
     ../../common/home/desktop/polybar
+    ../../common/home/desktop/sxhkd.nix
   ];
 
   # Packages that should be installed to the user profile.
