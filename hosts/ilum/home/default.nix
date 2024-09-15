@@ -1,13 +1,14 @@
 { pkgs, lib, allowed-unfree-packages, permittedInsecurePackages, ... }:
 {
   imports = [
+    ./kitty.nix
+
     ../../common/home/catppuccin.nix
 
     ../../common/home/apps/direnv.nix
     ../../common/home/apps/firefox.nix
     ../../common/home/apps/fish.nix
     ../../common/home/apps/git.nix
-    ../../common/home/apps/kitty
     ../../common/home/apps/mpv.nix
     ../../common/home/apps/nvim
     ../../common/home/apps/ranger.nix
