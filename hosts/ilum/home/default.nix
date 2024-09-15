@@ -58,8 +58,8 @@
     fish = {
       catppuccin.enable = true;
       shellAliases = {
-        asdf = "$HOME/.config/bspwm/scripts/refresh-keyboard.sh --variant=dvorak";
-        aoeu = "$HOME/.config/bspwm/scripts/refresh-keyboard.sh --variant=qwerty";
+        asdf = "setxkbmap -layout pl -variant real-prog-dvorak";
+        aoeu = "setxkbmap -layout pl";
       };
 
       interactiveShellInit = ''
