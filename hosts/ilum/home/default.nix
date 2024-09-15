@@ -14,6 +14,9 @@
     ../../common/home/apps/starship.nix
     ../../common/home/apps/tmux.nix
     ../../common/home/apps/zathura.nix
+
+
+    ../../common/home/desktop/polybar
   ];
 
   # Packages that should be installed to the user profile.
