@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ ... }: {
 
   home.file.".config/bspwm/scripts/bspwm_resize".text = ''
     #usr/bin/env dash
