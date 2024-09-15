@@ -1,7 +1,7 @@
 { pkgs, lib, allowed-unfree-packages, permittedInsecurePackages, ... }:
 {
   imports = [
-    ./kitty.nix
+    ./kitty.nix # kitty configuration without kitty package
 
     ../../common/home/catppuccin.nix
 
@@ -9,6 +9,7 @@
     ../../common/home/apps/firefox.nix
     ../../common/home/apps/fish.nix
     ../../common/home/apps/git.nix
+    # ../../common/home/apps/kitty # kitty installed via nixpkgs
     ../../common/home/apps/mpv.nix
     ../../common/home/apps/nvim
     ../../common/home/apps/ranger.nix
