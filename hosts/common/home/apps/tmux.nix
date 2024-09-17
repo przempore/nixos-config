@@ -81,7 +81,12 @@
       bind c new-window -c "#{pane_current_path}"
 
       set -g status off
+      # set-hook -g after-new-window 'if "[ #{session_windows} -gt 1 ]" "set status on"'
+      # set-hook -g after-kill-pane 'if "[ #{session_windows} -le 1 ]" "set status off"'
       bind b set-option -g status
+
+      bind-key -n C-PageUp previous-window
+      bind-key -n C-PageDown next-window
     '';
   };
 }
