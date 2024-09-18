@@ -55,6 +55,10 @@
     ];
 
     extraConfig = ''
+      # Start windows and panes at 1, not 0
+      set -g base-index 1
+      setw -g pane-base-index 1
+
       # vi is good
       unbind-key -T copy-mode-vi v
       setw -g mode-keys vi
