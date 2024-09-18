@@ -33,8 +33,8 @@
       "super + r" = "rofi-theme-selector";
       #Pavucontrol
       "super + v" = "xfce4-popup-clipman";
-      # "super + Return" = "kitty";
-      "super + Return" = "wezterm start --always-new-process";
+      "super + Return" = "kitty";
+      # "super + Return" = "wezterm start --always-new-process";
       "super + Escape" = "xkill";
       # "super + KP_Enter" = "kitty";
       "super + KP_Enter" = "wezterm start --always-new-process";
@@ -52,6 +52,7 @@
       "ctrl + alt + shift + p" = "shutter -s";
       "ctrl + alt + m" = "xfce4-settings-manager";
       "ctrl + alt + r" = "rofi-theme-selector";
+      "ctrl + alt + w" = "wezterm start --always-new-process";
       # "ctrl + alt + s" = "spotify";
       "ctrl + alt + v" = "pavucontrol";
       "ctrl + alt + a" = "xfce4-appfinder";
