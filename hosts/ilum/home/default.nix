@@ -60,8 +60,8 @@
     fish = {
       catppuccin.enable = true;
       shellAliases = {
-        asdf = "setxkbmap -layout pl -variant real-prog-dvorak";
-        aoeu = "setxkbmap -layout pl";
+        asdf = "setxkbmap -layout pl -variant real-prog-dvorak && xset r rate 200 25";
+        aoeu = "setxkbmap -layout pl && xset r rate 200 25";
       };
 
       interactiveShellInit = ''
