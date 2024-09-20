@@ -1,5 +1,6 @@
 { pkgs
 , pkgs-unstable
+, tmux-sessionx 
 , ...
 }: {
   programs.tmux = {
@@ -10,30 +11,27 @@
     mouse = true;
     baseIndex = 1;
     clock24 = true;
-    # Stop tmux+escape craziness.
-    escapeTime = 0;
+    escapeTime = 0; # Stop tmux+escape craziness.
+    terminal = "tmux-256color";
 
-    plugins = with pkgs.tmuxPlugins; [
+    plugins = [
+      {
+        plugin = tmux-sessionx.packages.x86_64-linux.default;
+        extraConfig = ''
+          set -g @sessionx-bind "o"
+          set-environment -gu TMUX_PLUGIN_MANAGER_PATH
+        '';
+
+      }
+    ] ++ (with pkgs.tmuxPlugins; [
       better-mouse-mode
       {
-        plugin = catppuccin;
-        extraConfig = ''
-          set -g @catppuccin_window_left_separator "█"
-          set -g @catppuccin_window_right_separator "█ "
-          set -g @catppuccin_window_number_position "right"
-          set -g @catppuccin_window_middle_separator "  █"
-
-          set -g @catppuccin_window_default_fill "number"
-
-          set -g @catppuccin_window_current_fill "number"
-          set -g @catppuccin_window_current_text "#{pane_current_path}"
-
-          set -g @catppuccin_status_modules_right "application session date_time"
-          set -g @catppuccin_status_left_separator  ""
-          set -g @catppuccin_status_right_separator " "
-          set -g @catppuccin_status_fill "all"
-          set -g @catppuccin_status_connect_separator "yes"
-        '';
+          plugin = catppuccin;
+          extraConfig = '' 
+            set -g @catppuccin_flavour 'mocha'
+            set -g @catppuccin_window_tabs_enabled on
+            set -g @catppuccin_date_time "%H:%M"
+          '';
       }
       {
         plugin = resurrect;
@@ -56,7 +54,7 @@
           set -g @continuum-save-interval '10'
         '';
       }
-    ];
+    ]);
 
     extraConfig = ''
       # vi is good
@@ -65,7 +63,6 @@
       bind-key -T copy-mode-vi 'y' send -X copy-selection      # Yank selection in copy mode.
 
       # https://old.reddit.com/r/tmux/comments/mesrci/tmux_2_doesnt_seem_to_use_256_colors/
-      set -g default-terminal "xterm-256color"
       set -ga terminal-overrides ",*256col*:Tc"
       set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q'
       set-environment -g COLORTERM "truecolor"

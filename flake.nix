@@ -20,6 +20,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zen-browser.url = "github:ch4og/zen-browser-flake";
+    tmux-sessionx = {
+      url = "github:omerxx/tmux-sessionx";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+      
   };
 
   outputs =
@@ -32,6 +37,7 @@
     , catppuccin
     , lix-module
     , zen-browser
+    , tmux-sessionx
     , ...
     }@inputs:
     let
@@ -78,7 +84,7 @@
       homeConfigurations = {
         ilum = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages catppuccin zen-browser; };
+          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages catppuccin zen-browser tmux-sessionx; };
           modules = [
             ./hosts/ilum/home
             lix-module.nixosModules.default
@@ -86,7 +92,7 @@
         };
         przemek = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages catppuccin zen-browser; };
+          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages catppuccin zen-browser tmux-sessionx; };
           modules = [
             ./hosts/dathomir/home
             lix-module.nixosModules.default
@@ -94,7 +100,7 @@
         };
         porebski = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages legacyPkgs catppuccin zen-browser; };
+          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages legacyPkgs catppuccin zen-browser tmux-sessionx; };
           modules = [
             ./hosts/dooku/home
             lix-module.nixosModules.default
@@ -119,7 +125,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.przemek = ./hosts/dathomir/home;
-              home-manager.extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable catppuccin zen-browser; };
+              home-manager.extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable catppuccin zen-browser tmux-sessionx; };
             }
           ];
         };
@@ -137,7 +143,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.porebski = import ./hosts/dooku/home;
-              home-manager.extraSpecialArgs = { inherit pkgs-unstable legacyPkgs catppuccin zen-browser; };
+              home-manager.extraSpecialArgs = { inherit pkgs-unstable legacyPkgs catppuccin zen-browser tmux-sessionx; };
             }
           ];
         };
