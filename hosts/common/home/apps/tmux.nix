@@ -6,6 +6,10 @@
     enable = true;
     package = pkgs-unstable.tmux;
     shortcut = "a";
+    keyMode = "vi";
+    mouse = true;
+    baseIndex = 1;
+    clock24 = true;
     # Stop tmux+escape craziness.
     escapeTime = 0;
 
@@ -56,12 +60,12 @@
 
     extraConfig = ''
       # Start windows and panes at 1, not 0
-      set -g base-index 1
-      setw -g pane-base-index 1
+      # set -g base-index 1
+      # setw -g pane-base-index 1
 
       # vi is good
-      unbind-key -T copy-mode-vi v
-      setw -g mode-keys vi
+      # unbind-key -T copy-mode-vi v
+      # setw -g mode-keys vi
       bind-key -T copy-mode-vi 'v' send -X begin-selection     # Begin selection in copy mode.
       bind-key -T copy-mode-vi 'C-v' send -X rectangle-toggle  # Begin selection in copy mode.
       bind-key -T copy-mode-vi 'y' send -X copy-selection      # Yank selection in copy mode.
@@ -78,7 +82,7 @@
       bind-key -r -T prefix S choose-window
 
       # Mouse works as expected
-      set-option -g mouse on
+      # set-option -g mouse on
       # easy-to-remember split pane commands
       bind | split-window -h -c "#{pane_current_path}"
       bind - split-window -v -c "#{pane_current_path}"
