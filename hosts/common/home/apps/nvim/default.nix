@@ -29,6 +29,15 @@ let
       sha256 = "sha256-CC9+h1i+l9TbE60LABZnwjkHy94VGQ7Hqd5jVHEW+mw=";
     };
   };
+  harpoon2_rev_lock = pkgs.vimUtils.buildVimPlugin {
+    name = "harpoon2_rev_lock";
+    src = pkgs.fetchFromGitHub {
+      owner = "ThePrimeagen";
+      repo = "harpoon";
+      rev = "e76cb03c420bb74a5900a5b3e1dde776156af45f";
+      sha256 = "sha256-oL/D/uiXr0dvK4D6VDlgyGb8gA01i/xrwOYr54Syib8=";
+    };
+  };
   harpoon2_git-worktree_fix = pkgs.vimUtils.buildVimPlugin {
     name = "harpoon2_git-worktree_fix";
     src = pkgs.fetchFromGitHub {
@@ -69,7 +78,8 @@ in
     plugins = with pkgs-unstable; [
       cscope_maps-nvim
       telescope-git-worktrees
-      harpoon2_git-worktree_fix
+      harpoon2_rev_lock
+      # harpoon2_git-worktree_fix
       direnv-vim
       wf-nvim
       vimPlugins.cmp-buffer
@@ -90,7 +100,7 @@ in
       vimPlugins.fzf-vim
       # vimPlugins.git-worktree-nvim
       vimPlugins.gitsigns-nvim
-      vimPlugins.harpoon2
+      # vimPlugins.harpoon2
       vimPlugins.lsp-zero-nvim
       vimPlugins.lsp_extensions-nvim
       vimPlugins.lspkind-nvim
