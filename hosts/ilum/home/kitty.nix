@@ -39,7 +39,7 @@
     map f1 new_window_with_cwd
     map f2 new_tab_with_cwd
     map ctrl+shift+c new_tab
-    '';
+  '';
 
   xdg.configFile."kitty/theme.conf".text = ''
     # The basic colors
@@ -112,5 +112,5 @@
     # white
     color7  #BAC2DE
     color15 #A6ADC8
-    '';
+  '';
 }

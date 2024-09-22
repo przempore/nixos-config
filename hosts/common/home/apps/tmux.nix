@@ -1,6 +1,6 @@
 { pkgs
 , pkgs-unstable
-, tmux-sessionx 
+, tmux-sessionx
 , ...
 }: {
   programs.tmux = {
@@ -26,8 +26,8 @@
     ] ++ (with pkgs.tmuxPlugins; [
       better-mouse-mode
       {
-          plugin = catppuccin;
-          extraConfig = '' 
+        plugin = catppuccin;
+        extraConfig = '' 
             set -g @catppuccin_flavour 'mocha'
             set -g @catppuccin_window_tabs_enabled on
             set -g @catppuccin_date_time "%H:%M"

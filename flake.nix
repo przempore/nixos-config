@@ -24,7 +24,7 @@
       url = "github:omerxx/tmux-sessionx";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-      
+
   };
 
   outputs =
