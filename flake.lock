@@ -271,11 +271,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1727069493,
-        "narHash": "sha256-77VNAll9hGcodkCIG0FUHnBlBzkro3r86XTZStlDgso=",
+        "lastModified": 1727108417,
+        "narHash": "sha256-JZbUZDb4o437oAy32RdhEX/HJ9j5x2rnPdpCbn3kc8Q=",
         "owner": "omerxx",
         "repo": "tmux-sessionx",
-        "rev": "455165451efcc79b13314d2539da4ac10be63ecf",
+        "rev": "5624bd7a909200c96c655967dc88077ce6d878cf",
         "type": "github"
       },
       "original": {
@@ -289,11 +289,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1727088485,
-        "narHash": "sha256-12ctsIyuslUnQ/t0dOQQTEaTHiPMF8WDStWxskUFWW8=",
+        "lastModified": 1727131828,
+        "narHash": "sha256-lVB+saQ92UnfjAM0U0whgpo8kaXgSx5XIJwfNsUpXMg=",
         "owner": "ch4og",
         "repo": "zen-browser-flake",
-        "rev": "dbc30c1542f61a534d48f9483e17ddc18df04f8a",
+        "rev": "157c2edaa24da7d57d23f3f776f4e47f07c7831b",
         "type": "github"
       },
       "original": {
