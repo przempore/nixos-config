@@ -1,4 +1,4 @@
-{ pkgs, lib, allowed-unfree-packages, permittedInsecurePackages, ... }:
+{ pkgs, lib, allowed-unfree-packages, permittedInsecurePackages, zen-browser, ... }:
 {
   imports = [
     ./kitty.nix # kitty configuration without kitty package

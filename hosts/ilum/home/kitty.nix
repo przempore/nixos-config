@@ -11,7 +11,7 @@
 
     font_size 9
 
-    scrollback_pager ~/.config/kitty/scrollback_pager.sh 'INPUT_LINE_NUMBER' 'CURSOR_LINE' 'CURSOR_COLUMN'
+    scrollback_pager ~/.config/kitty/scripts/scrollback_pager.sh 'INPUT_LINE_NUMBER' 'CURSOR_LINE' 'CURSOR_COLUMN'
 
       # NO BELLS!
     enable_audio_bell no
