@@ -38,16 +38,7 @@ let
       sha256 = "sha256-oL/D/uiXr0dvK4D6VDlgyGb8gA01i/xrwOYr54Syib8=";
     };
   };
-  harpoon2_git-worktree_fix = pkgs.vimUtils.buildVimPlugin {
-    name = "harpoon2_git-worktree_fix";
-    src = pkgs.fetchFromGitHub {
-      owner = "kimabrandt-flx";
-      repo = "harpoon";
-      rev = "a60333828a5d54467a2fd6e62f5683880817d1b1";
-      sha256 = "sha256-Y56f1tsfwW0JOQDDhZyKUFBUlVooYTnChCiOOOj/sn0=";
-    };
-  };
-  direnv-vim = pkgs.vimUtils.buildVimPlugin {
+  direnv-vim = pkgs.vimUtils.buildVimPlugin { # lsp is going crazy in git-worktree with this plugin
     name = "direnv-vim";
     src = pkgs.fetchFromGitHub {
       owner = "direnv";
@@ -77,10 +68,7 @@ in
 
     plugins = with pkgs-unstable; [
       cscope_maps-nvim
-      telescope-git-worktrees
-      harpoon2_rev_lock
-      # harpoon2_git-worktree_fix
-      direnv-vim
+      # direnv-vim
       wf-nvim
       vimPlugins.cmp-buffer
       vimPlugins.cmp-cmdline
@@ -99,8 +87,10 @@ in
       vimPlugins.fzf-checkout-vim
       vimPlugins.fzf-vim
       # vimPlugins.git-worktree-nvim
+      telescope-git-worktrees
       vimPlugins.gitsigns-nvim
       # vimPlugins.harpoon2
+      harpoon2_rev_lock
       vimPlugins.lsp-zero-nvim
       vimPlugins.lsp_extensions-nvim
       vimPlugins.lspkind-nvim
