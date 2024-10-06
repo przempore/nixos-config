@@ -1,4 +1,4 @@
-{ pkgs, lib, allowed-unfree-packages, permittedInsecurePackages, zen-browser, ... }:
+{ pkgs, lib, allowed-unfree-packages, permittedInsecurePackages, ... }:
 {
   imports = [
     ./kitty.nix # kitty configuration without kitty package
@@ -26,6 +26,8 @@
   home = {
     username = "przemek";
     homeDirectory = "/home/przemek";
+
+    keyboard.layout = "real-prog-dvorak";
 
     packages = with pkgs; [
       autojump
