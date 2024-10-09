@@ -68,9 +68,9 @@
       set-environment -g COLORTERM "truecolor"
 
       # choose only windows in current session
-      bind-key -r -T prefix w run-shell 'tmux choose-tree -Nwf"##{==:##{session_name},#{session_name}}"'
+      # bind-key -r -T prefix w run-shell 'tmux choose-tree -Nwf"##{==:##{session_name},#{session_name}}"'
       # choose both session and windows
-      bind-key -r -T prefix S choose-window
+      # bind-key -r -T prefix S choose-window
 
       # easy-to-remember split pane commands
       bind | split-window -h -c "#{pane_current_path}"
