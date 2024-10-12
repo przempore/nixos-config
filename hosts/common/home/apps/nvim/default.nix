@@ -55,7 +55,7 @@ in
   };
 
   home.packages = [
-    pkgs.vscode-extensions.ms-vscode.cpptools
+    # pkgs.vscode-extensions.ms-vscode.cpptools
   ];
 
   programs.neovim = {
@@ -150,7 +150,7 @@ in
       nodePackages."diagnostic-languageserver"
       nodePackages."dockerfile-language-server-nodejs"
       nodePackages."pyright"
-      nodePackages."vscode-langservers-extracted"
+      # nodePackages."vscode-langservers-extracted"
       nodePackages."yaml-language-server"
       terraform-ls
     ];

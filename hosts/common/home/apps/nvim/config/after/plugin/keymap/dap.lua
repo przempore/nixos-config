@@ -30,11 +30,11 @@ vim.keymap.set('n', '<Leader>ds', function()
   widgets.centered_float(widgets.scopes)
 end)
 
-dap.adapters.cppdbg = {
-  id = 'cppdbg',
-  type = 'executable',
-  command = '/nix/store/lqb01cmgw0x0zc7rgkjk234yqkj39jd9-vscode-extension-ms-vscode-cpptools-1.20.5/share/vscode/extensions/ms-vscode.cpptools/debugAdapters/bin/OpenDebugAD7',
-}
+-- dap.adapters.cppdbg = {
+--   id = 'cppdbg',
+--   type = 'executable',
+--   command = '/nix/store/lqb01cmgw0x0zc7rgkjk234yqkj39jd9-vscode-extension-ms-vscode-cpptools-1.20.5/share/vscode/extensions/ms-vscode.cpptools/debugAdapters/bin/OpenDebugAD7',
+-- }
 
 dap.configurations.cpp = {
   {

@@ -57,7 +57,7 @@
         "google-chrome"
         "spotify"
         "obsidian"
-        "vscode-extension-ms-vscode-cpptools"
+        # "vscode-extension-ms-vscode-cpptools"
       ];
       permittedInsecurePackages = [
         "nix-2.16.2"
