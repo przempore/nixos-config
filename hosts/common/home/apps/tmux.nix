@@ -9,7 +9,7 @@
     shortcut = "a";
     keyMode = "vi";
     mouse = true;
-    baseIndex = 1;
+    # baseIndex = 1;
     clock24 = true;
     escapeTime = 0; # Stop tmux+escape craziness.
     terminal = "tmux-256color";
