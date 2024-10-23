@@ -13,6 +13,11 @@
           aws.disabled = true;
           gcloud.disabled = true;
           line_break.disabled = false;
+          time = {
+            disabled = false;
+            time_format = "%T";
+            # format = "🕙[\[ \$time \]]($style) ";
+          };
           custom.qt-fhs-env = {
             command = "echo $QT_ENV";
             when = "test -n \"$QT_ENV\"";
