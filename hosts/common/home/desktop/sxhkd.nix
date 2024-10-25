@@ -25,8 +25,6 @@
       "super + F11" = "rofi -theme-str 'window \{width: 100%;height: 100%;\}' -show drun";
       #Rofi
       "alt + space" = "rofi -show drun -show-icons";
-      #Conky-toggle
-      "super + c" = "conky-toggle";
       #arcolinux-logout
       "super + x" = "archlinux-logout";
       #Rofi theme selector
