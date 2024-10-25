@@ -16,7 +16,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     mozilla-overlay.url = "github:mozilla/nixpkgs-mozilla";
     lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zen-browser.url = "github:ch4og/zen-browser-flake";
