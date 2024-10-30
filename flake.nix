@@ -107,7 +107,7 @@
           ];
         };
       };
-      # sudo nixos-rebuild switch --flake '.?submodules=1#<host_name>' --show-trace
+      # sudo nixos-rebuild switch --flake '.?submodules=1#<host_name>' --show-trace --impure
       # using nh
       # nh os switch --update '.?submodules=1' -- --impure --show-trace
       nixosConfigurations = {
@@ -143,6 +143,23 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.porebski = import ./hosts/dooku/home;
+              home-manager.extraSpecialArgs = { inherit pkgs-unstable legacyPkgs catppuccin zen-browser tmux-sessionx; };
+            }
+          ];
+        };
+        ilum = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            ({ ... }: { nixpkgs.overlays = myOverlays; })
+            ./hosts/ilum/configuration.nix
+            lix-module.nixosModules.default
+            unfree-config
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.przemek = import ./hosts/ilum/home;
               home-manager.extraSpecialArgs = { inherit pkgs-unstable legacyPkgs catppuccin zen-browser tmux-sessionx; };
             }
           ];

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   home.packages = with pkgs; [
     barrier
@@ -54,7 +54,7 @@
       bspc config focused_border_color	"#5e81ac"
       bspc config presel_feedback_color	"#5e81ac"
     '';
-    extraConfig = ''
+    extraConfig = lib.mkDefault ''
       function get_location {
         location=$(curl -s "https://location.services.mozilla.com/v1/geolocate?key=geoclue" | jq -r '"\(.location.lat):\(.location.lng)"')
         if [ -z $location ]; then
