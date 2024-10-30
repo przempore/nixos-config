@@ -1,4 +1,4 @@
-{ pkgs, lib, allowed-unfree-packages, permittedInsecurePackages, ... }:
+{ lib, ... }:
 {
   imports = [
     ../../common/home
