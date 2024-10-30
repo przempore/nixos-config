@@ -9,6 +9,10 @@
   home = {
     username = "przemek";
     homeDirectory = "/home/przemek";
+
+    pointerCursor = {
+      size = 6;
+    };
   };
 
   dconf.settings = {
