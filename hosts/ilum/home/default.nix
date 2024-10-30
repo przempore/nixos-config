@@ -22,7 +22,7 @@
     extraConfig = lib.mkDefault ''
       echo "[bspwm autostart] starting" | systemd-cat
 
-      $HOME/.screenlayout/home_default.sh
+      $HOME/.screenlayout/default.sh
 
       bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 

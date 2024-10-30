@@ -51,6 +51,7 @@
     description = "Przemek";
     extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "dialout" ];
     packages = with pkgs; [
+      ltunify
     ];
   };
 
