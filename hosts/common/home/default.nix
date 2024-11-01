@@ -23,6 +23,7 @@ in
       VISUAL = "nvim";
       TERMINAL = "wezterm";
       TERM = "xterm-256color";
+      NVD_BACKEND = "direct";
     };
 
     packages = with pkgs; [

@@ -40,6 +40,22 @@
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = true;
+    powerManagement.finegrained = false;
+    open = false;
+    nvidiaSettings = true;
+    # package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
+  };
+
   virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.onShutdown = "shutdown";
@@ -52,6 +68,9 @@
     extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "dialout" ];
     packages = with pkgs; [
       ltunify
+      libva
+      libva-utils
+      nvidia-vaapi-driver
     ];
   };
 
