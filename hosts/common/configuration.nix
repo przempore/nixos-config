@@ -36,6 +36,7 @@
 
   # Configure keymap in X11
   services.xserver = {
+    dpi = lib.mkDefault 90;
     autoRepeatDelay = 250;
     autoRepeatInterval = 30;
     xkb = {
