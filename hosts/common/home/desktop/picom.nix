@@ -1,4 +1,4 @@
-{ pkgs
+{ lib
 , ...
 }: {
   services.picom.enable = true;
@@ -45,7 +45,7 @@
     #   "_GTK_FRAME_EXTENTS@:c"
     # ];
     backend = "glx";
-    vsync = false;
+    vsync = lib.mkDefault false;
     mark-wmwin-focused = true;
     mark-ovredir-focused = true;
     corner-radius = 10;
