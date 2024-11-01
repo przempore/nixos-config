@@ -28,9 +28,20 @@
   # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-auto-optimise-store
   nix.settings.auto-optimise-store = true;
 
+  services.geoclue2.enable = true;
+  location.provider = "geoclue2"; 
+  services.redshift = {
+    enable = true;
+  };
+
   # Enable the XFCE Desktop Environment.
   services.xserver.enable = true;
-  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.lightdm = {
+    enable = true;
+    greeters.gtk.extraConfig = ''
+      user-background = false
+    '';
+  };
   services.xserver.desktopManager.xfce.enable = true;
   services.xserver.windowManager.bspwm.enable = true;
 

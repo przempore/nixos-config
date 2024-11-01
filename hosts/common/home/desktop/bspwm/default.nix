@@ -55,15 +55,6 @@
       bspc config presel_feedback_color	"#5e81ac"
     '';
     extraConfig = lib.mkDefault ''
-      function get_location {
-        location=$(curl -s "https://location.services.mozilla.com/v1/geolocate?key=geoclue" | jq -r '"\(.location.lat):\(.location.lng)"')
-        if [ -z $location ]; then
-            location="52.5196:13.4069"
-            echo "[bspwm autostart] no internet connection, setting location to Berlin [$location" | systemd-cat
-        fi
-        echo "[bspwm autostart] location for redshift: $location" | systemd-cat
-      }
-
       echo "[bspwm autostart] starting" | systemd-cat
 
       connectedMonitors=$(xrandr --query | grep " connected" | cut -d" " -f1)
@@ -101,16 +92,10 @@
       run $HOME/.config/polybar/launcher.sh
 
       run keepassxc
-      # run blueman-adapters
       run blueman-applet
-      # run blueberry-tray
       run xfce4-clipman
       run nm-applet
       run xfce4-power-manager
-      # run firefox-nightly
-
-      get_location
-      run redshift -l $location
 
       echo "[bspwm autostart] finished" | systemd-cat
     '';

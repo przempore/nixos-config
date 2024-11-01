@@ -15,6 +15,10 @@
     };
   };
 
+  services.picom.settings = {
+    vsync = true;
+  };
+
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {
       autoconnect = [ "qemu:///system" ];
@@ -26,7 +30,7 @@
     extraConfig = lib.mkDefault ''
       echo "[bspwm autostart] starting" | systemd-cat
 
-      $HOME/.screenlayout/default.sh
+      autorandr --load default
 
       bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 
@@ -45,14 +49,8 @@
       run nm-applet
       run xfce4-power-manager
 
-      run redshift -l 52.5196:13.4069
-
       echo "[bspwm autostart] finished" | systemd-cat
     '';
-  };
-
-  services.picom.settings = {
-    vsync = true;
   };
 
   # This value determines the home Manager release that your
