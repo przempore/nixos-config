@@ -13,10 +13,11 @@
     pointerCursor = {
       size = 6;
     };
-    sessionVariables = {
-      NVD_BACKEND = "direct";
-      LIBVA_DRIVER_NAME = "nvidia";
-    };
+    # used with closed nvidia drivers
+    # sessionVariables = {
+    #   NVD_BACKEND = "direct";
+    #   LIBVA_DRIVER_NAME = "nvidia";
+    # };
   };
 
   services.picom.settings = {

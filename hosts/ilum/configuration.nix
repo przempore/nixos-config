@@ -50,7 +50,8 @@
     modesetting.enable = true;
     powerManagement.enable = true;
     powerManagement.finegrained = false;
-    open = false;
+    # open = false;
+    open = true;
     nvidiaSettings = true;
     # package = config.boot.kernelPackages.nvidiaPackages.stable;
     package = config.boot.kernelPackages.nvidiaPackages.beta;
@@ -68,9 +69,11 @@
     extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "dialout" ];
     packages = with pkgs; [
       ltunify
-      libva
-      libva-utils
-      nvidia-vaapi-driver
+
+      # used with closed nvidia drivers
+      # libva
+      # libva-utils
+      # nvidia-vaapi-driver
     ];
   };
 
