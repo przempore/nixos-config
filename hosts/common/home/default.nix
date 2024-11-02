@@ -21,7 +21,7 @@ in
     sessionVariables = {
       EDITOR = "nvim";
       VISUAL = "nvim";
-      TERMINAL = "wezterm";
+      TERMINAL = "kitty";
       TERM = "xterm-256color";
       NVD_BACKEND = "direct";
     };
