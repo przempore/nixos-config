@@ -9,6 +9,7 @@
       ../common/configuration.nix
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./nvidia-drivers.nix
     ];
 
   nix.settings.trusted-users = [ "root" "przemek" ];
@@ -38,25 +39,6 @@
 
   services.qemuGuest.enable = true;
 
-  services.xserver.videoDrivers = [ "nvidia" ];
-
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = true;
-    powerManagement.finegrained = false;
-    # open = false;
-    open = true;
-    nvidiaSettings = true;
-    # package = config.boot.kernelPackages.nvidiaPackages.stable;
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
-  };
-
   virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.onShutdown = "shutdown";
@@ -69,11 +51,6 @@
     extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "dialout" ];
     packages = with pkgs; [
       ltunify
-
-      # used with closed nvidia drivers
-      # libva
-      # libva-utils
-      # nvidia-vaapi-driver
     ];
   };
 
