@@ -14,13 +14,13 @@
           ;;   as the home row mod will activate an early tap action
 
           (defsrc
-            a   s   d   f   j   k   l   ;
+            caps a   s   d   f   j   k   l   ;
           )
           (defvar
             ;; Note: consider using different time values for your different fingers.
             ;; For example, your pinkies might be slower to release keys and index
             ;; fingers faster.
-            tap-time 200
+            tap-time 300
             hold-time 150
 
             left-hand-keys (
@@ -35,11 +35,11 @@
             )
           )
           (deflayer base
-            @a  @s  @d  @f  @j  @k  @l  @;
+            @cec @a  @s  @d  @f  @j  @k  @l  @;
           )
 
           (deflayer nomods
-            a   s   d   f   j   k   l   ;
+            esc a   s   d   f   j   k   l   ;
           )
           (deffakekeys
             to-base (layer-switch base)
@@ -50,6 +50,8 @@
               (on-idle-fakekey to-base tap 20)
             )
 
+            cec (tap-hold 200 200 esc lctl)
+
             a (tap-hold-release-keys $tap-time $hold-time (multi a @tap) lmet $left-hand-keys)
             s (tap-hold-release-keys $tap-time $hold-time (multi s @tap) lalt $left-hand-keys)
             d (tap-hold-release-keys $tap-time $hold-time (multi d @tap) lctl $left-hand-keys)
@@ -58,8 +60,6 @@
             k (tap-hold-release-keys $tap-time $hold-time (multi k @tap) rctl $right-hand-keys)
             l (tap-hold-release-keys $tap-time $hold-time (multi l @tap) ralt $right-hand-keys)
             ; (tap-hold-release-keys $tap-time $hold-time (multi ; @tap) rmet $right-hand-keys)
-
-            cap (tap-hold-press $tap-time $hold-time caps lctl)
           )
         '';
       };
