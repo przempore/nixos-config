@@ -9,6 +9,8 @@
       ../common/configuration.nix
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+
+      ../common/home/apps/kanata.nix
     ];
 
   nix.settings.trusted-users = [ "root" "porebski" ];
