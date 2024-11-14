@@ -38,7 +38,8 @@ let
       sha256 = "sha256-oL/D/uiXr0dvK4D6VDlgyGb8gA01i/xrwOYr54Syib8=";
     };
   };
-  direnv-vim = pkgs.vimUtils.buildVimPlugin { # lsp is going crazy in git-worktree with this plugin
+  direnv-vim = pkgs.vimUtils.buildVimPlugin {
+    # lsp is going crazy in git-worktree with this plugin
     name = "direnv-vim";
     src = pkgs.fetchFromGitHub {
       owner = "direnv";

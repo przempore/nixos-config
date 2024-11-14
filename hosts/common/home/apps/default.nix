@@ -1,4 +1,4 @@
-{ pkgs, zen-browser, ... }:
+{ lib, pkgs, zen-browser, ... }:
 {
   home.packages = [
     zen-browser.packages.x86_64-linux.default
@@ -15,7 +15,7 @@
   ]);
 
   imports = [
-    ./direnv.nix
+    # ./direnv.nix
     ./firefox.nix
     ./fish.nix
     ./git.nix

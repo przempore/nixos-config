@@ -15,7 +15,6 @@ in
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) allowed-unfree-packages;
   nixpkgs.config.permittedInsecurePackages = permittedInsecurePackages; # here for home-manager
 
-
   # Packages that should be installed to the user profile.
   home = {
     sessionVariables = {

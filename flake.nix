@@ -28,7 +28,8 @@
   };
 
   outputs =
-    { nixpkgs
+    { self
+    , nixpkgs
     , nixpkgs-unstable
     , legacy-nixpkgs
     , home-manager
@@ -42,6 +43,9 @@
     }@inputs:
     let
       system = "x86_64-linux";
+
+      inherit (self) outputs;
+      mkSystem = import ./lib/mkSystem.nix { inherit nixpkgs inputs outputs; };
 
       myOverlays = [
         (import "${mozilla-overlay.outPath}/firefox-overlay.nix")
@@ -75,6 +79,10 @@
         };
       };
     in
+    (mkSystem "ilum" {
+      inherit system;
+      user = "przemek";
+    }) //
     {
       # formatter.${system} = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
       formatter.${system} = pkgs.nixpkgs-fmt;
@@ -152,6 +160,7 @@
           modules = [
             ({ ... }: { nixpkgs.overlays = myOverlays; })
             ./hosts/ilum/configuration.nix
+            ./modules
             lix-module.nixosModules.default
             unfree-config
 

@@ -29,7 +29,7 @@
   nix.settings.auto-optimise-store = true;
 
   services.geoclue2.enable = true;
-  location.provider = "geoclue2"; 
+  location.provider = "geoclue2";
   services.redshift = {
     enable = true;
   };
@@ -114,17 +114,17 @@
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.allowed-unfree-packages;
   nixpkgs.config.permittedInsecurePackages = config.permittedInsecurePackages;
 
-  programs.direnv = {
-    enable = true;
-    package = pkgs.direnv;
-    silent = true;
-    loadInNixShell = true;
-    direnvrcExtra = "";
-    nix-direnv = {
-      enable = true;
-      package = pkgs.nix-direnv;
-    };
-  };
+  # programs.direnv = {
+  #   enable = true;
+  #   package = pkgs.direnv;
+  #   silent = true;
+  #   loadInNixShell = true;
+  #   direnvrcExtra = "";
+  #   nix-direnv = {
+  #     enable = true;
+  #     package = pkgs.nix-direnv;
+  #   };
+  # };
 
   fonts.packages = with pkgs; [
     noto-fonts
