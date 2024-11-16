@@ -1,5 +1,4 @@
 { lib, ... }: {
-
   imports = [
     ../hosts/common/home/apps/direnv-module.nix
   ];

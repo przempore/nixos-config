@@ -24,13 +24,9 @@
       url = "github:omerxx/tmux-sessionx";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
   };
 
-  outputs =
-    { self
-    , ...
-    }@inputs:
+  outputs = { self, ... } @ inputs:
     let
       system = "x86_64-linux";
       inherit (self) outputs;
@@ -39,23 +35,24 @@
     (mkSystem "ilum" {
       inherit system;
       user = "przemek";
-    }) //
-    {
+    })
+    // {
       # formatter.${system} = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
       formatter.${system} = inputs.nixpkgs.legacyPackages.${system}.nixpkgs-fmt;
-      # formatter.${system} = {pkgs}: pkgs.alejandra;
-      devShells.${system} = ({ pkgs }: {
-        default = pkgs.mkShell {
-          packages = with pkgs; [
-            lua
-            luajit
-            lua-language-server
-            stylua
-            nixd
-            alejandra
-          ];
-        };
-      }
+      # formatter.${system} = inputs.nixpkgs.legacyPackages.${system}.alejandra;
+      devShells.${system} = (
+        { pkgs }: {
+          default = pkgs.mkShell {
+            packages = with pkgs; [
+              lua
+              luajit
+              lua-language-server
+              stylua
+              nixd
+              alejandra
+            ];
+          };
+        }
       );
 
       # nix run '.?submodules=1#homeConfigurations.<configuration>.activationPackage' --show-trace --impure -- switch

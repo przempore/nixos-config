@@ -1,31 +1,29 @@
-{ ... }:
-{
+{ ... }: {
   programs = {
-    starship =
-      {
-        enable = true;
-        # custom settings
-        enableFishIntegration = true;
-        enableZshIntegration = true;
-        settings = {
-          format = "$all"; # Remove this line to disable the default prompt format
-          add_newline = false;
-          aws.disabled = true;
-          gcloud.disabled = true;
-          line_break.disabled = false;
-          time = {
-            disabled = false;
-            time_format = "%T";
-            # format = "🕙[\[ \$time \]]($style) ";
-          };
-          custom.qt-fhs-env = {
-            command = "echo $QT_ENV";
-            when = "test -n \"$QT_ENV\"";
-            symbol = " ";
-            style = "bold red";
-            format = "[$symbol($output)]($style) ";
-          };
+    starship = {
+      enable = true;
+      # custom settings
+      enableFishIntegration = true;
+      enableZshIntegration = true;
+      settings = {
+        format = "$all"; # Remove this line to disable the default prompt format
+        add_newline = false;
+        aws.disabled = true;
+        gcloud.disabled = true;
+        line_break.disabled = false;
+        time = {
+          disabled = false;
+          time_format = "%T";
+          # format = "🕙[\[ \$time \]]($style) ";
+        };
+        custom.qt-fhs-env = {
+          command = "echo $QT_ENV";
+          when = "test -n \"$QT_ENV\"";
+          symbol = " ";
+          style = "bold red";
+          format = "[$symbol($output)]($style) ";
         };
       };
+    };
   };
 }

@@ -14,47 +14,48 @@
     escapeTime = 0; # Stop tmux+escape craziness.
     terminal = "tmux-256color";
 
-    plugins = [
-      {
-        plugin = tmux-sessionx.packages.x86_64-linux.default;
-        extraConfig = ''
-          set -g @sessionx-bind "o"
-          set-environment -gu TMUX_PLUGIN_MANAGER_PATH
-        '';
-
-      }
-    ] ++ (with pkgs.tmuxPlugins; [
-      better-mouse-mode
-      {
-        plugin = catppuccin;
-        extraConfig = '' 
+    plugins =
+      [
+        {
+          plugin = tmux-sessionx.packages.x86_64-linux.default;
+          extraConfig = ''
+            set -g @sessionx-bind "o"
+            set-environment -gu TMUX_PLUGIN_MANAGER_PATH
+          '';
+        }
+      ]
+      ++ (with pkgs.tmuxPlugins; [
+        better-mouse-mode
+        {
+          plugin = catppuccin;
+          extraConfig = ''
             set -g @catppuccin_flavour 'mocha'
             set -g @catppuccin_window_tabs_enabled on
             set -g @catppuccin_date_time "%H:%M"
           '';
-      }
-      {
-        plugin = resurrect;
-        extraConfig = ''
-          # source: https://github.com/p3t33/nixos_flake/blob/master/home/modules/tmux.nix
-          set -g @resurrect-strategy-nvim 'session'
-          set -g @resurrect-strategy-vim 'session'
+        }
+        {
+          plugin = resurrect;
+          extraConfig = ''
+            # source: https://github.com/p3t33/nixos_flake/blob/master/home/modules/tmux.nix
+            set -g @resurrect-strategy-nvim 'session'
+            set -g @resurrect-strategy-vim 'session'
 
-          set -g @resurrect-capture-pane-contents 'on'
+            set -g @resurrect-capture-pane-contents 'on'
 
-          resurrect_dir="$HOME/.tmux/resurrect"
-          set -g @resurrect-dir $resurrect_dir
-          set -g @resurrect-hook-post-save-all 'target=$(readlink -f $resurrect_dir/last); sed "s| --cmd .*-vim-pack-dir||g; s|/etc/profiles/per-user/$USER/bin/||g" $target | sponge $target'
-        '';
-      }
-      {
-        plugin = continuum;
-        extraConfig = ''
-          set -g @continuum-restore 'on'
-          set -g @continuum-save-interval '10'
-        '';
-      }
-    ]);
+            resurrect_dir="$HOME/.tmux/resurrect"
+            set -g @resurrect-dir $resurrect_dir
+            set -g @resurrect-hook-post-save-all 'target=$(readlink -f $resurrect_dir/last); sed "s| --cmd .*-vim-pack-dir||g; s|/etc/profiles/per-user/$USER/bin/||g" $target | sponge $target'
+          '';
+        }
+        {
+          plugin = continuum;
+          extraConfig = ''
+            set -g @continuum-restore 'on'
+            set -g @continuum-save-interval '10'
+          '';
+        }
+      ]);
 
     extraConfig = ''
       # vi is good

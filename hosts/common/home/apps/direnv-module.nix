@@ -1,5 +1,9 @@
-{ lib, config, pkgs, pkgs-unstable, ... }: {
-
+{ lib
+, config
+, pkgs
+, pkgs-unstable
+, ...
+}: {
   options = {
     modules.direnv.enable = lib.mkEnableOption "Enable direnv";
   };

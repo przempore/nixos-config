@@ -45,7 +45,6 @@ let
       default = allowed-unfree-packages;
     };
   };
-
 in
 {
   nixosConfigurations.${machine} = inputs.nixpkgs.lib.nixosSystem {
@@ -84,6 +83,4 @@ in
       ];
     }
   );
-
 }
-

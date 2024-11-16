@@ -1,5 +1,4 @@
-{ ... }:
-{
+{ ... }: {
   gtk = {
     enable = true;
     catppuccin = {

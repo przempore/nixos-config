@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   home.file.".config/kitty/scripts" = {
     source = ./config;
   };
@@ -11,7 +10,6 @@
       "ctrl+shift+w" = "no_op";
     };
     settings = {
-
       background_opacity = "0.97";
       dynamic_background_opacity = "yes";
       font_family = "JetBrainsMono Nerd Font Mono";

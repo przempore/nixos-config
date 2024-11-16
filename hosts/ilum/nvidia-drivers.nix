@@ -1,6 +1,7 @@
-{ config, pkgs, ... }:
-
-{
+{ config
+, pkgs
+, ...
+}: {
   users.users.przemek.packages = with pkgs; [
     # used with closed nvidia drivers
     # libva

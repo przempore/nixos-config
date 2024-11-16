@@ -1,5 +1,8 @@
-{ pkgs, lib, config, ... }: {
-
+{ pkgs
+, lib
+, config
+, ...
+}: {
   # Enable Flakes and the new command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ]; # here for nixos-rebuild
 
@@ -195,5 +198,4 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
 }

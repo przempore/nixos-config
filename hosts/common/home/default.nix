@@ -7,10 +7,16 @@ let
   lib = pkgs.lib;
 in
 {
-  imports = [
-    ./apps
-    ./catppuccin.nix
-  ] ++ (if builtins.pathExists ./private/default.nix then [ ./private ] else [ ]);
+  imports =
+    [
+      ./apps
+      ./catppuccin.nix
+    ]
+    ++ (
+      if builtins.pathExists ./private/default.nix
+      then [ ./private ]
+      else [ ]
+    );
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) allowed-unfree-packages;
   nixpkgs.config.permittedInsecurePackages = permittedInsecurePackages; # here for home-manager
@@ -117,11 +123,10 @@ in
       enable = true;
     };
     command-not-found.enable = false;
-    nix-index =
-      {
-        enable = true;
-        enableFishIntegration = true;
-      };
+    nix-index = {
+      enable = true;
+      enableFishIntegration = true;
+    };
   };
 
   # This value determines the home Manager release that your

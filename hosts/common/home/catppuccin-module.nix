@@ -1,5 +1,7 @@
-{ lib, config, ... }: {
-
+{ lib
+, config
+, ...
+}: {
   options.catppuccin = {
     modules.catppuccin.enable = lib.mkEnableOption "Enable Catpuccin theme";
   };
