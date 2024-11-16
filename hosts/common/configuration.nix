@@ -1,5 +1,8 @@
-{ pkgs, lib, config, ... }: {
-
+{ pkgs
+, lib
+, config
+, ...
+}: {
   # Enable Flakes and the new command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ]; # here for nixos-rebuild
 
@@ -29,7 +32,7 @@
   nix.settings.auto-optimise-store = true;
 
   services.geoclue2.enable = true;
-  location.provider = "geoclue2"; 
+  location.provider = "geoclue2";
   services.redshift = {
     enable = true;
   };
@@ -114,17 +117,17 @@
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.allowed-unfree-packages;
   nixpkgs.config.permittedInsecurePackages = config.permittedInsecurePackages;
 
-  programs.direnv = {
-    enable = true;
-    package = pkgs.direnv;
-    silent = true;
-    loadInNixShell = true;
-    direnvrcExtra = "";
-    nix-direnv = {
-      enable = true;
-      package = pkgs.nix-direnv;
-    };
-  };
+  # programs.direnv = {
+  #   enable = true;
+  #   package = pkgs.direnv;
+  #   silent = true;
+  #   loadInNixShell = true;
+  #   direnvrcExtra = "";
+  #   nix-direnv = {
+  #     enable = true;
+  #     package = pkgs.nix-direnv;
+  #   };
+  # };
 
   fonts.packages = with pkgs; [
     noto-fonts
@@ -195,5 +198,4 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
 }

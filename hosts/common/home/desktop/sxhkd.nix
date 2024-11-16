@@ -1,5 +1,4 @@
 { ... }: {
-
   home.file.".config/bspwm/scripts/bspwm_resize".text = ''
     #usr/bin/env dash
     if bspc query -N -n focused.floating > /dev/null; then

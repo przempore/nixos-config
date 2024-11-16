@@ -1,5 +1,4 @@
-{ ... }:
-{
+{ ... }: {
   services.polybar.config = {
     # "colors" = builtins.readFile (catppuccin-polybar + "/themes/mocha.ini");
     "colors" = {

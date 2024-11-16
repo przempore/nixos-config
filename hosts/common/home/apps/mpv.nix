@@ -1,6 +1,4 @@
-{ pkgs
-, ...
-}: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     mpv
   ];
@@ -9,5 +7,4 @@
     ytdl-format=bestvideo[height<=?1080]+bestaudio/best
     --save-position-on-quit
   '';
-
 }

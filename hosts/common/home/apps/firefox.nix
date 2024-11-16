@@ -1,6 +1,4 @@
-{ pkgs
-, ...
-}: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     youtube-dl
   ];
@@ -12,12 +10,12 @@
       isDefault = true;
       userChrome = ''
         @import "${
-            builtins.fetchGit {
-                url = "https://github.com/rockofox/firefox-minima";
-                ref = "main";
-                rev = "c5580fd04e9b198320f79d441c78a641517d7af5";
-            }
-          }/userChrome.css";
+          builtins.fetchGit {
+            url = "https://github.com/rockofox/firefox-minima";
+            ref = "main";
+            rev = "c5580fd04e9b198320f79d441c78a641517d7af5";
+          }
+        }/userChrome.css";
       '';
       settings = {
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
@@ -35,26 +33,42 @@
         default = "DuckDuckGo";
         engines = {
           "Nix Packages" = {
-            urls = [{
-              template = "https://search.nixos.org/packages";
-              params = [
-                { name = "type"; value = "packages"; }
-                { name = "query"; value = "{searchTerms}"; }
-              ];
-            }];
+            urls = [
+              {
+                template = "https://search.nixos.org/packages";
+                params = [
+                  {
+                    name = "type";
+                    value = "packages";
+                  }
+                  {
+                    name = "query";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
 
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = [ "@np" ];
           };
 
           "Home Manager - Options Search" = {
-            urls = [{
-              template = "https://home-manager-options.extranix.com/";
-              params = [
-                { name = "type"; value = "packages"; }
-                { name = "query"; value = "{searchTerms}"; }
-              ];
-            }];
+            urls = [
+              {
+                template = "https://home-manager-options.extranix.com/";
+                params = [
+                  {
+                    name = "type";
+                    value = "packages";
+                  }
+                  {
+                    name = "query";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
 
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = [ "@hm" ];

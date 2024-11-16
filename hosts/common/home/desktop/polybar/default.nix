@@ -9,7 +9,7 @@ let
     paths = [ weather-plugin ] ++ (with pkgs; [ jq bc curl ]);
     buildInputs = [ pkgs.makeWrapper ];
     postBuild = ''
-      wrapProgram $out/bin/weather-plugin --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.jq pkgs.bc pkgs.curl ]}
+      wrapProgram $out/bin/weather-plugin --prefix PATH : ${pkgs.lib.makeBinPath [pkgs.jq pkgs.bc pkgs.curl]}
     '';
   };
 in
@@ -80,7 +80,6 @@ in
 
         scroll-up = "bspwm-desknext";
         scroll-down = "bspwm-deskprev";
-
       };
       "module/bspwm" = {
         type = "internal/bspwm";
@@ -101,7 +100,6 @@ in
         ws-icon-8 = "9;";
         ws-icon-9 = "10;";
         ws-icon-default = " ";
-
 
         format = "<label-state> <label-mode>";
 

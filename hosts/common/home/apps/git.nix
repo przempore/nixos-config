@@ -4,7 +4,8 @@
     lfs.enable = true;
 
     aliases = {
-      lg = "log --graph --pretty=format:'%C(auto)%h -%d %s"
+      lg =
+        "log --graph --pretty=format:'%C(auto)%h -%d %s"
         + " %Cgreen(%cr) %C(bold blue)<%an>%Creset'";
       st = "status -sb";
     };

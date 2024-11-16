@@ -1,6 +1,4 @@
-{ lib
-, ...
-}: {
+{ lib, ... }: {
   services.picom.enable = true;
   services.picom.settings = {
     shadow = true;
@@ -66,5 +64,4 @@
     #   dropdown_menu = { opacity = 0.9; }
     # };
   };
-
 }

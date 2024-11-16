@@ -1,6 +1,7 @@
-{ pkgs, pkgs-unstable, ... }:
-
-{
+{ pkgs
+, pkgs-unstable
+, ...
+}: {
   imports = [
     ../../common/home
     ../../common/home/desktop

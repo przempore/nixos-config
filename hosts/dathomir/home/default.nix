@@ -1,5 +1,7 @@
-{ config, pkgs, ... }:
-{
+{ config
+, pkgs
+, ...
+}: {
   imports = [
     ../../common/home
     ../../common/home/desktop

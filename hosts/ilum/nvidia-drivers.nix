@@ -1,12 +1,13 @@
-{ config, pkgs, ... }:
-
-{
+{ config
+, pkgs
+, ...
+}: {
   users.users.przemek.packages = with pkgs; [
-      # used with closed nvidia drivers
-      # libva
-      # libva-utils
-      # nvidia-vaapi-driver
-    ];
+    # used with closed nvidia drivers
+    # libva
+    # libva-utils
+    # nvidia-vaapi-driver
+  ];
 
   services.xserver.videoDrivers = [ "nvidia" ];
 

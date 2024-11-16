@@ -1,5 +1,7 @@
-{ config, pkgs, ... }:
-{
+{ config
+, pkgs
+, ...
+}: {
   imports = [
     ./bspwm
     ./picom.nix
@@ -9,4 +11,3 @@
     ./gtk.nix
   ];
 }
-
