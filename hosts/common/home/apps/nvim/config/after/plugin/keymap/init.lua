@@ -74,3 +74,10 @@ nnoremap("<leader>cr", "<cmd>!find . -name \"*.c\" -o -name \"*.cpp\" -o -name \
 
 nnoremap("<leader>h", function () vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
     { noremap = true, silent = true, desc = "[LSP] Inlay hints"})
+
+
+require("telescope").load_extension "pomodori"
+
+vim.keymap.set("n", "<leader>pt", function()
+  require("telescope").extensions.pomodori.timers()
+end, { desc = "Manage Pomodori Timers"})
