@@ -32,7 +32,7 @@
   };
 
   xsession.windowManager.bspwm = {
-    extraConfig = lib.mkDefault ''
+    extraConfig = ''
       echo "[bspwm autostart] starting" | systemd-cat
 
       autorandr --load default
