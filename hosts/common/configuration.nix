@@ -84,7 +84,6 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   hardware.pulseaudio.extraConfig = "
     load-module module-switch-on-connect

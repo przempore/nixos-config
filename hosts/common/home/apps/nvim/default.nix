@@ -159,7 +159,7 @@ in
       nodePackages."bash-language-server"
       nodePackages."diagnostic-languageserver"
       nodePackages."dockerfile-language-server-nodejs"
-      nodePackages."pyright"
+      pyright
       # nodePackages."vscode-langservers-extracted"
       nodePackages."yaml-language-server"
       terraform-ls

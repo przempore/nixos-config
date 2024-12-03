@@ -10,13 +10,13 @@
     legacy-nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     catppuccin.url = "github:catppuccin/nix";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     mozilla-overlay.url = "github:mozilla/nixpkgs-mozilla";
     lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zen-browser.url = "github:ch4og/zen-browser-flake";
@@ -62,7 +62,6 @@
       permittedInsecurePackages = [
         "nix-2.16.2"
         "electron-25.9.0"
-        "python3.11-youtube-dl-2021.12.17"
       ];
       unfree-config = { lib, ... }: {
         options.permittedInsecurePackages = lib.mkOption {

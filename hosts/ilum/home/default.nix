@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
   imports = [
     ../../common/home
@@ -12,6 +12,8 @@
 
     pointerCursor = {
       size = 6;
+      # name = "Catppuccin-Mocha-Dark";
+      # package = pkgs.catppuccin;
     };
     # used with closed nvidia drivers
     # sessionVariables = {
