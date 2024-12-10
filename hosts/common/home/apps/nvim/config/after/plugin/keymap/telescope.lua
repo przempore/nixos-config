@@ -65,7 +65,8 @@ require('telescope').setup {
         pickers = {
             -- Your special builtin config goes in here
             buffers = {
-                theme = "dropdown",
+                -- theme = "dropdown",
+                theme = "ivy",
                 mappings = {
                     i = {
                         ["<C-w>"] = require("telescope.actions").delete_buffer,
@@ -78,25 +79,25 @@ require('telescope').setup {
                 }
             },
             find_files = {
-                theme = "dropdown",
+                theme = "ivy",
             },
             current_buffer_fuzzy_find = {
-                theme = "dropdown",
+                theme = "ivy",
             },
             grep_string = {
-                theme = "dropdown",
+                theme = "ivy",
             },
             live_grep = {
-                theme = "dropdown",
+                theme = "ivy",
             },
             lsp_references = {
-                theme = "dropdown",
+                theme = "ivy",
             },
             git_files = {
-                theme = "dropdown",
+                theme = "ivy",
             },
             lsp_document_symbols = {
-                theme = "dropdown",
+                theme = "ivy",
             },
         },
         extensions = {
