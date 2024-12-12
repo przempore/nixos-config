@@ -220,11 +220,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1731319897,
-        "narHash": "sha256-PbABj4tnbWFMfBp6OcUK5iGy1QY+/Z96ZcLpooIbuEI=",
+        "lastModified": 1727348695,
+        "narHash": "sha256-J+PeFKSDV+pHL7ukkfpVzCOO7mBSrrpJ3svwBFABbhI=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "dc460ec76cbff0e66e269457d7b728432263166c",
+        "rev": "1925c603f17fc89f4c8f6bf6f631a802ad85d784",
         "type": "github"
       },
       "original": {
@@ -289,15 +289,15 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1733860789,
-        "narHash": "sha256-RcyUja3aWRKi1W7HJqnlbM7+qcLxoVoo3RUJeDh3Kbc=",
-        "owner": "miketth",
+        "lastModified": 1733989921,
+        "narHash": "sha256-UgVz7Qc8klVKKKWR6ab3MnEpSyS+GNCbKGSCe51WZAQ=",
+        "owner": "ProggerX",
         "repo": "zen-browser-flake",
-        "rev": "ec96913950301a56fe633c079b0cd59b9ac40b86",
+        "rev": "66f6a7b6989d14d85f1f93dd7f2ff413b61a14d1",
         "type": "github"
       },
       "original": {
-        "owner": "miketth",
+        "owner": "ProggerX",
         "repo": "zen-browser-flake",
         "type": "github"
       }
