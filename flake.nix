@@ -19,7 +19,7 @@
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zen-browser.url = "github:miketth/zen-browser-flake";
+    zen-browser.url = "github:ProggerX/zen-browser-flake";
     tmux-sessionx = {
       url = "github:omerxx/tmux-sessionx";
       inputs.nixpkgs.follows = "nixpkgs";
