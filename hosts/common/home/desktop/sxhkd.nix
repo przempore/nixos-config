@@ -45,14 +45,17 @@
       "ctrl + alt + g" = "brave";
       "ctrl + alt + f" = "firefox-nightly";
       "ctrl + alt + z" = "zen";
+      "super + ctrl + z" = "zen";
       "ctrl + alt + k" = "keepassxc";
       "ctrl + alt + p" = "flameshot gui";
+      "super + ctrl + p" = "flameshot gui";
       "ctrl + alt + shift + p" = "shutter -s";
       "ctrl + alt + m" = "xfce4-settings-manager";
       "ctrl + alt + r" = "rofi-theme-selector";
       "ctrl + alt + w" = "wezterm start --always-new-process";
       # "ctrl + alt + s" = "spotify";
       "ctrl + alt + v" = "pavucontrol";
+      "super + ctrl + v" = "pavucontrol";
       "ctrl + alt + a" = "xfce4-appfinder";
       #Wallpaper trash
       "alt + shift + t" = "variety -t && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&";
@@ -72,6 +75,7 @@
       "super + y" = "polybar-msg cmd toggle";
       #Picom Toggle
       "ctrl + alt + o" = "obsidian";
+      "super + ctrl + o" = "obsidian";
       #Toggle fullscreen of window
       "super + f" = "bspc node --state \~fullscreen";
       # Toggle pseudo tiling of window
