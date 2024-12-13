@@ -39,6 +39,11 @@
 
   services.qemuGuest.enable = true;
 
+  services.udev.extraRules = ''
+    SUBSYSTEM=="input", GROUP="input", MODE="0660"
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0666"
+  '';
+
   virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.onShutdown = "shutdown";
