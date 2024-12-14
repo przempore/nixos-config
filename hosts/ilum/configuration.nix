@@ -56,6 +56,7 @@
     extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "dialout" ];
     packages = with pkgs; [
       ltunify
+      chromium
     ];
   };
 
