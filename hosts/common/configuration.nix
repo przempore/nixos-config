@@ -29,7 +29,7 @@
   nix.settings.auto-optimise-store = true;
 
   services.geoclue2.enable = true;
-  location.provider = "geoclue2"; 
+  location.provider = "geoclue2";
   services.redshift = {
     enable = true;
   };

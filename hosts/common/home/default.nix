@@ -1,12 +1,9 @@
 { pkgs
+, lib
 , allowed-unfree-packages
 , permittedInsecurePackages
 , ...
-}:
-let
-  lib = pkgs.lib;
-in
-{
+}: {
   imports = [
     ./apps
     ./catppuccin.nix

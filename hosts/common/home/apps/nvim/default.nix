@@ -38,7 +38,8 @@ let
       sha256 = "sha256-oL/D/uiXr0dvK4D6VDlgyGb8gA01i/xrwOYr54Syib8=";
     };
   };
-  direnv-vim = pkgs.vimUtils.buildVimPlugin { # lsp is going crazy in git-worktree with this plugin
+  direnv-vim = pkgs.vimUtils.buildVimPlugin {
+    # lsp is going crazy in git-worktree with this plugin
     name = "direnv-vim";
     src = pkgs.fetchFromGitHub {
       owner = "direnv";
@@ -47,7 +48,8 @@ let
       sha256 = "sha256-Lwwm95UEkS8Q0Qsoh10o3sFn48wf7v7eCX/FJJV1HMI=";
     };
   };
-  pomo-nvim = pkgs.vimUtils.buildVimPlugin { # lsp is going crazy in git-worktree with this plugin
+  pomo-nvim = pkgs.vimUtils.buildVimPlugin {
+    # lsp is going crazy in git-worktree with this plugin
     name = "pomo-nvim";
     src = pkgs.fetchFromGitHub {
       owner = "epwalsh";
