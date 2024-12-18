@@ -29,140 +29,50 @@
 
   outputs =
     { nixpkgs
-    , nixpkgs-unstable
-    , legacy-nixpkgs
-    , home-manager
     , nixos-hardware
-    , mozilla-overlay
-    , catppuccin
-    , lix-module
-    , zen-browser
-    , tmux-sessionx
     , ...
     }@inputs:
     let
       system = "x86_64-linux";
 
-      myOverlays = [
-        (import "${mozilla-overlay.outPath}/firefox-overlay.nix")
-      ];
-      pkgs = nixpkgs.legacyPackages.${system} // { overlays = myOverlays; };
-      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system} // { overlays = myOverlays; };
-      legacyPkgs = legacy-nixpkgs.legacyPackages.${system};
-
-      allowed-unfree-packages = [
-        "netflix-via-google-chrome"
-        "netflix-icon"
-        "discord"
-        "google-chrome"
-        "spotify"
-        "obsidian"
-        # "vscode-extension-ms-vscode-cpptools"
-      ];
-      permittedInsecurePackages = [
-        "nix-2.16.2"
-        "electron-25.9.0"
-      ];
-      unfree-config = { lib, ... }: {
-        options.permittedInsecurePackages = lib.mkOption {
-          type = lib.types.listOf lib.types.str;
-          default = permittedInsecurePackages;
-        };
-        options.allowed-unfree-packages = lib.mkOption {
-          type = lib.types.listOf lib.types.str;
-          default = allowed-unfree-packages;
-        };
+      mkSystem = import ./lib/mkSystem.nix { inherit inputs; };
+      dookuSystem = mkSystem {
+        inherit system;
+        machine = "dooku";
+        user = "porebski";
+        nixos-hardware = nixos-hardware.nixosModules.lenovo-thinkpad;
+      };
+      dathomirSystem = mkSystem {
+        inherit system;
+        machine = "dathomir";
+        user = "przemek";
+        nixos-hardware = nixos-hardware.nixosModules.dell-e7240;
+      };
+      ilumSystem = mkSystem {
+        inherit system;
+        machine = "ilum";
+        user = "przemek";
       };
     in
     {
-      # formatter.${system} = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
-      formatter.${system} = pkgs.nixpkgs-fmt;
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixpkgs-fmt;
+
       # nix run '.?submodules=1#homeConfigurations.<configuration>.activationPackage' --show-trace --impure -- switch
       # using `nh`
       # nh home switch --backup-extension backup_$(date +"%Y%M%H%M%S") '.?submodules=1' -- --show-trace --impure
       homeConfigurations = {
-        ilum = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages catppuccin zen-browser tmux-sessionx; };
-          modules = [
-            ./hosts/ilum/home
-            lix-module.nixosModules.default
-          ];
-        };
-        przemek = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages catppuccin zen-browser tmux-sessionx; };
-          modules = [
-            ./hosts/dathomir/home
-            lix-module.nixosModules.default
-          ];
-        };
-        porebski = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages legacyPkgs catppuccin zen-browser tmux-sessionx; };
-          modules = [
-            ./hosts/dooku/home
-            lix-module.nixosModules.default
-          ];
-        };
+        ilum = ilumSystem.homeConfiguration.ilum;
+        przemek = dathomirSystem.homeConfiguration.przemek;
+        porebski = dookuSystem.homeConfiguration.porebski;
       };
+
       # sudo nixos-rebuild switch --flake '.?submodules=1#<host_name>' --show-trace --impure
       # using nh
       # nh os switch --update '.?submodules=1' -- --impure --show-trace
       nixosConfigurations = {
-        dathomir = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            ({ ... }: { nixpkgs.overlays = myOverlays; })
-            ./hosts/dathomir/configuration.nix
-            nixos-hardware.nixosModules.dell-e7240
-            lix-module.nixosModules.default
-            unfree-config
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.przemek = ./hosts/dathomir/home;
-              home-manager.extraSpecialArgs = { inherit allowed-unfree-packages pkgs-unstable catppuccin zen-browser tmux-sessionx; };
-            }
-          ];
-        };
-        dooku = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            ({ ... }: { nixpkgs.overlays = myOverlays; })
-            ./hosts/dooku/configuration.nix
-            nixos-hardware.nixosModules.lenovo-thinkpad
-            lix-module.nixosModules.default
-            unfree-config
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.porebski = import ./hosts/dooku/home;
-              home-manager.extraSpecialArgs = { inherit pkgs-unstable legacyPkgs catppuccin zen-browser tmux-sessionx; };
-            }
-          ];
-        };
-        ilum = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            ({ ... }: { nixpkgs.overlays = myOverlays; })
-            ./hosts/ilum/configuration.nix
-            lix-module.nixosModules.default
-            unfree-config
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.przemek = import ./hosts/ilum/home;
-              home-manager.extraSpecialArgs = { inherit pkgs-unstable legacyPkgs catppuccin zen-browser tmux-sessionx; };
-            }
-          ];
-        };
+        dathomir = dathomirSystem.nixosConfiguration.dathomir;
+        dooku = dookuSystem.nixosConfiguration.dooku;
+        ilum = ilumSystem.nixosConfiguration.ilum;
       };
     };
 }
