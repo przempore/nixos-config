@@ -18,6 +18,39 @@
     bspc node -z "$dir" "$x" "$y" || bspc node -z "$falldir" "$x" "$y"
   '';
 
+  home.file.".config/bspwm/scripts/toggle_polybar" = {
+    text = ''
+      #usr/bin/env bash
+
+      echo "[toggle_polybar] start" | systemd-cat
+
+      state_file="$HOME/.cache/polybar_state"
+
+      # Check if the state file exists
+      if [ ! -f "$state_file" ]; then
+          echo "visible" > "$state_file"
+      fi
+
+      # Read the current state
+      current_state=$(cat "$state_file")
+
+      # Toggle the state
+      if [[ "$current_state" == "visible" ]]; then
+          # Hide Polybar and adjust bspwm padding
+          polybar-msg cmd hide
+          bspc config top_padding 0
+          echo "hidden" > "$state_file"
+      else
+          # Show Polybar and adjust bspwm padding
+          polybar-msg cmd show
+          bspc config top_padding 30
+          echo "visible" > "$state_file"
+      fi
+      echo "[toggle_polybar] end" | systemd-cat
+    '';
+    executable = true;
+  };
+
   services.sxhkd = {
     enable = true;
     keybindings = {
@@ -69,7 +102,7 @@
       "alt + Up" = "~/.config/polybar/pavolume.sh --up";
       "alt + Down" = "~/.config/polybar/pavolume.sh --down";
       #Hide polybar
-      "super + y" = "polybar-msg cmd toggle";
+      "super + y" = "$HOME/.config/bspwm/scripts/toggle_polybar";
       #Picom Toggle
       "ctrl + alt + o" = "obsidian";
       #Toggle fullscreen of window
