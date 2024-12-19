@@ -44,7 +44,7 @@ in
         tmux-sessionx = inputs.tmux-sessionx;
       };
       modules = [
-        # TODO: move modules around to unlock home corfiguration from machine
+        # TODO: move modules around to unlock home configuration from machine
         ../hosts/${machine}/home
         inputs.lix-module.nixosModules.default
       ];

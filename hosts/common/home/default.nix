@@ -7,7 +7,7 @@
   imports = [
     ./apps
     ./catppuccin.nix
-  ] ++ (if builtins.pathExists ./private/default.nix then [ ./private ] else [ ]);
+  ] ++ (lib.optional (builtins.pathExists ./private/default.nix) ./private);
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) allowed-unfree-packages;
   nixpkgs.config.permittedInsecurePackages = permittedInsecurePackages; # here for home-manager
