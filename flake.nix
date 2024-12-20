@@ -61,9 +61,9 @@
       # using `nh`
       # nh home switch --backup-extension backup_$(date +"%Y%M%H%M%S") '.?submodules=1' -- --show-trace --impure
       homeConfigurations = {
-        ilum = ilumSystem.homeConfiguration.ilum;
         przemek = dathomirSystem.homeConfiguration.przemek;
         porebski = dookuSystem.homeConfiguration.porebski;
+        ilum = ilumSystem.homeConfiguration.przemek;
       };
 
       # sudo nixos-rebuild switch --flake '.?submodules=1#<host_name>' --show-trace --impure
