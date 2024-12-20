@@ -7,7 +7,7 @@
     # which represents the GitHub repository URL + branch/commit-id/tag.
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    legacy-nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    legacy-nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     catppuccin.url = "github:catppuccin/nix";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";

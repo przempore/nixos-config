@@ -1,5 +1,5 @@
 { legacyPkgs, ... }: {
   home.packages = [
-    legacyPkgs.teleport_13
+    legacyPkgs.teleport_14
   ];
 }
