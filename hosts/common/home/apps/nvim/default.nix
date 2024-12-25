@@ -141,6 +141,7 @@ in
       vimPlugins.nvim-dap-virtual-text
       vimPlugins.nvim-dap-ui
       vimPlugins.obsidian-nvim
+      vimPlugins.CopilotChat-nvim
       pomo-nvim
     ];
 

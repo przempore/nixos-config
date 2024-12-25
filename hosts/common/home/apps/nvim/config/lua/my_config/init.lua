@@ -179,3 +179,7 @@ require("pomo").setup({
     },
   },
 })
+
+require("CopilotChat").setup {
+  -- See Configuration section for options
+}
