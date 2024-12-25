@@ -12,6 +12,7 @@
     fastfetch
     yazi
     sshfs
+    discord
   ]);
 
   imports = [
