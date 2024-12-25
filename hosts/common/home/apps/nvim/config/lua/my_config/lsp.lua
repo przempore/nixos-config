@@ -76,7 +76,14 @@ require('lspconfig').rust_analyzer.setup({
                 },
             },
             procMacro = {
-                enable = true
+                enable = true,
+                ignored = {
+                    leptos_macro = {
+                        -- optional: --
+                        -- "component",
+                        "server",
+                    },
+                },
             },
         }
     }
