@@ -26,6 +26,8 @@ function M.format()
             vim.cmd('ClangFormat')
         elseif vim.bo.filetype == 'go' then
             vim.cmd('GoFmt')
+        elseif vim.bo.filetype == 'nix' then
+            vim.cmd('!nix fmt %')
         else
             print("Can't format", vim.bo.filetype, "file")
         end
