@@ -42,6 +42,7 @@ in
         catppuccin = inputs.catppuccin;
         zen-browser = inputs.zen-browser;
         tmux-sessionx = inputs.tmux-sessionx;
+        ghostty = inputs.ghostty;
       };
       modules = [
         # TODO: move modules around to unlock home configuration from machine
@@ -70,6 +71,7 @@ in
             catppuccin = inputs.catppuccin;
             zen-browser = inputs.zen-browser;
             tmux-sessionx = inputs.tmux-sessionx;
+            ghostty = inputs.ghostty;
           };
         }
       ];

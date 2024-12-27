@@ -1,7 +1,8 @@
-{ pkgs, zen-browser, ... }:
+{ pkgs, zen-browser, ghostty, ... }:
 {
   home.packages = [
     zen-browser.packages.x86_64-linux.default
+    ghostty.packages.x86_64-linux.default
   ]
   ++ (with pkgs; [
     any-nix-shell
