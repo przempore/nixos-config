@@ -64,7 +64,7 @@
       "super + r" = "rofi-theme-selector";
       #Pavucontrol
       "super + v" = "xfce4-popup-clipman";
-      "super + Return" = "kitty";
+      "super + Return" = "ghostty";
       # "super + Return" = "wezterm start --always-new-process";
       "super + Escape" = "xkill";
       # "super + KP_Enter" = "kitty";
