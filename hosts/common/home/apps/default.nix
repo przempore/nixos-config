@@ -14,6 +14,7 @@
     yazi
     sshfs
     discord
+    ncpamixer
   ]);
 
   imports = [
