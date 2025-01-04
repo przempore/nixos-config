@@ -22,6 +22,7 @@
     ./firefox.nix
     ./fish.nix
     ./git.nix
+    ./ghostty.nix
     ./kitty
     ./mpv.nix
     ./nvim
