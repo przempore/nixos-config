@@ -162,11 +162,11 @@
         "zig": "zig"
       },
       "locked": {
-        "lastModified": 1736110435,
-        "narHash": "sha256-mughhh0H+bk5qoFEubia321bllyRoR02AUQRLXJb54Y=",
+        "lastModified": 1736112341,
+        "narHash": "sha256-ErCzikrVD1ApmNDjMx3ee3ez8tlq1iIqrb9Qm6gNr7w=",
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "e3c94210f23271eaeb054892a5bbad0bd6d4c6cc",
+        "rev": "143c01edcb3ca74576b2d42f1025786e1509c181",
         "type": "github"
       },
       "original": {
@@ -588,15 +588,15 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1736104360,
-        "narHash": "sha256-ggBmv/mUWTt4QIsxBnws6By3zutnQNij7u9RSsGACMA=",
-        "owner": "0xc000022070",
+        "lastModified": 1736112876,
+        "narHash": "sha256-A6Kh0WWpc+2mxxry9bwwK4Ve5PWgnLNjmtLPQXnoUaE=",
+        "owner": "przempore",
         "repo": "zen-browser-flake",
-        "rev": "25a143434e2cd793ff75747e94923c34c263d3b6",
+        "rev": "d6c86ca45d821e4d77f293e49ba2cf891a819715",
         "type": "github"
       },
       "original": {
-        "owner": "0xc000022070",
+        "owner": "przempore",
         "repo": "zen-browser-flake",
         "type": "github"
       }
