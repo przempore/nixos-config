@@ -15,6 +15,8 @@
     sshfs
     discord
     ncpamixer
+      
+    wgnord
   ]);
 
   imports = [

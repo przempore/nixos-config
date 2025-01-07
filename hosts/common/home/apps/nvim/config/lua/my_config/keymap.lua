@@ -28,6 +28,8 @@ function M.format()
             vim.cmd('GoFmt')
         elseif vim.bo.filetype == 'nix' then
             vim.cmd('!nix fmt %')
+        elseif vim.bo.filetype == 'python' then
+            vim.cmd('!black %')
         else
             print("Can't format", vim.bo.filetype, "file")
         end
