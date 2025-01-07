@@ -7,7 +7,6 @@
 
   programs.firefox = {
     enable = true;
-    package = pkgs.latest.firefox-beta-bin;
     profiles.przemek = {
       isDefault = true;
       userChrome = ''

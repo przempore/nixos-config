@@ -1,12 +1,8 @@
 { inputs, ... }:
 { machine, system, nixos-hardware ? null, user }:
 let
-  myOverlays = [
-    (import "${inputs.mozilla-overlay.outPath}/firefox-overlay.nix")
-  ];
-
-  pkgs = inputs.nixpkgs.legacyPackages.${system} // { overlays = myOverlays; };
-  pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system} // { overlays = myOverlays; };
+  pkgs = inputs.nixpkgs.legacyPackages.${system};
+  pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
   legacyPkgs = inputs.legacy-nixpkgs.legacyPackages.${system};
 
   allowed-unfree-packages = [
@@ -56,7 +52,6 @@ in
     ${machine} = inputs.nixpkgs.lib.nixosSystem {
       inherit system;
       modules = inputs.nixpkgs.lib.optional (nixos-hardware != null) nixos-hardware ++ [
-        ({ ... }: { nixpkgs.overlays = myOverlays; })
         unfree-config
         ../hosts/${machine}/configuration.nix
         inputs.lix-module.nixosModules.default
