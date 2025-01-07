@@ -588,15 +588,15 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1736267677,
-        "narHash": "sha256-7FH/gFShKOzf46yKqA4VWAaWxuyHBRnXOdaffbTxVo4=",
-        "owner": "0xc000022070",
+        "lastModified": 1736189028,
+        "narHash": "sha256-GQjmhMLxl2YkM5CkJqFXgrdEBnIdSzxn0aUdTIL2/78=",
+        "owner": "przempore",
         "repo": "zen-browser-flake",
-        "rev": "c96c6a1ebf1bea782f9528dc316d986a6087ebc0",
+        "rev": "5e95b70c01f62040c3b2f1be654fd49e9c3b6876",
         "type": "github"
       },
       "original": {
-        "owner": "0xc000022070",
+        "owner": "przempore",
         "repo": "zen-browser-flake",
         "type": "github"
       }
