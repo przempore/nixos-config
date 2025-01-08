@@ -22,6 +22,20 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.nameservers = [ "8.8.8.8" "8.8.4.4" ];
 
+  services.openvpn.servers = {
+    officeVPN = {
+      config = '' config /root/nixos/openvpn/officeVPN.conf '';
+      updateResolvConf = true;
+    };
+  };
+
+  # fileSystems."/mnt/office" = {
+  #   device = "//10.8.0.x/Share";
+  #   fsType = "cifs";
+  #   options = [ "noauto" "user" "uid=1000" "gid=100" "username=xxx" "password=xxx" "iocharset=utf8"
+  #     "x-systemd.requires=openvpn-officeVPN.service" ];
+  # };
+
   # Set your time zone.
   time.timeZone = "Europe/Warsaw";
 
