@@ -54,6 +54,7 @@ require('lspconfig').neocmake.setup{}
 require('lspconfig').jsonls.setup{}
 require('lspconfig').marksman.setup{}
 require('lspconfig').ruby_lsp.setup{}
+require('lspconfig').qmlls.setup{} -- qml language server provided by e.g. pkgs.qt6.qtdeclarative in nixpkgs
 
 require('lspconfig').rust_analyzer.setup({
     on_attach=on_attach,
