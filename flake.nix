@@ -20,7 +20,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # zen-browser.url = "github:0xc000022070/zen-browser-flake";
-    zen-browser.url = "github:przempore/zen-browser-flake";
+    zen-browser.url = "github:przempore/zen-browser-flake/5e95b70c01f62040c3b2f1be654fd49e9c3b6876";
     tmux-sessionx = {
       url = "github:omerxx/tmux-sessionx";
       inputs.nixpkgs.follows = "nixpkgs";
