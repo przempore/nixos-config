@@ -159,13 +159,13 @@
       # Expand tiled space
       "alt + shift + {h,j,k,l}" = "bspc node {@west -r -10,@south -r +10,@north -r -10,@east -r +10}";
       # Focus next/previous window
-      "ctrl + alt + Left" = "bspc node --focus west";
+      # "ctrl + alt + Left" = "bspc node --focus west";
       # Focus next/previous window
-      "ctrl + alt + Right" = "bspc node --focus east";
+      # "ctrl + alt + Right" = "bspc node --focus east";
       # Focus Up window
-      "ctrl + alt + Up" = "bspc node --focus north";
+      # "ctrl + alt + Up" = "bspc node --focus north";
       # Focus Down window
-      "ctrl + alt + Down" = "bspc node --focus south";
+      # "ctrl + alt + Down" = "bspc node --focus south";
       "super + {plus,bracketleft,braceleft,parenleft,ampersand,equal,parenright,braceright,bracketright,asterisk}" = "bspc desktop -f '^{1-9,10}'";
       # super + shift + {1-9,0}
       "super + shift + {plus,bracketleft,braceleft,parenleft,ampersand,equal,parenright,braceright,bracketright,asterisk}" = "bspc node -d '^{1-9,10}' -f";
