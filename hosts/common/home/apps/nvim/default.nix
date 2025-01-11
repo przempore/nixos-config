@@ -163,7 +163,7 @@ in
       nodePackages."diagnostic-languageserver"
       nodePackages."dockerfile-language-server-nodejs"
       pyright
-      # nodePackages."vscode-langservers-extracted"
+      nodePackages."vscode-langservers-extracted"
       nodePackages."yaml-language-server"
       terraform-ls
     ];
