@@ -15,11 +15,12 @@
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     # mozilla-overlay.url = "github:mozilla/nixpkgs-mozilla"; # not used anymore
-    lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # lix-module = {
+    #   url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    # zen-browser.url = "github:przempore/zen-browser-flake";
     tmux-sessionx = {
       url = "github:omerxx/tmux-sessionx";
       inputs.nixpkgs.follows = "nixpkgs";
