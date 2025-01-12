@@ -18,6 +18,8 @@
 
       init.defaultBranch = "main";
       submodule.recurse = "true";
+      pull.rebase = "true";
+      rebase.autosquash = "true";
     };
 
     delta = {
