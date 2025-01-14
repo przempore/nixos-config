@@ -26,6 +26,7 @@
       pkgs-unstable.zed-editor
 
       pkgs.thunderbird
+      pkgs.teamviewer
     ];
   };
 }
