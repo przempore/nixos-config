@@ -25,7 +25,7 @@
       pkgs.dbeaver-bin
       pkgs-unstable.zed-editor
 
-      pkgs.thunderbird
+      pkgs.zoom-us
     ];
   };
 }
