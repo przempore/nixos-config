@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ pkgs-unstable, ... }:
 {
   imports = [
     ../../common/home
@@ -20,6 +20,9 @@
     #   NVD_BACKEND = "direct";
     #   LIBVA_DRIVER_NAME = "nvidia";
     # };
+    packages = [
+      pkgs-unstable.zed-editor
+    ];
   };
 
   services.picom.settings = {
