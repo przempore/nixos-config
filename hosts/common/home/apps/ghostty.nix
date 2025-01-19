@@ -59,8 +59,7 @@
 
     window-theme = ghostty
 
-    keybind = ctrl+;>w=toggle_tab_overview
-    keybind = ctrl+q=close_window
+    keybind = ctrl+;>q=close_window
     keybind = ctrl+;>w=toggle_tab_overview
     keybind = ctrl+;>shift+r=reload_config
     keybind = ctrl+;>x=close_surface
