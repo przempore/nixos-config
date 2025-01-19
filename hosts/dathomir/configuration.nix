@@ -14,7 +14,7 @@
   system.autoUpgrade.enable = true;
   system.autoUpgrade.operation = "boot";
   system.autoUpgrade.dates = "weekly";
-  boot.loader.systemd-boot.configurationLimit = 3;
+  boot.loader.systemd-boot.configurationLimit = 2;
 
   # Enable Flakes and the new command-line tool
   # nix.settings.experimental-features = [ "nix-command" "flakes" ];
