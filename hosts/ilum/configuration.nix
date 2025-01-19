@@ -57,6 +57,7 @@
     packages = with pkgs; [
       ltunify
       chromium
+      deploy-rs
     ];
   };
 

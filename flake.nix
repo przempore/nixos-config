@@ -26,12 +26,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ghostty.url = "github:ghostty-org/ghostty";
-
+    deploy-rs.url = "github:serokell/deploy-rs";
   };
 
   outputs =
-    { nixpkgs
+    { self
+    , nixpkgs
     , nixos-hardware
+    , deploy-rs
     , ...
     }@inputs:
     let
@@ -55,6 +57,19 @@
         machine = "ilum";
         user = "przemek";
       };
+
+      deployPkgs =
+        let
+          pkgs = inputs.nixpkgs.legacyPackages.${system};
+        in
+        import nixpkgs
+        {
+        inherit system;
+        overlays = [
+          deploy-rs.overlay # or deploy-rs.overlays.default
+          (self: super: { deploy-rs = { inherit (pkgs) deploy-rs; lib = super.deploy-rs.lib; }; })
+        ];
+      };
     in
     {
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixpkgs-fmt;
@@ -75,6 +90,17 @@
         dathomir = dathomirSystem.nixosConfiguration.dathomir;
         dooku = dookuSystem.nixosConfiguration.dooku;
         ilum = ilumSystem.nixosConfiguration.ilum;
+      };
+
+      deploy.nodes.dathomir = {
+        hostname = "dathomir";
+        fastConnection = true;
+        interactiveSudo = true;
+        profiles.system = {
+          user = "root";
+          sshUser = "przemek";
+          path = deployPkgs.deploy-rs.lib.activate.nixos self.nixosConfigurations.dathomir;
+        };
       };
     };
 }
