@@ -16,7 +16,7 @@
     discord
     ncpamixer
       
-    wgnord
+    wireguard-tools
   ]);
 
   imports = [
