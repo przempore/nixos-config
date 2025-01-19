@@ -43,6 +43,8 @@
 
   home.file.".config/ghostty/config".text = ''
     theme = catppuccin-mocha
+    gtk-custom-css = tab-style.css
+
     font-family = "JetBrainsMono Nerd Font Mono"
     font-size = 10
     # window-decoration = false
@@ -58,16 +60,10 @@
     window-theme = ghostty
 
     keybind = ctrl+;>w=toggle_tab_overview
-
-    # Close window (kitty close_os_window)
     keybind = ctrl+q=close_window
-
-    # Toggle the tab overview, only works with libadwaita enabled
     keybind = ctrl+;>w=toggle_tab_overview
-
     keybind = ctrl+;>shift+r=reload_config
     keybind = ctrl+;>x=close_surface
-
-    gtk-custom-css = tab-style.css
+    keybind = ctrl+shift+h=write_scrollback_file:open
   '';
 }
