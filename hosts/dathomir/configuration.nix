@@ -45,6 +45,8 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
+  services.tailscale.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.przemek = {
     isNormalUser = true;
