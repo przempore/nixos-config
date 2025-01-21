@@ -26,6 +26,7 @@
       pkgs-unstable.zed-editor
 
       pkgs.zoom-us
+      pkgs.github-copilot-cli
     ];
   };
 }
