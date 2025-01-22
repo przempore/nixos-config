@@ -15,6 +15,7 @@
   nix.settings.trusted-users = [ "root" "przemek" ];
 
   # boot.kernelPackages = pkgs.linuxPackages;
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
 
   networking.hostName = "ilum"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
