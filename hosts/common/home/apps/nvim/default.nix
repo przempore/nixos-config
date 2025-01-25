@@ -143,6 +143,7 @@ in
       vimPlugins.obsidian-nvim
       vimPlugins.CopilotChat-nvim
       pomo-nvim
+      vimPlugins.avante-nvim
     ];
 
     extraPackages = with pkgs; [
