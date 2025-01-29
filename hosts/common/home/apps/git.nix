@@ -20,6 +20,7 @@
       submodule.recurse = "true";
       pull.rebase = "true";
       rebase.autosquash = "true";
+      rerere.enabled = true;
     };
 
     delta = {
