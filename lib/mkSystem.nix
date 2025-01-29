@@ -12,6 +12,7 @@ let
     "google-chrome"
     "spotify"
     "obsidian"
+    "zoom"
     # "vscode-extension-ms-vscode-cpptools"
   ];
   permittedInsecurePackages = [
