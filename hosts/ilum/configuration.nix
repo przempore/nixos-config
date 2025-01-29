@@ -14,7 +14,6 @@
 
   nix.settings.trusted-users = [ "root" "przemek" ];
 
-  # boot.kernelPackages = pkgs.linuxPackages;
   boot.kernelPackages = pkgs.linuxPackages_6_12;
 
   networking.hostName = "ilum"; # Define your hostname.
