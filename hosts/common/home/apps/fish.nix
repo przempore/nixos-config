@@ -9,6 +9,7 @@
       asdf = lib.mkDefault "setxkbmap real-prog-dvorak";
       asdfc = lib.mkDefault "setxkbmap -option ctrl:nocaps && setxkbmap -option altwin:swap_lalt_lwin";
       aoeu = lib.mkDefault "setxkbmap pl";
+      sb = lib.mkDefault "cd ~/Projects/second-brain/; vi .";
     };
     interactiveShellInit = ''
       if type -q any-nix-shell
