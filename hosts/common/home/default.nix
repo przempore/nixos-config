@@ -105,7 +105,6 @@
       unzip
 
       obsidian
-
       distrobox
     ];
   };
