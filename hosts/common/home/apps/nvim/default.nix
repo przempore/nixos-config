@@ -144,6 +144,8 @@ in
       vimPlugins.CopilotChat-nvim
       pomo-nvim
       vimPlugins.avante-nvim
+      vimPlugins.dressing-nvim
+      vimPlugins.snacks-nvim
     ];
 
     extraPackages = with pkgs; [
