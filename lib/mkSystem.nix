@@ -13,6 +13,7 @@ let
     "spotify"
     "obsidian"
     "zoom"
+    "libsciter"
     # "vscode-extension-ms-vscode-cpptools"
   ];
   permittedInsecurePackages = [

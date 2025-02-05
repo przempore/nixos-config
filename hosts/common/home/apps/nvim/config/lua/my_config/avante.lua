@@ -5,22 +5,21 @@ require("avante").setup({
   -- WARNING: Since auto-suggestions are a high-frequency operation and therefore expensive,
   -- currently designating it as `copilot` provider is dangerous because: https://github.com/yetone/avante.nvim/issues/1048
   -- Of course, you can reduce the request frequency by increasing `suggestion.debounce`.
-  -- auto_suggestions_provider = "claude",
-  -- auto_suggestions_provider = "claude",
-  -- claude = {
-  --   endpoint = "https://api.anthropic.com",
-  --   model = "claude-3-5-sonnet-20241022",
-  --   temperature = 0,
-  --   max_tokens = 4096,
-  -- },
-  provider = "openai", -- Recommend using Claude
-  auto_suggestions_provider = "openai",
-  openai = {
-    endpoint = "https://api.openai.com/v1",
-    model = "chatgpt-4o-latest", -- Use "gpt-4" for your Plus subscription
-    temperature = 0, -- Adjust as needed
-    max_tokens = 4096, -- Adjust token limit as required
+  auto_suggestions_provider = "claude",
+  claude = {
+    endpoint = "https://api.anthropic.com",
+    model = "claude-3-5-sonnet-20241022",
+    temperature = 0,
+    max_tokens = 4096,
   },
+  -- provider = "openai", -- Recommend using Claude
+  -- auto_suggestions_provider = "openai",
+  -- openai = {
+  --   endpoint = "https://api.openai.com/v1",
+  --   model = "chatgpt-4o-latest", -- Use "gpt-4" for your Plus subscription
+  --   temperature = 0, -- Adjust as needed
+  --   max_tokens = 4096, -- Adjust token limit as required
+  -- },
   ---Specify the special dual_boost mode
   ---1. enabled: Whether to enable dual_boost mode. Default to false.
   ---2. first_provider: The first provider to generate response. Default to "openai".
