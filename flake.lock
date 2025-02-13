@@ -115,11 +115,11 @@
         "zig2nix": "zig2nix"
       },
       "locked": {
-        "lastModified": 1739465368,
-        "narHash": "sha256-eQ0jJ5cqRowgGEbMLN+vT2tzQwxx8lsT24W9XOaxD2c=",
+        "lastModified": 1739469086,
+        "narHash": "sha256-lUTU5LI31l1FP+668WB/09doT+D3K9xLm+9yI7KIcKs=",
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "6f4716fd60407d459b18ada65f0a01ad02d702b4",
+        "rev": "20dcae876d5b93b67ab031b7438e4c49b35518f2",
         "type": "github"
       },
       "original": {
