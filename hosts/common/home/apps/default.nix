@@ -1,7 +1,7 @@
 { pkgs, zen-browser, ghostty, ... }:
 {
   home.packages = [
-    zen-browser.packages.x86_64-linux.default
+    zen-browser.packages.x86_64-linux.twilight
     ghostty.packages.x86_64-linux.default
   ]
   ++ (with pkgs; [
