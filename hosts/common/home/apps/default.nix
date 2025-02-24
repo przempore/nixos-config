@@ -15,6 +15,7 @@
     sshfs
     discord
     ncpamixer
+    lazydocker
       
     wireguard-tools
   ]);
