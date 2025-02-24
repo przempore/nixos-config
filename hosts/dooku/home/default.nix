@@ -23,7 +23,7 @@
     packages = [
       pkgs.remmina
       pkgs.dbeaver-bin
-      pkgs-unstable.zed-editor
+      # pkgs-unstable.zed-editor
 
       pkgs.zoom-us
       # pkgs.github-copilot-cli
