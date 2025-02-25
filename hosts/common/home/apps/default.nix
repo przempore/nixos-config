@@ -16,7 +16,7 @@
     discord
     ncpamixer
     lazydocker
-      
+
     wireguard-tools
   ]);
 

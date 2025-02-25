@@ -63,13 +63,13 @@
           pkgs = inputs.nixpkgs.legacyPackages.${system};
         in
         import nixpkgs
-        {
-        inherit system;
-        overlays = [
-          deploy-rs.overlay # or deploy-rs.overlays.default
-          (self: super: { deploy-rs = { inherit (pkgs) deploy-rs; lib = super.deploy-rs.lib; }; })
-        ];
-      };
+          {
+            inherit system;
+            overlays = [
+              deploy-rs.overlay # or deploy-rs.overlays.default
+              (self: super: { deploy-rs = { inherit (pkgs) deploy-rs; lib = super.deploy-rs.lib; }; })
+            ];
+          };
     in
     {
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixpkgs-fmt;
