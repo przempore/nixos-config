@@ -97,11 +97,11 @@ in
       vimPlugins.friendly-snippets
       vimPlugins.fzf-checkout-vim
       vimPlugins.fzf-vim
-      # vimPlugins.git-worktree-nvim
-      telescope-git-worktrees
+      vimPlugins.git-worktree-nvim
+      # telescope-git-worktrees
       vimPlugins.gitsigns-nvim
-      # vimPlugins.harpoon2
-      harpoon2_rev_lock
+      vimPlugins.harpoon2
+      # harpoon2_rev_lock
       vimPlugins.lsp-zero-nvim
       vimPlugins.lsp_extensions-nvim
       vimPlugins.lspkind-nvim
