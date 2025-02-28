@@ -97,8 +97,8 @@ in
       vimPlugins.friendly-snippets
       vimPlugins.fzf-checkout-vim
       vimPlugins.fzf-vim
-      vimPlugins.git-worktree-nvim
-      # telescope-git-worktrees
+      # vimPlugins.git-worktree-nvim
+      telescope-git-worktrees
       vimPlugins.gitsigns-nvim
       vimPlugins.harpoon2
       # harpoon2_rev_lock
