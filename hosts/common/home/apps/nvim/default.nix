@@ -146,6 +146,7 @@ in
       vimPlugins.avante-nvim
       vimPlugins.dressing-nvim
       vimPlugins.snacks-nvim
+      vimPlugins.img-clip-nvim
     ];
 
     extraPackages = with pkgs; [
