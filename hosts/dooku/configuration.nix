@@ -44,6 +44,9 @@
     officeVPN = {
       config = '' config /root/nixos/openvpn/officeVPN.conf '';
       updateResolvConf = true;
+      autoStart = false;
+      authUserPass.username = builtins.getEnv "OFFICE_VPN_USERNAME";
+      authUserPass.password = builtins.getEnv "OFFICE_VPN_PASSWORD";
     };
   };
 
