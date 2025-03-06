@@ -64,11 +64,6 @@ nnoremap("<leader>0", ":NERDTreeFind<CR>")
 nnoremap("<leader>z", "<cmd>:lua require(\"zen-mode\").toggle({ window = { width = .85 } })<cr>",
     { noremap = true, silent = true, desc = "[Zen mode] Togle"})
 
-nnoremap("<leader>gu", "<cmd>diffget //2<CR>",
-    { noremap = true, silent = true, desc = "[Git] Accept <<< changes"})
-nnoremap("<leader>gh", "<cmd>diffget //3<CR>",
-    { noremap = true, silent = true, desc = "[Git] Accept >>> changes"})
-
 nnoremap("<leader>cr", "<cmd>!find . -name \"*.c\" -o -name \"*.cpp\" -o -name \"*.h\" -o -name \"*.hpp\" > cscope.files; cscope -q -R -b -i cscope.files<CR>",
     { noremap = true, silent = true, desc = "[cscope] Create database"})
 
