@@ -1,7 +1,7 @@
 { pkgs, pkgs-unstable, zen-browser, ghostty, ... }:
 {
   home.packages = [
-    zen-browser.packages.x86_64-linux.twilight
+    zen-browser.packages.x86_64-linux.beta
     ghostty.packages.x86_64-linux.default
   ]
   ++ (with pkgs; [
