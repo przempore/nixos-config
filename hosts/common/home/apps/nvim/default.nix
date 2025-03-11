@@ -79,7 +79,7 @@ in
 
     plugins = with pkgs-unstable; [
       cscope_maps-nvim
-      direnv-vim
+      # direnv-vim
       wf-nvim
       vimPlugins.cmp-buffer
       vimPlugins.cmp-cmdline
