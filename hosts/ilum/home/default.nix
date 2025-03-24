@@ -21,7 +21,7 @@
     #   LIBVA_DRIVER_NAME = "nvidia";
     # };
     packages = [
-      pkgs-unstable.zed-editor
+      # pkgs-unstable.zed-editor
     ];
   };
 
