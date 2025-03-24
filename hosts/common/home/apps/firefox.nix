@@ -29,6 +29,7 @@
         "dom.security.https_only_mode_ever_enabled" = true;
         "privacy.trackingprotection.enabled" = true;
         "privacy.trackingprotection.socialtracking.enabled" = true;
+        "sidebar.verticalTabs" = true;
       };
       search = {
         force = true;
