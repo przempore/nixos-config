@@ -27,13 +27,14 @@
     ./direnv.nix
     ./firefox.nix
     ./fish.nix
-    ./git.nix
     ./ghostty.nix
+    ./git.nix
     ./kitty
     ./mpv.nix
     ./nvim
     ./ranger.nix
     ./starship.nix
+    ./superfile.nix
     ./tmux.nix
     ./wezterm
     ./zathura.nix
