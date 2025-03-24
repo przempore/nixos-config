@@ -65,4 +65,18 @@
     keybind = ctrl+;>x=close_surface
     keybind = ctrl+shift+h=write_scrollback_file:open
   '';
+
+  home.file.".local/share/applications/nvim.desktop".text = ''
+    [Desktop Entry]
+    Name=Neovim
+    Categories=Utility;TextEditor;
+    Comment=Neovim Text Editor
+    Exec=ghostty -e nvim %F
+    Icon=gvim
+    Keywords=Text;editor;
+    MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;
+    StartupNotify=false
+    Terminal=false
+    Type=Application
+  '';
 }
