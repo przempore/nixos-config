@@ -108,11 +108,11 @@ local avante_config = {
 require("avante").setup(avante_config)
 
 local models = {
-  ["Claude 3 Sonnet"] = {
+  ["Claude 3.5 Sonnet"] = {
     provider = "claude",
     model = "claude-3-5-sonnet-20241022",
   },
-  ["Claude 3 Opus"] = {
+  ["Claude 3.7 Opus"] = {
     provider = "claude",
     model = "claude-3-7-sonnet-20250219",
   },
