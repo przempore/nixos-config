@@ -10,6 +10,7 @@
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./nvidia-drivers.nix
+      ./gaming.nix
     ];
 
   nix.settings.trusted-users = [ "root" "przemek" ];
