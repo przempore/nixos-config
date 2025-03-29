@@ -56,8 +56,10 @@ require("lspsaga").setup({})
 --   suggestion = { enabled = false },
 --   panel = { enabled = false },
 -- })
---
 -- require("copilot_cmp").setup()
+-- require("CopilotChat").setup {
+--   -- See Configuration section for options
+-- }
 
 local daily_notes_path = require("my_config.date_formatter_for_obsidian").get_formatted_path()
 local daily_notes_day = require("my_config.date_formatter_for_obsidian").get_filename()
@@ -127,10 +129,6 @@ require("pomo").setup({
     },
   },
 })
-
--- require("CopilotChat").setup {
---   -- See Configuration section for options
--- }
 
 require("my_config.avante")
 
