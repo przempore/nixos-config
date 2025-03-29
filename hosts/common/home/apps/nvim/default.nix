@@ -81,17 +81,14 @@ in
       cscope_maps-nvim
       # direnv-vim
       wf-nvim
-      vimPlugins.cmp-buffer
-      vimPlugins.cmp-cmdline
-      vimPlugins.cmp-git
-      vimPlugins.cmp-nvim-lsp
-      vimPlugins.cmp-nvim-lsp-document-symbol
-      vimPlugins.cmp-nvim-lua
-      vimPlugins.cmp-path
-      vimPlugins.cmp_luasnip
+      vimPlugins.blink-cmp
+      vimPlugins.friendly-snippets
+      vimPlugins.lspkind-nvim
+      vimPlugins.nvim-web-devicons
+      vimPlugins.luasnip
       vimPlugins.comment-nvim
-      vimPlugins.copilot-cmp
-      vimPlugins.copilot-lua
+      # vimPlugins.copilot-cmp
+      # vimPlugins.copilot-lua
       vimPlugins.fidget-nvim
       vimPlugins.firenvim
       vimPlugins.friendly-snippets
@@ -112,7 +109,6 @@ in
       vimPlugins.mason-nvim
       vimPlugins.mason-tool-installer-nvim
       vimPlugins.neodev-nvim
-      vimPlugins.nvim-cmp
       vimPlugins.nvim-fzf
       vimPlugins.nvim-lint
       vimPlugins.nvim-lspconfig
