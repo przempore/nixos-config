@@ -145,7 +145,7 @@ in
       vimPlugins.img-clip-nvim
     ];
 
-    extraPackages = with pkgs; [
+    extraPackages = with pkgs-unstable; [
       # tabnine
       neocmakelsp
       nixd
