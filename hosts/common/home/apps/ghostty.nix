@@ -64,6 +64,7 @@
     keybind = ctrl+;>shift+r=reload_config
     keybind = ctrl+;>x=close_surface
     keybind = ctrl+shift+h=write_scrollback_file:open
+    keybind = ctrl+alt+shift+i=write_screen_file:open
   '';
 
   home.file.".local/share/applications/nvim.desktop".text = ''
