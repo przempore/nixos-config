@@ -87,6 +87,7 @@ in
       vimPlugins.nvim-web-devicons
       vimPlugins.luasnip
       vimPlugins.comment-nvim
+      vimPlugins.palette-nvim
       # vimPlugins.copilot-cmp
       # vimPlugins.copilot-lua
       vimPlugins.fidget-nvim

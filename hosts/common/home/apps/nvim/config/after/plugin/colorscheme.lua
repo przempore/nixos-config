@@ -46,3 +46,8 @@ require("catppuccin").setup({
 
 -- setup must be called before loading
 vim.cmd.colorscheme "catppuccin"
+
+local palette = require("catppuccin.palettes").get_palette("mocha")
+vim.api.nvim_set_hl(0, "BlinkCmpMenu", { bg = palette.base })
+vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { bg = palette.base })
+vim.api.nvim_set_hl(0, "", { bg = palette.base })
