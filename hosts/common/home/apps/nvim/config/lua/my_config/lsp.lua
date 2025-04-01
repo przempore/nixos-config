@@ -182,8 +182,20 @@ vim.diagnostic.config({
   }
 })
 
+local function toggle_virtual_lines()
+    local current_virtual_lines = vim.diagnostic.config().virtual_lines
+    vim.diagnostic.config({
+        virtual_lines = not current_virtual_lines
+    })
+    vim.notify("Virtual lines " .. (not current_virtual_lines and "enabled" or "disabled"))
+end
+
+-- Set initial virtual_lines state
 vim.diagnostic.config({
-    virtual_lines = true
+    virtual_lines = false
 })
+
+-- Keybinding to toggle virtual_lines
+vim.keymap.set('n', '<leader>vl', toggle_virtual_lines, { desc = "Toggle virtual diagnostic lines" })
 
 -- print("LSP configured using nvim-lspconfig")
