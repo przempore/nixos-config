@@ -65,14 +65,11 @@ local function setup_tab_keymaps()
       return ""
     end
   end, { expr = true, noremap = true, silent = true, desc = "Completion/Snippet S-Tab" })
-
-  -- print("Custom Tab/S-Tab keymaps set.")
 end
 
 -- Call the function to set the keymaps
 -- Make sure this is called AFTER plugins are loaded
 setup_tab_keymaps()
-
 
 local M = {}
 
@@ -87,8 +84,46 @@ function M.setup()
 
   blink_cmp.setup({
     appearance = {
-      -- use_nvim_cmp_as_default = true, -- Keep if you like the style
-      nerd_font_variant = "mono", -- Or your preferred variant
+      highlight_ns = vim.api.nvim_create_namespace('blink_cmp'),
+      -- Sets the fallback highlight groups to nvim-cmp's highlight groups
+      -- Useful for when your theme doesn't support blink.cmp
+      -- Will be removed in a future release
+      use_nvim_cmp_as_default = false,
+      -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+      -- Adjusts spacing to ensure icons are aligned
+      nerd_font_variant = 'mono',
+      kind_icons = {
+        Text = '󰉿',
+        Method = '󰊕',
+        Function = '󰊕',
+        Constructor = '󰒓',
+
+        Field = '󰜢',
+        Variable = '󰆦',
+        Property = '󰖷',
+
+        Class = '󱡠',
+        Interface = '󱡠',
+        Struct = '󱡠',
+        Module = '󰅩',
+
+        Unit = '󰪚',
+        Value = '󰦨',
+        Enum = '󰦨',
+        EnumMember = '󰦨',
+
+        Keyword = '󰻾',
+        Constant = '󰏿',
+
+        Snippet = '󱄽',
+        Color = '󰏘',
+        File = '󰈔',
+        Reference = '󰬲',
+        Folder = '󰉋',
+        Event = '󱐋',
+        Operator = '󰪚',
+        TypeParameter = '󰬛',
+      },
     },
     completion = {
       documentation = {
@@ -109,6 +144,14 @@ function M.setup()
           },
           -- Customize components (icons, text formatting)
           components = {
+            label = {
+                text = function(ctx)
+                    return require("colorful-menu").blink_components_text(ctx)
+                end,
+                highlight = function(ctx)
+                    return require("colorful-menu").blink_components_highlight(ctx)
+                end,
+            },
             source_name = {
               text = function(ctx)
                 return "[" .. ctx.source_name .. "]"

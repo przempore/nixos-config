@@ -73,6 +73,8 @@ local function on_attach(client, bufnr)
   -- Signature Help (triggered in Insert mode)
   vim.keymap.set('i', '<C-h>', vim.lsp.buf.signature_help, bufopts)
 
+  vim.keymap.set('n', '<leader>vo', function() vim.diagnostic.open_float() end, { noremap = true, silent = true, desc = "[lsp] diagnostic"})
+
 end
 -- ... (rest of your lsp.lua, including the lspconfig setup calls which should all have on_attach = on_attach) ...
 

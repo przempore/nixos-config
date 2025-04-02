@@ -88,6 +88,7 @@ in
       vimPlugins.luasnip
       vimPlugins.comment-nvim
       vimPlugins.palette-nvim
+      vimPlugins.colorful-menu-nvim
       # vimPlugins.copilot-cmp
       # vimPlugins.copilot-lua
       vimPlugins.fidget-nvim
