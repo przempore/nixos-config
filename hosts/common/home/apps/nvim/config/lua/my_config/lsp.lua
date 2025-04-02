@@ -127,9 +127,24 @@ lspconfig.clangd.setup {
   -- root_dir = ... -- Only override if default detection fails
 }
 
-lspconfig.pyright.setup {
+-- lspconfig.pyright.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+-- }
+
+lspconfig.pylsp.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+  settings = {
+    pylsp = {
+      plugins = {
+        pycodestyle = {
+          ignore = {'W391'},
+          maxLineLength = 100
+        }
+      }
+    }
+  }
 }
 
 lspconfig.neocmake.setup {
