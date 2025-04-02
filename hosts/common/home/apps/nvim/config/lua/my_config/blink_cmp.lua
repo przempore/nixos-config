@@ -204,9 +204,10 @@ function M.setup()
       -- Acceptance: Use C-y
       ["<C-y>"] = { "accept", "fallback" },
 
+      ['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
+
       -- Cancellation
       ["<C-c>"] = { "cancel" },
-      ["<Esc>"] = { "cancel", "fallback" }, -- Good practice to allow Esc
 
       -- Decide what Enter should do now (e.g., just insert newline)
       ["<CR>"] = { "fallback" }, -- Let CR just insert a newline if menu is visible
