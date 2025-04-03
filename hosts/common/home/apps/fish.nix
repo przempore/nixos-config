@@ -1,5 +1,9 @@
-{ lib, ... }:
+{ lib, pkgs-unstable, ... }:
 {
+  home.packages = with pkgs-unstable; [
+    any-nix-shell
+  ];
+
   programs.fish = {
     enable = true;
     shellAliases = {

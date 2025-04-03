@@ -5,7 +5,6 @@
     ghostty.packages.x86_64-linux.default
   ]
   ++ (with pkgs; [
-    any-nix-shell
     autojump
     eza
     fzf # A command-line fuzzy finder
