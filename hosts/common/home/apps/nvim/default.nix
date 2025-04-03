@@ -65,6 +65,12 @@ in
     recursive = true;
   };
 
+  home.file.".config/nvim/dictionary/words.txt".source = "${builtins.fetchGit {
+    url = "https://github.com/dwyl/english-words";
+    ref = "master";
+    rev = "20f5cc9b3f0ccc8ce45d814c532b7c2031bba31c";
+  }}/words.txt";
+
   home.packages = [
     # pkgs.vscode-extensions.ms-vscode.cpptools
   ];
@@ -88,6 +94,7 @@ in
       vimPlugins.avante-nvim
       vimPlugins.blink-cmp
       vimPlugins.blink-cmp-avante
+      vimPlugins.blink-cmp-dictionary
       vimPlugins.blink-copilot
       vimPlugins.colorful-menu-nvim
       vimPlugins.comment-nvim

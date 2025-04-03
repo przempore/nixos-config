@@ -216,7 +216,7 @@ function M.setup()
     signature = { enabled = true },
     sources = {
       -- Define the order and enabled sources
-      default = { "avante", "copilot", "lsp", "snippets", "buffer", "path" },
+      default = { "dictionary", "avante", "copilot", "lsp", "snippets", "buffer", "path" },
       providers = {
         buffer = { max_items = 5 },
         lsp = { score_offset = 5 }, -- Prioritize LSP slightly
@@ -234,6 +234,14 @@ function M.setup()
         copilot = {
           module = "blink-copilot",
         },
+        dictionary = {
+          module = 'blink-cmp-dictionary',
+          name = 'Dict',
+          min_keyword_length = 3,
+          opts = {
+            dictionary_files = { vim.fn.expand('~/.config/nvim/dictionary/words.txt') }
+          }
+        }
       },
     },
   })
