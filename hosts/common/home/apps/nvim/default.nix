@@ -82,6 +82,8 @@ in
       # direnv-vim
       wf-nvim
       vimPlugins.blink-cmp
+      vimPlugins.blink-copilot
+      vimPlugins.blink-cmp-avante
       vimPlugins.friendly-snippets
       vimPlugins.lspkind-nvim
       vimPlugins.nvim-web-devicons
@@ -89,8 +91,7 @@ in
       vimPlugins.comment-nvim
       vimPlugins.palette-nvim
       vimPlugins.colorful-menu-nvim
-      # vimPlugins.copilot-cmp
-      # vimPlugins.copilot-lua
+      vimPlugins.copilot-lua
       vimPlugins.fidget-nvim
       vimPlugins.firenvim
       vimPlugins.friendly-snippets

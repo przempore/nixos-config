@@ -93,6 +93,7 @@ function M.setup()
       -- Adjusts spacing to ensure icons are aligned
       nerd_font_variant = 'mono',
       kind_icons = {
+        Copilot = "",
         Text = '󰉿',
         Method = '󰊕',
         Function = '󰊕',
@@ -212,10 +213,10 @@ function M.setup()
       -- Decide what Enter should do now (e.g., just insert newline)
       ["<CR>"] = { "fallback" }, -- Let CR just insert a newline if menu is visible
     }, -- End of keymap table
-    -- signature = { enabled = true }, -- Enable signature help if desired
+    signature = { enabled = true },
     sources = {
       -- Define the order and enabled sources
-      default = { "lsp", "snippets", "buffer", "path" }, -- Removed copilot for now unless specifically configured
+      default = { "avante", "lsp", "copilot", "snippets", "buffer", "path" },
       providers = {
         buffer = { max_items = 5 },
         lsp = { score_offset = 5 }, -- Prioritize LSP slightly
@@ -223,6 +224,16 @@ function M.setup()
         snippets = { score_offset = 2 }, -- Ensure snippets source name matches (often 'luasnip')
         -- Example for luasnip if source name is different
         -- luasnip = { score_offset = 2 },
+        avante = {
+          module = 'blink-cmp-avante',
+          name = 'Avante',
+          opts = {
+            -- options for blink-cmp-avante
+          }
+        },
+        copilot = {
+          module = "blink-copilot",
+        },
       },
     },
   })
