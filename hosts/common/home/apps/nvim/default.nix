@@ -78,40 +78,45 @@ in
     vimdiffAlias = true;
 
     plugins = with pkgs-unstable; [
-      cscope_maps-nvim
       # direnv-vim
-      wf-nvim
+      # harpoon2_rev_lock
+      # vimPlugins.git-worktree-nvim
+      cscope_maps-nvim
+      pomo-nvim
+      telescope-git-worktrees
+      vimPlugins.CopilotChat-nvim
+      vimPlugins.avante-nvim
       vimPlugins.blink-cmp
-      vimPlugins.blink-copilot
       vimPlugins.blink-cmp-avante
-      vimPlugins.friendly-snippets
-      vimPlugins.lspkind-nvim
-      vimPlugins.nvim-web-devicons
-      vimPlugins.luasnip
-      vimPlugins.comment-nvim
-      vimPlugins.palette-nvim
+      vimPlugins.blink-copilot
       vimPlugins.colorful-menu-nvim
+      vimPlugins.comment-nvim
       vimPlugins.copilot-lua
+      vimPlugins.dressing-nvim
       vimPlugins.fidget-nvim
       vimPlugins.firenvim
       vimPlugins.friendly-snippets
+      vimPlugins.friendly-snippets
       vimPlugins.fzf-checkout-vim
       vimPlugins.fzf-vim
-      # vimPlugins.git-worktree-nvim
-      telescope-git-worktrees
       vimPlugins.gitsigns-nvim
       vimPlugins.harpoon2
-      # harpoon2_rev_lock
+      vimPlugins.img-clip-nvim
       vimPlugins.lsp-zero-nvim
       vimPlugins.lsp_extensions-nvim
       vimPlugins.lspkind-nvim
+      vimPlugins.lspkind-nvim
       vimPlugins.lspsaga-nvim
+      vimPlugins.luasnip
       vimPlugins.luasnip
       vimPlugins.markdown-preview-nvim
       vimPlugins.mason-lspconfig-nvim
       vimPlugins.mason-nvim
       vimPlugins.mason-tool-installer-nvim
       vimPlugins.neodev-nvim
+      vimPlugins.nvim-dap
+      vimPlugins.nvim-dap-ui
+      vimPlugins.nvim-dap-virtual-text
       vimPlugins.nvim-fzf
       vimPlugins.nvim-lint
       vimPlugins.nvim-lspconfig
@@ -120,11 +125,15 @@ in
       vimPlugins.nvim-treesitter-textobjects
       vimPlugins.nvim-treesitter.withAllGrammars
       vimPlugins.nvim-web-devicons
+      vimPlugins.nvim-web-devicons
+      vimPlugins.obsidian-nvim
       vimPlugins.oil-nvim
+      vimPlugins.palette-nvim
       vimPlugins.playground
       vimPlugins.plenary-nvim
       vimPlugins.project-nvim
       vimPlugins.rust-vim
+      vimPlugins.snacks-nvim
       vimPlugins.telescope-fzf-native-nvim
       vimPlugins.telescope-nvim
       vimPlugins.undotree
@@ -136,16 +145,7 @@ in
       vimPlugins.vim-rhubarb
       vimPlugins.vim-sleuth
       vimPlugins.zen-mode-nvim
-      vimPlugins.nvim-dap
-      vimPlugins.nvim-dap-virtual-text
-      vimPlugins.nvim-dap-ui
-      vimPlugins.obsidian-nvim
-      vimPlugins.CopilotChat-nvim
-      pomo-nvim
-      vimPlugins.avante-nvim
-      vimPlugins.dressing-nvim
-      vimPlugins.snacks-nvim
-      vimPlugins.img-clip-nvim
+      wf-nvim
     ];
 
     extraPackages = with pkgs-unstable; [
