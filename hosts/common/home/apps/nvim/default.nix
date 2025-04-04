@@ -48,16 +48,6 @@ let
       sha256 = "sha256-Lwwm95UEkS8Q0Qsoh10o3sFn48wf7v7eCX/FJJV1HMI=";
     };
   };
-  pomo-nvim = pkgs.vimUtils.buildVimPlugin {
-    # lsp is going crazy in git-worktree with this plugin
-    name = "pomo-nvim";
-    src = pkgs.fetchFromGitHub {
-      owner = "epwalsh";
-      repo = "pomo.nvim";
-      rev = "v0.7.0";
-      sha256 = "sha256-uAmH5Rqch9CkuRFb0AYwb0Vjz4unZG44Y47lBLuLXJE=";
-    };
-  };
 in
 {
   home.file.".config/nvim" = {
@@ -88,7 +78,6 @@ in
       # harpoon2_rev_lock
       # vimPlugins.git-worktree-nvim
       cscope_maps-nvim
-      pomo-nvim
       telescope-git-worktrees
       vimPlugins.CopilotChat-nvim
       vimPlugins.avante-nvim
@@ -138,6 +127,7 @@ in
       vimPlugins.palette-nvim
       vimPlugins.playground
       vimPlugins.plenary-nvim
+      vimPlugins.pomo-nvim
       vimPlugins.project-nvim
       vimPlugins.rust-vim
       vimPlugins.snacks-nvim
