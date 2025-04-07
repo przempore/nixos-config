@@ -20,15 +20,15 @@
     homeDirectory = "/home/porebski";
 
     # set rdp_use_client_keymap=1 in ~/.config/remmina/remmina.pref
-    packages = with pkgs-unstable; [
-      remmina
-      dbeaver-bin
+    packages = [
+      pkgs.remmina
+      pkgs.dbeaver-bin
       # pkgs-unstable.zed-editor
 
-      zoom-us
-      rustdesk
-      teams-for-linux
-      rclone
+      pkgs.zoom-us
+      pkgs.rustdesk
+      pkgs.teams-for-linux
+      pkgs.rclone
     ];
   };
 }
