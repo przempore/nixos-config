@@ -26,9 +26,9 @@
       # pkgs-unstable.zed-editor
 
       pkgs.zoom-us
-      # pkgs.github-copilot-cli
       pkgs.rustdesk
       pkgs.teams-for-linux
+      pkgs.rclone
     ];
   };
 }
