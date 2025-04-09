@@ -45,7 +45,7 @@ in
       modules = [
         # TODO: move modules around to unlock home configuration from machine
         ../hosts/${machine}/home
-        # inputs.lix-module.nixosModules.default
+        inputs.lix-module.nixosModules.default
       ];
     };
   };
@@ -56,7 +56,7 @@ in
       modules = inputs.nixpkgs.lib.optional (nixos-hardware != null) nixos-hardware ++ [
         unfree-config
         ../hosts/${machine}/configuration.nix
-        # inputs.lix-module.nixosModules.default
+        inputs.lix-module.nixosModules.default
 
         inputs.home-manager.nixosModules.home-manager
         {
