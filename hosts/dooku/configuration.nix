@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   imports =
     [
@@ -11,6 +11,7 @@
       ./hardware-configuration.nix
     ];
 
+  hardware.enableRedistributableFirmware = lib.mkDefault true;
   nix.settings.trusted-users = [ "root" "porebski" ];
 
   boot.initrd.luks.devices."luks-7e5a1347-6f7b-4c7b-acdb-125fa70f58c2".device = "/dev/disk/by-uuid/7e5a1347-6f7b-4c7b-acdb-125fa70f58c2";
@@ -62,6 +63,7 @@
   services.qemuGuest.enable = true;
   services.teamviewer.enable = true;
   services.tailscale.enable = true;
+  services.tlp.enable = lib.mkDefault true;
 
   virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;
