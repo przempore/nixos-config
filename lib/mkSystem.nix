@@ -2,7 +2,13 @@
 { machine, system, nixos-hardware ? null, user }:
 let
   pkgs = inputs.nixpkgs.legacyPackages.${system};
-  pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
+  pkgs-unstable = import inputs.nixpkgs-unstable {
+    system = "x86_64-linux";
+    config = {
+      allowUnfreePredicate = (pkg: true);
+      allowUnfree = true;
+    };
+  };
   legacyPkgs = inputs.legacy-nixpkgs.legacyPackages.${system};
 
   allowed-unfree-packages = [
@@ -14,7 +20,6 @@ let
     "obsidian"
     "zoom"
     "libsciter"
-    # "vscode-extension-ms-vscode-cpptools"
   ];
   permittedInsecurePackages = [
     "nix-2.16.2"

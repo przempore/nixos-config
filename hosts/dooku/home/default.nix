@@ -25,7 +25,7 @@
       pkgs.dbeaver-bin
       # pkgs-unstable.zed-editor
 
-      pkgs.zoom-us
+      pkgs-unstable.zoom-us
       pkgs.rustdesk
       pkgs.teams-for-linux
       pkgs.rclone
