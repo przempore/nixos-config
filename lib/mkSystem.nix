@@ -3,7 +3,7 @@
 let
   pkgs = inputs.nixpkgs.legacyPackages.${system};
   pkgs-unstable = import inputs.nixpkgs-unstable {
-    system = "x86_64-linux";
+    inherit system;
     config = {
       allowUnfreePredicate = (pkg: true);
       allowUnfree = true;
@@ -35,18 +35,18 @@ let
       default = allowed-unfree-packages;
     };
   };
+  extraSpecialArgs = {
+    inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages legacyPkgs;
+    catppuccin = inputs.catppuccin;
+    zen-browser = inputs.zen-browser;
+    tmux-sessionx = inputs.tmux-sessionx;
+    ghostty = inputs.ghostty;
+  };
 in
 {
   homeConfiguration = {
     ${user} = inputs.home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      extraSpecialArgs = {
-        inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages legacyPkgs;
-        catppuccin = inputs.catppuccin;
-        zen-browser = inputs.zen-browser;
-        tmux-sessionx = inputs.tmux-sessionx;
-        ghostty = inputs.ghostty;
-      };
+      inherit pkgs extraSpecialArgs;
       modules = [
         # TODO: move modules around to unlock home configuration from machine
         ../hosts/${machine}/home
@@ -68,13 +68,7 @@ in
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.${user} = ../hosts/${machine}/home;
-          home-manager.extraSpecialArgs = {
-            inherit allowed-unfree-packages pkgs-unstable legacyPkgs;
-            catppuccin = inputs.catppuccin;
-            zen-browser = inputs.zen-browser;
-            tmux-sessionx = inputs.tmux-sessionx;
-            ghostty = inputs.ghostty;
-          };
+          home-manager.extraSpecialArgs = extraSpecialArgs;
         }
       ];
     };
