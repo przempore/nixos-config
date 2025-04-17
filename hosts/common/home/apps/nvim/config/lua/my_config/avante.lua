@@ -127,6 +127,10 @@ local models = {
   ["gpt-4o-mini-search-preview"] = {
     provider = "openai",
     model = "gpt-4o-mini-search-preview",
+  },
+  ["gpt-4.1-mini"] = {
+    provider = "openai",
+    model = "gpt-4.1-mini",
   }
 }
 
