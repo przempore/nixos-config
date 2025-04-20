@@ -191,28 +191,18 @@ lspconfig.nixd.setup {
   capabilities = capabilities,
 }
 
--- Configure diagnostic floating windows too
 vim.diagnostic.config({
+  signs = { priority = 9999 },
+  underline = true,
+  update_in_insert = false, -- false so diags are updated on InsertLeave
+  virtual_text = { current_line = true, severity = { min = "INFO", max = "WARN" } },
+  virtual_lines = { current_line = true, severity = { min = "ERROR" } },
+  severity_sort = true,
   float = {
-    border = vim.o.winborder,
-    source = "always", -- Optional: show diagnostic source
-  }
+    focusable = false,
+    style = "minimal",
+    border = "rounded",
+    source = true,
+    header = "",
+  },
 })
-
-local function toggle_virtual_lines()
-    local current_virtual_lines = vim.diagnostic.config().virtual_lines
-    vim.diagnostic.config({
-        virtual_lines = not current_virtual_lines
-    })
-    vim.notify("Virtual lines " .. (not current_virtual_lines and "enabled" or "disabled"))
-end
-
--- Set initial virtual_lines state
-vim.diagnostic.config({
-    virtual_lines = false
-})
-
--- Keybinding to toggle virtual_lines
-vim.keymap.set('n', '<leader>vl', toggle_virtual_lines, { desc = "Toggle virtual diagnostic lines" })
-
--- print("LSP configured using nvim-lspconfig")
