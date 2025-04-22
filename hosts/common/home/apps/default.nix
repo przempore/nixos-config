@@ -8,6 +8,7 @@
     autojump
     eza
     fzf # A command-line fuzzy finder
+    fd
     ripgrep
     fastfetch
     yazi
