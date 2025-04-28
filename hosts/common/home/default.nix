@@ -18,7 +18,7 @@
     sessionVariables = {
       EDITOR = "nvim";
       VISUAL = "nvim";
-      TERMINAL = "kitty";
+      TERMINAL = "ghostty";
       TERM = "xterm-256color";
       NVD_BACKEND = "direct";
     };
@@ -41,7 +41,7 @@
 
       cachix
       onlyoffice-bin_latest
-      netflix
+      # netflix
       dash
 
       # archives
