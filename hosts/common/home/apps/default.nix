@@ -13,7 +13,7 @@
     fastfetch
     yazi
     sshfs
-    discord
+    # discord
     ncpamixer
     lazydocker
 
