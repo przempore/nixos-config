@@ -41,6 +41,7 @@ let
     zen-browser = inputs.zen-browser;
     tmux-sessionx = inputs.tmux-sessionx;
     ghostty = inputs.ghostty;
+    neovim = inputs.neovim;
   };
 in
 {

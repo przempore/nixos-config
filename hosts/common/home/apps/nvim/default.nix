@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, pkgs-unstable, neovim, ... }:
 let
   cscope_maps-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "cscope_maps-nvim";
@@ -48,6 +48,11 @@ let
       sha256 = "sha256-Lwwm95UEkS8Q0Qsoh10o3sFn48wf7v7eCX/FJJV1HMI=";
     };
   };
+    neovim-nightly = neovim.packages.${pkgs.system}.default.overrideAttrs (old: {
+    meta = old.meta or { } // {
+      maintainers = [ ];
+    };
+  });
 in
 {
   home.file.".config/nvim" = {
@@ -66,7 +71,8 @@ in
   ];
 
   programs.neovim = {
-    package = pkgs-unstable.neovim-unwrapped;
+    # package = pkgs-unstable.neovim-unwrapped;
+    package = neovim-nightly;
     enable = true;
     defaultEditor = true;
     viAlias = true;

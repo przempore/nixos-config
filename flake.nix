@@ -27,6 +27,7 @@
     };
     ghostty.url = "github:ghostty-org/ghostty";
     deploy-rs.url = "github:serokell/deploy-rs";
+    neovim.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs =
