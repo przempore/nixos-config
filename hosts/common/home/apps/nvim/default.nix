@@ -48,7 +48,7 @@ let
       sha256 = "sha256-Lwwm95UEkS8Q0Qsoh10o3sFn48wf7v7eCX/FJJV1HMI=";
     };
   };
-    neovim-nightly = neovim.packages.${pkgs.system}.default.overrideAttrs (old: {
+  neovim-nightly = neovim.packages.${pkgs.system}.default.overrideAttrs (old: {
     meta = old.meta or { } // {
       maintainers = [ ];
     };

@@ -9,13 +9,22 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" 
-    "i915"          # Intel Integrated Graphics (Alder Lake)
-    "intel_agp"     # Needed by i915 sometimes
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "thunderbolt"
+    "nvme"
+    "usb_storage"
+    "sd_mod"
+    "rtsx_pci_sdmmc"
+    "i915" # Intel Integrated Graphics (Alder Lake)
+    "intel_agp" # Needed by i915 sometimes
   ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" "coretemp" "nct6775"
-    "iwlwifi"       # Intel Wi-Fi AX211 (from lshw description, driver is iwlwifi)
+  boot.kernelModules = [
+    "kvm-intel"
+    "coretemp"
+    "nct6775"
+    "iwlwifi" # Intel Wi-Fi AX211 (from lshw description, driver is iwlwifi)
   ];
   boot.extraModulePackages = [ ];
 
