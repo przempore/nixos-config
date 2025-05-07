@@ -1,8 +1,6 @@
-{ pkgs, pkgs-unstable, zen-browser, ghostty, ... }:
+{ pkgs, pkgs-unstable, ... }:
 {
   home.packages = [
-    zen-browser.packages.x86_64-linux.twilight
-    ghostty.packages.x86_64-linux.default
   ]
   ++ (with pkgs; [
     autojump
@@ -38,5 +36,6 @@
     ./tmux.nix
     ./wezterm
     ./zathura.nix
+    ./zen
   ];
 }

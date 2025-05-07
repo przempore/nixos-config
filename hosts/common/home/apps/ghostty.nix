@@ -1,5 +1,9 @@
-{ ... }:
+{ ghostty, ... }:
 {
+  home.packages = [
+    ghostty.packages.x86_64-linux.default
+  ];
+
   # source https://github.com/ttys3/my-ghostty-config/tree/main
 
   home.file.".config/ghostty/tab-style.css".text = ''
