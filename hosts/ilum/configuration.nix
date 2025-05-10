@@ -15,10 +15,7 @@
 
   nix.settings.trusted-users = [ "root" "przemek" ];
 
-  # boot.kernelPackages = pkgs.linuxPackages_6_12;
-
   networking.hostName = "ilum"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -36,6 +33,33 @@
     LC_PAPER = "pl_PL.UTF-8";
     LC_TELEPHONE = "pl_PL.UTF-8";
     LC_TIME = "pl_PL.UTF-8";
+  };
+
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true; # For compatibility with Xorg apps
+    # withUWSM  = true;
+  };
+
+  environment.systemPackages = with pkgs; [
+    hyprland
+    hyprlock
+    hyprpaper # Wallpaper utility
+    hyprshot
+    waybar # Status bar
+    wofi # Application launcher
+    dunst # Notification daemon
+    cliphist
+    wl-clipboard
+    xdg-desktop-portal-hyprland # For screen sharing, file dialogs
+    qt5.qtwayland # Qt Wayland support
+    qt6.qtwayland
+  ];
+
+  # Enable XDG portals for Wayland
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
   };
 
   services.qemuGuest.enable = true;

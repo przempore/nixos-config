@@ -39,4 +39,14 @@
       usePersistenced = false;
     };
   };
+
+  # Explicit sync for Wayland
+  environment.sessionVariables = {
+    NVD_BACKEND = "direct";
+    LIBVA_DRIVER_NAME = "nvidia";
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    WLR_NO_HARDWARE_CURSORS = "1"; # Workaround for cursor issues
+    WLR_RENDERER = "vulkan"; # Prefer Vulkan for better performance
+  };
 }

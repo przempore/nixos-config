@@ -15,11 +15,6 @@
       # name = "Catppuccin-Mocha-Dark";
       # package = pkgs.catppuccin;
     };
-    # used with closed nvidia drivers
-    # sessionVariables = {
-    #   NVD_BACKEND = "direct";
-    #   LIBVA_DRIVER_NAME = "nvidia";
-    # };
     packages = [
       # pkgs-unstable.zed-editor
     ];

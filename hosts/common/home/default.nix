@@ -20,7 +20,7 @@
       VISUAL = "nvim";
       TERMINAL = "ghostty";
       TERM = "xterm-256color";
-      NVD_BACKEND = "direct";
+      # NVD_BACKEND = "direct";
     };
 
     packages = with pkgs; [
