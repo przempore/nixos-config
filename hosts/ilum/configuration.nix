@@ -35,34 +35,6 @@
     LC_TIME = "pl_PL.UTF-8";
   };
 
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true; # For compatibility with Xorg apps
-    # withUWSM  = true;
-  };
-
-  environment.systemPackages = with pkgs; [
-    hyprland
-    hyprlock
-    hyprpaper # Wallpaper utility
-    hyprshot
-    waybar # Status bar
-    wofi # Application launcher
-    dunst # Notification daemon
-    cliphist
-    wl-clipboard
-    wlsunset
-    xdg-desktop-portal-hyprland # For screen sharing, file dialogs
-    qt5.qtwayland # Qt Wayland support
-    qt6.qtwayland
-  ];
-
-  # Enable XDG portals for Wayland
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
-  };
-
   services.qemuGuest.enable = true;
 
   # define udev rules to allow access to connect to corne keyboard
