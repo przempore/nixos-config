@@ -2,13 +2,13 @@
 {
   imports = [
     ./bspwm
+    ./gtk.nix
     ./hyprland
-    ./waybar
     ./picom.nix
     ./polybar
     ./screen_settings
     ./sxhkd.nix
-    ./gtk.nix
+    ./waybar
   ];
 }
 
