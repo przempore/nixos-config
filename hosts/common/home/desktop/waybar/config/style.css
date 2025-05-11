@@ -1,0 +1,54 @@
+* {
+    font-family: "Noto Sans", "Font Awesome 6 Free Solid", "Symbols Nerd Font Mono";
+    font-size: 13px;
+    color: #d8dee9;
+}
+
+window#waybar {
+    background: #1f2021;
+    border-bottom: 0px;
+}
+
+#workspaces button {
+    padding: 0 4px;
+    color: #6790EB;
+}
+
+#workspaces button.active {
+    border-bottom: 2px solid #6790EB;
+    color: #3384d0;
+}
+
+#workspaces button.urgent {
+    color: #ebcb8b;
+}
+
+#window, #custom-kernel, #custom-weather, #pulseaudio, #memory, #cpu, #clock, #tray {
+    padding: 0 10px;
+    margin: 0 3px;
+}
+
+#custom-kernel {
+    color: #0084FF;
+    border-bottom: 2px solid #0084FF;
+}
+
+#pulseaudio {
+    color: #3EC13F;
+    border-bottom: 2px solid #3EC13F;
+}
+
+#memory {
+    color: #3384d0;
+    border-bottom: 2px solid #3384d0;
+}
+
+#cpu {
+    color: #cd1f3f;
+    border-bottom: 2px solid #cd1f3f;
+}
+
+#clock {
+    color: #c1941a;
+    border-bottom: 2px solid #c1941a;
+}
