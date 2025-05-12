@@ -6,6 +6,8 @@
     ../../common/home/desktop
     ../../common/home/apps/teleport.nix
     ../../common/home/apps/google-cloud.nix
+    ../../common/home/desktop/hyprland
+    ../../common/home/desktop/waybar
   ];
 
   dconf.settings = {

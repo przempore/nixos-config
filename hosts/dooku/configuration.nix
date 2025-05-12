@@ -9,6 +9,7 @@
       ../common/configuration.nix
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../common/hyprland.nix
     ];
 
   hardware.enableRedistributableFirmware = lib.mkDefault true;
