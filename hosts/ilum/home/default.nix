@@ -3,6 +3,8 @@
   imports = [
     ../../common/home
     ../../common/home/desktop
+    ../../common/home/desktop/hyprland
+    ../../common/home/desktop/waybar
   ];
 
   # Packages that should be installed to the user profile.

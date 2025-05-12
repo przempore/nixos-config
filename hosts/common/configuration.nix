@@ -37,19 +37,19 @@
 
   # Enable the XFCE Desktop Environment.
   services.xserver.enable = true;
-  # services.xserver.displayManager.lightdm = {
-  #   enable = true;
-  #   greeters.gtk.extraConfig = ''
-  #     user-background = false
-  #     [greeter]
-  #     show-manual-login = true
-  #     allow-guest = false
-  #   '';
-  # };
-  services.displayManager = {
-    sddm.enable = true;
-    defaultSession = "none+bspwm";
+  services.xserver.displayManager.lightdm = {
+    enable = true;
+    greeters.gtk.extraConfig = ''
+      user-background = false
+      [greeter]
+      show-manual-login = true
+      allow-guest = false
+    '';
   };
+  # services.displayManager = {
+  #   sddm.enable = true;
+  #   defaultSession = "none+bspwm";
+  # };
   services.xserver.desktopManager.xfce.enable = true;
   services.xserver.windowManager.bspwm.enable = true;
 
@@ -57,7 +57,7 @@
   services.xserver = {
     dpi = lib.mkDefault 90;
     autoRepeatDelay = 250;
-    autoRepeatInterval = 50;
+    autoRepeatInterval = 25;
     xkb = {
       layout = "real-prog-dvorak";
       extraLayouts.real-prog-dvorak = {
