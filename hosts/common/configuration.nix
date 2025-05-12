@@ -53,7 +53,7 @@
   services.xserver = {
     dpi = lib.mkDefault 90;
     autoRepeatDelay = 250;
-    autoRepeatInterval = 30;
+    autoRepeatInterval = 50;
     xkb = {
       layout = "real-prog-dvorak";
       extraLayouts.real-prog-dvorak = {
