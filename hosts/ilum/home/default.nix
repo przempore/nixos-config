@@ -12,11 +12,6 @@
     username = "przemek";
     homeDirectory = "/home/przemek";
 
-    pointerCursor = {
-      size = 6;
-      # name = "Catppuccin-Mocha-Dark";
-      # package = pkgs.catppuccin;
-    };
     packages = [
       # pkgs-unstable.zed-editor
     ];
