@@ -32,6 +32,7 @@
       pkgs.rustdesk
       pkgs.teams-for-linux
       pkgs.rclone
+      pkgs.cups
     ];
   };
 }
