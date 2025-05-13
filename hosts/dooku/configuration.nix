@@ -53,6 +53,12 @@
     };
   };
 
+  services.xserver.displayManager.lightdm.enable = false;
+  services.displayManager = {
+    sddm.enable = true;
+    defaultSession = "hyprland";
+  };
+
   # fileSystems."/mnt/office" = {
   #   device = "//10.8.0.x/Share";
   #   fsType = "cifs";

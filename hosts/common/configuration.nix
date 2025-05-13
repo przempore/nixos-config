@@ -37,7 +37,7 @@
 
   # Enable the XFCE Desktop Environment.
   services.xserver.enable = true;
-  services.xserver.displayManager.lightdm = {
+  services.xserver.displayManager.lightdm = lib.mkDefault {
     enable = true;
     greeters.gtk.extraConfig = ''
       user-background = false
@@ -46,10 +46,6 @@
       allow-guest = false
     '';
   };
-  # services.displayManager = {
-  #   sddm.enable = true;
-  #   defaultSession = "none+bspwm";
-  # };
   services.xserver.desktopManager.xfce.enable = true;
   services.xserver.windowManager.bspwm.enable = true;
 
