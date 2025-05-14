@@ -14,11 +14,6 @@ let
   };
 in
 {
-  # home.file.".config/waybar" = {
-  #   source = ./config;
-  #   recursive = true;
-  # };
-
   programs.waybar = {
     enable = true;
     style = builtins.readFile ./config/style.css;
@@ -44,9 +39,6 @@ in
           "8" = "";
           "9" = "";
           "10" = "";
-          # "default": "",
-          # "active": "",
-          # "default": ""
         };
         on-click = "activate";
         on-scroll-up = "hyprctl dispatch workspace e+1";
