@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 
 let
   catppuccinDunst = pkgs.fetchFromGitHub {

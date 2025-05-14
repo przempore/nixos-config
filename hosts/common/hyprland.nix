@@ -13,7 +13,6 @@
     hyprpaper # Wallpaper utility
     hyprshot
     wofi # Application launcher
-    dunst # Notification daemon
     cliphist
     wl-clipboard
     wlsunset
