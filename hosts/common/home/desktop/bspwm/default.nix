@@ -5,6 +5,7 @@
     ./polybar
     ./screen_settings
     ./sxhkd.nix
+    ./redshift.nix
   ];
   home.packages = with pkgs; [
     barrier
