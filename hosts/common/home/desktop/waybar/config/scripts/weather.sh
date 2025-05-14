@@ -4,7 +4,7 @@
 
 # API settings ________________________________________________________________
 
-APIKEY=`cat $HOME/.owm-key`
+APIKEY=$(cat $HOME/.owm-key)
 # if you leave these empty location will be picked based on your ip-adres
 CITY_NAME=''
 COUNTRY_CODE=''
@@ -137,13 +137,13 @@ function getData {
             # echo "API Error $RESPONSECODE" >> "$HOME/.weather.log"
         fi
         ERROR=1
-    # else
-    #     echo "$RESPONSE" > "$HOME/.weather-last"
-    #     echo `date +%s` >> "$HOME/.weather-last"
+        # else
+        #     echo "$RESPONSE" > "$HOME/.weather-last"
+        #     echo `date +%s` >> "$HOME/.weather-last"
     fi
 }
 function setIcons {
-    if [ $WID -le 232 ]; then
+    if [ -n "$WID" ] && [ $WID -le 232 ]; then
         #Thunderstorm
         ICON_COLOR=$COLOR_THUNDER
         if [ $DATE -ge $SUNRISE -a $DATE -le $SUNSET ]; then
@@ -216,33 +216,33 @@ function setIcons {
     WIND=""
     WINDFORCE=`echo "$RESPONSE" | jq .wind.speed`
     WINDICON=""
-    if [ $BEAUFORTICON == "yes" ];then
-        WINDFORCE2=`echo "scale=$DECIMALS;$WINDFORCE * 3.6 / 1" | bc`
-        if [ $WINDFORCE2 -le 1 ]; then
+    if [ "$BEAUFORTICON" = "yes" ]; then
+        WINDFORCE2=$(echo "scale=$DECIMALS;$WINDFORCE * 3.6 / 1" | bc)
+        if [ -n "$WINDFORCE2" ] && [ $(echo "$WINDFORCE2 <= 1" | bc) -eq 1 ]; then
             WINDICON=""
-        elif [ $WINDFORCE2 -gt 1 ] && [ $WINDFORCE2 -le 5 ]; then
+        elif [ -n "$WINDFORCE2" ] && [ $(echo "$WINDFORCE2 > 1" | bc) -eq 1 ] && [ $(echo "$WINDFORCE2 <= 5" | bc) -eq 1 ]; then
             WINDICON=""
-        elif [ $WINDFORCE2 -gt 5 ] && [ $WINDFORCE2 -le 11 ]; then
+        elif [ -n "$WINDFORCE2" ] && [ $(echo "$WINDFORCE2 > 5" | bc) -eq 1 ] && [ $(echo "$WINDFORCE2 <= 11" | bc) -eq 1 ]; then
             WINDICON=""
-        elif [ $WINDFORCE2 -gt 11 ] && [ $WINDFORCE2 -le 19 ]; then
+        elif [ -n "$WINDFORCE2" ] && [ $(echo "$WINDFORCE2 > 11" | bc) -eq 1 ] && [ $(echo "$WINDFORCE2 <= 19" | bc) -eq 1 ]; then
             WINDICON=""
-        elif [ $WINDFORCE2 -gt 19 ] && [ $WINDFORCE2 -le 28 ]; then
+        elif [ -n "$WINDFORCE2" ] && [ $(echo "$WINDFORCE2 > 19" | bc) -eq 1 ] && [ $(echo "$WINDFORCE2 <= 28" | bc) -eq 1 ]; then
             WINDICON=""
-        elif [ $WINDFORCE2 -gt 28 ] && [ $WINDFORCE2 -le 38 ]; then
+        elif [ -n "$WINDFORCE2" ] && [ $(echo "$WINDFORCE2 > 28" | bc) -eq 1 ] && [ $(echo "$WINDFORCE2 <= 38" | bc) -eq 1 ]; then
             WINDICON=""
-        elif [ $WINDFORCE2 -gt 38 ] && [ $WINDFORCE2 -le 49 ]; then
+        elif [ -n "$WINDFORCE2" ] && [ $(echo "$WINDFORCE2 > 38" | bc) -eq 1 ] && [ $(echo "$WINDFORCE2 <= 49" | bc) -eq 1 ]; then
             WINDICON=""
-        elif [ $WINDFORCE2 -gt 49 ] && [ $WINDFORCE2 -le 61 ]; then
+        elif [ -n "$WINDFORCE2" ] && [ $(echo "$WINDFORCE2 > 49" | bc) -eq 1 ] && [ $(echo "$WINDFORCE2 <= 61" | bc) -eq 1 ]; then
             WINDICON=""
-        elif [ $WINDFORCE2 -gt 61 ] && [ $WINDFORCE2 -le 74 ]; then
+        elif [ -n "$WINDFORCE2" ] && [ $(echo "$WINDFORCE2 > 61" | bc) -eq 1 ] && [ $(echo "$WINDFORCE2 <= 74" | bc) -eq 1 ]; then
             WINDICON=""
-        elif [ $WINDFORCE2 -gt 74 ] && [ $WINDFORCE2 -le 88 ]; then
+        elif [ -n "$WINDFORCE2" ] && [ $(echo "$WINDFORCE2 > 74" | bc) -eq 1 ] && [ $(echo "$WINDFORCE2 <= 88" | bc) -eq 1 ]; then
             WINDICON=""
-        elif [ $WINDFORCE2 -gt 88 ] && [ $WINDFORCE2 -le 102 ]; then
+        elif [ -n "$WINDFORCE2" ] && [ $(echo "$WINDFORCE2 > 88" | bc) -eq 1 ] && [ $(echo "$WINDFORCE2 <= 102" | bc) -eq 1 ]; then
             WINDICON=""
-        elif [ $WINDFORCE2 -gt 102 ] && [ $WINDFORCE2 -le 117 ]; then
+        elif [ -n "$WINDFORCE2" ] && [ $(echo "$WINDFORCE2 > 102" | bc) -eq 1 ] && [ $(echo "$WINDFORCE2 <= 117" | bc) -eq 1 ]; then
             WINDICON=""
-        elif [ $WINDFORCE2 -gt 117 ]; then
+        elif [ -n "$WINDFORCE2" ] && [ $(echo "$WINDFORCE2 > 117" | bc) -eq 1 ]; then
             WINDICON=""
         fi
     fi
@@ -264,21 +264,21 @@ function setIcons {
             WINDFORCE=`echo "scale=$DECIMALS;$WINDFORCE / 1" | bc`
         fi
     fi
-    if [ "$DISPLAY_WIND" = "yes" ] && [ `echo "$WINDFORCE >= $MIN_WIND" |bc -l` -eq 1 ]; then
-        WIND="%{T$WEATHER_FONT_CODE}%{F$COLOR_WIND}$WINDICON%{F-}%{T-}"
-        if [ $DISPLAY_FORCE = "yes" ]; then
-            WIND="$WIND $COLOR_TEXT_BEGIN$WINDFORCE$COLOR_TEXT_END"
-            if [ $DISPLAY_WIND_UNIT = "yes" ]; then
-                if [ $KNOTS = "yes" ]; then
-                    WIND="$WIND ${COLOR_TEXT_BEGIN}kn$COLOR_TEXT_END"
-                elif [ $UNITS = "imperial" ]; then
-                    WIND="$WIND ${COLOR_TEXT_BEGIN}mph$COLOR_TEXT_END"
-                else
-                    WIND="$WIND ${COLOR_TEXT_BEGIN}km/h$COLOR_TEXT_END"
-                fi
-            fi
-        fi
-        WIND="$WIND |"
+    if [ "$DISPLAY_WIND" = "yes" ] && [ "$(echo "$WINDFORCE >= $MIN_WIND" | bc -l)" -eq 1 ]; then
+        # WIND="%{T$WEATHER_FONT_CODE}%{F$COLOR_WIND}$WINDICON%{F-}%{T-}"
+        # if [ $DISPLAY_FORCE = "yes" ]; then
+        #     WIND="$WIND $COLOR_TEXT_BEGIN$WINDFORCE$COLOR_TEXT_END"
+        #     if [ $DISPLAY_WIND_UNIT = "yes" ]; then
+        #         if [ $KNOTS = "yes" ]; then
+        #             WIND="$WIND ${COLOR_TEXT_BEGIN}kn$COLOR_TEXT_END"
+        #         elif [ $UNITS = "imperial" ]; then
+        #             WIND="$WIND ${COLOR_TEXT_BEGIN}mph$COLOR_TEXT_END"
+        #         else
+        #             WIND="$WIND ${COLOR_TEXT_BEGIN}km/h$COLOR_TEXT_END"
+        #         fi
+        #     fi
+        # fi
+        WIND="${WINDICON}${WINDFORCE} km/h |"
     fi
     if [ "$UNITS" = "metric" ]; then
         TEMP_ICON="󰔄"
@@ -287,34 +287,34 @@ function setIcons {
     else
         TEMP_ICON="󰔆"
     fi
-    
-    TEMP=`echo "$TEMP" | cut -d "." -f 1`
-    TEMP=$(echo "$TEMP")
+
+    TEMP=$(echo "$TEMP" | cut -d "." -f 1)
+    TEMP=$(echo "${TEMP}${TEMP_ICON}")
 }
 
 function outputCompact {
-    OUTPUT="<span foreground=\"#ffc24b\" font=\"Symbols Nerd Font Mono 16\">$ICON</span><span foreground=\"#d8dee9\" weight=\"500\">$DESCRIPTION</span><span foreground=\"#ffffff\" weight=\"600\">$TEMP</span>"
+    OUTPUT="<span foreground=\"#73cef4\">$WIND</span><span foreground=\"#ffc24b\" font=\"Symbols Nerd Font Mono 16\"> $ICON</span><span foreground=\"#d8dee9\" weight=\"500\"> $DESCRIPTION</span><span foreground=\"#ffffff\" weight=\"600\"> $TEMP</span>"
     # OUTPUT="$WIND $ICON $DESCRIPTION | $DESCRIPTION"
     echo "$OUTPUT"
 }
 
 getData $1
 if [ $ERROR -eq 0 ]; then
-    MAIN=`echo $RESPONSE | jq .weather[0].main`
-    WID=`echo $RESPONSE | jq .weather[0].id`
-    DESC=`echo $RESPONSE | jq .weather[0].description`
-    SUNRISE=`echo $RESPONSE | jq .sys.sunrise`
-    SUNSET=`echo $RESPONSE | jq .sys.sunset`
-    DATE=`date +%s`
+    MAIN=$(echo $RESPONSE | jq .weather[0].main)
+    WID=$(echo $RESPONSE | jq .weather[0].id)
+    DESC=$(echo $RESPONSE | jq .weather[0].description)
+    SUNRISE=$(echo $RESPONSE | jq .sys.sunrise)
+    SUNSET=$(echo $RESPONSE | jq .sys.sunset)
+    DATE=$(date +%s)
     WIND=""
-    TEMP=`echo $RESPONSE | jq .main.temp`
+    TEMP=$(echo $RESPONSE | jq .main.temp)
     if [ $DISPLAY_LABEL = "yes" ]; then
-        DESCRIPTION=`echo "$RESPONSE" | jq .weather[0].description | tr -d '"' | awk '{for (i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1'`" "
+        DESCRIPTION=$(echo "$RESPONSE" | jq .weather[0].description | tr -d '"' | awk '{for (i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1')" "
     else
         DESCRIPTION=""
     fi
-    PRESSURE=`echo $RESPONSE | jq .main.pressure`
-    HUMIDITY=`echo $RESPONSE | jq .main.humidity`
+    PRESSURE=$(echo $RESPONSE | jq .main.pressure)
+    HUMIDITY=$(echo $RESPONSE | jq .main.humidity)
     setIcons
     outputCompact
 
