@@ -23,7 +23,7 @@ window#waybar {
     color: #ebcb8b;
 }
 
-#window, #custom-kernel, #custom-weather, #pulseaudio, #memory, #cpu, #clock, #tray {
+#window, #custom-kernel, #custom-weather, #pulseaudio, #memory, #cpu, #clock, #battery, #tray {
     padding: 0 10px;
     margin: 0 3px;
 }
