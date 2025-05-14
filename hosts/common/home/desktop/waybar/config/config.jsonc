@@ -7,7 +7,7 @@
   "modules-center": ["custom/kernel"],
   "modules-right": ["pulseaudio", "network", "memory", "cpu", "clock", "battery", "tray"],
   "hyprland/workspaces": {
-    "format": "{icon}",
+    "format": "{name}: {icon}",
     "format-icons": {
       "1": "",
       "2": "",
@@ -23,9 +23,9 @@
       // "active": "",
       // "default": ""
     },
-    "persistent-workspaces": {
-      "*": 10
-    },
+    // "persistent-workspaces": {
+    //   "*": 10
+    // },
     "on-click": "activate",
     "on-scroll-up": "hyprctl dispatch workspace e+1",
     "on-scroll-down": "hyprctl dispatch workspace e-1",
