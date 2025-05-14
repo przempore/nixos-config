@@ -12,7 +12,6 @@
     hyprlock
     hyprpaper # Wallpaper utility
     hyprshot
-    waybar # Status bar
     wofi # Application launcher
     dunst # Notification daemon
     cliphist

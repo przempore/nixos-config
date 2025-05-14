@@ -59,3 +59,22 @@ window#waybar {
     padding: 0 10px;
     margin: 0 3px;
 }
+
+#custom-weather {
+    padding: 0 10px;
+    margin: 0 3px;
+}
+
+#custom-weather .icon {
+    color: #ffc24b;
+    font-size: 16px;
+}
+
+#custom-weather .description {
+    font-weight: 500;
+}
+
+#custom-weather .temperature {
+    color: #ffffff;
+    font-weight: 600;
+}
