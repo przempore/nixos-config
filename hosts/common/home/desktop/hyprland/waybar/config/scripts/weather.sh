@@ -279,6 +279,7 @@ function setIcons {
         #     fi
         # fi
         WIND="${WINDICON}${WINDFORCE} km/h |"
+        WIND="<span foreground=\"#73cef4\">$WIND</span>"
     fi
     if [ "$UNITS" = "metric" ]; then
         TEMP_ICON="󰔄"
@@ -293,7 +294,7 @@ function setIcons {
 }
 
 function outputCompact {
-    OUTPUT="<span foreground=\"#73cef4\">$WIND</span><span foreground=\"#ffc24b\" font=\"Symbols Nerd Font Mono 16\"> $ICON</span><span foreground=\"#d8dee9\" weight=\"500\"> $DESCRIPTION</span><span foreground=\"#ffffff\" weight=\"600\"> $TEMP</span>"
+    OUTPUT="<span foreground=\"#ffc24b\" font=\"Symbols Nerd Font Mono 16\">$ICON</span><span foreground=\"#d8dee9\" weight=\"500\"> $DESCRIPTION</span><span foreground=\"#ffffff\" weight=\"600\"> $TEMP</span>"
     # OUTPUT="$WIND $ICON $DESCRIPTION | $DESCRIPTION"
     echo "$OUTPUT"
 }

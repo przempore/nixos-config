@@ -7,7 +7,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    # home.packages = with pkgs; [
     hyprland
     hyprlock
     hyprpaper # Wallpaper utility
@@ -15,7 +14,6 @@
     wofi # Application launcher
     cliphist
     wl-clipboard
-    wlsunset
     xdg-desktop-portal-hyprland # For screen sharing, file dialogs
     qt5.qtwayland # Qt Wayland support
     qt6.qtwayland

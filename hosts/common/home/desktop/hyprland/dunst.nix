@@ -10,7 +10,7 @@ let
 in {
   services.dunst = {
     enable = true;
-    configFile = "${catppuccinDunst}/mocha.conf";
+    configFile = "${catppuccinDunst}/themes/mocha.conf";
   };
 }
 
