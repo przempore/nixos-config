@@ -7,6 +7,7 @@
     ./polybar
     ./screen_settings
     ./sxhkd.nix
+    ./dunst.nix
   ];
 }
 
