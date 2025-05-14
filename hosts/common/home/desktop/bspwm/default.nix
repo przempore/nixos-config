@@ -1,5 +1,11 @@
 { pkgs, lib, ... }:
 {
+  imports = [
+    ./picom.nix
+    ./polybar
+    ./screen_settings
+    ./sxhkd.nix
+  ];
   home.packages = with pkgs; [
     barrier
     betterlockscreen
