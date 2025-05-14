@@ -5,7 +5,7 @@
   "modules-left": ["hyprland/workspaces", "hyprland/window"],
   // "modules-center": ["custom/kernel", "custom/weather"],
   "modules-center": ["custom/kernel"],
-  "modules-right": ["pulseaudio", "network", "memory", "cpu", "clock", "tray"],
+  "modules-right": ["pulseaudio", "network", "memory", "cpu", "clock", "battery", "tray"],
   "hyprland/workspaces": {
     "format": "{icon}",
     "format-icons": {
@@ -81,13 +81,21 @@
     "format-alt": " {:%Y-%m-%d %H:%M}",
     "interval": 5
   },
+  "battery": {
+    "bat": "BAT0",
+    "interval": 30,
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["", "", "", "", ""],
+    "tooltip": true,
+    "tooltip-format": "{time} remaining"
+  },
   "tray": {
     "icon-size": 20,
     "spacing": 10,
     "show-passive-items": true
-  },
-  "battery": {
-    "disabled": true
   },
   "temperature": {
     "disabled": true
