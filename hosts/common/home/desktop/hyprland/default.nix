@@ -10,8 +10,15 @@ let
     env = WLR_NO_HARDWARE_CURSORS,1
     env = WLR_RENDERER,vulkan
   '';
+  dookuPart = ''
+    device {
+      name        = at-translated-set-2-keyboard
+      kb_layout   = real-prog-dvorak,us
+      kb_options  = grp:alt_shift_toggle,ctrl:swapcaps,altwin:swap_lalt_lwin
+    }
+  '';
   commonPart = ''
-    ${if machine == "ilum" then ilumPart else ""}
+    ${if machine == "ilum" then ilumPart else if machine == "dooku" then dookuPart else ""}
     ${builtins.readFile ./config/common_hyprland.conf}
   '';
 in
