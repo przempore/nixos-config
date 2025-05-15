@@ -29,6 +29,14 @@
   # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-auto-optimise-store
   nix.settings.auto-optimise-store = true;
 
+  location.provider = "geoclue2";
+  services.geoclue2.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
   # Enable the XFCE Desktop Environment.
   services.xserver.enable = true;
   services.xserver.displayManager.lightdm = lib.mkDefault {
