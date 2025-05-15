@@ -296,7 +296,7 @@ function setIcons {
 function outputCompact {
     OUTPUT="<span foreground=\"#ffc24b\" font=\"Symbols Nerd Font Mono 16\">$ICON</span><span foreground=\"#d8dee9\" weight=\"500\"> $DESCRIPTION</span><span foreground=\"#ffffff\" weight=\"600\"> $TEMP</span>"
     # OUTPUT="$WIND $ICON $DESCRIPTION | $DESCRIPTION"
-    echo "$OUTPUT"
+    echo "$CITY_NAME: $OUTPUT"
 }
 
 getData $1
