@@ -69,6 +69,12 @@
     keybind = ctrl+;>x=close_surface
     keybind = ctrl+shift+h=write_scrollback_file:open
     keybind = ctrl+alt+shift+i=write_screen_file:open
+    keybind = alt+*=goto_tab:0
+    keybind = alt++=goto_tab:1
+    keybind = alt+[=goto_tab:2
+    keybind = alt+{=goto_tab:3
+    keybind = alt+(=goto_tab:4
+    keybind = alt+&=goto_tab:5
   '';
 
   home.file.".local/share/applications/nvim.desktop".text = ''
