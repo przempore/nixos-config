@@ -38,5 +38,8 @@ in
 
   home.packages = with pkgs; [
     wofi
+    grim
+    slurp
+    swappy
   ];
 }
