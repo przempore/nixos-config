@@ -7,11 +7,9 @@
   };
 
   environment.systemPackages = with pkgs; [
-    hyprland
     hyprlock
     hyprpaper # Wallpaper utility
     hyprshot
-    wofi # Application launcher
     cliphist
     wl-clipboard
     xdg-desktop-portal-hyprland # For screen sharing, file dialogs
