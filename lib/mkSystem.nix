@@ -24,6 +24,7 @@ let
   permittedInsecurePackages = [
     "nix-2.16.2"
     "electron-25.9.0"
+    "electron-33.4.11"
   ];
   unfree-config = { lib, ... }: {
     options.permittedInsecurePackages = lib.mkOption {
