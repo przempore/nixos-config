@@ -29,7 +29,7 @@
 
       pkgs-unstable.zoom-us
       pkgs.rustdesk
-      pkgs.teams-for-linux
+      pkgs-unstable.teams-for-linux
       pkgs.rclone
       pkgs.cups
     ];
