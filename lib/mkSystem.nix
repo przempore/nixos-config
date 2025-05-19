@@ -60,6 +60,7 @@ in
   nixosConfiguration = {
     ${machine} = inputs.nixpkgs.lib.nixosSystem {
       inherit system;
+      specialArgs = { inherit pkgs-unstable; };
       modules = inputs.nixpkgs.lib.optional (nixos-hardware != null) nixos-hardware ++ [
         unfree-config
         ../hosts/${machine}/configuration.nix
