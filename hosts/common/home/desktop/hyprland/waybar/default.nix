@@ -88,6 +88,7 @@ in
       cpu = {
         format = "{usage}% ";
         tooltip = false;
+        interval = 5;
       };
       clock = {
         tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
