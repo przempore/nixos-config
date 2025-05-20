@@ -130,5 +130,5 @@ require("pomo").setup({
 })
 
 require("my_config.avante")
-
-require('my_config.blink_cmp').setup()
+require("my_config.blink_cmp").setup()
+require("my_config.debugprint")

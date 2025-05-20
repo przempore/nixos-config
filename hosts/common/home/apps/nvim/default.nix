@@ -94,6 +94,7 @@ in
       vimPlugins.colorful-menu-nvim
       vimPlugins.comment-nvim
       vimPlugins.copilot-lua
+      vimPlugins.debugprint-nvim
       vimPlugins.dressing-nvim
       vimPlugins.fidget-nvim
       vimPlugins.firenvim
