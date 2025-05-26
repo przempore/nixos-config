@@ -6,9 +6,11 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "dhananjaylatkar";
       repo = "cscope_maps.nvim";
-      rev = "a4e8cf0a48b14696c32ea99edb1bf5d28e2b8384";
-      sha256 = "sha256-Uj3panF1DvagSyrF+SCj1K1gWyTVZVDe6ha4TTRdzow=";
+      rev = "66d044b1949aa4912261bbc61da845369d54f971";
+      sha256 = "sha256-pC5iWtuHz2Gr9EgEJXaux9VEM4IJhVmQ4bkGC0GEvuA=";
     };
+    dependencies = [ pkgs.vimPlugins.telescope-nvim pkgs.vimPlugins.fzf-lua ];
+    nvimSkipModules = [ "cscope.pickers.telescope" "cscope.pickers.fzf-lua" ];
   };
   wf-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "wf-nvim";
@@ -28,6 +30,9 @@ let
       rev = "a3917d0b7ca32e7faeed410cd6b0c572bf6384ac";
       sha256 = "sha256-CC9+h1i+l9TbE60LABZnwjkHy94VGQ7Hqd5jVHEW+mw=";
     };
+    dependencies = [ pkgs.vimPlugins.plenary-nvim pkgs.vimPlugins.telescope-nvim ];
+    nvimRequireCheck = [ "git-worktree.status" "git-worktree.enum" ];
+    nvimSkipModules = [ "git-worktree.test" "git-worktree" ];
   };
   harpoon2_rev_lock = pkgs.vimUtils.buildVimPlugin {
     name = "harpoon2_rev_lock";
@@ -80,6 +85,7 @@ in
     vimdiffAlias = true;
 
     plugins = with pkgs-unstable; [
+      # Main plugins
       # direnv-vim
       # harpoon2_rev_lock
       # vimPlugins.git-worktree-nvim

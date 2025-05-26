@@ -39,7 +39,6 @@
       liberation_ttf
       source-code-pro
       siji
-      nerdfonts
       powerline-fonts
       powerline-symbols
       font-awesome
