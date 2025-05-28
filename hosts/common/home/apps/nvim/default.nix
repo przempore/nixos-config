@@ -85,7 +85,6 @@ in
     vimdiffAlias = true;
 
     plugins = with pkgs-unstable; [
-      # Main plugins
       # direnv-vim
       # harpoon2_rev_lock
       # vimPlugins.git-worktree-nvim
