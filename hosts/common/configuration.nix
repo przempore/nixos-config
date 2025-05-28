@@ -90,10 +90,12 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
-  hardware.pulseaudio.extraConfig = "
-    load-module module-switch-on-connect
-  ";
+  services.pulseaudio = {
+    enable = false;
+    extraConfig = "
+        load-module module-switch-on-connect
+    ";
+  };
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -138,7 +140,7 @@
     liberation_ttf
     source-code-pro
     siji
-    nerdfonts
+    nerd-fonts.jetbrains-mono
     powerline-fonts
     powerline-symbols
     font-awesome
