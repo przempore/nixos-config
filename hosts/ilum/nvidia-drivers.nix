@@ -16,15 +16,15 @@
   };
 
   boot.kernelPackages = pkgs.linuxPackages_6_14;
-  nixpkgs.config.nvidia.acceptLicense = true; # that's probably needed for non-free drivers
+  # nixpkgs.config.nvidia.acceptLicense = true; # that's probably needed for non-free drivers
 
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = true;
     powerManagement.finegrained = false;
     nvidiaSettings = true;
-    open = false;
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
+    open = true;
+    # package = config.boot.kernelPackages.nvidiaPackages.latest;
     # package = config.boot.kernelPackages.nvidiaPackages.stable;
     # package = config.boot.kernelPackages.nvidiaPackages.beta;
     # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
@@ -34,12 +34,12 @@
     #   settingsSha256 = "sha256-LNL0J/sYHD8vagkV1w8tb52gMtzj/F0QmJTV1cMaso8=";
     #   usePersistenced = false;
     # };
-    # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-    #   version = "575.51.02";
-    #   sha256_64bit = "sha256-XZ0N8ISmoAC8p28DrGHk/YN1rJsInJ2dZNL8O+Tuaa0=";
-    #   openSha256 = "sha256-NQg+QDm9Gt+5bapbUO96UFsPnz1hG1dtEwT/g/vKHkw=";
-    #   settingsSha256 = "sha256-6n9mVkEL39wJj5FB1HBml7TTJhNAhS/j5hqpNGFQE4w=";
-    #   usePersistenced = false;
-    # };
+    package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+      version = "575.51.02";
+      sha256_64bit = "sha256-XZ0N8ISmoAC8p28DrGHk/YN1rJsInJ2dZNL8O+Tuaa0=";
+      openSha256 = "sha256-NQg+QDm9Gt+5bapbUO96UFsPnz1hG1dtEwT/g/vKHkw=";
+      settingsSha256 = "sha256-6n9mVkEL39wJj5FB1HBml7TTJhNAhS/j5hqpNGFQE4w=";
+      usePersistenced = false;
+    };
   };
 }
