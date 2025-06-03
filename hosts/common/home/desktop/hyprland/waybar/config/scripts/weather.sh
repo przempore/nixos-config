@@ -8,6 +8,8 @@ APIKEY=$(cat $HOME/.owm-key)
 # if you leave these empty location will be picked based on your ip-adres
 CITY_NAME=''
 COUNTRY_CODE=''
+LON=0
+LAT=0
 # Desired output language
 LANG="en"
 # UNITS can be "metric", "imperial" or "kelvin". Set KNOTS to "yes" if you
@@ -100,6 +102,9 @@ if [ -z "$CITY_NAME" ]; then
     IPCURL=$(curl -s https://ipinfo.io/$IP)
     CITY_NAME=$(echo $IPCURL | jq -r ".city")
     COUNTRY_CODE=$(echo $IPCURL | jq -r ".country")
+    longLat=$(echo $IPCURL | jq -r ".loc")
+    LAT=$(echo $longLat | cut -d',' -f1)
+    LON=$(echo $longLat | cut -d',' -f2)
 fi
 
 RESPONSE=""
@@ -110,7 +115,9 @@ if [ $UNITS = "kelvin" ]; then
 else
     UNIT_URL="&units=$UNITS"
 fi
-URL="api.openweathermap.org/data/2.5/weather?appid=$APIKEY$UNIT_URL&lang=$LANG&q=$(echo $CITY_NAME| sed 's/ /%20/g'),${COUNTRY_CODE}"
+# URL="api.openweathermap.org/data/2.5/weather?appid=$APIKEY$UNIT_URL&lang=$LANG&q=$(echo $CITY_NAME| sed 's/ /%20/g'),${COUNTRY_CODE}"
+URL="api.openweathermap.org/data/2.5/weather?appid=$APIKEY$UNIT_URL&lang=$LANG&lat=$LAT&lon=$LON"
+
 
 function getData {
     ERROR=0
@@ -294,7 +301,7 @@ function setIcons {
 }
 
 function outputCompact {
-    OUTPUT="<span foreground=\"#ffc24b\" font=\"Symbols Nerd Font Mono 16\">$ICON</span><span foreground=\"#d8dee9\" weight=\"500\"> $DESCRIPTION</span><span foreground=\"#ffffff\" weight=\"600\"> $TEMP</span>"
+    OUTPUT="<span foreground=\"#ffc24b\" font=\"Symbols Nerd Font Mono 16\">$ICON</span><span foreground=\"#d8dee9\" weight=\"500\"> $DESCRIPTION</span><span foreground=\"#ffffff\" weight=\"600\">$TEMP</span>"
     # OUTPUT="$WIND $ICON $DESCRIPTION | $DESCRIPTION"
     echo "$CITY_NAME: $OUTPUT"
 }
