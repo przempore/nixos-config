@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, nixai, ... }:
 {
   imports =
     [
@@ -39,6 +39,11 @@
     SUBSYSTEM=="input", GROUP="input", MODE="0660"
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0666"
   '';
+  services.ollama = {
+    enable = true;
+    acceleration = "cuda";
+  };
+  services.open-webui.enable = true;
 
   virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;
@@ -54,6 +59,8 @@
       ltunify
       chromium
       deploy-rs
+      ollama
+      nixai.packages.${system}.default
     ];
   };
 

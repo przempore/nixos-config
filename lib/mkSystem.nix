@@ -10,6 +10,7 @@ let
     };
   };
   legacyPkgs = inputs.legacy-nixpkgs.legacyPackages.${system};
+  nixai = inputs.nixai;
 
   allowed-unfree-packages = [
     "netflix-via-google-chrome"
@@ -37,7 +38,7 @@ let
     };
   };
   extraSpecialArgs = {
-    inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages legacyPkgs machine;
+    inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages legacyPkgs machine nixai;
     catppuccin = inputs.catppuccin;
     zen-browser = inputs.zen-browser;
     tmux-sessionx = inputs.tmux-sessionx;
@@ -60,7 +61,7 @@ in
   nixosConfiguration = {
     ${machine} = inputs.nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = { inherit pkgs-unstable; };
+      specialArgs = { inherit pkgs-unstable nixai; };
       modules = inputs.nixpkgs.lib.optional (nixos-hardware != null) nixos-hardware ++ [
         unfree-config
         ../hosts/${machine}/configuration.nix
