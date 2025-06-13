@@ -458,11 +458,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1749742474,
-        "narHash": "sha256-UWZ8lCCLMK1jb0ubzppK64+2cpOrw/GA8aR/12bool4=",
+        "lastModified": 1749770441,
+        "narHash": "sha256-CYW9sztzwNV0FAOseWZz8GQtXXBtL92hrgGdssFFzoo=",
         "owner": "olafkfreund",
         "repo": "nix-ai-help",
-        "rev": "9cefdbea99991dafc3752e0f743ace95dcf4e0cc",
+        "rev": "232d429150d743f0de12efb9f641de3aaabaa32b",
         "type": "github"
       },
       "original": {
@@ -773,11 +773,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1749745531,
-        "narHash": "sha256-+nnmuYVhQPbELuW2lZCWpTAJo955Qng/SCcLVO/RP6c=",
+        "lastModified": 1749791969,
+        "narHash": "sha256-RQDWUlCbwxkvTdfMNX+KL0pi6U2s0wxD5gPD1lgD4UY=",
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "rev": "50ec60bcf3528db062700673f61f86d82ca6cda0",
+        "rev": "f04d95151a97f56e84cb7a8577e7148e5a34b2a1",
         "type": "github"
       },
       "original": {
