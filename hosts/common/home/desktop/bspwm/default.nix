@@ -3,7 +3,7 @@
   imports = [
     ./picom.nix
     ./polybar
-    ./screen_settings
+    # ./screen_settings
     ./sxhkd.nix
     ./redshift.nix
   ];
