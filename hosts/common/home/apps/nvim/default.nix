@@ -113,7 +113,6 @@ in
       vimPlugins.lsp-zero-nvim
       vimPlugins.lsp_extensions-nvim
       vimPlugins.lspkind-nvim
-      vimPlugins.lspkind-nvim
       vimPlugins.lspsaga-nvim
       vimPlugins.luasnip
       vimPlugins.luasnip
