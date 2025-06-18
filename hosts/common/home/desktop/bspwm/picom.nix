@@ -29,7 +29,7 @@
       "class_g ?= 'Xfce4-power-manager'"
       "_GTK_FRAME_EXTENTS@:c"
     ];
-    fading = lib.mkDefault true;
+    fade = lib.mkDefault true;
     fade-in-step = 0.04;
     fade-out-step = 0.04;
     fade-delta = 4;

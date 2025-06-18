@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ lib, ... }:
 {
   imports = [
     ../../common/home
@@ -17,7 +17,7 @@
   };
 
   services.picom.settings = {
-    fading = false;
+    fade = false;
   };
 
   # This value determines the home Manager release that your
