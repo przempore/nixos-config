@@ -12,8 +12,12 @@
     homeDirectory = "/home/przemek";
 
     pointerCursor = {
-      size = 6;
+      size = 12;
     };
+  };
+
+  services.picom.settings = {
+    fading = false;
   };
 
   # This value determines the home Manager release that your
