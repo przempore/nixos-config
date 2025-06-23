@@ -141,6 +141,7 @@
     source-code-pro
     siji
     nerd-fonts.jetbrains-mono
+    nerd-fonts.symbols-only
     powerline-fonts
     powerline-symbols
     font-awesome
