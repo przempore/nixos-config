@@ -72,7 +72,7 @@
 
       # misc
       brave
-      signal-desktop
+      # signal-desktop
 
       # nix related
       #

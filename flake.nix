@@ -51,7 +51,7 @@
         inherit system;
         machine = "dathomir";
         user = "przemek";
-        nixos-hardware = nixos-hardware.nixosModules.dell-latitude-e7240;
+        # nixos-hardware = nixos-hardware.nixosModules.dell-latitude-e7240;
       };
       ilumSystem = mkSystem {
         inherit system;
