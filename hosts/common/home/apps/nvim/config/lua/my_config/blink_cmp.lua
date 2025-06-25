@@ -216,7 +216,7 @@ function M.setup()
     signature = { enabled = true },
     sources = {
       -- Define the order and enabled sources
-      default = { "dictionary", "avante", "copilot", "lsp", "snippets", "buffer", "path" },
+      default = { "avante", "copilot", "lsp", "snippets", "buffer", "path", "dictionary"  },
       providers = {
         buffer = { max_items = 5 },
         lsp = { score_offset = 5 }, -- Prioritize LSP slightly
