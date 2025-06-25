@@ -1,4 +1,5 @@
 { pkgs
+, pkgs-unstable
 , lib
 , allowed-unfree-packages
 , permittedInsecurePackages
@@ -31,21 +32,9 @@
       size = lib.mkDefault 24;  # Match the size you used with nwg-look
     };
 
-    packages = with pkgs; [
-      # fonts
-      noto-fonts
-      noto-fonts-emoji
-      dejavu_fonts
-      liberation_ttf
-      source-code-pro
-      siji
-      powerline-fonts
-      powerline-symbols
-      font-awesome
-      line-awesome
-      material-icons
-      material-symbols
-
+    packages = with pkgs-unstable; [
+      claude-code
+    ] ++ (with pkgs; [
       cachix
       onlyoffice-bin_latest
       # netflix
@@ -112,7 +101,7 @@
 
       obsidian
       distrobox
-    ];
+    ]);
   };
 
   programs = {
