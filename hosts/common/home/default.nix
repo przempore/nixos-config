@@ -72,7 +72,6 @@
 
       # misc
       brave
-      signal-desktop
 
       # nix related
       #
