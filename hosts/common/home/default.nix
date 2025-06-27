@@ -101,6 +101,7 @@
 
       obsidian
       distrobox
+      signal-desktop
     ]);
   };
 
