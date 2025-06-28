@@ -1,56 +1,101 @@
-# nix-config
+# NixOS Configuration
 
-### home-manager
-To run home-manager from this flake:
-``` bash
-nh home switch --backup-extension backup_$(date +"%Y%M%H%M%S") '.?submodules=1' -- --show-trace --impure
-```
+A comprehensive NixOS configuration using Nix Flakes for declarative system and user environment management across multiple machines.
 
-### Install Qt
-``` bash
-nix run \
---impure github:guibou/nixGL \
---override-input nixpkgs nixpkgs/nixos-unstable \
--- nix run github:thiagokokada/nix-alien \
--- -l libGL.so.1 -l libz.so.1 \
-~/Downloads/qt-unified-linux-x64-4.6.0-online.run \
---email <EMAIL> \
---password <PASSWORD> \
-install \
---no-save-account \
---accept-messages \
---accept-licenses \
---accept-obligations 
---confirm-command \
---no-default-installations \
---no-force-installations \
---root ~/Qt qt.qt5.51514.gcc_64
-```
+## Quick Start
 
-[source: Method 9\) nix-alien](https://unix.stackexchange.com/a/522823)
+### 1. Development Environment
 
+Enter the development shell to get all necessary tools (`make`, `nh`, `git`, etc.):
 
-### `.deb` installation in NixOS
-[source](https://reflexivereflection.com/posts/2015-02-28-deb-installation-nixos.html)
-
-## Installation
 ```bash
-nh os switch --update '.?submodules=1' -- --impure --show-trace
+# Option 1: Manual activation
+nix develop
+
+# Option 2: Automatic with direnv
+direnv allow
 ```
 
-## Flakes Book
-[NixSO & Flakes Book](https://nixos-and-flakes.thiscute.world/)
+### 2. Local System Management
 
-## devenv
-[source](https://devenv.sh/getting-started/)
+```bash
+# Switch NixOS configuration
+make switch
 
-`nix flake init --template github:cachix/devenv`
+# Switch home-manager configuration  
+make home-switch
 
-[broken symbolic links](https://github.com/NixOS/nix/issues/7166) <br/>
-use this command to remove them: <br/>
-`find -L /nix/var/nix/gcroots/per-user/$USER -maxdepth 1 -type l -delete`
+# Update flake inputs
+make update
 
-## Flake templates
-[github flake template](https://github.com/NixOS/templates)
+# Show all available commands
+make help
+```
 
-`nix flake init --template templates#full`
+## VM Development
+
+Set up a development VM for testing configurations:
+
+```bash
+# Get detailed VM setup instructions
+make vm/setup-help
+
+# Quick workflow (after VM setup):
+export NIXADDR=root@VM_IP
+make vm/bootstrap0        # Initial VM setup
+
+export NIXADDR=przemek@VM_IP  
+make vm/bootstrap         # Apply configuration
+make vm/switch            # Deploy changes
+```
+
+## Machine Configurations
+
+This flake supports multiple machines:
+
+- **ilum** - Gaming desktop
+- **dathomir** - Dell laptop  
+- **dooku** - Lenovo ThinkPad
+- **dev-vm** - Development VM (universal: QEMU/KVM, Hyper-V, VirtualBox)
+
+## Architecture
+
+- **Modular design** - Shared configuration with host-specific overrides
+- **Multiple nixpkgs channels** - Stable, unstable, and legacy for compatibility
+- **Universal VM support** - Works across different hypervisors
+- **Makefile automation** - Simple commands for all operations
+
+## Key Features
+
+- **bspwm/Hyprland** desktop environments
+- **Comprehensive app configurations** (Neovim, Firefox, development tools)
+- **VM-optimized** configurations for development
+- **Remote deployment** with deploy-rs
+- **Automatic formatting** and development tools
+
+## Resources
+
+- **[NixOS & Flakes Book](https://nixos-and-flakes.thiscute.world/)** - Comprehensive guide
+- **[devenv](https://devenv.sh/getting-started/)** - Development environments  
+- **[Flake templates](https://github.com/NixOS/templates)** - Starting templates
+
+## Files
+
+- `flake.nix` - Main flake configuration
+- `lib/mkSystem.nix` - System configuration factory
+- `hosts/` - Machine-specific configurations
+- `Makefile` - Development workflow automation
+- `CLAUDE.md` - Claude Code assistant reference
+
+## Troubleshooting
+
+```bash
+# Check configuration syntax
+make check
+
+# Format Nix files
+make fmt
+
+# Clean broken symbolic links
+find -L /nix/var/nix/gcroots/per-user/$USER -maxdepth 1 -type l -delete
+```
