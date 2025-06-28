@@ -169,7 +169,7 @@ in
 
       # language servers
       lua-language-server
-      nil
+      # nil - moved to flake devShell (only needed for NixOS config development)
       nodePackages."bash-language-server"
       nodePackages."diagnostic-languageserver"
       nodePackages."dockerfile-language-server-nodejs"

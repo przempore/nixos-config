@@ -88,12 +88,15 @@
           openssh
           rsync
 
-          # Nix development tools
+          # Nix development tools (moved from global installation)
           nixpkgs-fmt
-          nil # Nix LSP
+          nil # Nix LSP (removed from nvim global, only needed for NixOS development)
           nix-tree
-          nix-output-monitor # nom
-          nh # Nix helper
+          nix-output-monitor # nom (moved from global home packages)
+          nh # Nix helper (moved from global home packages)
+
+          # Deployment tools  
+          deploy-rs.packages.${system}.deploy-rs # for remote NixOS deployments
 
           # System utilities
           curl
@@ -124,6 +127,8 @@
           echo "  nh                 - Fast NixOS rebuilds"
           echo "  nix-tree           - Explore dependency tree"
           echo "  nom                - Better nix build output"
+          echo "  deploy-rs          - Remote NixOS deployments"
+          echo "  nil                - Nix LSP for editors"
           echo ""
           echo "Environment variables:"
           echo "  NIXADDR: ''${NIXADDR:-not set}"

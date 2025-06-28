@@ -64,10 +64,9 @@
 
       # nix related
       #
-      # it provides the command `nom` works just like `nix`
-      # with more details log output
-      nix-output-monitor
-      nh
+      # Development tools moved to flake devShell
+      # nix-output-monitor - moved to devShell
+      # nh - moved to devShell
 
       # productivity
       hugo # static site generator
