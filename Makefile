@@ -48,10 +48,17 @@ deploy-local: ## Deploy locally without remote dependencies
 .PHONY: gc garbage-collection
 gc: garbage-collection
 
-## Run Nix garbage collection, deleting store paths older than 3 days
 garbage-collection:
 	@echo "🗑️  Running Nix GC (deleting paths >3d old)…"
 	sudo nix-collect-garbage --delete-older-than 3d
+
+##
+## WSL
+##
+
+.PHONY: wsl
+wsl: ## Build the WSL root-fs installer tarball
+	nix build ".?submodules=1#nixosConfigurations.wsl.config.system.build.installer"
 
 ##
 ## VM Management

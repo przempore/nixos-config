@@ -28,6 +28,9 @@
     deploy-rs.url = "github:serokell/deploy-rs";
     neovim.url = "github:nix-community/neovim-nightly-overlay";
     nixai.url = "github:olafkfreund/nix-ai-help";
+
+    nixos-wsl.url = "github:nix-community/NixOS-WSL";
+    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -62,6 +65,12 @@
         inherit system;
         machine = "dev-vm";
         user = "przemek";
+      };
+      wslSystem = mkSystem {
+        inherit system;
+        machine = "wsl";
+        user = "przemek";
+        wsl = true;
       };
 
       deployPkgs =
@@ -159,6 +168,7 @@
         dooku = dookuSystem.nixosConfiguration.dooku;
         ilum = ilumSystem.nixosConfiguration.ilum;
         dev-vm = devVmSystem.nixosConfiguration.dev-vm;
+        wsl = wslSystem.nixosConfiguration.wsl;
       };
 
       deploy.nodes.dathomir = {

@@ -1,6 +1,8 @@
 { inputs, ... }:
-{ machine, system, nixos-hardware ? null, user }:
+{ machine, system, nixos-hardware ? null, user, wsl ? false }:
 let
+  isWSL = wsl;
+
   pkgs = inputs.nixpkgs.legacyPackages.${system};
   pkgs-unstable = import inputs.nixpkgs-unstable {
     inherit system;
@@ -66,6 +68,8 @@ in
         unfree-config
         ../hosts/${machine}/configuration.nix
         inputs.lix-module.nixosModules.default
+
+        (if isWSL then inputs.nixos-wsl.nixosModules.wsl else { })
 
         inputs.home-manager.nixosModules.home-manager
         {
