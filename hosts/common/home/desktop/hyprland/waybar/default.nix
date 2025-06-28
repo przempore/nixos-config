@@ -22,10 +22,10 @@ in
       layer = "top";
       position = "top";
       height = 30;
-      modules-left = ["hyprland/workspaces" "hyprland/window"];
-      modules-center = ["custom/kernel" "custom/weather"];
+      modules-left = [ "hyprland/workspaces" "hyprland/window" ];
+      modules-center = [ "custom/kernel" "custom/weather" ];
       # "modules-center": ["custom/kernel"],
-      modules-right = ["pulseaudio" "network" "memory" "cpu" "clock" "battery" "tray"];
+      modules-right = [ "pulseaudio" "network" "memory" "cpu" "clock" "battery" "tray" ];
       "hyprland/workspaces" = {
         format = "{name}: {icon}";
         format-icons = {
@@ -67,7 +67,7 @@ in
         format = "{volume}% {icon}";
         format-muted = "🔇";
         format-icons = {
-          default = ["🔈" "🔉" "🔊"];
+          default = [ "🔈" "🔉" "🔊" ];
         };
         on-click = "~/.config/polybar/pavolume.sh --togmute";
         on-click-right = "pavucontrol";
@@ -103,7 +103,7 @@ in
         format-charging = "{capacity}% ";
         format-plugged = "{capacity}% ";
         format-alt = "{time} {icon}";
-        format-icons = ["" "" "" "" ""];
+        format-icons = [ "" "" "" "" "" ];
         tooltip = true;
         tooltip-format = "{time} remaining";
       };

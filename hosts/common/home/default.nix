@@ -25,11 +25,11 @@
     };
 
     pointerCursor = {
-      gtk.enable = true;  # Enable cursor theming for GTK applications
-      x11.enable = true;  # Enable for X11 (e.g., when using XWayland)
-      package = lib.mkDefault pkgs.catppuccin-cursors;  # Use the Catppuccin cursors package
-      name = "catppuccin-mocha-dark-cursors";  # Specific Mocha Dark variant
-      size = lib.mkDefault 24;  # Match the size you used with nwg-look
+      gtk.enable = true; # Enable cursor theming for GTK applications
+      x11.enable = true; # Enable for X11 (e.g., when using XWayland)
+      package = lib.mkDefault pkgs.catppuccin-cursors; # Use the Catppuccin cursors package
+      name = "catppuccin-mocha-dark-cursors"; # Specific Mocha Dark variant
+      size = lib.mkDefault 24; # Match the size you used with nwg-look
     };
 
     packages = with pkgs-unstable; [

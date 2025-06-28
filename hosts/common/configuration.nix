@@ -153,7 +153,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    brightnessctl  # For display brightness control
+    brightnessctl # For display brightness control
     # system call monitoring
     arandr
     autorandr

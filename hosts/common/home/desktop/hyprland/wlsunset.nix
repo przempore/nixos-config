@@ -2,7 +2,8 @@
 let
   latitude = 52.5200;
   longitude = 13.4050;
-in {
+in
+{
   services.wlsunset = {
     enable = true;
     inherit latitude longitude;
