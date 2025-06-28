@@ -168,7 +168,7 @@
         dooku = dookuSystem.nixosConfiguration.dooku;
         ilum = ilumSystem.nixosConfiguration.ilum;
         dev-vm = devVmSystem.nixosConfiguration.dev-vm;
-        wsl = wslSystem.nixosConfiguration.wsl;
+        # wsl = wslSystem.nixosConfiguration.wsl;
       };
 
       deploy.nodes.dathomir = {

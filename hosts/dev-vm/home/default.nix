@@ -12,26 +12,21 @@
   home = {
     username = "przemek";
     homeDirectory = "/home/przemek";
-
-    # Standard cursor size like dathomir
-    pointerCursor = {
-      size = 12;
-    };
   };
 
   # VM-optimized picom settings (less effects for better performance)
   services.picom.settings = {
     fade = false;
-    shadow = false;
+    # shadow = false;
     blur = false;
     vsync = false;
   };
 
   # Simplified shell prompt for VM
-  programs.starship.settings = {
-    format = "[VM] $all";
-    right_format = "";
-  };
+  # programs.starship.settings = {
+  #   format = "[VM] $all";
+  #   right_format = "";
+  # };
 
   # This value determines the home Manager release that your
   # configuration is compatible with.
