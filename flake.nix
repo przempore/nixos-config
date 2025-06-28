@@ -58,6 +58,11 @@
         machine = "ilum";
         user = "przemek";
       };
+      devVmSystem = mkSystem {
+        inherit system;
+        machine = "dev-vm";
+        user = "przemek";
+      };
 
       deployPkgs =
         let
@@ -75,6 +80,62 @@
     {
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixpkgs-fmt;
 
+      devShells.${system}.default = nixpkgs.legacyPackages.${system}.mkShell {
+        buildInputs = with nixpkgs.legacyPackages.${system}; [
+          # Essential tools for NixOS config management
+          gnumake
+          git
+          openssh
+          rsync
+
+          # Nix development tools
+          nixpkgs-fmt
+          nil # Nix LSP
+          nix-tree
+          nix-output-monitor # nom
+          nh # Nix helper
+
+          # System utilities
+          curl
+          wget
+          jq
+          tree
+          htop
+
+          # Network tools for VM management
+          netcat
+          nmap
+          inetutils # for telnet
+        ];
+
+        shellHook = ''
+          echo ""
+          echo "🎯 NixOS Configuration Development Environment"
+          echo "============================================="
+          echo ""
+          echo "Available commands:"
+          echo "  make help          - Show all Makefile commands"
+          echo "  make vm/setup-help - VM setup instructions"
+          echo "  make switch        - Switch local NixOS config"
+          echo "  make vm/switch     - Switch VM config (needs NIXADDR)"
+          echo ""
+          echo "Development tools available:"
+          echo "  nixpkgs-fmt        - Format Nix files"
+          echo "  nh                 - Fast NixOS rebuilds"
+          echo "  nix-tree           - Explore dependency tree"
+          echo "  nom                - Better nix build output"
+          echo ""
+          echo "Environment variables:"
+          echo "  NIXADDR: ''${NIXADDR:-not set}"
+          echo "  NIXNAME: ''${NIXNAME:-dev-vm}"
+          echo ""
+          if command -v nh &> /dev/null; then
+            echo "✅ nh (Nix helper) is available"
+          fi
+          echo ""
+        '';
+      };
+
       # nix run '.?submodules=1#homeConfigurations.<configuration>.activationPackage' --show-trace --impure -- switch
       # using `nh`
       # nh home switch --backup-extension backup_$(date +"%Y%M%H%M%S") '.?submodules=1' -- --show-trace --impure
@@ -82,6 +143,7 @@
         przemek = ilumSystem.homeConfiguration.przemek;
         dathomir = dathomirSystem.homeConfiguration.przemek;
         porebski = dookuSystem.homeConfiguration.porebski;
+        dev-vm = devVmSystem.homeConfiguration.przemek;
       };
 
       # sudo nixos-rebuild switch --flake '.?submodules=1#<host_name>' --show-trace --impure
@@ -91,6 +153,7 @@
         dathomir = dathomirSystem.nixosConfiguration.dathomir;
         dooku = dookuSystem.nixosConfiguration.dooku;
         ilum = ilumSystem.nixosConfiguration.ilum;
+        dev-vm = devVmSystem.nixosConfiguration.dev-vm;
       };
 
       deploy.nodes.dathomir = {
