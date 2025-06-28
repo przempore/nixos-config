@@ -45,6 +45,14 @@ deploy: ## Deploy to remote system using deploy-rs (requires devShell)
 deploy-local: ## Deploy locally without remote dependencies
 	deploy --targets .#dathomir --local-sudo
 
+.PHONY: gc garbage-collection
+gc: garbage-collection
+
+## Run Nix garbage collection, deleting store paths older than 3 days
+garbage-collection:
+	@echo "🗑️  Running Nix GC (deleting paths >3d old)…"
+	sudo nix-collect-garbage --delete-older-than 3d
+
 ##
 ## VM Management
 ##
