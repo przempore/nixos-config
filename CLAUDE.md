@@ -18,6 +18,8 @@ make switch           # Switch NixOS configuration
 make home-switch      # Switch home-manager configuration
 make update           # Update flake inputs
 make check            # Check flake configuration
+make deploy           # Deploy to remote systems (dathomir)
+make deploy-local     # Deploy locally with sudo
 
 # VM development workflow
 make vm/setup-help    # Show VM setup instructions
@@ -61,9 +63,11 @@ direnv allow
 # Available tools:
 make               # GNU Make for running Makefile commands
 nixpkgs-fmt        # Format Nix files
-nh                 # Fast NixOS rebuilds
+nh                 # Fast NixOS rebuilds (moved from global)
 nix-tree           # Explore dependency tree
-nom                # Better nix build output
+nom                # Better nix build output (moved from global)
+deploy-rs          # Remote NixOS deployments
+nil                # Nix LSP for editors (moved from global nvim)
 ```
 
 #### Manual setup
