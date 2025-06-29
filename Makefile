@@ -31,7 +31,7 @@ home-switch: ## Switch home-manager configuration on local system
 
 .PHONY: update
 update: ## Update flake inputs
-	nix flake update
+	nix flake update --commit-lock-file
 
 .PHONY: check
 check: ## Check flake configuration
