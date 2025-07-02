@@ -23,7 +23,7 @@ help: ## Show this help message
 
 .PHONY: switch
 switch: ## Switch NixOS configuration on local system
-	nh os switch --update '.?submodules=1' -- --impure --show-trace
+	nh os switch '.?submodules=1' -- --impure --show-trace
 
 .PHONY: home-switch
 home-switch: ## Switch home-manager configuration on local system
