@@ -9,6 +9,23 @@ clangd_capabilities.textDocument.semanticHighlighting = true
 -- If using clangd >= 11, offsetEncoding defaults to utf-8, otherwise set explicitly
 -- clangd_capabilities.offsetEncoding = "utf-8"
 
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local bufnr = args.buf
+    local readonly = vim.api.nvim_buf_get_option(bufnr, "readonly")
+    local modifiable = vim.api.nvim_buf_get_option(bufnr, "modifiable")
+    local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
+    local name = vim.api.nvim_buf_get_name(bufnr)
+    local isdiff = vim.api.nvim_win_get_option(0, "diff")
+
+    if name:match("^fugitive://") or ft == "fugitive" or readonly or not modifiable or isdiff then
+      vim.schedule(function()
+        vim.lsp.stop_client(vim.lsp.get_active_clients({ bufnr = bufnr }))
+      end)
+    end
+  end,
+})
+
 local function on_attach(client, bufnr)
   print("LSP client " .. client.name .. " attached via lspconfig to buffer " .. bufnr)
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
