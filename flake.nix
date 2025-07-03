@@ -65,6 +65,7 @@
         inherit system;
         machine = "dev-vm";
         user = "przemek";
+        dev-vm = true;
       };
       wslSystem = mkSystem {
         inherit system;

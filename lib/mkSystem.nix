@@ -1,7 +1,8 @@
 { inputs, ... }:
-{ machine, system, nixos-hardware ? null, user, wsl ? false }:
+{ machine, system, nixos-hardware ? null, user, wsl ? false, dev-vm ? false }:
 let
   isWSL = wsl;
+  isDevVm = dev-vm;
 
   pkgs = inputs.nixpkgs.legacyPackages.${system};
   pkgs-unstable = import inputs.nixpkgs-unstable {
@@ -55,7 +56,7 @@ in
       modules = [
         # TODO: move modules around to unlock home configuration from machine
         ../hosts/${machine}/home
-        inputs.lix-module.nixosModules.default
+        (if !isDevVm then inputs.lix-module.nixosModules.default else { })
       ];
     };
   };
@@ -67,7 +68,7 @@ in
       modules = inputs.nixpkgs.lib.optional (nixos-hardware != null) nixos-hardware ++ [
         unfree-config
         ../hosts/${machine}/configuration.nix
-        inputs.lix-module.nixosModules.default
+        (if !isDevVm then inputs.lix-module.nixosModules.default else { })
 
         (if isWSL then inputs.nixos-wsl.nixosModules.wsl else { })
 
