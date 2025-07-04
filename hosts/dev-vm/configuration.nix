@@ -15,6 +15,15 @@
   services.qemuGuest.enable = lib.mkDefault true;
   services.spice-vdagentd.enable = lib.mkDefault true;
 
+  services.displayManager = {
+    # autoLogin.enable = true;
+    # autoLogin.user = "przemek";
+    defaultSession = "none+bspwm";
+  };
+
+  services.xrdp.enable = true;
+  services.xrdp.openFirewall = true;
+
   # VM optimizations (these will be provided by hardware-configuration.nix)
 
   # Enable SSH for remote access

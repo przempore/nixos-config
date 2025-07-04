@@ -32,27 +32,25 @@
 
   boot.initrd.kernelModules = [ ];
 
-  # Support both Intel and AMD virtualization
   boot.kernelModules = [ "kvm-intel" "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   # Generic VM filesystem layout using device paths
   # More reliable than UUIDs across different VM platforms
   fileSystems."/" =
-    {
-      device = "/dev/disk/by-label/nixos";
+    { device = "/dev/disk/by-uuid/7b655977-1c8f-4622-92a4-976dd14117ac";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-label/boot";
+    { device = "/dev/disk/by-uuid/4D13-E3AD";
       fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
+      options = [ "fmask=0077" "dmask=0077" ];
     };
 
   swapDevices =
-    [{ device = "/dev/disk/by-label/swap"; }];
+    [ { device = "/dev/disk/by-uuid/32e6c556-5821-4835-a372-bdf4ff7fd54b"; }
+    ];
 
   # Network configuration that works across hypervisors
   networking.useDHCP = lib.mkDefault true;
@@ -63,7 +61,9 @@
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # Enable guest services for better integration
-  virtualisation.hypervGuest.enable = lib.mkDefault true;
+  virtualisation.hypervGuest = {
+    enable = true;
+  };
 
   # VirtualBox guest additions (disabled by default - enable manually if using VirtualBox)
   # virtualisation.virtualbox.guest.enable = lib.mkDefault false;

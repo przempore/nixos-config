@@ -1,6 +1,6 @@
 # VM Home Manager Configuration
 # Similar to dathomir but optimized for VM with bspwm
-{ lib, ... }:
+{ lib, pkgs, pkgs-unstable, ... }:
 
 {
   imports = [
@@ -16,6 +16,8 @@
 
   # VM-optimized picom settings (less effects for better performance)
   services.picom.settings = {
+    enable = false;
+    backend = "xrender";
     fade = false;
     # shadow = false;
     blur = false;

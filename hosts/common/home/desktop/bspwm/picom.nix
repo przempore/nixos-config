@@ -1,7 +1,7 @@
 { lib
 , ...
 }: {
-  services.picom.enable = true;
+  services.picom.enable = lib.mkDefault true;
   services.picom.settings = {
     shadow = true;
     shadow-radius = 7;
@@ -44,7 +44,7 @@
     #   "window_type = 'desktop'";
     #   "_GTK_FRAME_EXTENTS@:c"
     # ];
-    backend = "glx";
+    backend = lib.mkDefault "glx";
     vsync = lib.mkDefault false;
     mark-wmwin-focused = true;
     mark-ovredir-focused = true;
