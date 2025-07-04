@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is a comprehensive NixOS configuration repository using Nix Flakes for declarative system and user environment management across multiple machines (ilum, dathomir, dooku). The architecture is modular with shared configurations and host-specific overrides.
+This is a comprehensive NixOS configuration repository using Nix Flakes for declarative system and user environment management across multiple machines (ilum, dathomir, dooku, dev-vm, wsl). The architecture is modular with shared configurations and host-specific overrides.
 
 ## Common Commands
 
@@ -33,6 +33,14 @@ make vm/reboot        # Reboot the VM
 # Fresh installation
 make install/fresh    # Install NixOS on fresh system
 make install/generate-config  # Generate hardware configuration
+
+# WSL
+make wsl               # Build WSL root-fs installer tarball
+
+# Maintenance
+make gc                # Run garbage collection (delete paths >3d old)
+make fmt               # Format Nix files
+make clean             # Clean build artifacts
 ```
 
 ### Traditional Commands (alternative to Makefile)
@@ -82,7 +90,7 @@ find -L /nix/var/nix/gcroots/per-user/$USER -maxdepth 1 -type l -delete
 - **`flake.nix`**: Central configuration defining inputs and outputs for all machines
 - **`lib/mkSystem.nix`**: Factory function creating both NixOS and home-manager configurations
 - **`hosts/common/`**: Shared configuration across all machines
-- **`hosts/{ilum,dathomir,dooku,dev-vm}/`**: Host-specific configurations
+- **`hosts/{ilum,dathomir,dooku,dev-vm,wsl}/`**: Host-specific configurations
 - **`Makefile`**: Development workflow automation for system management and VM operations
 
 ### Key Components
@@ -107,8 +115,11 @@ The repository uses a custom `mkSystem` function that creates configurations for
 The configuration integrates multiple external flakes including:
 - **catppuccin**: Consistent theming across applications
 - **zen-browser**, **ghostty**: Modern application alternatives
-- **lix-module**: Alternative Nix implementation
+- **lix-module**: Alternative Nix implementation (version 2.93.0)
 - **neovim-nightly**: Latest editor features
+- **tmux-sessionx**: Enhanced tmux session management
+- **nixai**: AI assistant integration
+- **nixos-wsl**: WSL support for NixOS
 
 ## Development Guidelines
 
@@ -155,6 +166,9 @@ The configuration integrates multiple external flakes including:
 - **`hosts/common/home/apps/nvim/`**: Extensive Neovim configuration with Lua customizations
 - **`hosts/common/hyprland.nix`**: Wayland compositor configuration
 - **`hosts/dev-vm/`**: VM-optimized configuration using bspwm for lightweight GUI
+- **`hosts/wsl/`**: WSL-specific NixOS configuration
+- **`hosts/common/home/private/`**: Personal configurations and sensitive data (not tracked)
+- **`hosts/common/home/apps/`**: Application-specific configurations (nvim, firefox, etc.)
 - **`Makefile`**: Development workflow automation for system and VM management
 
 ## Testing and Validation
@@ -164,3 +178,25 @@ When making changes:
 2. Use `--show-trace` for detailed error information
 3. Test on less critical hosts before applying to main machines
 4. Verify hardware-specific configurations don't break other hosts
+
+## Development Workflow Best Practices
+
+### Making Configuration Changes
+1. **Enter development shell**: `nix develop` or `direnv allow`
+2. **Test syntax**: `make check` before applying changes
+3. **Format code**: `make fmt` to maintain consistent formatting
+4. **Test in VM**: Use `make vm/switch` to test changes safely
+5. **Apply locally**: Use `make switch` and `make home-switch` for local changes
+6. **Deploy remotely**: Use `make deploy` for remote systems
+
+### Working with Multiple Hosts
+- Each host has its own configuration in `hosts/<hostname>/`
+- The `mkSystem` function in `lib/mkSystem.nix` creates both NixOS and home-manager configurations
+- Common configurations are shared through `hosts/common/`
+- Hardware-specific modules are defined per host using nixos-hardware
+
+### Package Management
+- **Stable packages**: Use main nixpkgs channel (25.05)
+- **Bleeding edge**: Use nixpkgs-unstable for latest packages
+- **Legacy compatibility**: Use legacy-nixpkgs (24.05) for older software
+- **Unfree packages**: Must be explicitly allowed in `hosts/common/configuration.nix`

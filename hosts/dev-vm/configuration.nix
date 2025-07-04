@@ -1,6 +1,6 @@
 # VM Development Environment Configuration
 # Similar to dathomir but optimized for VM usage with bspwm
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, pkgs-unstable, ... }:
 
 {
   imports = [
@@ -9,7 +9,7 @@
   ];
 
   # VM-specific system configuration
-  networking.hostName = "dev-vm";
+  networking.hostName = "dev-vm"; # rename it to "grievous"
 
   # Enable VM-specific services (conditional based on available services)
   services.qemuGuest.enable = lib.mkDefault true;
@@ -35,10 +35,25 @@
     };
   };
 
-  # Set timezone like dathomir
+  services.openvpn.servers = {
+    officeVPN = {
+      config = '' config /root/nixos/openvpn/officeVPN.conf '';
+      updateResolvConf = true;
+      autoStart = false;
+      authUserPass.username = builtins.getEnv "OFFICE_VPN_USERNAME";
+      authUserPass.password = builtins.getEnv "OFFICE_VPN_PASSWORD";
+    };
+  };
+
+  services.tailscale = {
+    enable = true;
+    package = pkgs-unstable.tailscale;
+  };
+
+  services.xserver.desktopManager.wallpaper.mode = "fill";
+
   time.timeZone = "Europe/Berlin";
 
-  # Locale settings
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "de_DE.UTF-8";
@@ -52,10 +67,8 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
-  # Trusted users for nix
   nix.settings.trusted-users = [ "root" "przemek" ];
 
-  # VM-specific packages
   environment.systemPackages = with pkgs; [
     git
     curl
@@ -65,7 +78,6 @@
     tree
   ];
 
-  # Define user account similar to dathomir
   users.users.przemek = {
     isNormalUser = true;
     description = "przemek";
@@ -73,10 +85,8 @@
     packages = with pkgs; [ ];
   };
 
-  # Auto-login for easier VM access
   services.getty.autologinUser = "przemek";
 
-  # Network configuration for VM
   networking.firewall.enable = false; # Disabled for development ease
   networking.useDHCP = lib.mkDefault true;
 

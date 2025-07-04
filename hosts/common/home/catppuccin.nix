@@ -10,5 +10,6 @@
       enable = true;
       accent = "dark";
     };
+    gtk.enable = false;
   };
 }

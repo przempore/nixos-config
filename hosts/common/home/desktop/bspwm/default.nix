@@ -3,7 +3,6 @@
   imports = [
     ./picom.nix
     ./polybar
-    # ./screen_settings
     ./sxhkd.nix
     ./redshift.nix
   ];
@@ -30,9 +29,9 @@
     source = ./wallpapers;
   };
 
-  home.file.".config/bspwm/autostart.sh" = {
-    source = ./autostart.sh;
-  };
+  # home.file.".config/bspwm/autostart.sh" = {
+  #   source = ./autostart.sh;
+  # };
 
   xsession.windowManager.bspwm = {
     enable = true;

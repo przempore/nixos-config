@@ -1,11 +1,9 @@
-# VM Home Manager Configuration
-# Similar to dathomir but optimized for VM with bspwm
 { lib, pkgs, pkgs-unstable, ... }:
 
 {
   imports = [
     ../../common/home
-    ../../common/home/desktop # This includes bspwm, gtk, and screen settings
+    ../../common/home/desktop
   ];
 
   # VM-specific home configuration
@@ -14,21 +12,16 @@
     homeDirectory = "/home/przemek";
   };
 
-  # VM-optimized picom settings (less effects for better performance)
-  services.picom.settings = {
+  services.picom = {
     enable = false;
-    backend = "xrender";
-    fade = false;
-    # shadow = false;
-    blur = false;
-    vsync = false;
+    settings = {
+      backend = "xrender";
+      fade = false;
+      # shadow = false;
+      blur = false;
+      vsync = false;
+    };
   };
-
-  # Simplified shell prompt for VM
-  # programs.starship.settings = {
-  #   format = "[VM] $all";
-  #   right_format = "";
-  # };
 
   # This value determines the home Manager release that your
   # configuration is compatible with.
