@@ -76,6 +76,13 @@
   };
   services.tlp.enable = lib.mkDefault true;
 
+  services.logind = {
+    # “ignore” means “do nothing” when the lid is closed
+    lidSwitch = "ignore";
+    lidSwitchDocked = "ignore"; # when external monitors are connected
+    lidSwitchExternalPower = "ignore"; # when on AC power
+  };
+
   virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.onShutdown = "shutdown";
