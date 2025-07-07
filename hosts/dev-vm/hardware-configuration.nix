@@ -26,13 +26,14 @@
     "virtio_net"
     # Hyper-V support
     "hv_vmbus"
-    "hv_storvsc"
+    "hv_utils"
     "hv_netvsc"
+    "hv_storvsc"
   ];
 
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [ "hv_sock" ];
 
-  boot.kernelModules = [ "kvm-intel" "kvm-amd" ];
+  boot.kernelModules = [ "kvm-intel" "kvm-amd" "hv_balloon" "hv_sock" ];
   boot.extraModulePackages = [ ];
 
   # Generic VM filesystem layout using device paths
