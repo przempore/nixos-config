@@ -48,8 +48,8 @@ make clean             # Clean build artifacts
 # Switch NixOS system configuration (using nh)
 nh os switch --update '.?submodules=1' -- --impure --show-trace
 
-# Switch home-manager configuration (using nh)
-nh home switch --backup-extension backup_$(date +"%Y%M%H%M%S") '.?submodules=1' -- --show-trace --impure
+# Switch home-manager configuration (using nix run for better hostname detection)
+nix run '.?submodules=1#homeConfigurations.$(hostname).activationPackage' --show-trace --impure -- switch --backup-extension backup_$(date +"%Y%M%H%M%S")
 
 # Traditional NixOS rebuild
 sudo nixos-rebuild switch --flake '.?submodules=1#<host_name>' --show-trace --impure
@@ -76,6 +76,8 @@ nix-tree           # Explore dependency tree
 nom                # Better nix build output (moved from global)
 deploy-rs          # Remote NixOS deployments
 nil                # Nix LSP for editors (moved from global nvim)
+netcat, nmap       # Network tools for VM management
+inetutils          # Network utilities for remote operations
 ```
 
 #### Manual setup
@@ -109,6 +111,7 @@ The repository uses a custom `mkSystem` function that creates configurations for
 #### Application Configuration Architecture
 - **Modular Apps**: Each application configured in separate files under `hosts/common/home/apps/`
 - **Desktop Environments**: Multiple DE/WM support (BSPWM, Hyprland, XFCE) with conditional loading
+- **Modern Applications**: Includes Ghostty terminal, Superfile file manager, Zathura PDF viewer, Ansible automation
 - **Shared vs Private**: Clear separation between common configs and personal/work-specific settings in `hosts/common/home/private/`
 
 ### External Dependencies Management
@@ -135,9 +138,10 @@ The configuration integrates multiple external flakes including:
 - Use `make vm/setup-help` for detailed step-by-step setup instructions
 - The dev-vm configuration uses bspwm for lightweight GUI performance in VMs
 - Similar to dathomir setup but optimized for VM usage with reduced effects
+- **XRDP Support**: Remote Desktop Protocol for GUI access to VMs (work in progress)
 - Universal VM hardware configuration supporting multiple hypervisors:
   - QEMU/KVM (Linux hosts)
-  - Hyper-V (Windows hosts) - recommended for Windows
+  - Hyper-V (Windows hosts) - recommended for Windows with enhanced kernel modules
   - VirtualBox (optional, guest additions disabled by default)
 - Hardware config is version controlled and works across VM platforms
 - Test configuration changes in VM before applying to physical machines
@@ -164,11 +168,13 @@ The configuration integrates multiple external flakes including:
 - **`hosts/common/home/default.nix`**: Base home-manager configuration structure
 - **`hosts/common/home/desktop/`**: Desktop environment configurations (bspwm, gtk, screen settings)
 - **`hosts/common/home/apps/nvim/`**: Extensive Neovim configuration with Lua customizations
+- **`hosts/common/home/apps/ghostty/`**: Modern terminal emulator with CSS styling and keybindings
+- **`hosts/common/home/apps/superfile/`**: Vim-style file manager configuration
 - **`hosts/common/hyprland.nix`**: Wayland compositor configuration
 - **`hosts/dev-vm/`**: VM-optimized configuration using bspwm for lightweight GUI
-- **`hosts/wsl/`**: WSL-specific NixOS configuration
+- **`hosts/wsl/`**: WSL-specific NixOS configuration (currently commented out)
 - **`hosts/common/home/private/`**: Personal configurations and sensitive data (not tracked)
-- **`hosts/common/home/apps/`**: Application-specific configurations (nvim, firefox, etc.)
+- **`hosts/common/home/apps/`**: Application-specific configurations (nvim, firefox, ghostty, etc.)
 - **`Makefile`**: Development workflow automation for system and VM management
 
 ## Testing and Validation
