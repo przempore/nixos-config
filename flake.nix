@@ -157,7 +157,7 @@
       homeConfigurations = {
         przemek = ilumSystem.homeConfiguration.przemek;
         dathomir = dathomirSystem.homeConfiguration.przemek;
-        porebski = dookuSystem.homeConfiguration.porebski;
+        dooku = dookuSystem.homeConfiguration.porebski;
         dev-vm = devVmSystem.homeConfiguration.przemek;
       };
 
