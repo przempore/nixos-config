@@ -5,6 +5,7 @@
 NIXADDR ?= nixos@192.168.1.100
 NIXNAME ?= dev-vm
 NIXUSER ?= przemek
+HOSTNAME := $(shell hostname)
 
 # SSH options for VM access
 SSH_OPTIONS := -o PubkeyAuthentication=no -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
@@ -27,7 +28,8 @@ switch: ## Switch NixOS configuration on local system
 
 .PHONY: home-switch
 home-switch: ## Switch home-manager configuration on local system
-	nh home switch --backup-extension backup_$$(date +"%Y%M%H%M%S") '.?submodules=1' -- --show-trace --impure
+	# nh home switch --backup-extension backup_$$(date +"%Y%M%H%M%S") '.?submodules=1' -- --show-trace --impure
+	nix run '.?submodules=1#homeConfigurations.$(HOSTNAME).activationPackage' --show-trace --impure -- switch
 
 .PHONY: update
 update: ## Update flake inputs
@@ -116,7 +118,8 @@ vm/switch: vm/copy ## Rebuild and switch VM configuration
 vm/home-switch: vm/copy ## Switch home-manager configuration on VM
 	ssh $(SSH_OPTIONS) $(NIXADDR) " \
 		cd nixos-config && \
-		nh home switch --backup-extension backup_$$(date +\"%Y%M%H%M%S\") '.?submodules=1' -- --show-trace --impure"
+		nix run '.?submodules=1#homeConfigurations.$(HOSTNAME).activationPackage' --show-trace --impure -- switch
+		# nh home switch --backup-extension backup_$$(date +\"%Y%M%H%M%S\") '.?submodules=1' -- --show-trace --impure"
 
 .PHONY: vm/ssh
 vm/ssh: ## SSH into the VM
