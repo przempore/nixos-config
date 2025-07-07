@@ -23,6 +23,21 @@
 
   services.xrdp.enable = true;
   services.xrdp.openFirewall = true;
+  # services.xrdp = {
+  #   enable        = true;
+  #   openFirewall  = true;        # port 3389 if you also RDP in over the LAN
+  #   defaultWindowManager = "bspwm";
+  #   extraConfDirCommands = ''
+  #     # Start with the stock config
+  #     install -D ${pkgs.xrdp}/etc/xrdp/xrdp.ini $out/xrdp.ini
+  #
+  #     # (a) turn vsock on
+  #     sed -i $out/xrdp.ini -e 's/^use_vsock=.*/use_vsock=true/'
+  #
+  #     # (b) write the log in /run/xrdp (unit's WorkingDirectory)
+  #     # sed -i $out/xrdp.ini -e 's|^LogFile=.*|LogFile=/run/xrdp/xrdp.log|'
+  #   '';
+  # };
 
   # VM optimizations (these will be provided by hardware-configuration.nix)
 
