@@ -23,7 +23,7 @@
 
   imports = [
     ./direnv.nix
-    ./firefox.nix
+    # ./firefox.nix
     ./fish.nix
     ./ghostty.nix
     ./git.nix
