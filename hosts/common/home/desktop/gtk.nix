@@ -22,9 +22,11 @@
     enable = true;
     theme = {
       name = "rose-pine-dawn";
+      package = pkgs.rose-pine-gtk-theme;
     };
     iconTheme = {
       name = "rose-pine-icons";
+      package = pkgs.rose-pine-icon-theme;
     };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;
