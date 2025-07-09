@@ -100,6 +100,9 @@ if [ -z "$CITY_NAME" ]; then
     IPCURL=$(curl -s https://ipinfo.io/$IP)
     CITY_NAME=$(echo $IPCURL | jq -r ".city")
     COUNTRY_CODE=$(echo $IPCURL | jq -r ".country")
+    longLat=$(echo $IPCURL | jq -r ".loc")
+    LAT=$(echo $longLat | cut -d',' -f1)
+    LON=$(echo $longLat | cut -d',' -f2)
 fi
 
 RESPONSE=""
@@ -110,7 +113,8 @@ if [ $UNITS = "kelvin" ]; then
 else
     UNIT_URL="&units=$UNITS"
 fi
-URL="api.openweathermap.org/data/2.5/weather?appid=$APIKEY$UNIT_URL&lang=$LANG&q=$(echo $CITY_NAME| sed 's/ /%20/g'),${COUNTRY_CODE}"
+# URL="api.openweathermap.org/data/2.5/weather?appid=$APIKEY$UNIT_URL&lang=$LANG&q=$(echo $CITY_NAME| sed 's/ /%20/g'),${COUNTRY_CODE}"
+URL="api.openweathermap.org/data/2.5/weather?appid=$APIKEY$UNIT_URL&lang=$LANG&lat=$LAT&lon=$LON"
 
 function getData {
     ERROR=0
@@ -302,7 +306,7 @@ function setIcons {
 function outputCompact {
     OUTPUT="$WIND %{T$WEATHER_FONT_CODE}%{F$ICON_COLOR}$ICON%{F-}%{T-} $ERR_MSG$COLOR_TEXT_BEGIN$DESCRIPTION$COLOR_TEXT_END| $TEMP"
     # echo "Output: $OUTPUT" >> "$HOME/.weather.log"
-    echo "$OUTPUT"
+    echo "$CITY_NAME: $OUTPUT"
 }
 
 getData $1
