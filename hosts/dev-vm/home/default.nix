@@ -76,7 +76,7 @@
       #kill
       "super + shift + q" = "bspc node -c";
       # Focus/swap windows by direction
-      "super + {_,shift + }{h,j,k,n}" = "bspc node --{focus,swap} {west,south,north,east}";
+      "alt + {_,shift + }{h,j,k,l}" = "bspc node --{focus,swap} {west,south,north,east}";
       # Flip layout vertically/horizontally
       "super + {_,shift + }a" = "bspc node @/ --flip {vertical,horizontal}";
       # Move focused window to other monitor
@@ -90,7 +90,7 @@
       # Focus/swap windows by direction
       # "super + ctrl + {Left,Down,Up,Right}" =  "bspc node --{focus} {west,south,north,east}";
       # Contract tiled space
-      "super + ctrl + {h,j,k,n}" = "bspc node {@east -r -10,@north -r +10,@south -r -10,@west -r +10}";
+      "alt + ctrl + {h,j,k,l}" = "bspc node {@east -r -10,@north -r +10,@south -r -10,@west -r +10}";
       # Focus parent/brother/first/second for preselection
       "super + ctrl + {comma,period,p,y}" = "bspc node --focus @{parent,brother,first,second}";
       # Preselect the splitting area for next window on leaf/parent
@@ -102,7 +102,7 @@
       #Focus selected desktop
       "alt + shift + Tab" = "bspc desktop -f '^{1-9,10}'";
       # Expand tiled space
-      "alt + shift + {h,j,k,n}" = "bspc node {@west -r -10,@south -r +10,@north -r -10,@east -r +10}";
+      "alt + shift + {h,j,k,l}" = "bspc node {@west -r -10,@south -r +10,@north -r -10,@east -r +10}";
 
       "super + {plus,bracketleft,braceleft,parenleft,ampersand,equal,parenright,braceright,bracketright,asterisk}" = "bspc desktop -f '^{1-9,10}'";
       "super + shift + {plus,bracketleft,braceleft,parenleft,ampersand,equal,parenright,braceright,bracketright,asterisk}" = "bspc node -d '^{1-9,10}' -f";
