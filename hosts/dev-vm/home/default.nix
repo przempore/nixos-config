@@ -24,18 +24,19 @@
   };
 
   services.sxhkd.keybindings = {
+      "$mod" = "Mod1";
       #Rofi
-      "alt + space" = "rofi -show drun -show-icons";
+      "super + space" = "rofi -show drun -show-icons";
       #Rofi theme selector
       "super + r" = "rofi-theme-selector";
 
-      "super + Return" = "kitty";
-      "super + Escape" = "xkill";
-      "super + KP_Enter" = "wezterm start --always-new-process";
+      "alt + Return" = "kitty";
+      "alt + Escape" = "xkill";
+      "alt + KP_Enter" = "wezterm start --always-new-process";
       #File-Manager
-      "super + shift + Return" = "thunar";
+      "alt + shift + Return" = "thunar";
       #dmenu
-      "super + m" = "dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'";
+      "alt + m" = "dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'";
       #reload sxhkd:
       "alt + r" = "pkill -USR1 -x sxhkd";
 
@@ -51,34 +52,34 @@
       #Xcfe4-TaskManager
       "ctrl + shift + Escape" = "xfce4-taskmanager";
       #Hide polybar
-      "super + y" = "$HOME/.config/bspwm/scripts/toggle_polybar";
+      "alt + y" = "$HOME/.config/bspwm/scripts/toggle_polybar";
 
       "ctrl + alt + o" = "obsidian";
       #Toggle fullscreen of window
-      "super + f" = "bspc node --state \~fullscreen";
+      "alt + f" = "bspc node --state \~fullscreen";
       # Toggle pseudo tiling of window
-      "super + p" = "bspc node --state \~pseudo_tiled";
-      "super + o" = "bspc node --state \~floating";
+      "alt + p" = "bspc node --state \~pseudo_tiled";
+      "alt + o" = "bspc node --state \~floating";
       #kill
-      "super + q" = "bspc node -c";
+      "alt + q" = "bspc node -c";
       # Rotate windows layout
-      "super + {_,shift + }e" = "bspc node '@parent' -R {_,-}90";
+      "alt + {_,shift + }e" = "bspc node '@parent' -R {_,-}90";
       #Focus selected desktop
-      "super + Tab" = "rofi -show window -show-icons";
+      "alt + Tab" = "rofi -show window -show-icons";
       # set the window state
-      "super + space" = "bspc node -t {tiled,pseudo_tiled,floating,fullscreen}";
+      "alt + space" = "bspc node -t {tiled,pseudo_tiled,floating,fullscreen}";
       # Move focus to other monitor
       "super + BackSpace" = "bspc monitor -f next";
       # Move floating window
       "super + alt + {_,shift + }{Left,Down,Up,Right}" = "~/.config/bspwm/scripts/move-window {_,edge-}{west,south,north,east}";
       # Cancel preselection
-      "super + ctrl + space" = "bspc node --presel-dir cancel";
+      "alt + ctrl + space" = "bspc node --presel-dir cancel";
       #kill
-      "super + shift + q" = "bspc node -c";
+      "alt + shift + q" = "bspc node -c";
       # Focus/swap windows by direction
       "alt + {_,shift + }{h,j,k,l}" = "bspc node --{focus,swap} {west,south,north,east}";
       # Flip layout vertically/horizontally
-      "super + {_,shift + }a" = "bspc node @/ --flip {vertical,horizontal}";
+      "alt + {_,shift + }a" = "bspc node @/ --flip {vertical,horizontal}";
       # Move focused window to other monitor
       "super + shift + Left" = "bspc node -m next --follow";
       # Move focused window to other monitor
@@ -98,20 +99,20 @@
       # Define splitting ratio for next window on leaf/parent
       "super + ctrl + {_,shift +}{plus,bracketleft,braceleft,parenleft,ampersand,equal,parenright,braceright,bracketright,asterisk}" = "bspc node {_,@/} --presel-ratio 0.{1-9}";
       #Focus selected desktop
-      "alt + Tab" = "bspc desktop -f '^{1-9,10}'";
+      "super + Tab" = "bspc desktop -f '^{1-9,10}'";
       #Focus selected desktop
       "alt + shift + Tab" = "bspc desktop -f '^{1-9,10}'";
       # Expand tiled space
-      "alt + shift + {h,j,k,l}" = "bspc node {@west -r -10,@south -r +10,@north -r -10,@east -r +10}";
+      "super + shift + {h,j,k,l}" = "bspc node {@west -r -10,@south -r +10,@north -r -10,@east -r +10}";
 
-      "super + {plus,bracketleft,braceleft,parenleft,ampersand,equal,parenright,braceright,bracketright,asterisk}" = "bspc desktop -f '^{1-9,10}'";
-      "super + shift + {plus,bracketleft,braceleft,parenleft,ampersand,equal,parenright,braceright,bracketright,asterisk}" = "bspc node -d '^{1-9,10}' -f";
-      "super + {_, shift +} g" = "{ bspc config -d focused window_gap (math (bspc config -d focused window_gap) + 2); \
+      "alt + {plus,bracketleft,braceleft,parenleft,ampersand,equal,parenright,braceright,bracketright,asterisk}" = "bspc desktop -f '^{1-9,10}'";
+      "alt + shift + {plus,bracketleft,braceleft,parenleft,ampersand,equal,parenright,braceright,bracketright,asterisk}" = "bspc node -d '^{1-9,10}' -f";
+      "alt + {_, shift +} g" = "{ bspc config -d focused window_gap (math (bspc config -d focused window_gap) + 2); \
                                   [ $(bspc config -d focused window_gap) -ge 2 ] && \
                                   bspc config -d focused window_gap (math (bspc config -d focused window_gap) - 2); \
                                   };";
       # move a floating window
-      "super + ctrl + {Left,Down,Up,Right}" = "bspc node -v {-20 0,0 20,0 -20,20 0};";
+      "alt + ctrl + {Left,Down,Up,Right}" = "bspc node -v {-20 0,0 20,0 -20,20 0};";
       # Custom move/resize
       "super + alt + {Left,Down,Up,Right}" = "$HOME/.config/bspwm/scripts/bspwm_resize {west,south,north,east};";
   };
