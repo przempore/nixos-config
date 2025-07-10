@@ -23,6 +23,38 @@
     };
   };
 
+  xsession.windowManager.bspwm = {
+    enable = true;
+    extraConfig = lib.mkDefault ''
+      echo "[bspwm autostart] starting" | systemd-cat
+
+      # home LG
+      xrandr --newmode "3840x1600_60.00"  521.75  3840 4128 4544 5248  1600 1603 1613 1658 -hsync +vsync
+      xrandr --addmode Virtual-1 3840x1600_60.00
+
+      # office Phillips
+      xrandr --newmode "3440x1440_60.00"  419.50  3440 3696 4064 4688  1440 1443 1453 1493 -hsync +vsync
+      xrandr --addmode Virtual-1 3440x1440_60.00
+
+      autorandr --change | systemd-cat -p info
+
+      function run {
+        if ! pgrep $1 ;
+        then
+          $@&
+        fi
+      }
+
+      run $HOME/.config/polybar/launcher.sh
+
+      run keepassxc
+      run xfce4-clipman
+      run nm-applet
+
+      echo "[bspwm autostart] finished" | systemd-cat
+    '';
+  };
+
   services.sxhkd.keybindings = {
       "$mod" = "Mod1";
       #Rofi
