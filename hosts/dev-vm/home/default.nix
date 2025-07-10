@@ -10,6 +10,12 @@
   home = {
     username = "przemek";
     homeDirectory = "/home/przemek";
+
+    packages = [
+      pkgs.remmina
+      pkgs.freerdp3
+      pkgs.rclone
+    ];
   };
 
   services.picom = {
@@ -63,7 +69,7 @@
       "alt + space" = "rofi -show drun -show-icons";
       #Rofi theme selector
       "super + r" = "rofi-theme-selector";
-
+      "super + v" = "xfce4-popup-clipman";
       "super + Return" = "kitty";
       "super + Escape" = "xkill";
       "super + KP_Enter" = "wezterm start --always-new-process";
