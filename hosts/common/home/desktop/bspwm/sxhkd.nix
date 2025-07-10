@@ -1,4 +1,4 @@
-{ ... }: {
+{ lib, ... }: {
 
   home.file.".config/bspwm/scripts/bspwm_resize".text = ''
     #usr/bin/env dash
@@ -53,7 +53,7 @@
 
   services.sxhkd = {
     enable = true;
-    keybindings = {
+    keybindings = lib.mkDefault {
       #Rofi Fullscreen
       "super + F11" = "rofi -theme-str 'window \{width: 100%;height: 100%;\}' -show drun";
       #Rofi
