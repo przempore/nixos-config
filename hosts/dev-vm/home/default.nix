@@ -32,7 +32,6 @@
   home.file.".config/bspwm/scripts/refresh_keyboard" = {
     text = ''
       setxkbmap -option ctrl:nocaps
-      setxkbmap -option altwin:swap_lalt_lwin
     '';
     executable = true;
   };
@@ -40,7 +39,7 @@
   xsession.windowManager.bspwm = {
     enable = true;
     extraConfig = lib.mkDefault ''
-      echo "[bspwm autostart] starting" | systemd-cat
+      echo "[bspwm dev-vm autostart] starting" | systemd-cat
 
       # home LG
       xrandr --newmode "3840x1600_60.00"  521.75  3840 4128 4544 5248  1600 1603 1613 1658 -hsync +vsync
@@ -52,24 +51,11 @@
 
       autorandr --change | systemd-cat -p info
 
-      function run {
-        if ! pgrep $1 ;
-        then
-          $@&
-        fi
-      }
-
-      run $HOME/.config/polybar/launcher.sh
-
-      run keepassxc
-      run xfce4-clipman
-      run nm-applet
-
       feh --bg-fill $HOME/.background-image
 
       run $HOME/.config/bspwm/scripts/refresh_keyboard
 
-      echo "[bspwm autostart] finished" | systemd-cat
+      echo "[bspwm dev-vm autostart] finished" | systemd-cat
     '';
   };
 
