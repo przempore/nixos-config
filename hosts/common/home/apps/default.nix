@@ -1,26 +1,5 @@
 { pkgs, pkgs-unstable, ... }:
 {
-  home.packages = [
-  ]
-  ++ (with pkgs; [
-    autojump
-    eza
-    fzf # A command-line fuzzy finder
-    fd
-    ripgrep
-    fastfetch
-    yazi
-    sshfs
-    # discord
-    ncpamixer
-    lazydocker
-
-    wireguard-tools
-  ])
-  ++ (with pkgs-unstable; [
-    superfile
-  ]);
-
   imports = [
     ./direnv.nix
     # ./firefox.nix
@@ -30,6 +9,7 @@
     ./kitty
     ./mpv.nix
     ./nvim
+    ./packages.nix
     ./ranger.nix
     ./starship.nix
     ./superfile.nix

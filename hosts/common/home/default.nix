@@ -6,7 +6,7 @@
 , ...
 }: {
   imports = [
-    ./apps
+    ./apps # todo: remove it from here and import separately
     ./catppuccin.nix
   ] ++ (lib.optional (builtins.pathExists ./private/default.nix) ./private);
 
@@ -34,9 +34,9 @@
 
     packages = with pkgs-unstable; [
       claude-code
+      superfile
     ] ++ (with pkgs; [
       cachix
-      onlyoffice-bin_latest
       # netflix
       dash
 
@@ -59,8 +59,6 @@
       nmap # A utility for network discovery and security auditing
       ipcalc # it is a calculator for the IPv4/v6 addresses
 
-      # misc
-      brave
 
       # nix related
       #
@@ -85,22 +83,15 @@
       freetype
       clipster
       redshift
-      keepassxc
       backblaze-b2
       blueman
-      spotify
 
       blueberry
-      geany
+      # geany
 
       # all from here goes to home-manager
-      zathura
       nitrogen
       unzip
-
-      obsidian
-      distrobox
-      signal-desktop
     ]);
   };
 

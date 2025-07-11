@@ -3,7 +3,9 @@
 {
   imports = [
     ../../common/home
-    ../../common/home/desktop
+    ../../common/home/desktop/bspwm
+    ../../common/home/desktop/gtk.nix
+    ../../common/home/desktop/screen_settings
   ];
 
   # VM-specific home configuration
