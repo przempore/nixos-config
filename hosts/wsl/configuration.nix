@@ -1,4 +1,9 @@
-{ pkgs, ... }: {
+{ config, lib, pkgs, pkgs-unstable, ... }:
+
+{
+  imports = [
+    ../common/configuration.nix
+  ];
 
   wsl = {
     enable = true;
@@ -7,8 +12,28 @@
     startMenuLaunchers = true;
   };
 
+  # WSL-specific system configuration
+  networking.hostName = "wsl";
+
+  # Disable bootloader for WSL
+  boot.loader.systemd-boot.enable = lib.mkForce false;
+  boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
+
+  # Enable essential services for CLI development
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = true;
+      PermitRootLogin = "no";
+    };
+  };
+
+  services.tailscale = {
+    enable = true;
+    package = pkgs-unstable.tailscale;
+  };
+
   nix = {
-    # package = pkgs.nixUnstable;
     extraOptions = ''
       experimental-features = nix-command flakes
       keep-outputs = true
@@ -16,5 +41,42 @@
     '';
   };
 
-  system.stateVersion = "23.05";
+  nix.settings.trusted-users = [ "root" "przemek" ];
+
+  # CLI-focused system packages (from dev-vm)
+  environment.systemPackages = with pkgs; [
+    git
+    curl
+    wget
+    vim
+    htop
+    tree
+    # Additional CLI tools
+    tmux
+    fzf
+    ripgrep
+    fd
+    bat
+    delta
+    zoxide
+    direnv
+    unzip
+    rsync
+  ];
+
+  users.users.przemek = {
+    isNormalUser = true;
+    description = "przemek";
+    extraGroups = [ "wheel" ];
+    shell = pkgs.fish;
+  };
+
+  # Enable fish system-wide
+  programs.fish.enable = true;
+
+  # WSL doesn't need firewall typically
+  networking.firewall.enable = false;
+  networking.useDHCP = lib.mkDefault true;
+
+  system.stateVersion = "25.05";
 }

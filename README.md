@@ -49,6 +49,60 @@ make vm/bootstrap         # Apply configuration
 make vm/switch            # Deploy changes
 ```
 
+## WSL
+
+Build and install NixOS WSL distribution with CLI tools from dev-vm configuration:
+
+### Building WSL Tarball
+
+```bash
+make wsl
+```
+
+This creates a WSL distribution tarball builder. To generate the actual tarball:
+
+```bash
+sudo result/bin/nixos-wsl-tarball-builder
+```
+
+This produces a `nixos.wsl` file ready for Windows installation.
+
+### Installing on Windows
+
+1. **Transfer the tarball**: Copy `nixos.wsl` to your Windows machine
+
+2. **Install WSL distribution** (run in PowerShell as Administrator):
+   ```powershell
+   wsl --import NixOS C:\WSL\NixOS C:\path\to\nixos.wsl
+   ```
+
+3. **Set as default** (optional):
+   ```powershell
+   wsl --set-default NixOS
+   ```
+
+4. **Launch NixOS WSL**:
+   ```powershell
+   wsl -d NixOS
+   ```
+
+### WSL Management
+
+- **List distributions**: `wsl --list --verbose`
+- **Stop distribution**: `wsl --terminate NixOS`
+- **Uninstall**: `wsl --unregister NixOS`
+- **Update**: Rebuild tarball and re-import
+
+### What's Included
+
+The WSL configuration includes CLI development tools from dev-vm:
+- Modern shell (Fish with completions)
+- Development tools (git, nvim, tmux, fzf, ripgrep, etc.)
+- Programming languages (Node.js, Python 3)
+- Container tools (docker-compose)
+- Network utilities (SSH, Tailscale)
+- Nix package manager with flakes enabled
+
 ## Machine Configurations
 
 This flake supports multiple machines:

@@ -159,6 +159,7 @@
         dathomir = dathomirSystem.homeConfiguration.przemek;
         dooku = dookuSystem.homeConfiguration.porebski;
         dev-vm = devVmSystem.homeConfiguration.przemek;
+        wsl = wslSystem.homeConfiguration.przemek;
       };
 
       # sudo nixos-rebuild switch --flake '.?submodules=1#<host_name>' --show-trace --impure
@@ -169,7 +170,7 @@
         dooku = dookuSystem.nixosConfiguration.dooku;
         ilum = ilumSystem.nixosConfiguration.ilum;
         dev-vm = devVmSystem.nixosConfiguration.dev-vm;
-        # wsl = wslSystem.nixosConfiguration.wsl;
+        wsl = wslSystem.nixosConfiguration.wsl;
       };
 
       deploy.nodes.dathomir = {

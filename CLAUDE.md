@@ -151,6 +151,42 @@ The configuration integrates multiple external flakes including:
 2. **On HOST**: `export NIXADDR=przemek@VM_IP && make vm/bootstrap`
 3. **Daily**: `make vm/switch` (deploy changes), `make vm/ssh` (access VM)
 
+### WSL Development Workflow
+- **Build WSL tarball**: `make wsl` creates the WSL distribution tarball
+- **CLI-focused**: WSL configuration includes only CLI applications from dev-vm (no GUI)
+- **Lightweight**: Optimized for Windows WSL environment with essential development tools
+
+#### Installing WSL Tarball on Windows:
+1. **Build the tarball**: Run `make wsl` to create the WSL distribution
+2. **Run tarball builder**: Execute `sudo result/bin/nixos-wsl-tarball-builder` to generate `nixos.wsl` file
+3. **Transfer to Windows**: Copy the `nixos.wsl` file to your Windows machine
+4. **Install WSL distribution**:
+   ```powershell
+   # Open PowerShell as Administrator
+   wsl --import NixOS C:\WSL\NixOS C:\path\to\nixos.wsl
+   ```
+5. **Set as default** (optional):
+   ```powershell
+   wsl --set-default NixOS
+   ```
+6. **Launch NixOS WSL**:
+   ```powershell
+   wsl -d NixOS
+   ```
+
+#### WSL Management Commands:
+- **List distributions**: `wsl --list --verbose`
+- **Stop distribution**: `wsl --terminate NixOS`
+- **Uninstall**: `wsl --unregister NixOS`
+- **Update**: Rebuild tarball and re-import
+
+#### First Boot Experience:
+- Automatically logged in as `przemek` user
+- Fish shell with completion and syntax highlighting
+- All CLI development tools available (git, nvim, tmux, fzf, etc.)
+- Nix package manager with flakes enabled
+- SSH and Tailscale services ready
+
 ### Secret Management
 - API keys and credentials are currently in private configurations
 - Consider migrating to sops-nix or agenix for better secret management
@@ -172,7 +208,7 @@ The configuration integrates multiple external flakes including:
 - **`hosts/common/home/apps/superfile/`**: Vim-style file manager configuration
 - **`hosts/common/hyprland.nix`**: Wayland compositor configuration
 - **`hosts/dev-vm/`**: VM-optimized configuration using bspwm for lightweight GUI
-- **`hosts/wsl/`**: WSL-specific NixOS configuration (currently commented out)
+- **`hosts/wsl/`**: WSL-specific NixOS configuration with CLI tools optimized for Windows WSL
 - **`hosts/common/home/private/`**: Personal configurations and sensitive data (not tracked)
 - **`hosts/common/home/apps/`**: Application-specific configurations (nvim, firefox, ghostty, etc.)
 - **`Makefile`**: Development workflow automation for system and VM management
