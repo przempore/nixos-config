@@ -41,7 +41,7 @@ let
     };
   };
   extraSpecialArgs = {
-    inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages legacyPkgs machine nixai;
+    inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages legacyPkgs machine nixai isWSL;
     catppuccin = inputs.catppuccin;
     zen-browser = inputs.zen-browser;
     tmux-sessionx = inputs.tmux-sessionx;

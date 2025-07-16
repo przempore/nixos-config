@@ -1,8 +1,7 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
     autojump
-    eza
     fzf
     fd
     ripgrep
@@ -11,18 +10,7 @@
     sshfs
     ncpamixer
     lazydocker
-
-    wireguard-tools
-
-    obsidian
     distrobox
-    signal-desktop
-    zathura
-
-    spotify
-    keepassxc
-    brave
-    onlyoffice-bin_latest
   ];
 
 }

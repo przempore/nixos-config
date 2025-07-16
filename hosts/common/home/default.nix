@@ -6,7 +6,7 @@
 , ...
 }: {
   imports = [
-    ./apps # todo: remove it from here and import separately
+    ./apps
     ./catppuccin.nix
   ] ++ (lib.optional (builtins.pathExists ./private/default.nix) ./private);
 
@@ -105,6 +105,11 @@
         enable = true;
         enableFishIntegration = true;
       };
+    eza = {
+      enable = true;
+      git = true;
+      enableFishIntegration = true;
+    };
   };
 
   # This value determines the home Manager release that your

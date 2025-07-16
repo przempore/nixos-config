@@ -19,6 +19,9 @@
   boot.loader.systemd-boot.enable = lib.mkForce false;
   boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
 
+  services.xserver.desktopManager.xfce.enable = false;
+  services.xserver.windowManager.bspwm.enable = false;
+
   # Enable essential services for CLI development
   services.openssh = {
     enable = true;

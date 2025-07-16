@@ -1,8 +1,8 @@
-{ pkgs, pkgs-unstable, ... }:
+{ lib, isWSL ? false, ... }:
 {
   imports = [
-    ./direnv.nix
     # ./firefox.nix
+    ./direnv.nix
     ./fish.nix
     ./ghostty.nix
     ./git.nix
@@ -17,5 +17,7 @@
     ./wezterm
     ./zathura.nix
     ./zen
+  ] ++ lib.optionals (!isWSL) [
+    ./gui-packages.nix
   ];
 }

@@ -48,8 +48,8 @@
       allow-guest = false
     '';
   };
-  services.xserver.desktopManager.xfce.enable = true;
-  services.xserver.windowManager.bspwm.enable = true;
+  services.xserver.desktopManager.xfce.enable = lib.mkDefault true;
+  services.xserver.windowManager.bspwm.enable = lib.mkDefault true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -160,7 +160,6 @@
     bat
     btop # replacement of htop/nmon
     cowsay
-    eza
     file
     fish
     fzf
