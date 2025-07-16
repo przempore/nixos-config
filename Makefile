@@ -33,6 +33,7 @@ home-switch: ## Switch home-manager configuration on local system
 
 .PHONY: update
 update: ## Update flake inputs
+	git fetch --all && git rebase
 	nix flake update --commit-lock-file
 	git push
 
