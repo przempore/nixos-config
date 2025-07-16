@@ -60,29 +60,31 @@ require("CopilotChat").setup {
   -- See Configuration section for options
 }
 
-local daily_notes_path = require("my_config.date_formatter_for_obsidian").get_formatted_path()
-local daily_notes_day = require("my_config.date_formatter_for_obsidian").get_filename()
+local obsidian_path = vim.fn.expand("~/Projects/second-brain")
+if vim.fn.isdirectory(obsidian_path) == 1 then
+  local daily_notes_path = require("my_config.date_formatter_for_obsidian").get_formatted_path()
+  local daily_notes_day = require("my_config.date_formatter_for_obsidian").get_filename()
 
-require("obsidian").setup({
-  workspaces = {
-    {
-      name = "second-brain",
-      path = "~/Projects/second-brain",
+  require("obsidian").setup({
+    workspaces = {
+      {
+        name = "second-brain",
+        path = "~/Projects/second-brain",
+      },
     },
-  },
-  follow_url_func = function(url)
-    -- vim.fn.jobstart({"xdg-open", url})  -- linux
-    vim.ui.open(url) -- need Neovim 0.10.0+
-  end,
-  templates = {
-      folder = "~/Projects/second-brain/extras/templates/daily_note_template",
-  },
-  daily_notes = {
-      folder = string.format("Timestamps/%s", daily_notes_path),
-      date_format = string.format("%s", daily_notes_day),
-      template = nil,
-  },
-})
+    follow_url_func = function(url)
+      vim.ui.open(url)
+    end,
+    templates = {
+        folder = "~/Projects/second-brain/extras/templates/daily_note_template",
+    },
+    daily_notes = {
+        folder = string.format("Timestamps/%s", daily_notes_path),
+        date_format = string.format("%s", daily_notes_day),
+        template = nil,
+    },
+  })
+end
 
 require("pomo").setup({
     -- How often the notifiers are updated.
