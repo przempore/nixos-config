@@ -66,6 +66,8 @@
   };
 
   services.xserver.desktopManager.wallpaper.mode = "fill";
+  
+  virtualisation.docker.enable = true;
 
   time.timeZone = "Europe/Berlin";
 
@@ -96,7 +98,7 @@
   users.users.przemek = {
     isNormalUser = true;
     description = "przemek";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [ ];
   };
 
