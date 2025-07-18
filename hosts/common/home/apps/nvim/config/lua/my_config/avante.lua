@@ -6,20 +6,18 @@ local avante_config = {
     claude = {
       endpoint = "https://api.anthropic.com",
       model = "claude-3-5-sonnet-20241022",
+      timeout = 30000, -- 30 seconds timeout
       extra_request_body = {
         temperature = 0,
-        max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
-        reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+        max_tokens = 4096,
       },
-      -- max_tokens = 4096,
     },
     openai = {  -- Added openai configuration
       endpoint = "https://api.openai.com/v1",
       model = "o3-mini",
+      timeout = 30000, -- 30 seconds timeout
       extra_request_body = {
         temperature = 0,
-        max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
-        reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
       },
     },
   },
@@ -107,8 +105,8 @@ local avante_config = {
     override_timeoutlen = 500,
   },
   suggestion = {
-    debounce = 600,
-    throttle = 600,
+    debounce = 2000,  -- Increase debounce to reduce API calls
+    throttle = 2000,  -- Increase throttle to reduce API calls
   },
 }
 
@@ -151,9 +149,9 @@ local function switch_model(selected_config)
 
   config.provider = selected_config.provider
   if selected_config.provider == "claude" then
-    config.claude.model = selected_config.model
+    config.providers.claude.model = selected_config.model
   elseif selected_config.provider == "openai" then
-    config.openai.model = selected_config.model
+    config.providers.openai.model = selected_config.model
   end
 
   avante.setup(config)
