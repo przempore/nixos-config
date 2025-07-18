@@ -68,7 +68,7 @@ in
       modules = inputs.nixpkgs.lib.optional (nixos-hardware != null) nixos-hardware ++ [
         unfree-config
         ../hosts/${machine}/configuration.nix
-        (if !isDevVm then inputs.lix-module.nixosModules.default else { })
+        (if !isDevVm && !isWSL then inputs.lix-module.nixosModules.default else { })
 
         (if isWSL then inputs.nixos-wsl.nixosModules.wsl else { })
 

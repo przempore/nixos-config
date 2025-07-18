@@ -67,15 +67,14 @@
     rsync
   ];
 
+  virtualisation.docker.enable = true;
+
   users.users.przemek = {
     isNormalUser = true;
     description = "przemek";
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "docker" ];
     shell = pkgs.fish;
   };
-
-  # Enable fish system-wide
-  programs.fish.enable = true;
 
   # WSL doesn't need firewall typically
   networking.firewall.enable = false;
