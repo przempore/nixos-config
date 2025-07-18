@@ -130,6 +130,7 @@
           echo "  make help          - Show all Makefile commands"
           echo "  make vm/setup-help - VM setup instructions"
           echo "  make switch        - Switch local NixOS config"
+          echo "  make home-switch   - Switch home-manager config"
           echo "  make vm/switch     - Switch VM config (needs NIXADDR)"
           echo ""
           echo "Development tools available:"

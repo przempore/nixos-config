@@ -28,8 +28,7 @@ switch: ## Switch NixOS configuration on local system
 
 .PHONY: home-switch
 home-switch: ## Switch home-manager configuration on local system
-	# nh home switch --backup-extension backup_$$(date +"%Y%M%H%M%S") '.?submodules=1' -- --show-trace --impure
-	nix run '.?submodules=1#homeConfigurations.$(HOSTNAME).activationPackage' --show-trace --impure -- switch
+	nh home switch --configuration $(HOSTNAME) '.?submodules=1' -- --impure
 
 .PHONY: update
 update: ## Update flake inputs
