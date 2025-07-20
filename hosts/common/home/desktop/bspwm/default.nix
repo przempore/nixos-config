@@ -42,7 +42,7 @@
       bspc config bottom_padding       4
       bspc config left_padding         4
       bspc config right_padding        4
-      bspc config single_monocle       true
+      bspc config single_monocle       false
       bspc config split_ratio          0.50
       bspc config borderless_monocle   true
       bspc config gapless_monocle      true
