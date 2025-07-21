@@ -56,7 +56,7 @@ in
       modules = [
         # TODO: move modules around to unlock home configuration from machine
         ../hosts/${machine}/home
-        (if !isDevVm then inputs.lix-module.nixosModules.default else { })
+        (if !isDevVm && !isWSL then inputs.lix-module.nixosModules.default else { })
       ];
     };
   };
