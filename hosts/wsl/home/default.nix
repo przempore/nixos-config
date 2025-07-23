@@ -57,6 +57,8 @@
   };
 
   programs = {
+    zsh.enable = true;
+    fish.enable = false;
   };
 
   # This value determines the home Manager release

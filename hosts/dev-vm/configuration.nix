@@ -102,6 +102,11 @@
     packages = with pkgs; [ ];
   };
 
+  programs.zsh.enable = true;
+  programs.fish.enable = false;
+  programs.starship.enable = true;
+  users.defaultUserShell = lib.mkForce pkgs.zsh;
+
   services.getty.autologinUser = "przemek";
 
   networking.firewall.enable = false; # Disabled for development ease

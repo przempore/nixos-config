@@ -73,8 +73,13 @@
     isNormalUser = true;
     description = "przemek";
     extraGroups = [ "wheel" "docker" ];
-    shell = pkgs.fish;
+    shell = pkgs.zsh;
   };
+
+  programs.zsh.enable = true;
+  programs.fish.enable = false;
+  programs.starship.enable = true;
+  users.defaultUserShell = lib.mkForce pkgs.zsh;
 
   # WSL doesn't need firewall typically
   networking.firewall.enable = false;

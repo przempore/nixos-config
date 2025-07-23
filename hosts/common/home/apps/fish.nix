@@ -5,7 +5,7 @@
   ];
 
   programs.fish = {
-    enable = true;
+    enable = lib.mkDefault true;
     shellAliases = {
       ll = "eza --tree --level=1 --long --icons --git -lh";
       lah = "ll -lah";

@@ -20,6 +20,9 @@
     ];
   };
 
+  programs.zsh.enable = true;
+  programs.fish.enable = false;
+
   services.picom = {
     enable = false;
     settings = {
