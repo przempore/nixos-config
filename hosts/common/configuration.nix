@@ -114,7 +114,7 @@
   # services.xserver.libinput.enable = true;
 
   programs.fish.enable = lib.mkDefault true;
-  users.defaultUserShell = lib.mkDefault pkgs.fish;
+  users.defaultUserShell = pkgs.fish;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
