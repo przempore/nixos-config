@@ -113,8 +113,8 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  programs.fish.enable = true;
-  users.defaultUserShell = pkgs.fish;
+  programs.fish.enable = lib.mkDefault true;
+  users.defaultUserShell = lib.mkDefault pkgs.fish;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -161,7 +161,6 @@
     btop # replacement of htop/nmon
     cowsay
     file
-    fish
     fzf
     gawk
     git
