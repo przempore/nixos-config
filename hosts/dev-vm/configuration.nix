@@ -105,7 +105,7 @@
   programs.zsh.enable = true;
   programs.fish.enable = false;
   programs.starship.enable = true;
-  users.defaultUserShell = pkgs.zsh;
+  users.defaultUserShell = lib.mkForce pkgs.zsh;
 
   services.getty.autologinUser = "przemek";
 
