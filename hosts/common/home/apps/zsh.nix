@@ -20,7 +20,7 @@
       sb = lib.mkDefault "cd ~/Projects/second-brain/; vi .";
     };
     
-    initExtra = ''
+    initContent = ''
       # Set emacs mode key bindings
       bindkey -e
       
