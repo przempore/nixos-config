@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   home.packages = with pkgs; [
     autojump
@@ -12,5 +12,11 @@
     lazydocker
     distrobox
   ];
+
+  programs.autojump = {
+    enable = lib.mkDefault true;
+    enableZshIntegration = true;
+  };
+
 
 }
