@@ -9,7 +9,7 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    
+
     shellAliases = {
       ll = "eza --tree --level=1 --long --icons --git -lh";
       lah = "ll -lah";
@@ -19,7 +19,7 @@
       aoeu = lib.mkDefault "setxkbmap pl";
       sb = lib.mkDefault "cd ~/Projects/second-brain/; vi .";
     };
-    
+
     initContent = ''
       # Set emacs mode key bindings
       bindkey -e
@@ -33,7 +33,7 @@
       bindkey "^[[C" forward-char  # Right arrow accepts suggestion
       bindkey "^I" complete-word   # Tab completion
     '';
-    
+
     history = {
       size = 10000;
       path = "$HOME/.zsh_history";

@@ -11,36 +11,36 @@
 
     packages = with pkgs; [
       rclone
-      
+
       netcat
       nmap
-      
+
       jq
       yq-go
       tree
       htop
       btop
       neofetch
-      
+
       file
       which
-      
+
       zip
       unzip
       gzip
-      
+
       git-lfs
       github-cli
-      
+
       lsof
       psmisc
       procps
-      
+
       wget
       curl
-      
+
       nodejs
-      
+
       docker-compose
     ] ++ (with pkgs-unstable; [
       claude-code
