@@ -9,6 +9,10 @@
       st = "status -sb";
     };
 
+    attributes = [
+      "* text=auto"
+    ];
+
     userEmail = "przempore@gmail.com";
     userName = "Przemek";
 
