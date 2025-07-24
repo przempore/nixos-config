@@ -66,7 +66,7 @@
   };
 
   services.xserver.desktopManager.wallpaper.mode = "fill";
-  
+
   virtualisation.docker.enable = true;
 
   time.timeZone = "Europe/Berlin";

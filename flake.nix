@@ -155,25 +155,27 @@
       # nix run '.?submodules=1#homeConfigurations.<configuration>.activationPackage' --show-trace --impure -- switch
       # using `nh`
       # nh home switch --backup-extension backup_$(date +"%Y%M%H%M%S") '.?submodules=1' -- --show-trace --impure
-      homeConfigurations = let
-        backupExt = "backup_$(date +%Y%m%d_%H%M%S)";
-      in {
-        ilum = ilumSystem.homeConfiguration.przemek // {
-          backupFileExtension = backupExt;
+      homeConfigurations =
+        let
+          backupExt = "backup_$(date +%Y%m%d_%H%M%S)";
+        in
+        {
+          ilum = ilumSystem.homeConfiguration.przemek // {
+            backupFileExtension = backupExt;
+          };
+          dathomir = dathomirSystem.homeConfiguration.przemek // {
+            backupFileExtension = backupExt;
+          };
+          dooku = dookuSystem.homeConfiguration.porebski // {
+            backupFileExtension = backupExt;
+          };
+          dev-vm = devVmSystem.homeConfiguration.przemek // {
+            backupFileExtension = backupExt;
+          };
+          wsl = wslSystem.homeConfiguration.przemek // {
+            backupFileExtension = backupExt;
+          };
         };
-        dathomir = dathomirSystem.homeConfiguration.przemek // {
-          backupFileExtension = backupExt;
-        };
-        dooku = dookuSystem.homeConfiguration.porebski // {
-          backupFileExtension = backupExt;
-        };
-        dev-vm = devVmSystem.homeConfiguration.przemek // {
-          backupFileExtension = backupExt;
-        };
-        wsl = wslSystem.homeConfiguration.przemek // {
-          backupFileExtension = backupExt;
-        };
-      };
 
       # sudo nixos-rebuild switch --flake '.?submodules=1#<host_name>' --show-trace --impure
       # using nh
