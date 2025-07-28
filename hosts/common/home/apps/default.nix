@@ -4,7 +4,6 @@
     # ./firefox.nix
     ./direnv.nix
     ./fish.nix
-    ./zsh.nix
     ./ghostty.nix
     ./git.nix
     ./kitty
