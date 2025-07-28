@@ -1,4 +1,4 @@
-{ ... }: {
+{ lib, ... }: {
   programs.git = {
     enable = true;
     lfs.enable = true;
@@ -13,11 +13,11 @@
       "* text=auto"
     ];
 
-    userEmail = "przempore@gmail.com";
-    userName = "Przemek";
+    userEmail = lib.mkDefault "przempore@gmail.com";
+    userName = lib.mkDefault "Przemek";
 
     ignores = [ ".envrc" ".direnv/" ];
-    extraConfig = {
+    extraConfig = lib.mkDefault {
       push.default = "current";
 
       init.defaultBranch = "main";

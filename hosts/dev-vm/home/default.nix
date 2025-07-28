@@ -73,6 +73,14 @@
     };
   };
 
+  programs.git = {
+    userEmail = "porebski@adlares.com";
+    userName = "Przemyslaw Porebski";
+    extraConfig = lib.mkDefault {
+      credential.helper = "store";
+    };
+  };
+
   # This value determines the home Manager release that your
   # configuration is compatible with.
   home.stateVersion = "25.05";
