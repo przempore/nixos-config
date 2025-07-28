@@ -52,7 +52,7 @@
   };
 
   services.sxhkd = {
-    enable = true;
+    enable = lib.mkDefault true;
     keybindings = lib.mkDefault {
       #Rofi Fullscreen
       "super + F11" = "rofi -theme-str 'window \{width: 100%;height: 100%;\}' -show drun";
