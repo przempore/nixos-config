@@ -61,7 +61,8 @@ garbage-collection:
 
 .PHONY: wsl
 wsl: ## Build the WSL root-fs installer tarball
-	nix build ".?submodules=1#nixosConfigurations.wsl.config.system.build.tarballBuilder"
+	nix build ".?submodules=1#nixosConfigurations.wsl.config.system.build.tarballBuilder" && \
+	sudo result/bin/nixos-wsl-tarball-builder;
 
 ##
 ## VM Management
