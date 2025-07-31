@@ -102,11 +102,13 @@
       {
         enable = true;
         enableFishIntegration = true;
+        enableZshIntegration = true;
       };
     eza = {
       enable = true;
       git = true;
       enableFishIntegration = true;
+      enableZshIntegration = true;
     };
   };
 

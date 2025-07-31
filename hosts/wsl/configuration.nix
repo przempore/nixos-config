@@ -46,6 +46,9 @@
 
   nix.settings.trusted-users = [ "root" "przemek" ];
 
+  # Enable zsh system-wide (required when user shell is zsh)
+  programs.zsh.enable = true;
+
   # CLI-focused system packages (from dev-vm)
   environment.systemPackages = with pkgs; [
     git
@@ -73,7 +76,7 @@
     isNormalUser = true;
     description = "przemek";
     extraGroups = [ "wheel" "docker" ];
-    shell = pkgs.fish;
+    shell = pkgs.zsh;
   };
 
   # WSL doesn't need firewall typically
