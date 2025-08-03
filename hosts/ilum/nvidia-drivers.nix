@@ -15,7 +15,7 @@
     enable32Bit = true;
   };
 
-  # boot.kernelPackages = pkgs.linuxPackages_6_14;
+  boot.kernelPackages = pkgs.linuxPackages_6_15;
   # nixpkgs.config.nvidia.acceptLicense = true; # that's probably needed for non-free drivers
 
   hardware.nvidia = {
