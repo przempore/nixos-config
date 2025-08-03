@@ -9,7 +9,6 @@
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
         gtk-theme = "Tokyonight-Dark";
-        icon-theme = "rose-pine-icons";
       };
     };
   };
@@ -24,10 +23,6 @@
     theme = {
       name = "Tokyonight-Dark";
       package = pkgs.tokyo-night-gtk;
-    };
-    iconTheme = {
-      name = "rose-pine-icons";
-      package = pkgs.rose-pine-icon-theme;
     };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;
