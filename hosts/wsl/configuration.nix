@@ -79,6 +79,18 @@
     shell = pkgs.zsh;
   };
 
+  services.openvpn.servers = {
+    officeVPN = {
+      config = builtins.readFile path/to/officeVPN.conf;
+      updateResolvConf = true;
+      autoStart = false;
+      authUserPass = {
+        username = "your-username";
+        password = "your-password";
+      };
+    };
+  };
+
   # WSL doesn't need firewall typically
   networking.firewall.enable = false;
   networking.useDHCP = lib.mkDefault true;

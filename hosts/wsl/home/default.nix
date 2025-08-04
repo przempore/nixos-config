@@ -57,6 +57,16 @@
   };
 
   programs = {
+    zsh = {
+      enable = true;
+    };
+    git = {
+      userEmail = "porebski@adlares.com";
+      userName = "Przemyslaw Porebski";
+      extraConfig = lib.mkDefault {
+        credential.helper = "store";
+      };
+    };
   };
 
   # This value determines the home Manager release

@@ -6,11 +6,12 @@
 
   programs.zsh = {
     enable = lib.mkDefault false;
-    enableCompletion = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
+    defaultKeymap = "emacs";
+    enableCompletion = lib.mkDefault true;
+    autosuggestion.enable = lib.mkDefault true;
+    syntaxHighlighting.enable = lib.mkDefault true;
     
-    shellAliases = {
+    shellAliases = lib.mkDefault {
       ll = "eza --tree --level=1 --long --icons --git -lh";
       lah = "ll -lah";
       tree = "eza --tree";
@@ -20,7 +21,7 @@
       sb = lib.mkDefault "cd ~/Projects/second-brain/; vi .";
     };
     
-    initContent = ''
+    initContent = lib.mkDefault ''
       # Manual nix shell detection and display
       _nix_shell_info() {
         if [[ -n "$IN_NIX_SHELL" ]]; then
