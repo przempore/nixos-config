@@ -81,12 +81,11 @@
 
   services.openvpn.servers = {
     officeVPN = {
-      config = builtins.readFile path/to/officeVPN.conf;
-      updateResolvConf = true;
+      config = builtins.readFile ../path/to/officeVPN.conf; # change this!
       autoStart = false;
       authUserPass = {
-        username = "your-username";
-        password = "your-password";
+        username = "your-username"; # change this!
+        password = "your-password"; # change this!
       };
     };
   };
