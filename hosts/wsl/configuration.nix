@@ -81,7 +81,10 @@
 
   services.openvpn.servers = {
     officeVPN = {
-      config = builtins.readFile ../path/to/officeVPN.conf; # change this!
+      config = let vpnPath = ../path/to/officeVPN.conf; in # change this!
+        if builtins.pathExists vpnPath
+        then builtins.readFile vpnPath
+        else "";
       autoStart = false;
       authUserPass = {
         username = "your-username"; # change this!
