@@ -45,9 +45,9 @@ let
     catppuccin = inputs.catppuccin;
     zen-browser = inputs.zen-browser;
     tmux-sessionx = inputs.tmux-sessionx;
-    ghostty = inputs.ghostty;
     neovim = inputs.neovim;
-  };
+    enableGhostty = !isDevVm;
+  } // (if isDevVm then { } else { ghostty = inputs.ghostty; });
 in
 {
   homeConfiguration = {
@@ -57,6 +57,7 @@ in
         # TODO: move modules around to unlock home configuration from machine
         ../hosts/${machine}/home
         (if !isDevVm && !isWSL then inputs.lix-module.nixosModules.default else { })
+        (if isDevVm then { } else inputs.ghostty.nixosModules.default)
       ];
     };
   };
@@ -69,6 +70,7 @@ in
         unfree-config
         ../hosts/${machine}/configuration.nix
         (if !isDevVm && !isWSL then inputs.lix-module.nixosModules.default else { })
+        (if isDevVm then { } else inputs.ghostty.nixosModules.default)
 
         (if isWSL then inputs.nixos-wsl.nixosModules.wsl else { })
 

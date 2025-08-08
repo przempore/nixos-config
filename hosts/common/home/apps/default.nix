@@ -1,10 +1,9 @@
-{ lib, isWSL ? false, ... }:
+{ lib, isWSL ? false, enableGhostty ? true, ... }:
 {
   imports = [
     # ./firefox.nix
     ./direnv.nix
     ./fish.nix
-    ./ghostty.nix
     ./git.nix
     ./kitty
     ./mpv.nix
@@ -20,5 +19,7 @@
     ./zsh.nix
   ] ++ lib.optionals (!isWSL) [
     ./gui-packages.nix
+  ] ++ lib.optionals enableGhostty [
+    ./ghostty.nix
   ];
 }

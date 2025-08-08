@@ -12,6 +12,9 @@
   home = {
     username = "przemek";
     homeDirectory = "/home/przemek";
+    sessionVariables = {
+      TERMINAL = "kitty";
+    };
 
     packages = [
       pkgs.remmina

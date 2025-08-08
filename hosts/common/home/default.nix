@@ -17,7 +17,7 @@
     sessionVariables = {
       EDITOR = "nvim";
       VISUAL = "nvim";
-      TERMINAL = "ghostty";
+      TERMINAL = lib.mkDefault "ghostty";
       TERM = "xterm-256color";
       # NVD_BACKEND = "direct";
     };
