@@ -57,7 +57,6 @@ in
         # TODO: move modules around to unlock home configuration from machine
         ../hosts/${machine}/home
         (if !isDevVm && !isWSL then inputs.lix-module.nixosModules.default else { })
-        (if isDevVm then { } else inputs.ghostty.nixosModules.default)
       ];
     };
   };
@@ -70,7 +69,6 @@ in
         unfree-config
         ../hosts/${machine}/configuration.nix
         (if !isDevVm && !isWSL then inputs.lix-module.nixosModules.default else { })
-        (if isDevVm then { } else inputs.ghostty.nixosModules.default)
 
         (if isWSL then inputs.nixos-wsl.nixosModules.wsl else { })
 
