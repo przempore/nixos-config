@@ -474,11 +474,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1754305706,
-        "narHash": "sha256-oJS9D8lRK8BwJK8RKhzvLWEm21TVrAPo+I86Lswkx94=",
+        "lastModified": 1755012523,
+        "narHash": "sha256-t/6088I13rVdd7/dJ+wXyAlFAyTaInmw5CuF4xCxuPI=",
         "owner": "olafkfreund",
         "repo": "nix-ai-help",
-        "rev": "0ef447a35e90fd8c86af343c36fb9296aa516701",
+        "rev": "edb1391230c72d791f97affb76b1e4ffe6ba4426",
         "type": "github"
       },
       "original": {
