@@ -47,6 +47,7 @@
       bspc config borderless_monocle   true
       bspc config gapless_monocle      true
       bspc config focus_follows_pointer true
+      bspc config pointer_follows_focus true
       bspc config pointer_modifier mod4
       bspc config pointer_action1 move
       bspc config pointer_action2 resize_side
