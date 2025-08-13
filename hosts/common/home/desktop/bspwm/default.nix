@@ -103,6 +103,7 @@
       run xfce4-clipman
       run nm-applet
       run xfce4-power-manager
+      run flameshot
 
       echo "[bspwm autostart] finished" | systemd-cat
     '';
