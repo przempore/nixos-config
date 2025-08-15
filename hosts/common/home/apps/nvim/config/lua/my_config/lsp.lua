@@ -3,6 +3,8 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
   properties = { "documentation", "detail", "additionalTextEdits" },
 }
+capabilities.window = capabilities.window or {}
+capabilities.window.workDoneProgress = false
 
 local clangd_capabilities = vim.deepcopy(capabilities)
 clangd_capabilities.textDocument.semanticHighlighting = true
@@ -12,16 +14,20 @@ clangd_capabilities.textDocument.semanticHighlighting = true
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local bufnr = args.buf
-    local readonly = vim.api.nvim_buf_get_option(bufnr, "readonly")
-    local modifiable = vim.api.nvim_buf_get_option(bufnr, "modifiable")
-    local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
-    local name = vim.api.nvim_buf_get_name(bufnr)
-    local isdiff = vim.api.nvim_win_get_option(0, "diff")
+    local readonly   = vim.bo[bufnr].readonly
+    local modifiable = vim.bo[bufnr].modifiable
+    local ft         = vim.bo[bufnr].filetype
+    local name       = vim.api.nvim_buf_get_name(bufnr)
+    local isdiff     = vim.wo.diff
 
     if name:match("^fugitive://") or ft == "fugitive" or readonly or not modifiable or isdiff then
-      vim.schedule(function()
-        vim.lsp.stop_client(vim.lsp.get_active_clients({ bufnr = bufnr }))
-      end)
+      local client = vim.lsp.get_client_by_id(args.data.client_id)
+      if client then
+        vim.schedule(function()
+          -- only detach this buffer from this client
+          vim.lsp.buf_detach_client(bufnr, client.id)
+        end)
+      end
     end
   end,
 })
