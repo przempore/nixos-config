@@ -32,14 +32,8 @@
     };
   };
 
-  # xdg.portal = {
-  #   enable = true;
-  #   extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-  #   configPackages = with pkgs; [ xdg-desktop-portal-gtk ];
-  # };
   qt = {
     enable = true;
-    # platformTheme.name = "gtk2";
     platformTheme.name = "kvantum";
     style.name = "kvantum";
   };
