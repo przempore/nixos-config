@@ -142,7 +142,6 @@ in
       playground
       plenary-nvim
       pomo-nvim
-      project-nvim
       rust-vim
       snacks-nvim
       telescope-fzf-native-nvim
