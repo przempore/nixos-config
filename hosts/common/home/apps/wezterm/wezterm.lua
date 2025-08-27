@@ -24,7 +24,7 @@ config.audible_bell = "Disabled"
 config.color_scheme = 'Catppuccin Mocha'
 config.window_background_opacity = 0.95
 
-config.font_size = 8.5
+config.font_size = 10
 config.font =
   wezterm.font('JetBrainsMono Nerd Font Mono', { weight = 'Medium' })
   -- wezterm.font('Iosevka Nerd Font Mono', { weight = 'Medium' })
