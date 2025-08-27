@@ -43,6 +43,9 @@
 
   xsession.windowManager.bspwm = {
     enable = true;
+    extraConfigEarly = lib.mkDefault ''
+      bspc config pointer_follows_focus false
+    '';
     extraConfig = lib.mkDefault ''
       echo "[bspwm dev-vm autostart] starting" | systemd-cat
 
