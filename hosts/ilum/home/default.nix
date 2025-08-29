@@ -13,6 +13,9 @@
 
     packages = [
       # pkgs-unstable.zed-editor
+        pkgs-unstable.remmina
+        pkgs-unstable.freerdp3
+        pkgs-unstable.codex
     ];
   };
 
