@@ -17,9 +17,10 @@
     };
 
     packages = [
-      pkgs.remmina
-      pkgs.freerdp3
-      pkgs.rclone
+      pkgs-unstable.remmina
+      pkgs-unstable.freerdp3
+      pkgs-unstable.rclone
+      pkgs-unstable.codex
     ];
   };
 
@@ -41,6 +42,7 @@
     executable = true;
   };
 
+  xsession.enable = true;
   xsession.windowManager.bspwm = {
     enable = true;
     extraConfigEarly = lib.mkDefault ''

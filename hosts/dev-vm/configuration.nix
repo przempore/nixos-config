@@ -21,8 +21,15 @@
     defaultSession = "none+bspwm";
   };
 
-  services.xrdp.enable = true;
-  services.xrdp.openFirewall = true;
+  services.xrdp = {
+    enable = true;
+    openFirewall = true;
+    defaultWindowManager = "/run/current-system/sw/bin/bspwm";
+  };
+  
+  # services.dbus.enable = true;
+  # security.polkit.enable = true;
+
   # services.xrdp = {
   #   enable        = true;
   #   openFirewall  = true;        # port 3389 if you also RDP in over the LAN
@@ -63,6 +70,7 @@
   services.tailscale = {
     enable = true;
     package = pkgs-unstable.tailscale;
+    extraUpFlags = [ "--accept-dns=true" ];
   };
 
   services.xserver.desktopManager.wallpaper.mode = "fill";
@@ -93,6 +101,10 @@
     vim
     htop
     tree
+    xorg.xsetroot
+    xorg.setxkbmap
+    xclip
+    xsel
   ];
 
   users.users.przemek = {
