@@ -4,24 +4,6 @@ let
   isWSL = wsl;
   isDevVm = dev-vm;
 
-  pkgs = import inputs.nixpkgs {
-    inherit system;
-    config = {
-      allowUnfree = true;
-      allowUnfreePredicate = (pkg: builtins.elem (inputs.nixpkgs.lib.getName pkg) allowed-unfree-packages);
-      permittedInsecurePackages = permittedInsecurePackages;
-    };
-  };
-  pkgs-unstable = import inputs.nixpkgs-unstable {
-    inherit system;
-    config = {
-      allowUnfreePredicate = (pkg: true);
-      allowUnfree = true;
-    };
-  };
-  legacyPkgs = inputs.legacy-nixpkgs.legacyPackages.${system};
-  nixai = inputs.nixai;
-
   allowed-unfree-packages = [
     "netflix-via-google-chrome"
     "netflix-icon"
@@ -37,6 +19,29 @@ let
     "electron-25.9.0"
     "electron-33.4.11"
   ];
+
+  # Import nixpkgs with unfree/insecure config for Home Manager evaluation as well
+  pkgs = import inputs.nixpkgs {
+    inherit system;
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = (pkg: builtins.elem (inputs.nixpkgs.lib.getName pkg) allowed-unfree-packages);
+      permittedInsecurePackages = permittedInsecurePackages;
+    };
+  };
+
+  pkgs-unstable = import inputs.nixpkgs-unstable {
+    inherit system;
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = (pkg: builtins.elem (inputs.nixpkgs.lib.getName pkg) allowed-unfree-packages);
+      permittedInsecurePackages = permittedInsecurePackages;
+    };
+  };
+
+  legacyPkgs = inputs.legacy-nixpkgs.legacyPackages.${system};
+  nixai = inputs.nixai;
+
   unfree-config = { lib, ... }: {
     options.permittedInsecurePackages = lib.mkOption {
       type = lib.types.listOf lib.types.str;
@@ -90,3 +95,4 @@ in
     };
   };
 }
+
