@@ -7,7 +7,6 @@
   programs.kitty = {
     enable = true;
     keybindings = {
-      "ctrl+shift+c" = "new_tab";
       "ctrl+shift+w" = "no_op";
     };
     settings = {
