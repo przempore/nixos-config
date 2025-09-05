@@ -4,7 +4,14 @@ let
   isWSL = wsl;
   isDevVm = dev-vm;
 
-  pkgs = inputs.nixpkgs.legacyPackages.${system};
+  pkgs = import inputs.nixpkgs {
+    inherit system;
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = (pkg: builtins.elem (inputs.nixpkgs.lib.getName pkg) allowed-unfree-packages);
+      permittedInsecurePackages = permittedInsecurePackages;
+    };
+  };
   pkgs-unstable = import inputs.nixpkgs-unstable {
     inherit system;
     config = {
