@@ -73,19 +73,6 @@
         user = "przemek";
         wsl = true;
       };
-
-      deployPkgs =
-        let
-          pkgs = inputs.nixpkgs.legacyPackages.${system};
-        in
-        import nixpkgs
-          {
-            inherit system;
-            overlays = [
-              deploy-rs.overlay # or deploy-rs.overlays.default
-              (self: super: { deploy-rs = { inherit (pkgs) deploy-rs; lib = super.deploy-rs.lib; }; })
-            ];
-          };
     in
     {
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixpkgs-fmt;
@@ -189,13 +176,13 @@
       };
 
       deploy.nodes.dathomir = {
-        hostname = "dathomir";
+        hostname = "192.168.178.29";
         fastConnection = true;
         interactiveSudo = true;
         profiles.system = {
           user = "root";
           sshUser = "przemek";
-          path = deployPkgs.deploy-rs.lib.activate.nixos self.nixosConfigurations.dathomir;
+          path = deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.dathomir;
         };
       };
     };

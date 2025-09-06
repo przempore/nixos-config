@@ -90,6 +90,7 @@ in
           home-manager.useUserPackages = true;
           home-manager.users.${user} = ../hosts/${machine}/home;
           home-manager.extraSpecialArgs = extraSpecialArgs;
+          home-manager.backupFileExtension = "backup-${inputs.self.rev or "dirty"}";
         }
       ];
     };

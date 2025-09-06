@@ -40,13 +40,9 @@ update: ## Update flake inputs
 check: ## Check flake configuration
 	nix flake check
 
-.PHONY: deploy
-deploy: ## Deploy to remote system using deploy-rs (requires devShell)
-	deploy --targets .#dathomir
-
-.PHONY: deploy-local
+.PHONY: deploy-dathomir
 deploy-local: ## Deploy locally without remote dependencies
-	deploy --targets .#dathomir --local-sudo
+	deploy .#dathomir -- --show-trace
 
 .PHONY: gc garbage-collection
 gc: garbage-collection
