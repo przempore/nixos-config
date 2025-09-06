@@ -40,8 +40,8 @@ update: ## Update flake inputs
 check: ## Check flake configuration
 	nix flake check
 
-.PHONY: deploy-dathomir
-deploy-local: ## Deploy locally without remote dependencies
+.PHONY: deploy/dathomir
+deploy/dathomir: ## Deploy locally without remote dependencies
 	deploy .#dathomir -- --show-trace
 
 .PHONY: gc garbage-collection
