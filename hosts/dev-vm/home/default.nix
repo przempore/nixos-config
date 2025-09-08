@@ -72,7 +72,6 @@
   services.sxhkd = {
     enable = true;
     keybindings = lib.mkDefault {
-      "super + Return" = "wezterm";
       # # Focus/swap windows by direction
       "super + {_,shift + }{h,j,k,n}" = "bspc node --{focus,swap} {west,south,north,east}";
       # Contract tiled space
