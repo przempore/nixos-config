@@ -67,6 +67,16 @@
     };
   };
 
+  systemd.user.services.rustdesk = {
+    description = "RustDesk remote desktop";
+    wantedBy = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.rustdesk}/bin/rustdesk";
+      Restart = "on-failure";
+    };
+  };
+
   services.tailscale = {
     enable = true;
     package = pkgs-unstable.tailscale;

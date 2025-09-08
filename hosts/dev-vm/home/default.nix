@@ -21,6 +21,7 @@
       pkgs-unstable.freerdp3
       pkgs-unstable.rclone
       pkgs-unstable.codex
+      pkgs-unstable.rustdesk
     ];
   };
 
