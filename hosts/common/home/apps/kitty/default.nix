@@ -8,8 +8,8 @@
     enable = true;
     keybindings = {
       "ctrl+shift+w" = "no_op";
+      "ctrl+page_up" = "previous_tab";
       "ctrl+page_down" = "next_tab";
-      "ctrl+page_up" = "next_tab";
     };
     settings = {
 
