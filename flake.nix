@@ -175,14 +175,26 @@
         wsl = wslSystem.nixosConfiguration.wsl;
       };
 
-      deploy.nodes.dathomir = {
-        hostname = "192.168.178.29";
-        fastConnection = true;
-        interactiveSudo = true;
-        profiles.system = {
-          user = "root";
-          sshUser = "przemek";
-          path = deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.dathomir;
+      deploy.nodes = {
+        dathomir = {
+          hostname = "192.168.178.29";
+          fastConnection = true;
+          interactiveSudo = true;
+          profiles.system = {
+            user = "root";
+            sshUser = "przemek";
+            path = deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.dathomir;
+          };
+        };
+        dev-vm = {
+          hostname = "dev-vm";
+          fastConnection = true;
+          interactiveSudo = true;
+          profiles.system = {
+            user = "root";
+            sshUser = "przemek";
+            path = deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.dev-vm;
+          };
         };
       };
     };

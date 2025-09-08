@@ -41,8 +41,12 @@ check: ## Check flake configuration
 	nix flake check
 
 .PHONY: deploy/dathomir
-deploy/dathomir: ## Deploy locally without remote dependencies
+deploy/dathomir:
 	deploy .#dathomir -- --show-trace
+
+.PHONY: deploy/dev-vm
+deploy/dev-vm:
+	deploy .#dev-vm -- --show-trace
 
 .PHONY: gc garbage-collection
 gc: garbage-collection
