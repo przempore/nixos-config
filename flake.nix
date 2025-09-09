@@ -188,7 +188,7 @@
         };
         dev-vm = {
           hostname = "dev-vm";
-          fastConnection = true;
+          fastConnection = false;
           interactiveSudo = true;
           profiles.system = {
             user = "root";

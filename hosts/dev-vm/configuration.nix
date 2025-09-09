@@ -72,7 +72,7 @@
     wantedBy = [ "graphical-session.target" ];
     partOf = [ "graphical-session.target" ];
     serviceConfig = {
-      ExecStart = "${pkgs.rustdesk}/bin/rustdesk";
+      ExecStart = "${pkgs-unstable.rustdesk}/bin/rustdesk";
       Restart = "on-failure";
     };
   };
