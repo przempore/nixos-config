@@ -7,7 +7,6 @@
     ./redshift.nix
   ];
   home.packages = with pkgs; [
-    barrier
     betterlockscreen
     flameshot
     lxappearance
