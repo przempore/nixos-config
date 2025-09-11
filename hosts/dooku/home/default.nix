@@ -25,7 +25,6 @@
       pkgs.remmina
       pkgs.freerdp3
       pkgs.dbeaver-bin
-      # pkgs-unstable.zed-editor
 
       pkgs-unstable.zoom-us
       pkgs.rustdesk

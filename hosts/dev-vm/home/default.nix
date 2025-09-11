@@ -3,6 +3,7 @@
 {
   imports = [
     ../../common/home
+    ../../common/home/apps/zed.nix
     ../../common/home/desktop/bspwm
     ../../common/home/desktop/gtk.nix
     ../../common/home/desktop/screen_settings

@@ -2,6 +2,7 @@
 {
   imports = [
     ../../common/home
+    ../../common/home/apps/zed.nix
     ../../common/home/desktop
     ../../common/home/desktop/hyprland
   ];
@@ -12,10 +13,10 @@
     homeDirectory = "/home/przemek";
 
     packages = [
-      # pkgs-unstable.zed-editor
         pkgs-unstable.remmina
         pkgs-unstable.freerdp3
         pkgs-unstable.codex
+        pkgs-unstable.barrier
     ];
   };
 
