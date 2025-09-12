@@ -43,18 +43,6 @@
     LC_TIME = "pl_PL.UTF-8";
   };
 
-  services.openvpn.servers = {
-    officeVPN = {
-      # Include upstream config and read credentials from a sops-nix secret file
-      config = ''
-        config /root/nixos/openvpn/officeVPN.conf
-        auth-user-pass ${config.sops.secrets."openvpn/office-auth".path}
-      '';
-      updateResolvConf = true;
-      autoStart = false;
-    };
-  };
-
   # Secrets: provision an auth file via sops-nix at /run/secrets
   # Expected encrypted file: ../../secrets/secrets.yaml, key: openvpn_office_auth
   sops = {
@@ -70,15 +58,6 @@
     sddm.enable = true;
     defaultSession = "hyprland";
   };
-
-  # fileSystems."/mnt/office" = {
-  #   device = "//10.8.0.x/Share";
-  #   fsType = "cifs";
-  #   # options = [ "noauto" "user" "uid=1000" "gid=100" "username=xxx" "password=xxx" "iocharset=utf8"
-  #   #   "x-systemd.requires=openvpn-officeVPN.service" ];
-  #   options = [ "noauto" "user" "uid=1000" "gid=100" "credentials=/etc/samba/credentials" "iocharset=utf8"
-  #     "x-systemd.requires=openvpn-officeVPN.service" ];
-  # };
 
   services.qemuGuest.enable = true;
   services.teamviewer.enable = true;
