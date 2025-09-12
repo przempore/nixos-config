@@ -13,10 +13,10 @@
     homeDirectory = "/home/przemek";
 
     packages = [
-        pkgs-unstable.remmina
-        pkgs-unstable.freerdp3
-        pkgs-unstable.codex
-        pkgs-unstable.barrier
+      pkgs-unstable.remmina
+      pkgs-unstable.freerdp3
+      pkgs-unstable.codex
+      pkgs-unstable.barrier
     ];
   };
 

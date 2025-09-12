@@ -81,7 +81,7 @@
 
   services.openvpn.servers = {
     officeVPN = {
-      config = let vpnPath = ../path/to/officeVPN.conf; in # change this!
+      config = let vpnPath = ../path/to/officeVPN.conf; in      # change this!
         if builtins.pathExists vpnPath
         then builtins.readFile vpnPath
         else "";

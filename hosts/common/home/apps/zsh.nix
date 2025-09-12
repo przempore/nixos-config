@@ -10,7 +10,7 @@
     enableCompletion = lib.mkDefault true;
     autosuggestion.enable = lib.mkDefault true;
     syntaxHighlighting.enable = lib.mkDefault true;
-    
+
     shellAliases = lib.mkDefault {
       ll = "eza --tree --level=1 --long --icons --git -lh";
       lah = "ll -lah";
@@ -20,7 +20,7 @@
       aoeu = lib.mkDefault "setxkbmap pl";
       sb = lib.mkDefault "cd ~/Projects/second-brain/; vi .";
     };
-    
+
     initContent = lib.mkDefault ''
       # Manual nix shell detection and display
       _nix_shell_info() {
@@ -76,7 +76,7 @@
       # Fish-like autosuggestions behavior
       bindkey "^[[C" forward-char  # Right arrow accepts suggestion
     '';
-    
+
     history = {
       size = 10000;
       path = "$HOME/.zsh_history";

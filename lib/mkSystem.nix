@@ -82,6 +82,12 @@ in
         ../hosts/${machine}/configuration.nix
         (if !isDevVm && !isWSL then inputs.lix-module.nixosModules.default else { })
 
+        # sops-nix for secrets management (decrypted to /run/secrets)
+        inputs.sops-nix.nixosModules.sops
+        {
+          sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+        }
+
         (if isWSL then inputs.nixos-wsl.nixosModules.wsl else { })
 
         inputs.home-manager.nixosModules.home-manager
@@ -96,4 +102,3 @@ in
     };
   };
 }
-

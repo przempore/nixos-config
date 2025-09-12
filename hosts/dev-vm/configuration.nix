@@ -26,27 +26,6 @@
     openFirewall = true;
     defaultWindowManager = "/run/current-system/sw/bin/bspwm";
   };
-  
-  # services.dbus.enable = true;
-  # security.polkit.enable = true;
-
-  # services.xrdp = {
-  #   enable        = true;
-  #   openFirewall  = true;        # port 3389 if you also RDP in over the LAN
-  #   defaultWindowManager = "bspwm";
-  #   extraConfDirCommands = ''
-  #     # Start with the stock config
-  #     install -D ${pkgs.xrdp}/etc/xrdp/xrdp.ini $out/xrdp.ini
-  #
-  #     # (a) turn vsock on
-  #     sed -i $out/xrdp.ini -e 's/^use_vsock=.*/use_vsock=true/'
-  #
-  #     # (b) write the log in /run/xrdp (unit's WorkingDirectory)
-  #     # sed -i $out/xrdp.ini -e 's|^LogFile=.*|LogFile=/run/xrdp/xrdp.log|'
-  #   '';
-  # };
-
-  # VM optimizations (these will be provided by hardware-configuration.nix)
 
   # Enable SSH for remote access
   services.openssh = {
@@ -59,11 +38,23 @@
 
   services.openvpn.servers = {
     officeVPN = {
-      config = '' config /root/nixos/openvpn/officeVPN.conf '';
+      # Include upstream config and read credentials from a sops-nix secret file
+      config = ''
+        config /root/nixos/openvpn/officeVPN.conf
+        auth-user-pass ${config.sops.secrets."openvpn/office-auth".path}
+      '';
       updateResolvConf = true;
       autoStart = false;
-      authUserPass.username = builtins.getEnv "OFFICE_VPN_USERNAME";
-      authUserPass.password = builtins.getEnv "OFFICE_VPN_PASSWORD";
+    };
+  };
+
+  # Secrets: provision an auth file via sops-nix at /run/secrets
+  # Expected encrypted file: ../../secrets/secrets.yaml, key: openvpn_office_auth
+  sops = {
+    secrets."openvpn/office-auth" = {
+      sopsFile = ../../secrets/secrets.yaml;
+      key = "openvpn_office_auth";
+      # file content must be two lines: username\npassword
     };
   };
 

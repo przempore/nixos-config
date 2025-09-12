@@ -29,6 +29,12 @@
     neovim.url = "github:nix-community/neovim-nightly-overlay";
     nixai.url = "github:olafkfreund/nix-ai-help";
 
+    # Secrets management
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -92,7 +98,7 @@
           nix-output-monitor # nom (moved from global home packages)
           nh # Nix helper (moved from global home packages)
 
-          # Deployment tools  
+          # Deployment tools
           deploy-rs.packages.${system}.deploy-rs # for remote NixOS deployments
 
           # System utilities
@@ -187,7 +193,8 @@
           };
         };
         dev-vm = {
-          hostname = "dev-vm";
+          hostname = "172.23.250.178";
+          sshOpts = [ "-J" "PP@PP-PC" ];
           fastConnection = false;
           interactiveSudo = true;
           profiles.system = {

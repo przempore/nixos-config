@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ lib, pkgs, pkgs-unstable, ... }:
+{ config, lib, pkgs, pkgs-unstable, ... }:
 {
   imports =
     [
@@ -45,11 +45,23 @@
 
   services.openvpn.servers = {
     officeVPN = {
-      config = '' config /root/nixos/openvpn/officeVPN.conf '';
+      # Include upstream config and read credentials from a sops-nix secret file
+      config = ''
+        config /root/nixos/openvpn/officeVPN.conf
+        auth-user-pass ${config.sops.secrets."openvpn/office-auth".path}
+      '';
       updateResolvConf = true;
       autoStart = false;
-      authUserPass.username = builtins.getEnv "OFFICE_VPN_USERNAME";
-      authUserPass.password = builtins.getEnv "OFFICE_VPN_PASSWORD";
+    };
+  };
+
+  # Secrets: provision an auth file via sops-nix at /run/secrets
+  # Expected encrypted file: ../../secrets/secrets.yaml, key: openvpn_office_auth
+  sops = {
+    secrets."openvpn/office-auth" = {
+      sopsFile = ../../secrets/secrets.yaml;
+      key = "openvpn_office_auth";
+      # file content must be two lines: username\npassword
     };
   };
 
