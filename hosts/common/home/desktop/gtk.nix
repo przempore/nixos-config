@@ -1,28 +1,42 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
+let
+  flavour = "mocha";
+  accent = "pink";
+  size = "compact";
+  themeName = "catppuccin-${flavour}-${accent}-${size}";
+in
 {
   home.packages = with pkgs; [
     numix-gtk-theme
-    tokyo-night-gtk
+    (catppuccin-gtk.override {
+      accents = [ accent ];
+      variant = flavour;
+      size = size;
+    })
   ];
   dconf = {
     settings = {
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
-        gtk-theme = "Tokyonight-Dark";
+        gtk-theme = themeName;
       };
     };
   };
 
   home.sessionVariables = {
-    GTK_THEME = "Tokyonight-Dark:dark";
+    GTK_THEME = "${themeName}:dark";
     GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
   };
 
   gtk = {
     enable = true;
     theme = {
-      name = "Tokyonight-Dark";
-      package = pkgs.tokyo-night-gtk;
+      name = themeName;
+      package = (pkgs.catppuccin-gtk.override {
+        accents = [ accent ];
+        variant = flavour;
+        size = size;
+      });
     };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;
