@@ -245,8 +245,6 @@ function M.setup()
       },
     },
   })
-
-  print("blink.cmp configured")
 end
 
 return M
