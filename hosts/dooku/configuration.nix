@@ -15,6 +15,8 @@
   hardware.enableRedistributableFirmware = lib.mkDefault true;
   nix.settings.trusted-users = [ "root" "porebski" ];
 
+  environment.systemPackages = [ pkgs.wakeonlan ];
+
   boot.loader.systemd-boot.configurationLimit = 3;
   boot.initrd.luks.devices."luks-7e5a1347-6f7b-4c7b-acdb-125fa70f58c2".device = "/dev/disk/by-uuid/7e5a1347-6f7b-4c7b-acdb-125fa70f58c2";
   # boot.kernelParams = [ "i915.force_probe=4626" ];

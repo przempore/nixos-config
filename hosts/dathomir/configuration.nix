@@ -20,6 +20,8 @@
   # nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.trusted-users = [ "root" "przemek" ];
 
+  environment.systemPackages = [ pkgs.wakeonlan ];
+
   networking.hostName = "dathomir"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 

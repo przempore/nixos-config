@@ -13,6 +13,7 @@
   nix.settings.trusted-users = [ "root" "przemek" ];
 
   networking.hostName = "ilum";
+  networking.interfaces.enp2s0.wakeOnLan.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
