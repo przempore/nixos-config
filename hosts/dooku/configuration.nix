@@ -43,16 +43,6 @@
     LC_TIME = "pl_PL.UTF-8";
   };
 
-  # Secrets: provision an auth file via sops-nix at /run/secrets
-  # Expected encrypted file: ../../secrets/secrets.yaml, key: openvpn_office_auth
-  sops = {
-    secrets."openvpn/office-auth" = {
-      sopsFile = ../../secrets/secrets.yaml;
-      key = "openvpn_office_auth";
-      # file content must be two lines: username\npassword
-    };
-  };
-
   services.xserver.displayManager.lightdm.enable = false;
   services.displayManager = {
     sddm.enable = true;
@@ -61,10 +51,10 @@
 
   services.qemuGuest.enable = true;
   services.teamviewer.enable = true;
-  services.tailscale = {
-    enable = true;
-    package = pkgs-unstable.tailscale;
-  };
+  # services.tailscale = {
+  #   enable = true;
+  #   package = pkgs-unstable.tailscale;
+  # };
   services.tlp.enable = lib.mkDefault true;
 
   services.logind = {
