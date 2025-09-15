@@ -44,10 +44,10 @@
     enable = true;
     acceleration = "cuda";
   };
-  # services.tailscale = {
-  #   enable = true;
-  #   package = pkgs-unstable.tailscale;
-  # };
+  services.tailscale = {
+    enable = true;
+    package = pkgs-unstable.tailscale;
+  };
   services.open-webui.enable = true;
 
   virtualisation.docker.enable = true;
