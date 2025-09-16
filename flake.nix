@@ -193,8 +193,7 @@
           };
         };
         dev-vm = {
-          hostname = "172.23.250.178";
-          sshOpts = [ "-J" "PP@PP-PC" ];
+          hostname = "dev-vm";
           fastConnection = false;
           interactiveSudo = true;
           profiles.system = {
