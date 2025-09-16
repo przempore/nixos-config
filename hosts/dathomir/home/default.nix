@@ -10,7 +10,9 @@
   home = {
     username = "przemek";
     homeDirectory = "/home/przemek";
-
+    sessionVariables = {
+      TERMINAL = "kitty";
+    };
     pointerCursor = {
       size = 12;
     };
