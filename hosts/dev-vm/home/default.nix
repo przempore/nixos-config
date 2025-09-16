@@ -23,6 +23,7 @@
       pkgs-unstable.rclone
       pkgs-unstable.codex
       pkgs-unstable.rustdesk
+      pkgs-unstable.gemini-cli-bin
     ];
   };
 
