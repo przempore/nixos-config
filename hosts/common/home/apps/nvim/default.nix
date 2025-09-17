@@ -171,9 +171,9 @@ in
       # language servers
       lua-language-server
       # nil - moved to flake devShell (only needed for NixOS config development)
-      nodePackages."bash-language-server"
+      dockerfile-language-server
+      bash-language-server
       nodePackages."diagnostic-languageserver"
-      nodePackages."dockerfile-language-server-nodejs"
       pyright
       nodePackages."vscode-langservers-extracted"
       nodePackages."yaml-language-server"
