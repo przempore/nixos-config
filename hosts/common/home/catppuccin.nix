@@ -1,5 +1,6 @@
-{ lib, catppuccin, ... }: {
+{ lib, catppuccin, home-manager-unstable, ... }: {
   imports = [
+    "${home-manager-unstable}/modules/programs/vivid.nix"
     catppuccin.homeModules.catppuccin
   ];
   catppuccin = {

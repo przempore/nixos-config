@@ -58,6 +58,7 @@ let
     zen-browser = inputs.zen-browser;
     tmux-sessionx = inputs.tmux-sessionx;
     neovim = inputs.neovim;
+    home-manager-unstable = inputs.home-manager-unstable;
     enableGhostty = !isDevVm;
   } // (if isDevVm then { } else { ghostty = inputs.ghostty; });
 in

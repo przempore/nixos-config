@@ -13,6 +13,7 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager-unstable.url = "github:nix-community/home-manager";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     # mozilla-overlay.url = "github:mozilla/nixpkgs-mozilla"; # not used anymore
     lix-module = {
