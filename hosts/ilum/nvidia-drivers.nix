@@ -15,7 +15,7 @@
     enable32Bit = true;
   };
 
-  # boot.kernelPackages = pkgs.linuxPackages_6_15;
+  boot.kernelPackages = pkgs.linuxPackages_6_16;
   # nixpkgs.config.nvidia.acceptLicense = true; # that's probably needed for non-free drivers
 
   hardware.nvidia = {
@@ -25,6 +25,7 @@
     nvidiaSettings = true;
     open = true;
     # package = config.boot.kernelPackages.nvidiaPackages.latest;
+    # https://github.com/NixOS/nixpkgs/blob/master/pkgs/os-specific/linux/nvidia-x11/default.nix
     package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
       version = "575.64.05";
       sha256_64bit = "sha256-hfK1D5EiYcGRegss9+H5dDr/0Aj9wPIJ9NVWP3dNUC0=";
