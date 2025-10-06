@@ -1,8 +1,18 @@
-{ ghostty, ... }:
+{ pkgs, ghostty, ... }:
+let
+  catppuccin-ghostty = pkgs.fetchFromGitHub {
+    owner = "catppuccin";
+    repo  = "ghostty";
+    rev   = "main";
+    sha256 = "sha256-4seUhPr6nv0ld9XMrQS4Ko9QnC1ZOEiRjENSfgHIvR0=";
+  };
+in
 {
   home.packages = [
     ghostty.packages.x86_64-linux.default
   ];
+
+  xdg.configFile."ghostty/themes".source = "${catppuccin-ghostty}/themes";
 
   # source https://github.com/ttys3/my-ghostty-config/tree/main
 
@@ -46,7 +56,7 @@
   '';
 
   home.file.".config/ghostty/config".text = ''
-    theme = catppuccin-mocha
+    theme = catppuccin-mocha.conf
     gtk-custom-css = tab-style.css
 
     font-family = "JetBrainsMono Nerd Font Mono"
