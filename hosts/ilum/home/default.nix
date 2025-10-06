@@ -16,7 +16,6 @@
       pkgs-unstable.remmina
       pkgs-unstable.freerdp3
       pkgs-unstable.codex
-      pkgs-unstable.barrier
     ];
   };
 
