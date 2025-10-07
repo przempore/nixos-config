@@ -164,7 +164,7 @@ in
       cscope
 
       # languages
-      jsonnet
+      # jsonnet
       nodejs
       marksman
 
