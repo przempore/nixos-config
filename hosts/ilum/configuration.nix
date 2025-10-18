@@ -61,12 +61,16 @@
     description = "Przemek";
     extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "dialout" ];
     packages = with pkgs; [
-      ltunify
       chromium
       deploy-rs
       ollama
       nixai.packages.${system}.default
     ];
+  };
+
+  hardware.logitech.wireless = {
+    enable = true;
+    enableGraphical = true;
   };
 
   # This value determines the NixOS release from which the default
