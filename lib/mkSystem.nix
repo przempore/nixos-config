@@ -18,6 +18,7 @@ let
     "nix-2.16.2"
     "electron-25.9.0"
     "electron-33.4.11"
+    "mbedtls-2.28.10"
   ];
 
   # Import nixpkgs with unfree/insecure config for Home Manager evaluation as well
