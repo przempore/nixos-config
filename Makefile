@@ -24,6 +24,7 @@ help: ## Show this help message
 
 .PHONY: switch
 switch: ## Switch NixOS configuration on local system
+	sudo -v
 	nh os switch '.?submodules=1' -- --impure --show-trace
 
 .PHONY: home-switch
