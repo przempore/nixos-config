@@ -10,6 +10,7 @@
     # custom settings
     options = {
       selection-clipboard = "clipboard";
+      recolor = false;
     };
   };
 }
