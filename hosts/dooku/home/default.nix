@@ -23,7 +23,7 @@
     # set rdp_use_client_keymap=1 in ~/.config/remmina/remmina.pref
     packages = [
       pkgs.remmina
-      pkgs.freerdp3
+      pkgs.freerdp
       pkgs.dbeaver-bin
 
       pkgs-unstable.zoom-us

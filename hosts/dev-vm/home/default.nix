@@ -19,7 +19,7 @@
 
     packages = [
       pkgs-unstable.remmina
-      pkgs-unstable.freerdp3
+      pkgs-unstable.freerdp
       pkgs-unstable.rclone
       pkgs-unstable.codex
       pkgs-unstable.rustdesk
