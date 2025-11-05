@@ -139,6 +139,7 @@
             machine = "dev-vm";
             user = "przemek";
             dev-vm = true;
+            enableGhostty = true;
           };
           wslSystem = mkSystem {
             inherit system;

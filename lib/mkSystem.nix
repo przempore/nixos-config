@@ -1,5 +1,5 @@
 { inputs, ... }:
-{ machine, system, nixos-hardware ? null, user, wsl ? false, dev-vm ? false }:
+{ machine, system, nixos-hardware ? null, user, wsl ? false, dev-vm ? false, enableGhostty ? true }:
 let
   isWSL = wsl;
   isDevVm = dev-vm;
@@ -54,14 +54,13 @@ let
     };
   };
   extraSpecialArgs = {
-    inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages legacyPkgs machine nixai isWSL;
+    inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages legacyPkgs machine nixai isWSL enableGhostty;
     catppuccin = inputs.catppuccin;
     zen-browser = inputs.zen-browser;
     tmux-sessionx = inputs.tmux-sessionx;
     neovim = inputs.neovim;
     home-manager-unstable = inputs.home-manager-unstable;
-    enableGhostty = !isDevVm;
-  } // (if isDevVm then { } else { ghostty = inputs.ghostty; });
+  } // (if enableGhostty then { ghostty = inputs.ghostty; } else { });
 in
 {
   homeConfiguration = {
