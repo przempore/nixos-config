@@ -59,6 +59,7 @@ let
     zen-browser = inputs.zen-browser;
     tmux-sessionx = inputs.tmux-sessionx;
     neovim = inputs.neovim;
+    nvim-config = inputs.nvim-config;
     home-manager-unstable = inputs.home-manager-unstable;
   } // (if enableGhostty then { ghostty = inputs.ghostty; } else { });
 in
@@ -69,7 +70,7 @@ in
       modules = [
         # TODO: move modules around to unlock home configuration from machine
         ../hosts/${machine}/home
-        (if !isDevVm && !isWSL then inputs.lix-module.nixosModules.default else { })
+        (if !dev-vm && !isWSL then inputs.lix-module.nixosModules.default else { })
       ];
     };
   };
@@ -81,7 +82,7 @@ in
       modules = inputs.nixpkgs.lib.optional (nixos-hardware != null) nixos-hardware ++ [
         unfree-config
         ../hosts/${machine}/configuration.nix
-        (if !isDevVm && !isWSL then inputs.lix-module.nixosModules.default else { })
+        (if !dev-vm && !isWSL then inputs.lix-module.nixosModules.default else { })
 
         # sops-nix for secrets management (decrypted to /run/secrets)
         inputs.sops-nix.nixosModules.sops
