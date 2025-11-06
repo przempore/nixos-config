@@ -32,6 +32,8 @@
     neovim.url = "github:nix-community/neovim-nightly-overlay";
     nixai.url = "github:olafkfreund/nix-ai-help";
 
+    # Use local path for development, switch to GitHub URL for production
+    # nvim-config.url = "path:/home/przemek/Projects/nvim-config";
     nvim-config.url = "github:przempore/nvim-config";
 
     # Secrets management
