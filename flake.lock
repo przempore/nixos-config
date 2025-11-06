@@ -740,17 +740,17 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1762452309,
-        "narHash": "sha256-eD1AQgsl5Rd9zMmN74O1AMRwfvNrX87KFdDKe1F6VUc=",
-        "ref": "refs/heads/main",
-        "rev": "7f12c6f2218d3e7b912349cfdc1c38e47ef51c25",
-        "revCount": 2,
-        "type": "git",
-        "url": "file:///home/przemek/Projects/nvim-config"
+        "lastModified": 1762456217,
+        "narHash": "sha256-KB8LlFtolohZK6+pgcINnN8isywKoJWpH+wRhNIyy2k=",
+        "owner": "przempore",
+        "repo": "nvim-config",
+        "rev": "029cbe2acfe6de7f84807e1504a0a0baee438b56",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/przemek/Projects/nvim-config"
+        "owner": "przempore",
+        "repo": "nvim-config",
+        "type": "github"
       }
     },
     "root": {
