@@ -1,5 +1,6 @@
-{ pkgs, pkgs-unstable, neovim, ... }:
+{ pkgs, pkgs-unstable, neovim, nvim-config, ... }:
 let
+  # Custom plugins not in nixpkgs
   cscope_maps-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "cscope_maps-nvim";
     nativeBuildInputs = with pkgs; [ pkg-config readline ];
@@ -12,6 +13,7 @@ let
     dependencies = [ pkgs.vimPlugins.telescope-nvim pkgs.vimPlugins.fzf-lua ];
     nvimSkipModules = [ "cscope.pickers.telescope" "cscope.pickers.fzf-lua" ];
   };
+
   wf-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "wf-nvim";
     nativeBuildInputs = with pkgs; [ pkg-config readline ];
@@ -22,6 +24,7 @@ let
       sha256 = "sha256-4RwTZP3Oz0Rj/PB9NV+FsdOsLMZZQMW+y25A7MWt9qo=";
     };
   };
+
   telescope-git-worktrees = pkgs.vimUtils.buildVimPlugin {
     name = "telescope-git-worktrees";
     src = pkgs.fetchFromGitHub {
@@ -34,25 +37,7 @@ let
     nvimRequireCheck = [ "git-worktree.status" "git-worktree.enum" ];
     nvimSkipModules = [ "git-worktree.test" "git-worktree" ];
   };
-  harpoon2_rev_lock = pkgs.vimUtils.buildVimPlugin {
-    name = "harpoon2_rev_lock";
-    src = pkgs.fetchFromGitHub {
-      owner = "ThePrimeagen";
-      repo = "harpoon";
-      rev = "e76cb03c420bb74a5900a5b3e1dde776156af45f";
-      sha256 = "sha256-oL/D/uiXr0dvK4D6VDlgyGb8gA01i/xrwOYr54Syib8=";
-    };
-  };
-  direnv-vim = pkgs.vimUtils.buildVimPlugin {
-    # lsp is going crazy in git-worktree with this plugin
-    name = "direnv-vim";
-    src = pkgs.fetchFromGitHub {
-      owner = "direnv";
-      repo = "direnv.vim";
-      rev = "master";
-      sha256 = "sha256-Lwwm95UEkS8Q0Qsoh10o3sFn48wf7v7eCX/FJJV1HMI=";
-    };
-  };
+
   neovim-nightly = neovim.packages.${pkgs.system}.default.overrideAttrs (old: {
     meta = old.meta or { } // {
       maintainers = [ ];
@@ -60,23 +45,22 @@ let
   });
 in
 {
+  # Use the nvim-config from the separate repository
+  # This uses the processed 'config' package output from the flake
+  # which includes only: after/, init.lua, lua/ (excludes flake.nix, README, install scripts, etc.)
   home.file.".config/nvim" = {
-    source = ./config;
+    source = nvim-config.packages.${pkgs.system}.config;
     recursive = true;
   };
 
+  # English words dictionary for completion
   home.file.".config/nvim/dictionary/words.txt".source = "${builtins.fetchGit {
     url = "https://github.com/dwyl/english-words";
     ref = "master";
     rev = "20f5cc9b3f0ccc8ce45d814c532b7c2031bba31c";
   }}/words.txt";
 
-  home.packages = [
-    # pkgs.vscode-extensions.ms-vscode.cpptools
-  ];
-
   programs.neovim = {
-    # package = pkgs-unstable.neovim-unwrapped;
     package = neovim-nightly;
     enable = true;
     defaultEditor = true;
@@ -85,9 +69,6 @@ in
     vimdiffAlias = true;
 
     plugins = [
-      # direnv-vim
-      # harpoon2_rev_lock
-      # vimPlugins.git-worktree-nvim
       cscope_maps-nvim
       telescope-git-worktrees
       wf-nvim
@@ -106,7 +87,6 @@ in
       fidget-nvim
       firenvim
       friendly-snippets
-      friendly-snippets
       fzf-checkout-vim
       fzf-vim
       gitsigns-nvim
@@ -116,7 +96,6 @@ in
       lsp_extensions-nvim
       lspkind-nvim
       lspsaga-nvim
-      luasnip
       luasnip
       markdown-preview-nvim
       mason-lspconfig-nvim
@@ -134,7 +113,6 @@ in
       nvim-treesitter-context
       nvim-treesitter-textobjects
       nvim-treesitter.withAllGrammars
-      nvim-web-devicons
       nvim-web-devicons
       obsidian-nvim
       oil-nvim
@@ -158,19 +136,16 @@ in
     ]);
 
     extraPackages = with pkgs-unstable; [
-      # tabnine
       neocmakelsp
       nixd
       cscope
 
       # languages
-      # jsonnet
       nodejs
       marksman
 
       # language servers
       lua-language-server
-      # nil - moved to flake devShell (only needed for NixOS config development)
       dockerfile-language-server
       bash-language-server
       nodePackages."diagnostic-languageserver"

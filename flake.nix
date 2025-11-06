@@ -32,6 +32,10 @@
     neovim.url = "github:nix-community/neovim-nightly-overlay";
     nixai.url = "github:olafkfreund/nix-ai-help";
 
+    # Neovim configuration (extracted to separate repository)
+    # Once pushed to GitHub, use: nvim-config.url = "github:YOUR_USERNAME/nvim-config";
+    nvim-config.url = "git+file:///home/przemek/Projects/nvim-config";
+
     # Secrets management
     sops-nix = {
       url = "github:Mic92/sops-nix";
