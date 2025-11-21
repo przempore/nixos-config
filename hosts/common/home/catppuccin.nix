@@ -1,7 +1,19 @@
-{ lib, catppuccin, home-manager-unstable, ... }: {
+{ lib, catppuccin, home-manager-unstable, ... }:
+let
+  catppuccinModules =
+    import (catppuccin + "/modules/home-manager/all-modules.nix");
+  catppuccinModulesFiltered =
+    builtins.filter (module: builtins.baseNameOf module != "vicinae.nix")
+      catppuccinModules;
+  catppuccinModule =
+    lib.modules.importApply
+      (catppuccin + "/modules/global.nix")
+      { catppuccinModules = catppuccinModulesFiltered; };
+in
+{
   imports = [
     "${home-manager-unstable}/modules/programs/vivid.nix"
-    catppuccin.homeModules.catppuccin
+    catppuccinModule
   ];
 
   options.programs.delta = {
