@@ -4,7 +4,7 @@
   home = {
     packages = [
       pkgs-unstable.zed-editor-fhs
-      # pkgs-unstable.zed-editor.remote_server
+      pkgs-unstable.nodejs
     ];
 
     file.".config/zed/settings.json".source = ./settings.json;
