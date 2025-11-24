@@ -6,7 +6,7 @@
     ../../common/home/desktop
     ../../common/home/apps/teleport.nix
     ../../common/home/apps/google-cloud.nix
-    ../../common/home/apps/zed.nix
+    ../../common/home/apps/zed
     ../../common/home/desktop/hyprland
   ];
 
