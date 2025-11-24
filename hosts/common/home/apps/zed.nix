@@ -4,6 +4,7 @@
   home = {
     packages = [
       pkgs-unstable.zed-editor
+      pkgs-unstable.zed-editor.remote_server
     ];
     file.".config/zed/settings.json".text = ''
       // Zed settings
@@ -48,10 +49,11 @@
         "base_keymap": "SublimeText",
         "ui_font_size": 16.0,
         "buffer_font_size": 15.0,
+        "relative_line_numbers": "wrapped",
         "theme": {
-          "mode": "dark",
+          "mode": "system",
           "light": "One Light",
-          "dark": "One Dark"
+          "dark": "Catppuccin Macchiato"
         }
       }
     '';
@@ -77,11 +79,24 @@
           }
         },
         {
-          "context": "Editor && showing_completions",
+          "context": "Editor && vim_mode == normal",
+          "bindings": {
+            "space o v": "pane::RevealInProjectPanel",
+            "space g b": "git::Branch",
+            "space g a": "editor::ToggleCodeActions"
+          }
+        },
+        {
+          "context": "Editor",
           "bindings": {
             "ctrl-y": "editor::ConfirmCompletion"
           }
         },
+        {
+          "bindings": {
+            "f10": "editor::SwitchSourceHeader"
+          }
+        }
       ]
 
     '';
