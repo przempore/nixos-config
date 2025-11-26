@@ -1,8 +1,6 @@
 { pkgs
 , pkgs-unstable
 , lib
-, allowed-unfree-packages
-, permittedInsecurePackages
 , ...
 }: {
   imports = [
