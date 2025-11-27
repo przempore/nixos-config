@@ -64,6 +64,7 @@
             # Nix development tools (moved from global installation)
             nixpkgs-fmt
             nil # Nix LSP (removed from nvim global, only needed for NixOS development)
+            nixd
             nix-tree
             nix-output-monitor # nom (moved from global home packages)
             nh # Nix helper (moved from global home packages)
