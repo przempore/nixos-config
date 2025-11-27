@@ -4,26 +4,38 @@ A comprehensive NixOS configuration using Nix Flakes for declarative system and 
 
 ## Quick Start
 
-### 1. Development Environment
+### Development Environment
 
 Enter the development shell to get all necessary tools (`make`, `nh`, `git`, etc.):
 
 ```bash
-# Option 1: Manual activation
+# Manual activation
 nix develop
 
-# Option 2: Automatic with direnv
+# Or use Make
+make dev
+
+# Automatic activation with direnv
 direnv allow
 ```
 
-### 2. Local System Management
+### Local Workflow
 
 ```bash
-# Switch NixOS configuration
+# Switch NixOS configuration (nh)
 make switch
 
-# Switch home-manager configuration  
+# Switch home-manager configuration (nh)
 make home-switch
+
+# Check flake outputs
+make check
+
+# Format Nix files
+make fmt
+
+# Run GC for store paths older than 3 days
+make gc
 
 # Update flake inputs
 make update
@@ -32,20 +44,34 @@ make update
 make help
 ```
 
+### Deployments (deploy-rs)
+
+```bash
+# Deploy to dathomir
+make deploy/dathomir
+
+# Deploy to dev-vm
+make deploy/dev-vm
+```
+
 ## VM Development
 
-Set up a development VM for testing configurations:
+Set up a development VM for testing configurations. Configure the connection details with environment variables:
+
+```bash
+export NIXADDR=192.168.1.100   # VM IP or hostname (no user)
+export NIXUSER=przemek         # SSH user after bootstrap (default)
+export NIXNAME=dev-vm          # Flake configuration to apply
+```
 
 ```bash
 # Get detailed VM setup instructions
 make vm/setup-help
 
 # Quick workflow (after VM setup):
-export NIXADDR=root@VM_IP
-make vm/bootstrap0        # Initial VM setup
+make vm/bootstrap0        # Initial VM setup (uses root@${NIXADDR})
 
-export NIXADDR=przemek@VM_IP  
-make vm/bootstrap         # Apply configuration
+make vm/bootstrap         # Copy repo + apply configuration
 make vm/switch            # Deploy changes
 ```
 
@@ -111,6 +137,7 @@ This flake supports multiple machines:
 - **dathomir** - Dell laptop  
 - **dooku** - Lenovo ThinkPad
 - **dev-vm** - Development VM (universal: QEMU/KVM, Hyper-V, VirtualBox)
+- **wsl** - Windows Subsystem for Linux configuration
 
 ## Architecture
 

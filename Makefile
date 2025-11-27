@@ -2,9 +2,9 @@
 # Inspired by Mitchell Hashimoto's nixos-config
 
 # VM Configuration
-NIXADDR ?= nixos@192.168.1.100
-NIXNAME ?= dev-vm
+NIXADDR ?= dev-vm
 NIXUSER ?= przemek
+NIXNAME ?= dev-vm
 HOSTNAME := $(shell hostname)
 
 # SSH options for VM access
@@ -42,15 +42,15 @@ check: ## Check flake configuration
 	nix flake check
 
 .PHONY: deploy/dathomir
-deploy/dathomir:
+deploy/dathomir: ## Deploy to dathomir via deploy-rs
 	deploy .#dathomir -- --show-trace
 
 .PHONY: deploy/dev-vm
-deploy/dev-vm:
+deploy/dev-vm: ## Deploy to dev-vm via deploy-rs
 	deploy .#dev-vm -- --show-trace
 
 .PHONY: gc garbage-collection
-gc: garbage-collection
+gc: garbage-collection ## Run Nix store garbage collection (paths >3d old)
 
 garbage-collection:
 	@echo "🗑️  Running Nix GC (deleting paths >3d old)…"
@@ -92,7 +92,7 @@ vm/bootstrap0: ## Bootstrap new VM (step 1: prepare system)
 
 .PHONY: vm/bootstrap
 vm/bootstrap: vm/copy vm/secrets ## Bootstrap new VM (step 2: apply configuration)
-	ssh $(SSH_OPTIONS) $(NIXADDR) " \
+	ssh $(SSH_OPTIONS) $(NIXUSER)@$(NIXADDR) " \
 		sudo nixos-rebuild switch --flake '.?submodules=1#$(NIXNAME)' --show-trace --impure"
 	@echo "VM bootstrap complete. You may want to reboot the VM."
 
@@ -102,7 +102,7 @@ vm/copy: ## Copy configuration files to VM
 		--exclude='result*' \
 		--exclude='.git/' \
 		--exclude='hosts/*/home/.config' \
-		. $(NIXADDR):nixos-config/
+		. $(NIXUSER)@$(NIXADDR):nixos-config/
 
 .PHONY: vm/secrets
 vm/secrets: ## Copy secrets to VM (implement as needed)
@@ -112,24 +112,24 @@ vm/secrets: ## Copy secrets to VM (implement as needed)
 
 .PHONY: vm/switch
 vm/switch: vm/copy ## Rebuild and switch VM configuration
-	ssh $(SSH_OPTIONS) $(NIXADDR) " \
+	ssh $(SSH_OPTIONS) $(NIXUSER)@$(NIXADDR) " \
 		cd nixos-config && \
 		sudo nixos-rebuild switch --flake '.?submodules=1#$(NIXNAME)' --show-trace --impure"
 
 .PHONY: vm/home-switch
 vm/home-switch: vm/copy ## Switch home-manager configuration on VM
-	ssh $(SSH_OPTIONS) $(NIXADDR) " \
+	ssh $(SSH_OPTIONS) $(NIXUSER)@$(NIXADDR) " \
 		cd nixos-config && \
 		nix run '.?submodules=1#homeConfigurations.$(HOSTNAME).activationPackage' --show-trace --impure -- switch
 		# nh home switch --backup-extension backup_$$(date +\"%Y%M%H%M%S\") '.?submodules=1' -- --show-trace --impure"
 
 .PHONY: vm/ssh
 vm/ssh: ## SSH into the VM
-	ssh $(SSH_OPTIONS) $(NIXADDR)
+	ssh $(SSH_OPTIONS) $(NIXUSER)@$(NIXADDR)
 
 .PHONY: vm/reboot
 vm/reboot: ## Reboot the VM
-	ssh $(SSH_OPTIONS) $(NIXADDR) "sudo reboot"
+	ssh $(SSH_OPTIONS) $(NIXUSER)@$(NIXADDR) "sudo reboot"
 
 ##
 ## Fresh Installation Helpers
