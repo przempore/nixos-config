@@ -80,7 +80,6 @@
       clipster
       redshift
       backblaze-b2
-      blueman
 
       blueberry
       # geany
