@@ -48,7 +48,7 @@
   services.xserver.displayManager.lightdm.enable = false;
   services.displayManager = {
     sddm.enable = true;
-    defaultSession = "hyprland";
+    defaultSession = "hyprland-uwsm";
   };
 
   services.qemuGuest.enable = true;

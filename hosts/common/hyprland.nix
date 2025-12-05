@@ -1,10 +1,12 @@
-{ pkgs, ... }:
-{
+{ pkgs, lib, ... }: {
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
-    # withUWSM  = true;
+    withUWSM = true;
   };
+
+  services.xserver.displayManager.defaultSession = lib.mkDefault "hyprland-uwsm";
+  services.displayManager.defaultSession = lib.mkDefault "hyprland-uwsm";
 
   environment.systemPackages = with pkgs; [
     hyprlock
