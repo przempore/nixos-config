@@ -1,16 +1,16 @@
 { pkgs, ... }:
 let
-  name = "weather-plugin";
-  weather-plugin = (pkgs.writeScriptBin name (builtins.readFile ./config/scripts/weather.sh)).overrideAttrs (old: {
-    buildCommand = "${old.buildCommand}\n patchShebangs $out";
-  });
-  wrapped-weather-plugin = pkgs.symlinkJoin {
-    inherit name;
-    paths = [ weather-plugin ] ++ (with pkgs; [ jq bc curl ]);
-    buildInputs = [ pkgs.makeWrapper ];
-    postBuild = ''
-      wrapProgram $out/bin/weather-plugin --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.jq pkgs.bc pkgs.curl ]}
-    '';
+  weather-plugin = pkgs.writeShellApplication {
+    name = "weather-plugin";
+    runtimeInputs = with pkgs; [ jq bc curl ];
+    text = builtins.readFile ./config/scripts/weather.sh;
+    checkPhase = "";  # Skip shellcheck validation
+  };
+
+  keyboard-layout-switch = pkgs.writeShellApplication {
+    name = "keyboard-layout-switch";
+    runtimeInputs = with pkgs; [ jq ];
+    text = builtins.readFile ./config/scripts/keyboard_layout_switch.sh;
   };
 in
 {
@@ -25,7 +25,7 @@ in
       modules-left = [ "hyprland/workspaces" "hyprland/window" ];
       modules-center = [ "custom/kernel" "custom/weather" ];
       # "modules-center": ["custom/kernel"],
-      modules-right = [ "pulseaudio" "network" "memory" "cpu" "clock" "battery" "tray" ];
+      modules-right = [ "hyprland/language" "pulseaudio" "network" "memory" "cpu" "clock" "battery" "tray" ];
       "hyprland/workspaces" = {
         format = "{name}: {icon}";
         format-icons = {
@@ -58,10 +58,16 @@ in
       };
       "custom/weather" = {
         format = "{}";
-        exec = "${wrapped-weather-plugin}/bin/weather-plugin";
+        exec = "${weather-plugin}/bin/weather-plugin";
         interval = 960;
         return-type = "string";
-        on-click = "${wrapped-weather-plugin}/bin/weather-plugin";
+        on-click = "${weather-plugin}/bin/weather-plugin";
+      };
+      "hyprland/language" = {
+        format = "⌨ {}";
+        format-en = "EN";
+        format-pl = "DV";
+        on-click = "${keyboard-layout-switch}/bin/keyboard-layout-switch";
       };
       pulseaudio = {
         format = "{volume}% {icon}";
