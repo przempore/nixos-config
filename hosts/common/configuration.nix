@@ -51,6 +51,14 @@
   services.xserver.desktopManager.xfce.enable = lib.mkDefault true;
   services.xserver.windowManager.bspwm.enable = lib.mkDefault true;
 
+  services.displayManager.sddm = lib.mkIf config.services.displayManager.sddm.enable {
+    theme = "catppuccin-mocha-mauve";
+    extraPackages = [
+      pkgs.catppuccin-sddm-corners
+    ];
+    package = pkgs.kdePackages.sddm;
+  };
+
   # Configure keymap in X11
   services.xserver = {
     dpi = lib.mkDefault 90;
@@ -154,7 +162,13 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     brightnessctl # For display brightness control
-    # system call monitoring
+    (catppuccin-sddm.override {
+      flavor = "mocha";
+      accent = "mauve";
+      font = "Noto Sans";
+      fontSize = "9";
+      loginBackground = true;
+    })
     arandr
     autorandr
     bat
