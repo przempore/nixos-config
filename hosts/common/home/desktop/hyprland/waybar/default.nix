@@ -3,7 +3,10 @@ let
   weather-plugin = pkgs.writeShellApplication {
     name = "weather-plugin";
     runtimeInputs = with pkgs; [ jq bc curl ];
-    text = builtins.readFile ./config/scripts/weather.sh;
+    text = ''
+      set +u  # Disable unbound variable check for legacy script
+      ${builtins.readFile ./config/scripts/weather.sh}
+    '';
     checkPhase = "";  # Skip shellcheck validation
   };
 
@@ -24,7 +27,6 @@ in
       height = 30;
       modules-left = [ "hyprland/workspaces" "hyprland/window" ];
       modules-center = [ "custom/kernel" "custom/weather" ];
-      # "modules-center": ["custom/kernel"],
       modules-right = [ "hyprland/language" "pulseaudio" "network" "memory" "cpu" "clock" "battery" "tray" ];
       "hyprland/workspaces" = {
         format = "{name}: {icon}";

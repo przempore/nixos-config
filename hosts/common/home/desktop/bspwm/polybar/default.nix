@@ -3,7 +3,10 @@ let
   weather-plugin = pkgs.writeShellApplication {
     name = "weather-plugin";
     runtimeInputs = with pkgs; [ jq bc curl ];
-    text = builtins.readFile ./config/weather-plugin.sh;
+    text = ''
+      set +u  # Disable unbound variable check for legacy script
+      ${builtins.readFile ./config/weather-plugin.sh}
+    '';
     checkPhase = "";  # Skip shellcheck validation
   };
 in
