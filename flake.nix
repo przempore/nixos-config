@@ -7,12 +7,12 @@
     # There are many ways to reference flake inputs.
     # The most widely used is `github:owner/name/reference`,
     # which represents the GitHub repository URL + branch/commit-id/tag.
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     legacy-nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     catppuccin.url = "github:catppuccin/nix";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager-unstable.url = "github:nix-community/home-manager";

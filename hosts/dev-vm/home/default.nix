@@ -84,12 +84,12 @@
     };
   };
 
-  programs.git = {
-    userEmail = "porebski@adlares.com";
-    userName = "Przemyslaw Porebski";
-    extraConfig = lib.mkDefault {
-      credential.helper = "store";
+  programs.git.settings = lib.mkDefault {
+    user = {
+      email = "porebski@adlares.com";
+      name = "Przemyslaw Porebski";
     };
+    credential.helper = "store";
   };
 
   # This value determines the home Manager release that your

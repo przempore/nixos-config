@@ -12,20 +12,20 @@ let
 in
 {
   imports = [
-    "${home-manager-unstable}/modules/programs/vivid.nix"
+    # "${home-manager-unstable}/modules/programs/vivid.nix"
     catppuccinModule
   ];
 
-  options.programs.delta = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-    };
-    options = lib.mkOption {
-      type = lib.types.attrs;
-      default = {};
-    };
-  };
+  # options.programs.delta = {
+  #   enable = lib.mkOption {
+  #     type = lib.types.bool;
+  #     default = false;
+  #   };
+  #   options = lib.mkOption {
+  #     type = lib.types.attrs;
+  #     default = {};
+  #   };
+  # };
 
   config = {
     catppuccin = {

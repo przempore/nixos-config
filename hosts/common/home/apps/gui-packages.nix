@@ -8,7 +8,7 @@
     spotify
     keepassxc
     brave
-    onlyoffice-bin_latest
+    onlyoffice-desktopeditors
   ];
 
 }

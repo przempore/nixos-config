@@ -135,7 +135,7 @@
 
   fonts.packages = with pkgs; [
     noto-fonts
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     dejavu_fonts
     liberation_ttf
     source-code-pro

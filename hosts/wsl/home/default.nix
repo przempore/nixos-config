@@ -60,12 +60,12 @@
     zsh = {
       enable = true;
     };
-    git = {
-      userEmail = "porebski@adlares.com";
-      userName = "Przemyslaw Porebski";
-      extraConfig = lib.mkDefault {
-        credential.helper = "store";
+    git.settings = lib.mkDefault {
+      user = {
+        email = "porebski@adlares.com";
+        name = "Przemyslaw Porebski";
       };
+      credential.helper = "store";
     };
   };
 

@@ -49,6 +49,8 @@
     package = pkgs-unstable.tailscale;
   };
   services.open-webui.enable = true;
+  # Give the service a real HOME so libraries that rely on Path.home() do not crash
+  systemd.services.open-webui.serviceConfig.Environment = [ "HOME=/var/lib/open-webui" ];
 
   virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;
