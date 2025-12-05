@@ -1,16 +1,10 @@
 { pkgs, ... }:
 let
-  name = "weather-plugin";
-  weather-plugin = (pkgs.writeScriptBin name (builtins.readFile ./config/weather-plugin.sh)).overrideAttrs (old: {
-    buildCommand = "${old.buildCommand}\n patchShebangs $out";
-  });
-  wrapped-weather-plugin = pkgs.symlinkJoin {
-    inherit name;
-    paths = [ weather-plugin ] ++ (with pkgs; [ jq bc curl ]);
-    buildInputs = [ pkgs.makeWrapper ];
-    postBuild = ''
-      wrapProgram $out/bin/weather-plugin --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.jq pkgs.bc pkgs.curl ]}
-    '';
+  weather-plugin = pkgs.writeShellApplication {
+    name = "weather-plugin";
+    runtimeInputs = with pkgs; [ jq bc curl ];
+    text = builtins.readFile ./config/weather-plugin.sh;
+    checkPhase = "";  # Skip shellcheck validation
   };
 in
 {
@@ -246,7 +240,7 @@ in
 
       "module/weather" = {
         type = "custom/script";
-        exec = "${wrapped-weather-plugin}/bin/weather-plugin";
+        exec = "${weather-plugin}/bin/weather-plugin";
         tail = "false";
         interval = 960;
       };
