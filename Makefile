@@ -49,6 +49,10 @@ deploy/dathomir: ## Deploy to dathomir via deploy-rs
 deploy/dev-vm: ## Deploy to dev-vm via deploy-rs
 	deploy .#dev-vm -- --show-trace
 
+.PHONY: deploy/dooku
+deploy/dooku: ## Deploy to dev-vm via deploy-rs
+	deploy .#dooku -- --show-trace
+
 .PHONY: gc garbage-collection
 gc: garbage-collection ## Run Nix store garbage collection (paths >3d old)
 

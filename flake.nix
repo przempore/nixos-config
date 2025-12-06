@@ -213,6 +213,16 @@
                   path = deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.dev-vm;
                 };
               };
+              dooku = {
+                hostname = "dooku";
+                fastConnection = true;
+                interactiveSudo = true;
+                profiles.system = {
+                  user = "root";
+                  sshUser = "porebski";
+                  path = deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.dooku;
+                };
+              };
             };
           };
         };
