@@ -80,6 +80,7 @@ in
       inherit system;
       specialArgs = { inherit pkgs-unstable nixai; };
       modules = inputs.nixpkgs.lib.optional (nixos-hardware != null) nixos-hardware ++ [
+        { nixpkgs.hostPlatform.system = system; }
         unfree-config
         ../hosts/${machine}/configuration.nix
         (if !dev-vm && !isWSL then inputs.lix-module.nixosModules.default else { })

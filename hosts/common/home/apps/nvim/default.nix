@@ -8,14 +8,14 @@
   }}/words.txt";
 
   home.file.".config/nvim" = {
-    source = nvim-config.packages.${pkgs.system}.config;
+    source = nvim-config.packages.${pkgs.stdenv.hostPlatform.system}.config;
     recursive = true;
   };
 
   programs.neovim = {
     # Use neovim-nightly from nvim-config flake (unwrapped)
     # Home-manager will wrap it with the plugins below
-    package = nvim-config.packages.${pkgs.system}.neovim-unwrapped;
+    package = nvim-config.packages.${pkgs.stdenv.hostPlatform.system}.neovim-unwrapped;
 
     enable = true;
     defaultEditor = true;
@@ -23,7 +23,7 @@
     vimAlias = true;
     vimdiffAlias = true;
 
-    plugins = nvim-config.legacyPackages.${pkgs.system}.pluginsList;
+    plugins = nvim-config.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pluginsList;
 
     extraPackages = with pkgs-unstable; [
       neocmakelsp

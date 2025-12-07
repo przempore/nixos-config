@@ -72,7 +72,7 @@
       chromium
       deploy-rs
       ollama
-      nixai.packages.${system}.default
+      nixai.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
   };
 

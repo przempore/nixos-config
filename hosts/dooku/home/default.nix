@@ -25,11 +25,11 @@
     packages = [
       pkgs.remmina
       pkgs.freerdp
-      pkgs.dbeaver-bin
+      # pkgs.dbeaver-bin
 
-      pkgs-unstable.zoom-us
-      pkgs.rustdesk
-      pkgs-unstable.teams-for-linux
+      # pkgs-unstable.zoom-us
+      # pkgs.rustdesk
+      # pkgs-unstable.teams-for-linux
       pkgs-unstable.codex
       pkgs-unstable.claude-code
       pkgs.rclone
