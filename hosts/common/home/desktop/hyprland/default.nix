@@ -1,7 +1,9 @@
 { pkgs, lib, machine, ... }:
 let
   ilumPart = ''
-    monitor= HDMI-A-2, disable
+    monitor=DP-2,3840x1600@144,0x0,1
+    monitor=HDMI-A-1,disable
+    monitor=HDMI-A-2,disable
 
     env = NVD_BACKEND,direct
     env = LIBVA_DRIVER_NAME,nvidia
@@ -11,6 +13,8 @@ let
     env = WLR_RENDERER,vulkan
   '';
   dookuPart = ''
+    monitor=,preferred,auto,1
+
     device {
       name        = at-translated-set-2-keyboard
       kb_layout   = real-prog-dvorak,us
