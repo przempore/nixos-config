@@ -61,9 +61,11 @@
 
   services.logind = {
     # “ignore” means “do nothing” when the lid is closed
-    lidSwitch = "ignore";
-    lidSwitchDocked = "ignore"; # when external monitors are connected
-    lidSwitchExternalPower = "ignore"; # when on AC power
+    settings.Login = {
+      HandleLidSwitch = "ignore";
+      HandleLidSwitchDocked = "ignore"; # when external monitors are connected
+      HandleLidSwitchExternalPower = "ignore"; # when on AC power
+    };
   };
 
   virtualisation.docker.enable = true;
