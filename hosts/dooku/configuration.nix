@@ -26,6 +26,7 @@
   networking.hostName = "dooku"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.nameservers = [ "8.8.8.8" "8.8.4.4" ];
+  systemd.services.NetworkManager-wait-online.enable = false;
 
   # Set your time zone.
   time.timeZone = "Europe/Warsaw";
