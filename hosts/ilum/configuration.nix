@@ -41,6 +41,8 @@
     defaultSession = "hyprland-uwsm";
   };
 
+  systemd.services.NetworkManager-wait-online.enable = false;
+
   # define udev rules to allow access to connect to corne keyboard
   services.udev.extraRules = ''
     SUBSYSTEM=="input", GROUP="input", MODE="0660"
