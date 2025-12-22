@@ -10,6 +10,9 @@
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
+  # Ensure NVIDIA kernel module owns the GPU, not Nova/nouveau.
+  boot.blacklistedKernelModules = [ "nova_core" "nova" "nouveau" "nvidiafb" ];
+
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
