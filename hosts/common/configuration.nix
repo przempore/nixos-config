@@ -12,8 +12,6 @@
 
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
-  system.nixos-init.enable = true;
-
   # Enable networking
   networking.networkmanager.enable = true;
 
