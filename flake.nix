@@ -86,6 +86,8 @@
             jq
             tree
             htop
+            sops
+            age
 
             # Network tools for VM management
             netcat

@@ -13,6 +13,9 @@
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
   system.nixos-init.enable = true;
+  boot.initrd.systemd.enable = true;
+  system.etc.overlay.enable = true;
+  services.userborn.enable = true;
 
   # Enable networking
   networking.networkmanager.enable = true;

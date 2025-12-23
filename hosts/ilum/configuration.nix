@@ -1,4 +1,4 @@
-{ pkgs, nixai, pkgs-unstable, ... }:
+{ pkgs, nixai, pkgs-unstable, config, ... }:
 {
   imports =
     [
@@ -65,10 +65,17 @@
   virtualisation.libvirtd.onShutdown = "shutdown";
   programs.virt-manager.enable = true;
 
+  sops.secrets."przemek/password-hash" = {
+    sopsFile = ../../secrets/users.yaml;
+    key = "przemek_password_hash";
+  };
+  users.mutableUsers = false;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.przemek = {
     isNormalUser = true;
     description = "Przemek";
+    hashedPasswordFile = config.sops.secrets."przemek/password-hash".path;
     extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "dialout" ];
     packages = with pkgs; [
       chromium
