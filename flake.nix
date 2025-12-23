@@ -137,7 +137,11 @@
             inherit system;
             machine = "dooku";
             user = "porebski";
-            nixos-hardware = nixos-hardware.nixosModules.lenovo-thinkpad;
+            nixos-hardware = [
+              nixos-hardware.nixosModules.lenovo-thinkpad
+              nixos-hardware.nixosModules.common-cpu-intel
+              nixos-hardware.nixosModules.common-pc-ssd
+            ];
           };
           dathomirSystem = mkSystem {
             inherit system;

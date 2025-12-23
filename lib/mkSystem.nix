@@ -62,6 +62,14 @@ let
     nvim-config = inputs.nvim-config;
     home-manager-unstable = inputs.home-manager-unstable;
   } // (if enableGhostty then { ghostty = inputs.ghostty; } else { });
+
+  hardwareModules =
+    if nixos-hardware == null then
+      [ ]
+    else if builtins.isList nixos-hardware then
+      nixos-hardware
+    else
+      [ nixos-hardware ];
 in
 {
   homeConfiguration = {
@@ -79,7 +87,7 @@ in
     ${machine} = inputs.nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = { inherit pkgs-unstable nixai; };
-      modules = inputs.nixpkgs.lib.optional (nixos-hardware != null) nixos-hardware ++ [
+      modules = hardwareModules ++ [
         { nixpkgs.hostPlatform.system = system; }
         unfree-config
         ../hosts/${machine}/configuration.nix

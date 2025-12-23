@@ -9,6 +9,7 @@
       ../common/configuration.nix
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./hardware-thinkpad-p15v.nix
       ../common/hyprland.nix
     ];
 
