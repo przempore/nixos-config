@@ -54,7 +54,7 @@
   };
 
   services.qemuGuest.enable = true;
-  services.teamviewer.enable = true;
+  services.teamviewer.enable = false;
   services.tailscale = {
     enable = true;
     package = pkgs-unstable.tailscale;
