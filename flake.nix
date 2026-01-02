@@ -143,6 +143,16 @@
               nixos-hardware.nixosModules.common-pc-ssd
             ];
           };
+          grievousSystem = mkSystem {
+            inherit system;
+            machine = "grievous";
+            user = "przemek";
+            nixos-hardware = [
+              nixos-hardware.nixosModules.common-cpu-intel
+              nixos-hardware.nixosModules.common-gpu-nvidia
+              nixos-hardware.nixosModules.common-pc-ssd
+            ];
+          };
           dathomirSystem = mkSystem {
             inherit system;
             machine = "dathomir";
@@ -180,6 +190,7 @@
             ilum = addBackup ilumSystem.homeConfiguration.przemek;
             dathomir = addBackup dathomirSystem.homeConfiguration.przemek;
             dooku = addBackup dookuSystem.homeConfiguration.porebski;
+            grievous = addBackup grievousSystem.homeConfiguration.przemek;
             dev-vm = addBackup devVmSystem.homeConfiguration.przemek;
             wsl = addBackup wslSystem.homeConfiguration.przemek;
           };
@@ -190,6 +201,7 @@
           nixosConfigurations = {
             dathomir = dathomirSystem.nixosConfiguration.dathomir;
             dooku = dookuSystem.nixosConfiguration.dooku;
+            grievous = grievousSystem.nixosConfiguration.grievous;
             ilum = ilumSystem.nixosConfiguration.ilum;
             dev-vm = devVmSystem.nixosConfiguration.dev-vm;
             wsl = wslSystem.nixosConfiguration.wsl;

@@ -1,0 +1,91 @@
+# Edit this configuration file to define what should be installed on
+# your system.  Help is available in the configuration.nix(5) man page
+# and in the NixOS manual (accessible by running ‘nixos-help’).
+
+{ config, lib, pkgs, pkgs-unstable, ... }:
+{
+  imports =
+    [
+      ../common/configuration.nix
+      # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+      ../common/hyprland.nix
+    ];
+
+  hardware.enableRedistributableFirmware = lib.mkDefault true;
+  nix.settings.trusted-users = [ "root" "przemek" ];
+
+  environment.systemPackages = [ pkgs.wakeonlan ];
+
+  boot.loader.systemd-boot.configurationLimit = 3;
+  # boot.kernelParams = [ "i915.force_probe=4626" ];
+
+  # boot.initrd.kernelModules = [ "i915" ];
+
+  networking.hostName = "grievous"; # Define your hostname.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # networking.nameservers = [ "8.8.8.8" "8.8.4.4" ];
+  systemd.services.NetworkManager-wait-online.enable = false;
+
+  # Set your time zone.
+  time.timeZone = "Europe/Berlin";
+
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "pl_PL.UTF-8";
+    LC_IDENTIFICATION = "pl_PL.UTF-8";
+    LC_MEASUREMENT = "pl_PL.UTF-8";
+    LC_MONETARY = "pl_PL.UTF-8";
+    LC_NAME = "pl_PL.UTF-8";
+    LC_NUMERIC = "pl_PL.UTF-8";
+    LC_PAPER = "pl_PL.UTF-8";
+    LC_TELEPHONE = "pl_PL.UTF-8";
+    LC_TIME = "pl_PL.UTF-8";
+  };
+
+  services.xserver.displayManager.lightdm.enable = false;
+  services.displayManager = {
+    sddm.enable = true;
+    defaultSession = "hyprland-uwsm";
+  };
+
+  services.teamviewer.enable = false;
+  services.tailscale = {
+    enable = true;
+    package = pkgs-unstable.tailscale;
+  };
+  services.tlp.enable = lib.mkDefault true;
+
+  services.logind = {
+    # “ignore” means “do nothing” when the lid is closed
+    settings.Login = {
+      HandleLidSwitch = "ignore";
+      HandleLidSwitchDocked = "ignore"; # when external monitors are connected
+      HandleLidSwitchExternalPower = "ignore"; # when on AC power
+    };
+  };
+
+  virtualisation.docker.enable = true;
+  virtualisation.libvirtd.enable = false;
+  virtualisation.libvirtd.onShutdown = "shutdown";
+  programs.virt-manager.enable = false;
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.przemek = {
+    isNormalUser = true;
+    description = "Przemek";
+    extraGroups = [ "networkmanager" "wheel" "docker" "dialout" ];
+    packages = with pkgs; [
+    ];
+  };
+
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "23.11"; # Did you read the comment?
+}
