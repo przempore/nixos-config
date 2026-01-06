@@ -64,7 +64,7 @@
   services.logind = {
     # “ignore” means “do nothing” when the lid is closed
     settings.Login = {
-      HandleLidSwitch = "ignore";
+      HandleLidSwitch = "suspend";
       HandleLidSwitchDocked = "ignore"; # when external monitors are connected
       HandleLidSwitchExternalPower = "ignore"; # when on AC power
     };
