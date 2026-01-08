@@ -8,6 +8,7 @@
       ./nvidia-drivers.nix
       ./gaming.nix
       ../common/hyprland.nix
+      # ../common/niri.nix
     ];
 
   nix.settings.trusted-users = [ "root" "przemek" ];
