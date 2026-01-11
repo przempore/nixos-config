@@ -11,6 +11,7 @@
       ./hardware-configuration.nix
       ./hardware-thinkpad-p15v.nix
       ../common/hyprland.nix
+      ../common/niri
     ];
 
   hardware.enableRedistributableFirmware = lib.mkDefault true;
