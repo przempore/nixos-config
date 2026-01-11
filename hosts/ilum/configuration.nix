@@ -49,15 +49,15 @@
     SUBSYSTEM=="input", GROUP="input", MODE="0660"
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0666"
   '';
-  services.ollama = {
-    enable = true;
-    acceleration = "cuda";
-  };
+  # services.ollama = {
+  #   enable = true;
+  #   acceleration = "cuda";
+  # };
   services.tailscale = {
     enable = true;
     package = pkgs-unstable.tailscale;
   };
-  services.open-webui.enable = true;
+  # services.open-webui.enable = true;
   # Give the service a real HOME so libraries that rely on Path.home() do not crash
   systemd.services.open-webui.serviceConfig.Environment = [ "HOME=/var/lib/open-webui" ];
 
