@@ -38,12 +38,12 @@ config.font =
 --   'nonicons',
 -- }
 
-wezterm.on('window-resized', function(window, pane)
-  local overrides = window:get_config_overrides() or {}
-  local is_fullscreen = window:get_dimensions().is_full_screen
-  set_background(overrides, is_fullscreen)
-  window:set_config_overrides(overrides)
-end)
+-- wezterm.on('window-resized', function(window, pane)
+--   local overrides = window:get_config_overrides() or {}
+--   local is_fullscreen = window:get_dimensions().is_full_screen
+--   set_background(overrides, is_fullscreen)
+--   window:set_config_overrides(overrides)
+-- end)
 
 wezterm.on('update-status', function(window, pane)
   local cells = {}
@@ -240,21 +240,26 @@ config.ssh_domains = {
     remote_address = 'dooku',
     username = 'porebski',
   },
+  {
+    name = 'work_windows',
+    remote_address = '192.168.178.28',
+    username = 'PP',
+  },
 }
 
-local function getHostname()
-  local f = io.popen ("/bin/hostnamectl hostname")
-  if not f then return 'not found' end
-  local hostname = f:read("*a")
-  hostname = hostname:gsub("\n", "")
-  f:close()
-  return hostname
-end
-
-local function work()
-  local hostname = getHostname()
-  return hostname == 'dooku'
-end
+-- local function getHostname()
+--   local f = io.popen ("/bin/hostnamectl hostname")
+--   if not f then return 'not found' end
+--   local hostname = f:read("*a")
+--   hostname = hostname:gsub("\n", "")
+--   f:close()
+--   return hostname
+-- end
+--
+-- local function work()
+--   local hostname = getHostname()
+--   return hostname == 'dooku'
+-- end
 
 local function work_setup(args)
   local project_path = wezterm.home_dir .. '/Projects/sentinel'
@@ -292,11 +297,11 @@ wezterm.on('gui-startup', function(cmd)
     args = cmd.args
   end
 
-  if work() then
-    -- work_setup(args)
-  else
-    home_setup(args)
-  end
+  -- if work() then
+  --   -- work_setup(args)
+  -- else
+  --   home_setup(args)
+  -- end
 end)
 
 
