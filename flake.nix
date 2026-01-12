@@ -17,7 +17,6 @@
     };
     home-manager-unstable.url = "github:nix-community/home-manager";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    # mozilla-overlay.url = "github:mozilla/nixpkgs-mozilla"; # not used anymore
     lix = {
       url = "https://git.lix.systems/lix-project/lix/archive/main.tar.gz";
       flake = false;
