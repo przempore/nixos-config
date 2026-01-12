@@ -5,6 +5,7 @@
     ../../common/home/apps/zed
     ../../common/home/desktop
     ../../common/home/desktop/hyprland
+    ./niri.nix
   ];
 
   # Packages that should be installed to the user profile.
