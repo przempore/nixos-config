@@ -55,6 +55,7 @@ let
   };
   extraSpecialArgs = {
     inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages legacyPkgs machine nixai isWSL enableGhostty;
+    opencode = inputs.opencode;
     catppuccin = inputs.catppuccin;
     zen-browser = inputs.zen-browser;
     tmux-sessionx = inputs.tmux-sessionx;
@@ -86,7 +87,7 @@ in
   nixosConfiguration = {
     ${machine} = inputs.nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = { inherit pkgs-unstable nixai; };
+      specialArgs = { inherit pkgs-unstable nixai; opencode = inputs.opencode; };
       modules = hardwareModules ++ [
         { nixpkgs.hostPlatform.system = system; }
         unfree-config

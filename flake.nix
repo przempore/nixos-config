@@ -40,6 +40,7 @@
     deploy-rs.url = "github:serokell/deploy-rs";
     neovim.url = "github:nix-community/neovim-nightly-overlay";
     nixai.url = "github:olafkfreund/nix-ai-help";
+    opencode.url = "github:anomalyco/opencode";
 
     # Use local path for development, switch to GitHub URL for production
     # nvim-config.url = "path:/home/przemek/Projects/nvim-config";

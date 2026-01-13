@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }: {
+{ pkgs, lib, config, opencode, ... }: {
 
   # Enable Flakes and the new command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ]; # here for nixos-rebuild
@@ -160,8 +160,13 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    brightnessctl # For display brightness control
+  environment.systemPackages =
+    let
+      opencodePkg = opencode.packages.${pkgs.system}.default;
+    in
+    with pkgs; [
+      opencodePkg
+      brightnessctl # For display brightness control
     (catppuccin-sddm.override {
       flavor = "mocha";
       accent = "mauve";
