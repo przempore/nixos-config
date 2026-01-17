@@ -53,6 +53,11 @@ deploy/dev-vm: ## Deploy to dev-vm via deploy-rs
 deploy/dooku: ## Deploy to dev-vm via deploy-rs
 	deploy .#dooku -- --show-trace
 
+.PHONY: deploy/dooku_local
+deploy/dooku_local: ## Deploy to dev-vm via deploy-rs
+	deploy .#dooku_local -- --show-trace
+
+
 .PHONY: gc garbage-collection
 gc: garbage-collection ## Run Nix store garbage collection (paths >3d old)
 

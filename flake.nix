@@ -238,6 +238,16 @@
                   path = deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.dooku;
                 };
               };
+              dooku_local = {
+                hostname = "dooku_local";
+                fastConnection = true;
+                interactiveSudo = true;
+                profiles.system = {
+                  user = "root";
+                  sshUser = "porebski";
+                  path = deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.dooku;
+                };
+              };
             };
           };
         };
