@@ -230,7 +230,7 @@
               };
               dooku = {
                 hostname = "dooku";
-                fastConnection = true;
+                fastConnection = false;
                 interactiveSudo = true;
                 profiles.system = {
                   user = "root";
