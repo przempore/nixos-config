@@ -632,4 +632,8 @@ binds {
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
+
+    // Optional (host-specific) helper: toggle a projector output.
+    // This is a no-op unless the script exists.
+    Mod+Ctrl+P hotkey-overlay-title="Toggle projector" { spawn-sh "test -x ~/.config/niri/scripts/toggle_projector.sh && ~/.config/niri/scripts/toggle_projector.sh"; }
 }
