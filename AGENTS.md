@@ -12,6 +12,7 @@ default expectations for AI coding agents working in this workspace.
 - Keep changes minimal and focused; avoid unrelated refactors.
 - Use `apply_patch` for small, single-file edits when possible.
 - Preserve existing style and conventions in Nix files.
+- Default to POSIX `sh`/`bash` syntax for command examples; if fish-specific behavior matters (e.g. exit status), remember fish uses `$status` rather than `$?`.
 - When changing niri configs/scripts:
   - Validate KDL with `niri validate -c <path>` when practical.
   - Inspect `niri msg -j outputs` output shape (it may be an object keyed by output name or an array).
