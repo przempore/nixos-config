@@ -18,7 +18,7 @@ let
     device {
       name        = at-translated-set-2-keyboard
       kb_layout   = real-prog-dvorak,us
-      kb_options  = grp:alt_shift_toggle,ctrl:swapcaps,altwin:swap_lalt_lwin
+      kb_options  = ctrl:swapcaps,altwin:swap_lalt_lwin
     }
   '';
   commonPart = ''
