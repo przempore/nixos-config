@@ -261,11 +261,11 @@
         "zon2nix": "zon2nix"
       },
       "locked": {
-        "lastModified": 1769291597,
-        "narHash": "sha256-0A/RvQ7iS0huEkA8X3WrdfTYgLs+JGCrjasaO5ZseMk=",
+        "lastModified": 1769462168,
+        "narHash": "sha256-ck8wYdcFJWQDXDZCE8pgjOJuldACrhNLwolymCgdLpE=",
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "061a0ae5656c05525aa812f474dee2ed32700125",
+        "rev": "4ee23b6bd2323e8a93dd821984114ea995972980",
         "type": "github"
       },
       "original": {
@@ -300,11 +300,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1769442288,
-        "narHash": "sha256-p+Xqr+P22TYW2RqbwccSd4UlUDEwl7PnoW3qiH8wVoE=",
+        "lastModified": 1769450270,
+        "narHash": "sha256-pdVm/zJazDUAasTyHFX/Pbrlk9Upjxi0yzgn7GjGe4g=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "384786dc70c4992643f916c7e57f378714fec4f1",
+        "rev": "a10c1e8f5ad2589414407f4851c221cb66270257",
         "type": "github"
       },
       "original": {
@@ -374,11 +374,11 @@
     "lix": {
       "flake": false,
       "locked": {
-        "lastModified": 1769366844,
-        "narHash": "sha256-YR9OUa/FG5UkxKHgJGfCvNRq3DyXOxJJ53f1rEQidgY=",
-        "rev": "f4458b8e461d00be501d5bdaa9bb72de333c9a52",
+        "lastModified": 1769453691,
+        "narHash": "sha256-JwdTGaVmp+YSkl+3nJMnh/g9oFIgUx62YNmnufSvqj0=",
+        "rev": "e083a68a9f45cd4ed51d8e288ce4c18ff578b50a",
         "type": "tarball",
-        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/f4458b8e461d00be501d5bdaa9bb72de333c9a52.tar.gz?rev=f4458b8e461d00be501d5bdaa9bb72de333c9a52"
+        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/e083a68a9f45cd4ed51d8e288ce4c18ff578b50a.tar.gz?rev=e083a68a9f45cd4ed51d8e288ce4c18ff578b50a"
       },
       "original": {
         "type": "tarball",
@@ -785,11 +785,11 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1769442790,
-        "narHash": "sha256-z95uCHFAgdplPn/I7uvrzlfzj7nCQGxdFoL1QtVlW/k=",
+        "lastModified": 1769461961,
+        "narHash": "sha256-HudZGgc5YIW0QG6gYlhsgRrv7SweENHJ0eG0HOha3Og=",
         "owner": "anomalyco",
         "repo": "opencode",
-        "rev": "3dce6a6608a4745cbf05670dbb57f2312f950acc",
+        "rev": "8b5dde5536b5725e68eb43933d23dae22c298b35",
         "type": "github"
       },
       "original": {
