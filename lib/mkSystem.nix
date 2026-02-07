@@ -1,5 +1,5 @@
-{ inputs, ... }:
-{ machine, system, nixos-hardware ? null, user, wsl ? false, dev-vm ? false, enableGhostty ? true }:
+{ inputs, lib, ... }:
+{ machine, system, nixos-hardware ? null, user, wsl ? false, dev-vm ? false, enableGhostty ? true, lix ? null }:
 let
   isWSL = wsl;
   isDevVm = dev-vm;
@@ -64,23 +64,22 @@ let
     home-manager-unstable = inputs.home-manager-unstable;
   } // (if enableGhostty then { ghostty = inputs.ghostty; } else { });
 
-  hardwareModules =
-    if nixos-hardware == null then
-      [ ]
-    else if builtins.isList nixos-hardware then
-      nixos-hardware
-    else
-      [ nixos-hardware ];
+  normalize = arg:
+    if arg == null then [ ]
+    else if builtins.isList arg then arg
+    else [ arg ];
+
 in
 {
   homeConfiguration = {
     ${user} = inputs.home-manager.lib.homeManagerConfiguration {
       inherit pkgs extraSpecialArgs;
-      modules = [
-        # TODO: move modules around to unlock home configuration from machine
-        ../hosts/${machine}/home
-        (if !dev-vm && !isWSL then inputs.lix-module.nixosModules.default else { })
-      ];
+      modules =
+        normalize lix ++
+        [
+          # TODO: move modules around to unlock home configuration from machine
+          ../hosts/${machine}/home
+        ];
     };
   };
 
@@ -88,29 +87,32 @@ in
     ${machine} = inputs.nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = { inherit pkgs-unstable nixai; opencode = inputs.opencode; };
-      modules = hardwareModules ++ [
-        { nixpkgs.hostPlatform.system = system; }
-        unfree-config
-        ../hosts/${machine}/configuration.nix
-        (if !dev-vm && !isWSL then inputs.lix-module.nixosModules.default else { })
+      modules =
+        normalize nixos-hardware  ++
+        normalize lix ++
+        # lib.optional isWSL inputs.nixos-wsl.nixosModules.wsl ++
+        [
+          { nixpkgs.hostPlatform.system = system; }
+          unfree-config
+          ../hosts/${machine}/configuration.nix
 
-        # sops-nix for secrets management (decrypted to /run/secrets)
-        inputs.sops-nix.nixosModules.sops
-        {
-          sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-        }
+          # sops-nix for secrets management (decrypted to /run/secrets)
+          inputs.sops-nix.nixosModules.sops
+          {
+            sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+          }
 
-        (if isWSL then inputs.nixos-wsl.nixosModules.wsl else { })
+          (if isWSL then inputs.nixos-wsl.nixosModules.wsl else { })
 
-        inputs.home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.${user} = ../hosts/${machine}/home;
-          home-manager.extraSpecialArgs = extraSpecialArgs;
-          home-manager.backupFileExtension = "backup-${inputs.self.rev or "dirty"}";
-        }
-      ];
+          inputs.home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.${user} = ../hosts/${machine}/home;
+            home-manager.extraSpecialArgs = extraSpecialArgs;
+            home-manager.backupFileExtension = "backup-${inputs.self.rev or "dirty"}";
+          }
+        ];
     };
   };
 }

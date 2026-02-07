@@ -131,7 +131,7 @@
         let
           system = "x86_64-linux";
 
-          mkSystem = import ./lib/mkSystem.nix { inherit inputs; };
+          mkSystem = import ./lib/mkSystem.nix { inherit inputs; lib = inputs.nixpkgs.lib; };
           dookuSystem = mkSystem {
             inherit system;
             machine = "dooku";
@@ -157,24 +157,27 @@
             machine = "dathomir";
             user = "przemek";
             nixos-hardware = nixos-hardware.nixosModules.dell-latitude-e7240;
+            enableGhostty = false;
           };
           ilumSystem = mkSystem {
             inherit system;
             machine = "ilum";
             user = "przemek";
+            # lix = inputs.lix-module.nixosModules.default;
           };
           devVmSystem = mkSystem {
             inherit system;
             machine = "dev-vm";
             user = "przemek";
             dev-vm = true;
-            enableGhostty = true;
+            enableGhostty = false;
           };
           wslSystem = mkSystem {
             inherit system;
             machine = "wsl";
             user = "przemek";
             wsl = true;
+            enableGhostty = false;
           };
 
           backupExt = "backup_$(date +%Y%m%d_%H%M%S)";
