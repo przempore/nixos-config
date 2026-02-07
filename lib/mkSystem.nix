@@ -90,7 +90,7 @@ in
       modules =
         normalize nixos-hardware  ++
         normalize lix ++
-        # lib.optional isWSL inputs.nixos-wsl.nixosModules.wsl ++
+        lib.optional isWSL inputs.nixos-wsl.nixosModules.wsl ++
         [
           { nixpkgs.hostPlatform.system = system; }
           unfree-config
@@ -101,8 +101,6 @@ in
           {
             sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
           }
-
-          (if isWSL then inputs.nixos-wsl.nixosModules.wsl else { })
 
           inputs.home-manager.nixosModules.home-manager
           {
