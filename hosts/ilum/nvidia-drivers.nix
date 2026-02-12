@@ -18,7 +18,7 @@
     enable32Bit = true;
   };
 
-  # boot.kernelPackages = pkgs.linuxPackages_6_16;
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
   # nixpkgs.config.nvidia.acceptLicense = true; # that's probably needed for non-free drivers
 
   hardware.nvidia = {
@@ -27,7 +27,6 @@
     powerManagement.finegrained = false;
     nvidiaSettings = true;
     open = true;
-    # package = config.boot.kernelPackages.nvidiaPackages.latest;
     # https://github.com/NixOS/nixpkgs/issues/467145#issuecomment-3603995380
     # package = config.boot.kernelPackages.nvidiaPackages.stable // {
     #   open = config.boot.kernelPackages.nvidiaPackages.stable.open.overrideAttrs (old: {
@@ -48,8 +47,9 @@
     #   settingsSha256 = "sha256-o2zUnYFUQjHOcCrB0w/4L6xI1hVUXLAWgG2Y26BowBE=";
     #   persistencedSha256 = "sha256-2g5z7Pu8u2EiAh5givP5Q1Y4zk4Cbb06W37rf768NFU=";
     # };
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
+    # package = config.boot.kernelPackages.nvidiaPackages.beta;
     # package = config.boot.kernelPackages.nvidiaPackages.stable;
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
     # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
     #   version = "570.124.04";
     #   sha256_64bit = "sha256-G3hqS3Ei18QhbFiuQAdoik93jBlsFI2RkWOBXuENU8Q=";
