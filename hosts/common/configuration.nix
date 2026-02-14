@@ -1,4 +1,4 @@
-{ pkgs, lib, config, opencode, ... }: {
+{ pkgs, pkgs-unstable, lib, config, opencode, ... }: {
 
   # Enable Flakes and the new command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ]; # here for nixos-rebuild
@@ -163,6 +163,7 @@
   environment.systemPackages =
     let
       opencodePkg = opencode.packages.${pkgs.system}.default;
+      # opencodePkg = pkgs-unstable.opencode;
     in
     with pkgs; [
       opencodePkg
