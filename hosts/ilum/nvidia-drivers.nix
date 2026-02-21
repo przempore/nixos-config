@@ -18,7 +18,7 @@
     enable32Bit = true;
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_6_18;
+  # boot.kernelPackages = pkgs.linuxPackages_6_18;
   # nixpkgs.config.nvidia.acceptLicense = true; # that's probably needed for non-free drivers
 
   hardware.nvidia = {
@@ -47,22 +47,31 @@
     #   settingsSha256 = "sha256-o2zUnYFUQjHOcCrB0w/4L6xI1hVUXLAWgG2Y26BowBE=";
     #   persistencedSha256 = "sha256-2g5z7Pu8u2EiAh5givP5Q1Y4zk4Cbb06W37rf768NFU=";
     # };
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
+    package =
+    let
+        base = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+            version = "590.48.01";
+            sha256_64bit = "sha256-ueL4BpN4FDHMh/TNKRCeEz3Oy1ClDWto1LO/LWlr1ok=";
+            openSha256 = "sha256-hECHfguzwduEfPo5pCDjWE/MjtRDhINVr4b1awFdP44=";
+            settingsSha256 = "sha256-4SfCWp3swUp+x+4cuIZ7SA5H7/NoizqgPJ6S9fm90fA=";
+            persistencedSha256 = "";
+        };
+        cachyos-nvidia-patch = pkgs.fetchpatch {
+            url = "https://raw.githubusercontent.com/CachyOS/CachyOS-PKGBUILDS/master/nvidia/nvidia-utils/kernel-6.19.patch";
+            sha256 = "sha256-YuJjSUXE6jYSuZySYGnWSNG5sfVei7vvxDcHx3K+IN4=";
+        };
+
+        # Patch the appropriate driver based on config.hardware.nvidia.open
+        driverAttr = if config.hardware.nvidia.open then "open" else "bin";
+    in
+    base
+    // {
+        ${driverAttr} = base.${driverAttr}.overrideAttrs (oldAttrs: {
+            patches = (oldAttrs.patches or [ ]) ++ [ cachyos-nvidia-patch ];
+        });
+    };
+    # package = config.boot.kernelPackages.nvidiaPackages.latest;
     # package = config.boot.kernelPackages.nvidiaPackages.beta;
     # package = config.boot.kernelPackages.nvidiaPackages.stable;
-    # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-    #   version = "570.124.04";
-    #   sha256_64bit = "sha256-G3hqS3Ei18QhbFiuQAdoik93jBlsFI2RkWOBXuENU8Q=";
-    #   openSha256 = "sha256-KCGUyu/XtmgcBqJ8NLw/iXlaqB9/exg51KFx0Ta5ip0=";
-    #   settingsSha256 = "sha256-LNL0J/sYHD8vagkV1w8tb52gMtzj/F0QmJTV1cMaso8=";
-    #   usePersistenced = false;
-    # };
-    # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-    #   version = "575.51.02";
-    #   sha256_64bit = "sha256-XZ0N8ISmoAC8p28DrGHk/YN1rJsInJ2dZNL8O+Tuaa0=";
-    #   openSha256 = "sha256-NQg+QDm9Gt+5bapbUO96UFsPnz1hG1dtEwT/g/vKHkw=";
-    #   settingsSha256 = "sha256-6n9mVkEL39wJj5FB1HBml7TTJhNAhS/j5hqpNGFQE4w=";
-    #   usePersistenced = false;
-    # };
   };
 }
