@@ -1,6 +1,6 @@
-{ pkgs, ghostty, ... }:
+{ pkgs-unstable, ghostty, ... }:
 let
-  catppuccin-ghostty = pkgs.fetchFromGitHub {
+  catppuccin-ghostty = pkgs-unstable.fetchFromGitHub {
     owner = "catppuccin";
     repo  = "ghostty";
     rev   = "main";
@@ -9,7 +9,9 @@ let
 in
 {
   home.packages = [
-    ghostty.packages.x86_64-linux.default
+    # ghostty.packages.x86_64-linux.default
+    pkgs-unstable.ghostty
+
   ];
 
   xdg.configFile."ghostty/themes".source = "${catppuccin-ghostty}/themes";
