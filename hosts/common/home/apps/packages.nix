@@ -11,6 +11,7 @@
     ncpamixer
     lazydocker
     distrobox
+    spotify-player
   ];
 
   programs.autojump = {
