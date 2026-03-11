@@ -351,6 +351,18 @@ window-rule {
     clip-to-geometry true
 }
 
+// Named workspaces provide stable references independent of dynamic index order.
+workspace "1st"
+workspace "2nd"
+workspace "3rd"
+workspace "4th"
+workspace "5th"
+workspace "6th"
+workspace "7th"
+workspace "8th"
+workspace "9th"
+workspace "10th"
+
 binds {
     // Keys consist of modifiers separated by + signs, followed by an XKB key name
     // in the end. To find an XKB name for a particular key, you may use a program
@@ -518,32 +530,32 @@ binds {
     // Mod+TouchpadScrollDown { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02+"; }
     // Mod+TouchpadScrollUp   { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02-"; }
 
-    // You can refer to workspaces by index. However, keep in mind that
-    // niri is a dynamic workspace system, so these commands are kind of
-    // "best effort". Trying to refer to a workspace index bigger than
-    // the current workspace count will instead refer to the bottommost
-    // (empty) workspace.
-    //
-    // For example, with 2 workspaces + 1 empty, indices 3, 4, 5 and so on
-    // will all refer to the 3rd workspace.
-    Mod+1 { focus-workspace 1; }
-    Mod+2 { focus-workspace 2; }
-    Mod+3 { focus-workspace 3; }
-    Mod+4 { focus-workspace 4; }
-    Mod+5 { focus-workspace 5; }
-    Mod+6 { focus-workspace 6; }
-    Mod+7 { focus-workspace 7; }
-    Mod+8 { focus-workspace 8; }
-    Mod+9 { focus-workspace 9; }
-    Mod+Ctrl+1 { move-column-to-workspace 1; }
-    Mod+Ctrl+2 { move-column-to-workspace 2; }
-    Mod+Ctrl+3 { move-column-to-workspace 3; }
-    Mod+Ctrl+4 { move-column-to-workspace 4; }
-    Mod+Ctrl+5 { move-column-to-workspace 5; }
-    Mod+Ctrl+6 { move-column-to-workspace 6; }
-    Mod+Ctrl+7 { move-column-to-workspace 7; }
-    Mod+Ctrl+8 { move-column-to-workspace 8; }
-    Mod+Ctrl+9 { move-column-to-workspace 9; }
+    // Symbol-row bindings to match Hyprland config on programmer-dvorak.
+    // Ordered in descending workspace names so "1st" appears at the top
+    // of niri's workspace list (niri's workspace direction/order is inverted
+    // relative to this keyboard row).
+    Mod+Plus         { focus-workspace "10th"; }
+    Mod+BracketLeft  { focus-workspace "9th"; }
+    Mod+BraceLeft    { focus-workspace "8th"; }
+    Mod+ParenLeft    { focus-workspace "7th"; }
+    Mod+Ampersand    { focus-workspace "6th"; }
+    Mod+Equal        { focus-workspace "5th"; }
+    Mod+ParenRight   { focus-workspace "4th"; }
+    Mod+BraceRight   { focus-workspace "3rd"; }
+    Mod+BracketRight { focus-workspace "2nd"; }
+    Mod+Asterisk     { focus-workspace "1st"; }
+
+    // Keep the move bindings in the same descending order as focus bindings.
+    Mod+Shift+Plus         { move-window-to-workspace "10th"; }
+    Mod+Shift+BracketLeft  { move-window-to-workspace "9th"; }
+    Mod+Shift+BraceLeft    { move-window-to-workspace "8th"; }
+    Mod+Shift+ParenLeft    { move-window-to-workspace "7th"; }
+    Mod+Shift+Ampersand    { move-window-to-workspace "6th"; }
+    Mod+Shift+Equal        { move-window-to-workspace "5th"; }
+    Mod+Shift+ParenRight   { move-window-to-workspace "4th"; }
+    Mod+Shift+BraceRight   { move-window-to-workspace "3rd"; }
+    Mod+Shift+BracketRight { move-window-to-workspace "2nd"; }
+    Mod+Shift+Asterisk     { move-window-to-workspace "1st"; }
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Ctrl+1 { move-window-to-workspace 1; }
@@ -554,8 +566,8 @@ binds {
     // The following binds move the focused window in and out of a column.
     // If the window is alone, they will consume it into the nearby column to the side.
     // If the window is already in a column, they will expel it out.
-    Mod+BracketLeft  { consume-or-expel-window-left; }
-    Mod+BracketRight { consume-or-expel-window-right; }
+    Mod+Ctrl+BracketLeft  { consume-or-expel-window-left; }
+    Mod+Ctrl+BracketRight { consume-or-expel-window-right; }
 
     // Consume one window from the right to the bottom of the focused column.
     Mod+Comma  { consume-window-into-column; }
@@ -588,11 +600,11 @@ binds {
     // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
     // set-column-width "100" will make the column occupy 200 physical screen pixels.
     Mod+Minus { set-column-width "-10%"; }
-    Mod+Equal { set-column-width "+10%"; }
+    Mod+Ctrl+Equal { set-column-width "+10%"; }
 
     // Finer height adjustments when in column with other windows.
     Mod+Shift+Minus { set-window-height "-10%"; }
-    Mod+Shift+Equal { set-window-height "+10%"; }
+    Mod+Ctrl+Shift+Equal { set-window-height "+10%"; }
 
     // Move the focused window between the floating and the tiling layout.
     Mod+O       { toggle-window-floating; }
