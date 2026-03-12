@@ -14,6 +14,18 @@ window#waybar {
     color: #6790EB;
 }
 
+#workspaces button label {
+    color: #6790EB;
+}
+
+#workspaces button.empty {
+    color: #4a5460;
+}
+
+#workspaces button.empty label {
+    color: #4a5460;
+}
+
 #workspaces button.active {
     border-bottom: 2px solid #6790EB;
     color: #3384d0;
