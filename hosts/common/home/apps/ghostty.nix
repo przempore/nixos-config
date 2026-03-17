@@ -87,6 +87,7 @@ in
     keybind = alt+{=goto_tab:3
     keybind = alt+(=goto_tab:4
     keybind = alt+&=goto_tab:5
+    keybind = ctrl+enter=ignore
   '';
 
   home.file.".local/share/applications/nvim.desktop".text = ''
