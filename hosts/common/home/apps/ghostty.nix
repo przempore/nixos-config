@@ -62,7 +62,7 @@ in
     gtk-custom-css = tab-style.css
 
     font-family = "JetBrainsMono Nerd Font Mono"
-    font-size = 10
+    font-size = 12
     # window-decoration = false
     # gtk-tabs-location = hidden
 
