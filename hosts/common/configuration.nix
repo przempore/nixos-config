@@ -162,8 +162,8 @@
   # $ nix search wget
   environment.systemPackages =
     let
-      opencodePkg = opencode.packages.${pkgs.system}.default;
-      # opencodePkg = pkgs-unstable.opencode;
+      # opencodePkg = opencode.packages.${pkgs.system}.default;
+      opencodePkg = pkgs-unstable.opencode;
     in
     with pkgs; [
       opencodePkg
