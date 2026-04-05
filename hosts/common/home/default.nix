@@ -29,7 +29,7 @@
     };
 
     packages = with pkgs-unstable; [
-      claude-code
+      # claude-code
       superfile
     ] ++ (with pkgs; [
       cachix

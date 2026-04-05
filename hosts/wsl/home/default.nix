@@ -43,7 +43,6 @@
 
       docker-compose
     ] ++ (with pkgs-unstable; [
-      claude-code
       superfile
     ]);
 

@@ -38,10 +38,10 @@
       lua-language-server
       dockerfile-language-server
       bash-language-server
-      nodePackages."diagnostic-languageserver"
+      diagnostic-languageserver
       pyright
-      nodePackages."vscode-langservers-extracted"
-      nodePackages."yaml-language-server"
+      vscode-langservers-extracted
+      yaml-language-server
       terraform-ls
     ];
   };
