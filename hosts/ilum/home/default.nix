@@ -2,7 +2,7 @@
 {
   imports = [
     ../../common/home
-    ../../common/home/apps/zed
+    ../../common/home/apps/zed.nix
     ../../common/home/desktop
     ../../common/home/desktop/hyprland
     ./niri.nix
