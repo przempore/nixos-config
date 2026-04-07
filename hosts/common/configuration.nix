@@ -122,6 +122,7 @@
   # services.xserver.libinput.enable = true;
 
   programs.fish.enable = true;
+  programs.nix-ld.enable = true;
   users.defaultUserShell = pkgs.fish;
 
   # Allow unfree packages
