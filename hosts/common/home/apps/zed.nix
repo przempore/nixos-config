@@ -13,6 +13,7 @@
       "toml"
       "rust"
       "make"
+      "opencode"
     ];
     userSettings = {
       assistant = {
@@ -39,7 +40,7 @@
         alternate_scroll = "off";
         blinking = "off";
         copy_on_select = false;
-        dock = "bottom";
+        dock = "right";
         detect_venv = {
           on = {
             directories = [
@@ -86,7 +87,12 @@
       };
 
       vim_mode = true;
-      relative_line_numbers = "wrapped";
+      relative_line_numbers = "enabled";
+      vim = {
+        use_system_clipboard = "never";
+        toggle_relative_line_numbers = true;
+      };
+
 
       load_direnv = "shell_hook";
       base_keymap = "SublimeText";
