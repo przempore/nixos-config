@@ -11,7 +11,7 @@
     extensions = [
       "nix"
       "toml"
-      "rust"
+      # "rust"
       "make"
       "opencode"
     ];
@@ -53,7 +53,6 @@
           };
         };
         env = {
-          TERM = "ghostty";
         };
         font_family = "FiraCode Nerd Font";
         font_features = null;
@@ -71,19 +70,37 @@
       lsp = {
         rust-analyzer = {
           binary = {
-            path_lookup = true;
+            path = lib.getExe (
+              pkgs.writeShellApplication {
+                name = "zed-rust-analyzer";
+                runtimeInputs = [
+                  pkgs.direnv
+                ];
+                text = ''
+                  if direnv exec "$PWD" sh -lc 'command -v rust-analyzer >/dev/null'; then
+                    exec direnv exec "$PWD" rust-analyzer "$@"
+                  fi
+
+                  exec ${lib.getExe pkgs.rust-analyzer} "$@"
+                '';
+              }
+            );
           };
         };
-
-        nix = {
+        nixd = {
           binary = {
-            path_lookup = true;
+            path = lib.getExe pkgs.nixd;
           };
         };
-
+        nil = {
+          binary = {
+            path = lib.getExe pkgs.nil;
+          };
+        };
       };
 
       languages = {
+
       };
 
       vim_mode = true;
@@ -93,8 +110,8 @@
         toggle_relative_line_numbers = true;
       };
 
-
-      load_direnv = "shell_hook";
+      # load_direnv = "shell_hook";
+      load_direnv = "disabled";
       base_keymap = "SublimeText";
 
       theme = {
