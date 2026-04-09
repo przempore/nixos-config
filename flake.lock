@@ -749,11 +749,11 @@
         "nixpkgs": "nixpkgs_8"
       },
       "locked": {
-        "lastModified": 1775041881,
-        "narHash": "sha256-6yDeBfNFph3cT3PdBDMuRKYOTVd5O2gUgZGptnjtDqA=",
+        "lastModified": 1775768406,
+        "narHash": "sha256-Hf+8J2gaX7XDFvwyJDBiQw5Y0IEkMDxkT8w7qLNoPkE=",
         "owner": "przempore",
         "repo": "nvim-config",
-        "rev": "620ebe04e634bf77caeed5b60c843bc583bbf949",
+        "rev": "a4a8dab05d139105c574dcf5385c1fe1c9f40514",
         "type": "github"
       },
       "original": {
