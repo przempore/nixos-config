@@ -1,9 +1,10 @@
 { lib, catppuccin, home-manager-unstable, ... }:
 let
+  excludedModules = [ "vicinae.nix" "opencode.nix" ];
   catppuccinModules =
     import (catppuccin + "/modules/home-manager/all-modules.nix");
   catppuccinModulesFiltered =
-    builtins.filter (module: builtins.baseNameOf module != "vicinae.nix")
+    builtins.filter (module: !(builtins.elem (builtins.baseNameOf module) excludedModules))
       catppuccinModules;
   catppuccinModule =
     lib.modules.importApply
