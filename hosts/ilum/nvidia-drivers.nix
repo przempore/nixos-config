@@ -27,6 +27,9 @@
     powerManagement.finegrained = false;
     nvidiaSettings = true;
     open = true;
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
+    # package = config.boot.kernelPackages.nvidiaPackages.beta;
+    # package = config.boot.kernelPackages.nvidiaPackages.stable;
     # https://github.com/NixOS/nixpkgs/issues/467145#issuecomment-3603995380
     # package = config.boot.kernelPackages.nvidiaPackages.stable // {
     #   open = config.boot.kernelPackages.nvidiaPackages.stable.open.overrideAttrs (old: {
@@ -70,8 +73,5 @@
     #         patches = (oldAttrs.patches or [ ]) ++ [ cachyos-nvidia-patch ];
     #     });
     # };
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
-    # package = config.boot.kernelPackages.nvidiaPackages.beta;
-    # package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 }
