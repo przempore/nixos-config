@@ -47,30 +47,30 @@
     #   settingsSha256 = "sha256-o2zUnYFUQjHOcCrB0w/4L6xI1hVUXLAWgG2Y26BowBE=";
     #   persistencedSha256 = "sha256-2g5z7Pu8u2EiAh5givP5Q1Y4zk4Cbb06W37rf768NFU=";
     # };
-    package =
-    let
-        base = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-            version = "590.48.01";
-            sha256_64bit = "sha256-ueL4BpN4FDHMh/TNKRCeEz3Oy1ClDWto1LO/LWlr1ok=";
-            openSha256 = "sha256-hECHfguzwduEfPo5pCDjWE/MjtRDhINVr4b1awFdP44=";
-            settingsSha256 = "sha256-4SfCWp3swUp+x+4cuIZ7SA5H7/NoizqgPJ6S9fm90fA=";
-            persistencedSha256 = "";
-        };
-        cachyos-nvidia-patch = pkgs.fetchpatch {
-            url = "https://raw.githubusercontent.com/CachyOS/CachyOS-PKGBUILDS/master/nvidia/nvidia-utils/kernel-6.19.patch";
-            sha256 = "sha256-YuJjSUXE6jYSuZySYGnWSNG5sfVei7vvxDcHx3K+IN4=";
-        };
-
-        # Patch the appropriate driver based on config.hardware.nvidia.open
-        driverAttr = if config.hardware.nvidia.open then "open" else "bin";
-    in
-    base
-    // {
-        ${driverAttr} = base.${driverAttr}.overrideAttrs (oldAttrs: {
-            patches = (oldAttrs.patches or [ ]) ++ [ cachyos-nvidia-patch ];
-        });
-    };
-    # package = config.boot.kernelPackages.nvidiaPackages.latest;
+    # package =
+    # let
+    #     base = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+    #         version = "590.48.01";
+    #         sha256_64bit = "sha256-ueL4BpN4FDHMh/TNKRCeEz3Oy1ClDWto1LO/LWlr1ok=";
+    #         openSha256 = "sha256-hECHfguzwduEfPo5pCDjWE/MjtRDhINVr4b1awFdP44=";
+    #         settingsSha256 = "sha256-4SfCWp3swUp+x+4cuIZ7SA5H7/NoizqgPJ6S9fm90fA=";
+    #         persistencedSha256 = "";
+    #     };
+    #     cachyos-nvidia-patch = pkgs.fetchpatch {
+    #         url = "https://raw.githubusercontent.com/CachyOS/CachyOS-PKGBUILDS/master/nvidia/nvidia-utils/kernel-6.19.patch";
+    #         sha256 = "sha256-YuJjSUXE6jYSuZySYGnWSNG5sfVei7vvxDcHx3K+IN4=";
+    #     };
+    #
+    #     # Patch the appropriate driver based on config.hardware.nvidia.open
+    #     driverAttr = if config.hardware.nvidia.open then "open" else "bin";
+    # in
+    # base
+    # // {
+    #     ${driverAttr} = base.${driverAttr}.overrideAttrs (oldAttrs: {
+    #         patches = (oldAttrs.patches or [ ]) ++ [ cachyos-nvidia-patch ];
+    #     });
+    # };
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
     # package = config.boot.kernelPackages.nvidiaPackages.beta;
     # package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
