@@ -1,6 +1,6 @@
 { lib, catppuccin, home-manager-unstable, ... }:
 let
-  excludedModules = [ "vicinae.nix" "opencode.nix" ];
+  excludedModules = [ "vicinae.nix" "opencode.nix" "wezterm.nix" ];
   catppuccinModules =
     import (catppuccin + "/modules/home-manager/all-modules.nix");
   catppuccinModulesFiltered =
