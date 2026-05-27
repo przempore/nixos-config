@@ -63,6 +63,7 @@
 
   virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.qemu.swtpm.enable = true;
   virtualisation.libvirtd.onShutdown = "shutdown";
   programs.virt-manager.enable = true;
 
