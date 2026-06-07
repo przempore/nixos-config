@@ -81,7 +81,8 @@
       redshift
       backblaze-b2
 
-      blueberry
+      blueman
+      # blueberry
       # geany
 
       # all from here goes to home-manager

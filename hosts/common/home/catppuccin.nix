@@ -1,4 +1,4 @@
-{ lib, catppuccin, home-manager-unstable, ... }:
+{ lib, pkgs, catppuccin, home-manager-unstable, ... }:
 let
   excludedModules = [ "vicinae.nix" "opencode.nix" "wezterm.nix" ];
   catppuccinModules =
@@ -37,6 +37,12 @@ in
         enable = true;
         accent = "dark";
       };
+
+      sources.nvim = catppuccin.packages.${pkgs.stdenv.hostPlatform.system}.nvim.overrideAttrs (old: {
+        nvimSkipModules = (old.nvimSkipModules or [ ]) ++ [
+          "catppuccin.lib.detect_integrations"
+        ];
+      });
     };
   };
 }
