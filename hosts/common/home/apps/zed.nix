@@ -126,27 +126,53 @@
     };
     userKeymaps = [
       {
+        context = "Terminal";
+        bindings = {
+          "ctrl-p" = "terminal::SendKeystroke ctrl-p";
+          "ctrl-n" = "terminal::SendKeystroke ctrl-n";
+          "ctrl-a" = "terminal::SendKeystroke ctrl-a";
+          "ctrl-e" = "terminal::SendKeystroke ctrl-e";
+          "ctrl-b" = "terminal::SendKeystroke ctrl-b";
+          "ctrl-f" = "terminal::SendKeystroke ctrl-f";
+          "alt-b" = "terminal::SendKeystroke alt-b";
+          "alt-f" = "terminal::SendKeystroke alt-f";
+        };
+      }
+      {
         context = "Workspace";
         bindings = {
+          "ctrl-shift-t" = "terminal_panel::Toggle";
         };
       }
       {
-        context = "Editor && vim_mode == insert";
+        context = "Editor && mode == full && vim_mode == visual";
         bindings = {
+          "shift-j" = "editor::MoveLineDown";
+          "shift-k" = "editor::MoveLineUp";
+          "space p" = "workspace::SendKeystrokes \"_dP";
+          "space d" = "workspace::SendKeystrokes \"_d";
+          "space y" = "editor::Copy";
         };
       }
       {
-        context = "Editor && vim_mode == normal";
+        context = "Editor && mode == full && vim_mode == normal";
         bindings = {
           "space o v" = "pane::RevealInProjectPanel";
           "space g b" = "git::Branch";
           "space g a" = "editor::ToggleCodeActions";
+          "space g r" = "editor::FindAllReferences";
         };
       }
       {
-        context = "Editor";
+        context = "Editor && mode == full";
         bindings = {
           "ctrl-y" = "editor::ConfirmCompletion";
+        };
+      }
+      {
+        context = "VimControl && !menu";
+        bindings = {
+          "space w s" = "project_symbols::Toggle";
         };
       }
       {
