@@ -784,11 +784,11 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1781030717,
-        "narHash": "sha256-C9y9t1ZHICiaTYJgr61VPKmEz5ZUfFsbP4V9mGCphzM=",
+        "lastModified": 1781032244,
+        "narHash": "sha256-9SRsjuVnvM87reG24FFxm1IrHFvyAngwQ3n/JypLlzk=",
         "owner": "anomalyco",
         "repo": "opencode",
-        "rev": "1daf535e6bd4ee34aa95ca0e72bbee78c47cd46c",
+        "rev": "7a54a2c49cca87fbc12619544c403ce240a6947b",
         "type": "github"
       },
       "original": {
