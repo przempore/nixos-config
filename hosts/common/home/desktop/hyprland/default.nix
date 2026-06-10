@@ -1,5 +1,8 @@
 { pkgs, lib, machine, ... }:
 let
+  wallpaper = ../screen_settings/wallpaper/nature_of_fear_Nicola_Samori.jpg;
+  hyprpaperMonitor = if machine == "ilum" then "DP-2" else "eDP-1";
+
   ilumPart = ''
     monitor=DP-2,3840x1600@144,0x0,1
     monitor=HDMI-A-1,disable
@@ -39,6 +42,12 @@ in
   };
 
   home.file.".config/hypr/hyprland.conf".text = lib.strings.trim commonPart;
+  home.file.".config/hypr/hyprpaper.conf".text = ''
+    wallpaper {
+      monitor = ${hyprpaperMonitor}
+      path = ${wallpaper}
+    }
+  '';
 
   home.packages = with pkgs; [
     wofi

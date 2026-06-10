@@ -41,6 +41,7 @@
     sddm.enable = true;
     defaultSession = "hyprland-uwsm";
   };
+  services.displayManager.sddm.wayland.enable = true;
 
   systemd.services.NetworkManager-wait-online.enable = false;
 
