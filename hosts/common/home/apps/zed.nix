@@ -4,7 +4,16 @@
   lib,
   ...
 }:
+let
+  zed_from_windows = builtins.fetchGit {
+    url = "git@github.com:przempore/windows_dotfiles.git";
+    rev = "f74f0f23074211c1cdafea9a3b67643550f46f03";
+  };
+
+in
 {
+
+  # xdg.configFile."zed/settings.json".source = "${zed_from_windows}/zed/settings.json";
   programs.zed-editor = {
     enable = true;
     package = pkgs-unstable.zed-editor;
@@ -15,19 +24,8 @@
       "make"
       "opencode"
     ];
+
     userSettings = {
-      assistant = {
-        enabled = true;
-        version = "2";
-        default_open_ai_model = null;
-
-        default_model = {
-          provider = "zed.dev";
-          model = "gpt-5.3-codex";
-        };
-
-      };
-
       node = {
         path = lib.getExe pkgs.nodejs;
         npm_path = lib.getExe' pkgs.nodejs "npm";
@@ -67,26 +65,37 @@
         working_directory = "current_project_directory";
       };
 
-      lsp = {
-        rust-analyzer = {
-          binary = {
-            path = lib.getExe (
-              pkgs.writeShellApplication {
-                name = "zed-rust-analyzer";
-                runtimeInputs = [
-                  pkgs.direnv
-                ];
-                text = ''
-                  if direnv exec "$PWD" sh -lc 'command -v rust-analyzer >/dev/null'; then
-                    exec direnv exec "$PWD" rust-analyzer "$@"
-                  fi
-
-                  exec ${lib.getExe pkgs.rust-analyzer} "$@"
-                '';
-              }
-            );
-          };
+      agent = {
+        dock = "right";
+        sidebar_side = "right";
+        default_model = {
+          provider = "zed.dev";
+          model = "gpt-5.5";
         };
+        default_open_ai_model = null;
+        enabled = true;
+      };
+
+      lsp = {
+        # rust-analyzer = {
+        #   binary = {
+        #     path = lib.getExe (
+        #       pkgs.writeShellApplication {
+        #         name = "zed-rust-analyzer";
+        #         runtimeInputs = [
+        #           pkgs.direnv
+        #         ];
+        #         text = ''
+        #           if direnv exec "$PWD" sh -lc 'command -v rust-analyzer >/dev/null'; then
+        #             exec direnv exec "$PWD" rust-analyzer "$@"
+        #           fi
+
+        #           exec ${lib.getExe pkgs.rust-analyzer} "$@"
+        #         '';
+        #       }
+        #     );
+        #   };
+        # };
         nixd = {
           binary = {
             path = lib.getExe pkgs.nixd;
@@ -128,14 +137,38 @@
       {
         context = "Terminal";
         bindings = {
-          "ctrl-p" = "terminal::SendKeystroke ctrl-p";
-          "ctrl-n" = "terminal::SendKeystroke ctrl-n";
-          "ctrl-a" = "terminal::SendKeystroke ctrl-a";
-          "ctrl-e" = "terminal::SendKeystroke ctrl-e";
-          "ctrl-b" = "terminal::SendKeystroke ctrl-b";
-          "ctrl-f" = "terminal::SendKeystroke ctrl-f";
-          "alt-b" = "terminal::SendKeystroke alt-b";
-          "alt-f" = "terminal::SendKeystroke alt-f";
+          "ctrl-p" = [
+            "terminal::SendKeystroke"
+            "ctrl-p"
+          ];
+          "ctrl-n" = [
+            "terminal::SendKeystroke"
+            "ctrl-n"
+          ];
+          "ctrl-a" = [
+            "terminal::SendKeystroke"
+            "ctrl-a"
+          ];
+          "ctrl-e" = [
+            "terminal::SendKeystroke"
+            "ctrl-e"
+          ];
+          "ctrl-b" = [
+            "terminal::SendKeystroke"
+            "ctrl-b"
+          ];
+          "ctrl-f" = [
+            "terminal::SendKeystroke"
+            "ctrl-f"
+          ];
+          "alt-b" = [
+            "terminal::SendKeystroke"
+            "alt-b"
+          ];
+          "alt-f" = [
+            "terminal::SendKeystroke"
+            "alt-f"
+          ];
         };
       }
       {
@@ -149,8 +182,14 @@
         bindings = {
           "shift-j" = "editor::MoveLineDown";
           "shift-k" = "editor::MoveLineUp";
-          "space p" = "workspace::SendKeystrokes \"_dP";
-          "space d" = "workspace::SendKeystrokes \"_d";
+          "space p" = [
+            "workspace::SendKeystrokes"
+            "\"_dP"
+          ];
+          "space d" = [
+            "workspace::SendKeystrokes"
+            "\"_d"
+          ];
           "space y" = "editor::Copy";
         };
       }
