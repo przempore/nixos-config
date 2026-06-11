@@ -4,23 +4,13 @@
   lib,
   ...
 }:
-let
-  zed_from_windows = builtins.fetchGit {
-    url = "git@github.com:przempore/windows_dotfiles.git";
-    rev = "f74f0f23074211c1cdafea9a3b67643550f46f03";
-  };
-
-in
 {
-
-  # xdg.configFile."zed/settings.json".source = "${zed_from_windows}/zed/settings.json";
   programs.zed-editor = {
     enable = true;
     package = pkgs-unstable.zed-editor;
     extensions = [
       "nix"
       "toml"
-      # "rust"
       "make"
       "opencode"
     ];
@@ -77,25 +67,6 @@ in
       };
 
       lsp = {
-        # rust-analyzer = {
-        #   binary = {
-        #     path = lib.getExe (
-        #       pkgs.writeShellApplication {
-        #         name = "zed-rust-analyzer";
-        #         runtimeInputs = [
-        #           pkgs.direnv
-        #         ];
-        #         text = ''
-        #           if direnv exec "$PWD" sh -lc 'command -v rust-analyzer >/dev/null'; then
-        #             exec direnv exec "$PWD" rust-analyzer "$@"
-        #           fi
-
-        #           exec ${lib.getExe pkgs.rust-analyzer} "$@"
-        #         '';
-        #       }
-        #     );
-        #   };
-        # };
         nixd = {
           binary = {
             path = lib.getExe pkgs.nixd;
@@ -125,8 +96,6 @@ in
 
       theme = {
         mode = "system";
-        # light = "One Light";
-        # dark = "Catppuccin Macchiato";
       };
 
       show_whitespaces = "all";
