@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 let
   flavour = "mocha";
   accent = "pink";
@@ -38,6 +38,7 @@ in
         size = size;
       });
     };
+    gtk4.theme = config.gtk.theme;
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = true;
     };

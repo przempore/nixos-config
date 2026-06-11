@@ -15,13 +15,13 @@
     pulseaudioFull
     rofi
     xclip
-    xorg.xkill
-    xfce.thunar
-    xfce.thunar-archive-plugin
-    xfce.thunar-volman
-    xfce.xfce4-clipman-plugin
-    xfce.xfce4-notifyd
-    xfce.xfce4-power-manager
+    xkill
+    thunar
+    thunar-archive-plugin
+    thunar-volman
+    xfce4-clipman-plugin
+    xfce4-notifyd
+    xfce4-power-manager
   ];
 
   home.file.".config/bspwm/wallpapers" = {

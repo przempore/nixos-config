@@ -129,6 +129,13 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.allowed-unfree-packages;
   nixpkgs.config.permittedInsecurePackages = config.permittedInsecurePackages;
+  nixpkgs.overlays = [
+    (final: prev: {
+      xorg = prev.xorg // {
+        xcursorgen = final.xcursorgen;
+      };
+    })
+  ];
 
   programs.direnv = {
     enable = true;
@@ -201,8 +208,8 @@
     vim
     wget
     which
-    xorg.xbacklight
-    xorg.xmodmap
+    xbacklight
+    xmodmap
     zstd
   ];
 

@@ -1,4 +1,14 @@
 { pkgs, pkgs-unstable, nvim-config, ... }:
+let
+  pluginsList = nvim-config.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pluginsList;
+  explicitPluginType = plugin:
+    if builtins.isAttrs plugin && plugin ? plugin && builtins.match ".*catppuccin-nvim.*" (toString plugin.plugin) != null then
+      plugin // { type = "viml"; }
+    else if builtins.isAttrs plugin && plugin ? plugin && !(plugin ? type) then
+      plugin // { type = "viml"; }
+    else
+      plugin;
+in
 {
   # English words dictionary for completion
   home.file.".config/nvim/dictionary/words.txt".source = "${builtins.fetchGit {
@@ -22,8 +32,10 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
+    withPython3 = true;
+    withRuby = true;
 
-    plugins = nvim-config.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pluginsList;
+    plugins = map explicitPluginType pluginsList;
 
     extraPackages = with pkgs-unstable; [
       neocmakelsp
