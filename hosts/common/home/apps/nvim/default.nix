@@ -1,6 +1,10 @@
-{ pkgs, pkgs-unstable, nvim-config, ... }:
+{ lib, pkgs, pkgs-unstable, nvim-config, ... }:
 let
   pluginsList = nvim-config.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pluginsList;
+  hasCatppuccin = builtins.any
+    (plugin: builtins.match ".*catppuccin-nvim.*" (toString plugin) != null)
+    pluginsList;
+  plugins = pluginsList ++ lib.optionals (!hasCatppuccin) [ pkgs.vimPlugins.catppuccin-nvim ];
   explicitPluginType = plugin:
     if builtins.isAttrs plugin && plugin ? plugin && builtins.match ".*catppuccin-nvim.*" (toString plugin.plugin) != null then
       plugin // { type = "viml"; }
@@ -35,7 +39,7 @@ in
     withPython3 = true;
     withRuby = true;
 
-    plugins = map explicitPluginType pluginsList;
+    plugins = map explicitPluginType plugins;
 
     extraPackages = with pkgs-unstable; [
       neocmakelsp
