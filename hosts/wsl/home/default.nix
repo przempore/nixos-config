@@ -20,7 +20,6 @@
       tree
       htop
       btop
-      neofetch
 
       file
       which
