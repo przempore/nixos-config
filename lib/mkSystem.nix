@@ -19,6 +19,7 @@ let
     "mbedtls-2.28.10"
     "docker-28.5.2"
     "electron-39.8.10"
+    "pnpm-10.29.2"
   ];
 
   # Import nixpkgs with unfree/insecure config for Home Manager evaluation as well
