@@ -31,6 +31,10 @@ switch: ## Switch NixOS configuration on local system
 home-switch: ## Switch home-manager configuration on local system
 	nh home switch --configuration $(HOSTNAME) '.?submodules=1' -- --impure
 
+.PHONY: build
+build: ## Builds NixOS configuration on local system
+	nh os build '.?submodules=1' -- --impure --show-trace
+
 .PHONY: update
 update: ## Update flake inputs
 	git fetch --all && git rebase && git submodule update --init
