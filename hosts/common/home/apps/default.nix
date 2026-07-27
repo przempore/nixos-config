@@ -5,6 +5,7 @@
     ./direnv.nix
     ./fish.nix
     ./git.nix
+    ./herdr.nix
     ./kitty
     ./mpv.nix
     ./nvim

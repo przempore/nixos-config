@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, lib, config, opencode, ... }: {
+{ pkgs, lib, config, ... }: {
 
   # Enable Flakes and the new command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ]; # here for nixos-rebuild
@@ -170,11 +170,8 @@
   # $ nix search wget
   environment.systemPackages =
     let
-      # opencodePkg = opencode.packages.${pkgs.system}.default;
-      opencodePkg = pkgs-unstable.opencode;
     in
     with pkgs; [
-      opencodePkg
       brightnessctl # For display brightness control
     (catppuccin-sddm.override {
       flavor = "mocha";

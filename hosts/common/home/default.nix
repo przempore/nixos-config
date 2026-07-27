@@ -31,6 +31,7 @@
     packages = with pkgs-unstable; [
       # claude-code
       superfile
+      opencode
     ] ++ (with pkgs; [
       cachix
       # netflix
