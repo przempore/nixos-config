@@ -39,7 +39,6 @@ build: ## Builds NixOS configuration on local system
 update: ## Update flake inputs
 	git fetch --all && git rebase && git submodule update --init
 	nix flake update --commit-lock-file
-	git push
 
 .PHONY: check
 check: ## Check flake configuration

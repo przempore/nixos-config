@@ -181,7 +181,7 @@
             enableGhostty = false;
           };
 
-          backupExt = "backup_$(date +%Y%m%d_%H%M%S)";
+          backupExt = "backup";
 
           addBackup = homeConfig: homeConfig // { backupFileExtension = backupExt; };
         in

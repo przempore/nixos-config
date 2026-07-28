@@ -44,8 +44,6 @@
     '';
   };
 
-  nix.settings.trusted-users = [ "root" "przemek" ];
-
   # Enable zsh system-wide (required when user shell is zsh)
   programs.zsh.enable = true;
 
@@ -81,16 +79,17 @@
 
   services.openvpn.servers = {
     officeVPN = {
-      config = let vpnPath = ../path/to/officeVPN.conf; in      # change this!
-        if builtins.pathExists vpnPath
-        then builtins.readFile vpnPath
-        else "";
+      config = ''
+        config /etc/openvpn/officeVPN.conf
+        auth-user-pass ${config.sops.secrets."openvpn/office-auth".path}
+      '';
       autoStart = false;
-      authUserPass = {
-        username = "your-username"; # change this!
-        password = "your-password"; # change this!
-      };
     };
+  };
+
+  sops.secrets."openvpn/office-auth" = {
+    sopsFile = ../../secrets/secrets.yaml;
+    key = "openvpn_office_auth";
   };
 
   # WSL doesn't need firewall typically

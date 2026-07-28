@@ -15,8 +15,6 @@
     ];
 
   hardware.enableRedistributableFirmware = lib.mkDefault true;
-  nix.settings.trusted-users = [ "root" "porebski" ];
-
   environment.systemPackages = [ pkgs.wakeonlan ];
 
   boot.loader.systemd-boot.configurationLimit = 3;

@@ -5,7 +5,7 @@
     herdr
   ];
 
-  home.file.".config/herdr/herdr.toml".text = ''
+  home.file.".config/herdr/config.toml".text = ''
     onboarding = false
 
     [ui.sound]

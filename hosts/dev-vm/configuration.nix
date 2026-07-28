@@ -40,7 +40,7 @@
     officeVPN = {
       # Include upstream config and read credentials from a sops-nix secret file
       config = ''
-        config /root/nixos/openvpn/officeVPN.conf
+        config /etc/openvpn/officeVPN.conf
         auth-user-pass ${config.sops.secrets."openvpn/office-auth".path}
       '';
       updateResolvConf = true;
@@ -93,8 +93,6 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
-  nix.settings.trusted-users = [ "root" "przemek" ];
-
   environment.systemPackages = with pkgs; [
     git
     curl
@@ -117,7 +115,10 @@
 
   services.getty.autologinUser = "przemek";
 
-  networking.firewall.enable = false; # Disabled for development ease
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 22 3389 ];
+  };
   networking.useDHCP = lib.mkDefault true;
 
   # This value determines the NixOS release from which the default

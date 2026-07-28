@@ -4,7 +4,12 @@
 
 # API settings ________________________________________________________________
 
-APIKEY=`cat $HOME/.owm-key`
+API_KEY_FILE="$HOME/.owm-key"
+if [ ! -r "$API_KEY_FILE" ]; then
+    echo "weather unavailable"
+    exit 0
+fi
+APIKEY=$(cat "$API_KEY_FILE")
 # if you leave these empty location will be picked based on your ip-adres
 CITY_NAME=''
 COUNTRY_CODE=''
@@ -114,7 +119,7 @@ else
     UNIT_URL="&units=$UNITS"
 fi
 # URL="api.openweathermap.org/data/2.5/weather?appid=$APIKEY$UNIT_URL&lang=$LANG&q=$(echo $CITY_NAME| sed 's/ /%20/g'),${COUNTRY_CODE}"
-URL="api.openweathermap.org/data/2.5/weather?appid=$APIKEY$UNIT_URL&lang=$LANG&lat=$LAT&lon=$LON"
+URL="https://api.openweathermap.org/data/2.5/weather?appid=$APIKEY$UNIT_URL&lang=$LANG&lat=$LAT&lon=$LON"
 
 function getData {
     ERROR=0

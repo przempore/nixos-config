@@ -63,7 +63,6 @@
         email = "porebski@adlares.com";
         name = "Przemyslaw Porebski";
       };
-      credential.helper = "store";
     };
   };
 

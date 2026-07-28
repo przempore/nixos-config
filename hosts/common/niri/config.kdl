@@ -271,7 +271,7 @@ layout {
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "~/.config/waybar/scripts/start_waybar.sh"
+spawn-sh-at-startup "~/.config/waybar/scripts/start_waybar.sh"
 spawn-sh-at-startup "swaybg -i ~/.background-image -m fill"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
@@ -404,8 +404,8 @@ binds {
     XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
     XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
 
-    Alt+Up  hotkey-overlay-title="Volume up" { spawn-sh "~/.config/polybar/pavolume.sh --up"; }
-    Alt+Down  hotkey-overlay-title="Volume down" { spawn-sh "~/.config/polybar/pavolume.sh --down"; }
+    Alt+Up  hotkey-overlay-title="Volume up" { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
+    Alt+Down  hotkey-overlay-title="Volume down" { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
 
     // Example media keys mapping using playerctl.
     // This will work with any MPRIS-enabled media player.

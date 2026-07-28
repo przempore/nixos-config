@@ -11,8 +11,6 @@
       ../common/niri
     ];
 
-  nix.settings.trusted-users = [ "root" "przemek" ];
-
   networking.hostName = "ilum";
   networking.interfaces.enp2s0.wakeOnLan.enable = true;
 

@@ -66,7 +66,7 @@
 
       feh --bg-fill $HOME/.background-image
 
-      run $HOME/.config/bspwm/scripts/refresh_keyboard
+      $HOME/.config/bspwm/scripts/refresh_keyboard
 
       echo "[bspwm dev-vm autostart] finished" | systemd-cat
     '';
@@ -89,7 +89,6 @@
       email = "porebski@adlares.com";
       name = "Przemyslaw Porebski";
     };
-    credential.helper = "store";
   };
 
   # This value determines the home Manager release that your

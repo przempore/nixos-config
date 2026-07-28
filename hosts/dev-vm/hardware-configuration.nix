@@ -36,23 +36,22 @@
   boot.kernelModules = [ "kvm-intel" "kvm-amd" "hv_balloon" "hv_sock" ];
   boot.extraModulePackages = [ ];
 
-  # Generic VM filesystem layout using device paths
-  # More reliable than UUIDs across different VM platforms
+  # Match the labels created by Makefile: vm/bootstrap0.
   fileSystems."/" =
     {
-      device = "/dev/disk/by-uuid/7b655977-1c8f-4622-92a4-976dd14117ac";
+      device = "/dev/disk/by-label/nixos";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
     {
-      device = "/dev/disk/by-uuid/4D13-E3AD";
+      device = "/dev/disk/by-label/boot";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
   swapDevices =
-    [{ device = "/dev/disk/by-uuid/32e6c556-5821-4835-a372-bdf4ff7fd54b"; }];
+    [{ device = "/dev/disk/by-label/swap"; }];
 
   # Network configuration that works across hypervisors
   networking.useDHCP = lib.mkDefault true;
