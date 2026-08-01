@@ -12,8 +12,11 @@
     enabled = false
 
     [ui]
-    agent_pane_sort = "spaces"
-    ashow_agent_labels_on_pane_borders = true
+    agent_panel_sort = "spaces"
+    show_agent_labels_on_pane_borders = true
+    hide_tab_bar_when_single_tab = true
+    sidebar_collapsed_mode = "hidden"
+    prompt_new_tab_name = false
 
     [experimental]
     pane_history = true
