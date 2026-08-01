@@ -11,9 +11,19 @@
     [ui.sound]
     enabled = false
 
+    [ui]
+    agent_pane_sort = "spaces"
+    ashow_agent_labels_on_pane_borders = true
+
+    [experimental]
+    pane_history = true
+
     [keys]
     prefix = "ctrl+a"
     switch_tab = ""
+
+    next_workspace = "prefix+)"
+    previous_workspace = "prefix+("
 
     # Zero-based tab shortcuts implemented with Herdr's tab API.
     [[keys.command]]
