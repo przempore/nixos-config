@@ -68,6 +68,7 @@
           buildInputs = (with pkgs; [
             # Essential tools for NixOS config management
             gnumake
+            just
             git
             openssh
             rsync
