@@ -43,6 +43,9 @@
       p7zip
 
       # utils
+      ffmpeg
+      alsa-utils
+      sox
       jq # A lightweight and flexible command-line JSON processor
       yq-go # yaml processer https://github.com/mikefarah/yq
 
