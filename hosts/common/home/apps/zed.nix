@@ -143,7 +143,7 @@
       {
         context = "Workspace";
         bindings = {
-          "ctrl-shift-t" = "terminal_panel::Toggle";
+          "ctrl-shift-t" = "terminal_panel::ToggleFocus";
         };
       }
       {
