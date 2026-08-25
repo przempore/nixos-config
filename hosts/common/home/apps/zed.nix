@@ -66,6 +66,14 @@
         enabled = true;
       };
 
+      agent_servers = {
+        opencode = {
+          type = "custom";
+          command = lib.getExe pkgs-unstable.opencode;
+          args = [ "acp" ];
+        };
+      };
+
       lsp = {
         nixd = {
           binary = {
