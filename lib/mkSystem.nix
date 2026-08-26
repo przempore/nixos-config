@@ -1,5 +1,5 @@
 { inputs, lib, ... }:
-{ machine, system, nixos-hardware ? null, user, wsl ? false, dev-vm ? false, enableGhostty ? true, lix ? null }:
+{ machine, system, nixos-hardware ? null, user, wsl ? false, dev-vm ? false, enableGhostty ? true }:
 let
   isWSL = wsl;
   isDevVm = dev-vm;
@@ -75,7 +75,6 @@ in
     ${user} = inputs.home-manager.lib.homeManagerConfiguration {
       inherit pkgs extraSpecialArgs;
       modules =
-        normalize lix ++
         [
           # TODO: move modules around to unlock home configuration from machine
           ../hosts/${machine}/home
@@ -89,7 +88,6 @@ in
       specialArgs = { inherit pkgs-unstable nixai; };
       modules =
         normalize nixos-hardware  ++
-        normalize lix ++
         lib.optional isWSL inputs.nixos-wsl.nixosModules.wsl ++
         [
           { nixpkgs.hostPlatform.system = system; }
