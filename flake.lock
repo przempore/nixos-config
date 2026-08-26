@@ -680,14 +680,17 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1787590005,
-        "narHash": "sha256-CoFiR/aV1QCz9X/Ok2tqketVDFhn8G6zGjOv6Vzzs3A=",
-        "path": "/home/przemek/Projects/nvim-config",
-        "type": "path"
+        "lastModified": 1787769441,
+        "narHash": "sha256-5bhXGPPSRa7G9qAS26Jwk0kmdiCpLftWrOA1rw2HT3E=",
+        "owner": "przempore",
+        "repo": "nvim-config",
+        "rev": "9615008efee3290bed816f970a9fa0f3645ac028",
+        "type": "github"
       },
       "original": {
-        "path": "/home/przemek/Projects/nvim-config",
-        "type": "path"
+        "owner": "przempore",
+        "repo": "nvim-config",
+        "type": "github"
       }
     },
     "root": {
