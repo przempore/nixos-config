@@ -7,7 +7,7 @@
 {
   programs.zed-editor = {
     enable = true;
-    package = pkgs-unstable.zed-editor;
+    package = pkgs-unstable.zed-editor-fhs;
     extensions = [
       "nix"
       "toml"
@@ -83,6 +83,11 @@
         nil = {
           binary = {
             path = lib.getExe pkgs.nil;
+          };
+        };
+        rust-analyzer = {
+          binary = {
+            path = lib.getExe pkgs-unstable.rust-analyzer;
           };
         };
       };
