@@ -1,6 +1,7 @@
 { pkgs
 , pkgs-unstable
 , lib
+, inputs
 , ...
 }: {
   imports = [
@@ -34,6 +35,7 @@
       opencode
     ] ++ (with pkgs; [
       cachix
+      inputs.sonora.packages.${pkgs.system}.default
       # netflix
       dash
 

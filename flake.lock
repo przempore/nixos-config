@@ -537,6 +537,22 @@
     },
     "nixpkgs_10": {
       "locked": {
+        "lastModified": 1785692966,
+        "narHash": "sha256-vUfIeBEfpbAfZ5zjgIkYk7eHBeVfCYVjLbWnMkseYnk=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "643809054d65fdd466a63e3155b8c498cb483c04",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_11": {
+      "locked": {
         "lastModified": 1788179007,
         "narHash": "sha256-hn1oU2rue2SYK8dAr8+WNZWtbsz1S2W5mnHlSEuh3bo=",
         "owner": "nixos",
@@ -709,9 +725,28 @@
         "nixpkgs": "nixpkgs_8",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nvim-config": "nvim-config",
+        "sonora": "sonora",
         "sops-nix": "sops-nix",
         "tmux-sessionx": "tmux-sessionx",
         "zen-browser": "zen-browser"
+      }
+    },
+    "sonora": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_10"
+      },
+      "locked": {
+        "lastModified": 1788355495,
+        "narHash": "sha256-7f9urt/+gNFXy+g2dB57U/yPyUfIi3YmwoYYrRWyxIs=",
+        "owner": "nolight132",
+        "repo": "sonora",
+        "rev": "15e615a152ead6d48444543df5baf6ca5cfe4f30",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nolight132",
+        "repo": "sonora",
+        "type": "github"
       }
     },
     "sops-nix": {
@@ -822,7 +857,7 @@
     "zen-browser": {
       "inputs": {
         "home-manager": "home-manager_3",
-        "nixpkgs": "nixpkgs_10"
+        "nixpkgs": "nixpkgs_11"
       },
       "locked": {
         "lastModified": 1788318849,

@@ -62,6 +62,7 @@ let
     neovim = inputs.neovim;
     nvim-config = inputs.nvim-config;
     home-manager-unstable = inputs.home-manager-unstable;
+    inherit inputs;
   } // (if enableGhostty then { ghostty = inputs.ghostty; } else { });
 
   normalize = arg:
