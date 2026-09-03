@@ -27,7 +27,12 @@
 
     next_workspace = "prefix+)"
     previous_workspace = "prefix+("
-    last_pane = "prefix+ctrl+l"
+    
+    last_pane = "prefix+l"
+    focus_pane_left = "prefix+ctrl+h"
+    focus_pane_down = "prefix+ctrl+j"
+    focus_pane_up = "prefix+ctrl+k"
+    focus_pane_right = "prefix+ctrl+l"
 
     # Zero-based tab shortcuts implemented with Herdr's tab API.
     [[keys.command]]
