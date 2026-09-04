@@ -26,11 +26,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1788395115,
-        "narHash": "sha256-7sprixDLchHgjQt1yNoc91d0L0lnbd1VUb3OPZpsIJk=",
+        "lastModified": 1786361680,
+        "narHash": "sha256-IxaZkb9rCGEZ+yGndxKXONeIEcKMzoFUsvLTB5G/caw=",
         "owner": "serokell",
         "repo": "deploy-rs",
-        "rev": "a591d4600e8ada8b22489093ebf50337f4d98065",
+        "rev": "16901271e5b30b591e56f7a84f25f186fb20f3e1",
         "type": "github"
       },
       "original": {
@@ -696,16 +696,17 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1788447415,
-        "narHash": "sha256-BLIw5h4oM0Pm5irPisHthCZRFJnJAGD1oM+26GuAYjw=",
+        "lastModified": 1787823619,
+        "narHash": "sha256-mwWIxGia11v6ovQjmpD1wc3wUYmfUiHOkCUF8SGOt8U=",
         "owner": "przempore",
         "repo": "nvim-config",
-        "rev": "fba783d4f3d0de8500f281cfcab0502f956aba0e",
+        "rev": "77f898c9639dbe80f8ee5de0b2b1171dfeb905ee",
         "type": "github"
       },
       "original": {
         "owner": "przempore",
         "repo": "nvim-config",
+        "rev": "77f898c9639dbe80f8ee5de0b2b1171dfeb905ee",
         "type": "github"
       }
     },

@@ -32,7 +32,7 @@
 
     # Use local path for development, switch to GitHub URL for production
     # nvim-config.url = "path:/home/przemek/Projects/nvim-config";
-    nvim-config.url = "github:przempore/nvim-config";
+    nvim-config.url = "github:przempore/nvim-config/77f898c9639dbe80f8ee5de0b2b1171dfeb905ee";
 
     # Secrets management
     sops-nix = {
