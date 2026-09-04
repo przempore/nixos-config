@@ -44,9 +44,9 @@ update: ## Update flake inputs
 check: ## Check flake configuration
 	nix flake check
 
-.PHONY: deploy/dathomir
-deploy/dathomir: ## Deploy to dathomir via deploy-rs
-	deploy .#dathomir -- --show-trace
+.PHONY: deploy/aquarium-monitor
+deploy/aquarium-monitor: ## Deploy to aquarium-monitor via deploy-rs
+	deploy .#aquarium-monitor -- --show-trace
 
 .PHONY: deploy/dev-vm
 deploy/dev-vm: ## Deploy to dev-vm via deploy-rs

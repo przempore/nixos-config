@@ -141,9 +141,9 @@
           #     nixos-hardware.nixosModules.common-pc-ssd
           #   ];
           # };
-          dathomirSystem = mkSystem {
+          aquariumMonitorSystem = mkSystem {
             inherit system;
-            machine = "dathomir";
+            machine = "aquarium-monitor";
             user = "przemek";
             nixos-hardware = nixos-hardware.nixosModules.dell-latitude-e7240;
             enableGhostty = false;
@@ -178,7 +178,7 @@
           # nh home switch --backup-extension backup_$(date +"%Y%M%H%M%S") '.?submodules=1' -- --show-trace --impure
           homeConfigurations = {
             ilum = addBackup ilumSystem.homeConfiguration.przemek;
-            dathomir = addBackup dathomirSystem.homeConfiguration.przemek;
+            aquarium-monitor = addBackup aquariumMonitorSystem.homeConfiguration.przemek;
             dooku = addBackup dookuSystem.homeConfiguration.porebski;
             # grievous = addBackup grievousSystem.homeConfiguration.przemek;
             dev-vm = addBackup devVmSystem.homeConfiguration.przemek;
@@ -189,7 +189,7 @@
           # using nh
           # nh os switch --update '.?submodules=1' -- --impure --show-trace
           nixosConfigurations = {
-            dathomir = dathomirSystem.nixosConfiguration.dathomir;
+            aquarium-monitor = aquariumMonitorSystem.nixosConfiguration.aquarium-monitor;
             dooku = dookuSystem.nixosConfiguration.dooku;
             # grievous = grievousSystem.nixosConfiguration.grievous;
             ilum = ilumSystem.nixosConfiguration.ilum;
@@ -199,14 +199,14 @@
 
           deploy = {
             nodes = {
-              dathomir = {
+              aquarium-monitor = {
                 hostname = "192.168.178.29";
                 fastConnection = true;
                 interactiveSudo = true;
                 profiles.system = {
                   user = "root";
                   sshUser = "przemek";
-                  path = deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.dathomir;
+                  path = deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.aquarium-monitor;
                 };
               };
               dev-vm = {
