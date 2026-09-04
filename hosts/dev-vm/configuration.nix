@@ -100,8 +100,8 @@
     vim
     htop
     tree
-    xorg.xsetroot
-    xorg.setxkbmap
+    xsetroot
+    setxkbmap
     xclip
     xsel
   ];
