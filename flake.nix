@@ -121,53 +121,10 @@
           system = "x86_64-linux";
 
           mkSystem = import ./lib/mkSystem.nix { inherit inputs; lib = inputs.nixpkgs.lib; };
-          dookuSystem = mkSystem {
-            inherit system;
-            machine = "dooku";
-            user = "porebski";
-            nixos-hardware = [
-              nixos-hardware.nixosModules.lenovo-thinkpad
-              nixos-hardware.nixosModules.common-cpu-intel
-              nixos-hardware.nixosModules.common-pc-ssd
-            ];
-          };
-          # grievousSystem = mkSystem {
-          #   inherit system;
-          #   machine = "grievous";
-          #   user = "przemek";
-          #   nixos-hardware = [
-          #     nixos-hardware.nixosModules.common-cpu-intel
-          #     nixos-hardware.nixosModules.common-gpu-nvidia
-          #     nixos-hardware.nixosModules.common-pc-ssd
-          #   ];
-          # };
-          aquariumMonitorSystem = mkSystem {
-            inherit system;
-            machine = "aquarium-monitor";
-            user = "przemek";
-            nixos-hardware = nixos-hardware.nixosModules.dell-latitude-e7240;
-            enableGhostty = false;
-            enableGui = false;
-          };
-          ilumSystem = mkSystem {
-            inherit system;
-            machine = "ilum";
-            user = "przemek";
-          };
-          devVmSystem = mkSystem {
-            inherit system;
-            machine = "dev-vm";
-            user = "przemek";
-            dev-vm = true;
-            enableGhostty = false;
-          };
-          wslSystem = mkSystem {
-            inherit system;
-            machine = "wsl";
-            user = "przemek";
-            wsl = true;
-            enableGhostty = false;
-          };
+          machines = import ./lib/machines.nix { inherit nixos-hardware; };
+          systems = inputs.nixpkgs.lib.mapAttrs
+            (machine: settings: mkSystem ({ inherit system machine; } // (builtins.removeAttrs settings [ "deployments" ])))
+            machines;
 
           backupExt = "backup";
 
@@ -177,70 +134,30 @@
           # nix run '.?submodules=1#homeConfigurations.<configuration>.activationPackage' --show-trace --impure -- switch
           # using `nh`
           # nh home switch --backup-extension backup_$(date +"%Y%M%H%M%S") '.?submodules=1' -- --show-trace --impure
-          homeConfigurations = {
-            ilum = addBackup ilumSystem.homeConfiguration.przemek;
-            aquarium-monitor = addBackup aquariumMonitorSystem.homeConfiguration.przemek;
-            dooku = addBackup dookuSystem.homeConfiguration.porebski;
-            # grievous = addBackup grievousSystem.homeConfiguration.przemek;
-            dev-vm = addBackup devVmSystem.homeConfiguration.przemek;
-            wsl = addBackup wslSystem.homeConfiguration.przemek;
-          };
+          homeConfigurations = inputs.nixpkgs.lib.mapAttrs
+            (machine: settings: addBackup (systems.${machine}.homeConfiguration.${settings.user}))
+            machines;
 
           # sudo nixos-rebuild switch --flake '.?submodules=1#<host_name>' --show-trace --impure
           # using nh
           # nh os switch --update '.?submodules=1' -- --impure --show-trace
-          nixosConfigurations = {
-            aquarium-monitor = aquariumMonitorSystem.nixosConfiguration.aquarium-monitor;
-            dooku = dookuSystem.nixosConfiguration.dooku;
-            # grievous = grievousSystem.nixosConfiguration.grievous;
-            ilum = ilumSystem.nixosConfiguration.ilum;
-            dev-vm = devVmSystem.nixosConfiguration.dev-vm;
-            wsl = wslSystem.nixosConfiguration.wsl;
-          };
+          nixosConfigurations = inputs.nixpkgs.lib.mapAttrs
+            (machine: _: systems.${machine}.nixosConfiguration.${machine})
+            machines;
 
           deploy = {
-            nodes = {
-              aquarium-monitor = {
-                hostname = "192.168.178.29";
-                fastConnection = true;
-                interactiveSudo = true;
-                profiles.system = {
-                  user = "root";
-                  sshUser = "przemek";
-                  path = deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.aquarium-monitor;
-                };
-              };
-              dev-vm = {
-                hostname = "dev-vm";
-                fastConnection = false;
-                interactiveSudo = true;
-                profiles.system = {
-                  user = "root";
-                  sshUser = "przemek";
-                  path = deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.dev-vm;
-                };
-              };
-              dooku = {
-                hostname = "dooku";
-                fastConnection = false;
-                interactiveSudo = true;
-                profiles.system = {
-                  user = "root";
-                  sshUser = "porebski";
-                  path = deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.dooku;
-                };
-              };
-              dooku_local = {
-                hostname = "dooku_local";
-                fastConnection = true;
-                interactiveSudo = true;
-                profiles.system = {
-                  user = "root";
-                  sshUser = "porebski";
-                  path = deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.dooku;
-                };
-              };
-            };
+            nodes = inputs.nixpkgs.lib.concatMapAttrs
+              (machine: settings: inputs.nixpkgs.lib.mapAttrs
+                (deploymentName: deployment: deployment // {
+                  interactiveSudo = true;
+                  profiles.system = {
+                    user = "root";
+                    inherit (deployment) sshUser;
+                    path = deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.${machine};
+                  };
+                })
+                (settings.deployments or { }))
+              machines;
           };
         };
     };

@@ -1,6 +1,6 @@
 { pkgs
 , pkgs-unstable
-, tmux-sessionx
+, inputs
 , ...
 }: {
   programs.tmux = {
@@ -16,7 +16,7 @@
 
     plugins = [
       {
-        plugin = tmux-sessionx.packages.x86_64-linux.default;
+        plugin = inputs.tmux-sessionx.packages.${pkgs.stdenv.hostPlatform.system}.default;
         extraConfig = ''
           set -g @sessionx-bind "o"
           set-environment -gu TMUX_PLUGIN_MANAGER_PATH

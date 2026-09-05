@@ -1,4 +1,4 @@
-{ pkgs-unstable, ghostty, ... }:
+{ pkgs-unstable, ... }:
 let
   catppuccin-ghostty = pkgs-unstable.fetchFromGitHub {
     owner = "catppuccin";
@@ -9,7 +9,6 @@ let
 in
 {
   home.packages = [
-    # ghostty.packages.x86_64-linux.default
     pkgs-unstable.ghostty
 
   ];

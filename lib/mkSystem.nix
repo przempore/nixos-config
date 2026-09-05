@@ -1,9 +1,6 @@
 { inputs, lib, ... }:
-{ machine, system, nixos-hardware ? null, user, wsl ? false, dev-vm ? false, enableGhostty ? true, enableGui ? true }:
+{ machine, system, hardwareModules ? null, user, isWSL ? false, enableGhostty ? true, enableGui ? true }:
 let
-  isWSL = wsl;
-  isDevVm = dev-vm;
-
   allowed-unfree-packages = [
     "netflix-via-google-chrome"
     "netflix-icon"
@@ -56,14 +53,8 @@ let
   };
   extraSpecialArgs = {
     inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages legacyPkgs machine nixai isWSL enableGhostty enableGui;
-    catppuccin = inputs.catppuccin;
-    zen-browser = inputs.zen-browser;
-    tmux-sessionx = inputs.tmux-sessionx;
-    neovim = inputs.neovim;
-    nvim-config = inputs.nvim-config;
-    home-manager-unstable = inputs.home-manager-unstable;
     inherit inputs;
-  } // (if enableGhostty then { ghostty = inputs.ghostty; } else { });
+  };
 
   normalize = arg:
     if arg == null then [ ]
@@ -86,12 +77,12 @@ in
   nixosConfiguration = {
     ${machine} = inputs.nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = { inherit pkgs-unstable nixai; };
+      specialArgs = { inherit inputs pkgs-unstable nixai; };
       modules =
-        normalize nixos-hardware  ++
+        normalize hardwareModules ++
         lib.optional isWSL inputs.nixos-wsl.nixosModules.wsl ++
         [
-          { nixpkgs.hostPlatform.system = system; }
+          { nixpkgs.hostPlatform = system; }
           unfree-config
           ../hosts/${machine}/configuration.nix
 

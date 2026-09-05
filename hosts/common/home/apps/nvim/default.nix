@@ -1,6 +1,6 @@
-{ lib, pkgs, pkgs-unstable, nvim-config, ... }:
+{ lib, pkgs, pkgs-unstable, inputs, ... }:
 let
-  pluginsList = nvim-config.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pluginsList;
+  pluginsList = inputs.nvim-config.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pluginsList;
   hasCatppuccin = builtins.any
     (plugin: builtins.match ".*catppuccin-nvim.*" (toString plugin) != null)
     pluginsList;
@@ -22,14 +22,14 @@ in
   }}/words.txt";
 
   home.file.".config/nvim" = {
-    source = nvim-config.packages.${pkgs.stdenv.hostPlatform.system}.config;
+    source = inputs.nvim-config.packages.${pkgs.stdenv.hostPlatform.system}.config;
     recursive = true;
   };
 
   programs.neovim = {
     # Use neovim-nightly from nvim-config flake (unwrapped)
     # Home-manager will wrap it with the plugins below
-    package = nvim-config.packages.${pkgs.stdenv.hostPlatform.system}.neovim-unwrapped;
+    package = inputs.nvim-config.packages.${pkgs.stdenv.hostPlatform.system}.neovim-unwrapped;
 
     enable = true;
     defaultEditor = true;

@@ -36,7 +36,7 @@
       codex-acp
     ] ++ (with pkgs; [
       cachix
-      inputs.sonora.packages.${pkgs.system}.default
+      inputs.sonora.packages.${pkgs.stdenv.hostPlatform.system}.default
       # netflix
       dash
 
