@@ -36,6 +36,7 @@
       "original": {
         "owner": "serokell",
         "repo": "deploy-rs",
+        "rev": "16901271e5b30b591e56f7a84f25f186fb20f3e1",
         "type": "github"
       }
     },
