@@ -696,17 +696,16 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1787823619,
-        "narHash": "sha256-mwWIxGia11v6ovQjmpD1wc3wUYmfUiHOkCUF8SGOt8U=",
+        "lastModified": 1788570359,
+        "narHash": "sha256-ce8949T5oIBvQVWsi3gTIYbNvbUyKRryVVTjbcuf3fg=",
         "owner": "przempore",
         "repo": "nvim-config",
-        "rev": "77f898c9639dbe80f8ee5de0b2b1171dfeb905ee",
+        "rev": "cea50e09a06fe3c7eaa6d7fb9384bbfde68cf850",
         "type": "github"
       },
       "original": {
         "owner": "przempore",
         "repo": "nvim-config",
-        "rev": "77f898c9639dbe80f8ee5de0b2b1171dfeb905ee",
         "type": "github"
       }
     },

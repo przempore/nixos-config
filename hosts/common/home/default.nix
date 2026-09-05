@@ -33,6 +33,7 @@
       # claude-code
       superfile
       opencode
+      codex-acp
     ] ++ (with pkgs; [
       cachix
       inputs.sonora.packages.${pkgs.system}.default
