@@ -53,14 +53,8 @@ let
   };
   extraSpecialArgs = {
     inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages legacyPkgs machine nixai isWSL enableGhostty enableGui;
-    catppuccin = inputs.catppuccin;
-    zen-browser = inputs.zen-browser;
-    tmux-sessionx = inputs.tmux-sessionx;
-    neovim = inputs.neovim;
-    nvim-config = inputs.nvim-config;
-    home-manager-unstable = inputs.home-manager-unstable;
     inherit inputs;
-  } // (if enableGhostty then { ghostty = inputs.ghostty; } else { });
+  };
 
   normalize = arg:
     if arg == null then [ ]
@@ -83,7 +77,7 @@ in
   nixosConfiguration = {
     ${machine} = inputs.nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = { inherit pkgs-unstable nixai; };
+      specialArgs = { inherit inputs pkgs-unstable nixai; };
       modules =
         normalize hardwareModules ++
         lib.optional isWSL inputs.nixos-wsl.nixosModules.wsl ++

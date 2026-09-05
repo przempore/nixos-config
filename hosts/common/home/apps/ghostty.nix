@@ -1,4 +1,4 @@
-{ pkgs-unstable, ghostty, ... }:
+{ pkgs-unstable, ... }:
 let
   catppuccin-ghostty = pkgs-unstable.fetchFromGitHub {
     owner = "catppuccin";

@@ -1,19 +1,19 @@
-{ lib, pkgs, catppuccin, home-manager-unstable, ... }:
+{ lib, pkgs, inputs, ... }:
 let
   excludedModules = [ "neovim.nix" "vicinae.nix" "opencode.nix" "wezterm.nix" ];
   catppuccinModules =
-    import (catppuccin + "/modules/home-manager/all-modules.nix");
+    import (inputs.catppuccin + "/modules/home-manager/all-modules.nix");
   catppuccinModulesFiltered =
     builtins.filter (module: !(builtins.elem (builtins.baseNameOf module) excludedModules))
       catppuccinModules;
   catppuccinModule =
     lib.modules.importApply
-      (catppuccin + "/modules/global.nix")
+      (inputs.catppuccin + "/modules/global.nix")
       { catppuccinModules = catppuccinModulesFiltered; };
 in
 {
   imports = [
-    # "${home-manager-unstable}/modules/programs/vivid.nix"
+    # "${inputs.home-manager-unstable}/modules/programs/vivid.nix"
     catppuccinModule
   ];
 
