@@ -147,6 +147,7 @@
             user = "przemek";
             nixos-hardware = nixos-hardware.nixosModules.dell-latitude-e7240;
             enableGhostty = false;
+            enableGui = false;
           };
           ilumSystem = mkSystem {
             inherit system;

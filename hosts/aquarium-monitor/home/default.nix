@@ -1,7 +1,7 @@
 { lib, ... }:
 {
   imports = [
-    # ../../common/home
+    ../../common/home
     # ../../common/home/desktop
     # ./kitty.nix
   ];

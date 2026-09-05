@@ -1,4 +1,4 @@
-{ lib, isWSL ? false, enableGhostty ? true, ... }:
+{ lib, isWSL ? false, enableGhostty ? true, enableGui ? true, ... }:
 {
   imports = [
     # ./firefox.nix
@@ -18,7 +18,7 @@
     ./zathura.nix
     ./zen
     ./zsh.nix
-  ] ++ lib.optionals (!isWSL) [
+  ] ++ lib.optionals enableGui [
     ./gui-packages.nix
   ] ++ lib.optionals enableGhostty [
     ./ghostty.nix

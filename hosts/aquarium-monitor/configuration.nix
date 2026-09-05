@@ -14,6 +14,13 @@
   system.autoUpgrade.operation = "boot";
   system.autoUpgrade.dates = "weekly";
 
+  # Perform garbage collection weekly to maintain low disk usage
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 5d";
+  };
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -76,6 +83,11 @@
     packages = with pkgs; [
     ];
   };
+
+  nix.settings.trusted-users = [
+    "root"
+    "przemek"
+  ];
 
   services.logind.settings.Login = {
     HandleLidSwitch = "ignore";

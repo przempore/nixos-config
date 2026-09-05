@@ -1,5 +1,5 @@
 { inputs, lib, ... }:
-{ machine, system, nixos-hardware ? null, user, wsl ? false, dev-vm ? false, enableGhostty ? true }:
+{ machine, system, nixos-hardware ? null, user, wsl ? false, dev-vm ? false, enableGhostty ? true, enableGui ? true }:
 let
   isWSL = wsl;
   isDevVm = dev-vm;
@@ -55,7 +55,7 @@ let
     };
   };
   extraSpecialArgs = {
-    inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages legacyPkgs machine nixai isWSL enableGhostty;
+    inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages legacyPkgs machine nixai isWSL enableGhostty enableGui;
     catppuccin = inputs.catppuccin;
     zen-browser = inputs.zen-browser;
     tmux-sessionx = inputs.tmux-sessionx;
