@@ -12,8 +12,11 @@
 
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
-  # Enable networking
-  networking.networkmanager.enable = true;
+  # Configure network connections interactively with nmcli or nmtui.
+  networking.networkmanager.enable = lib.mkDefault true;
+
+  # Set your time zone.
+  time.timeZone = lib.mkDefault "Europe/Berlin";
 
   # Perform garbage collection weekly to maintain low disk usage
   nix.gc = {
@@ -40,7 +43,7 @@
   };
 
   # Configure console keymap
-  console.keyMap = "dvorak";
+  console.keyMap = lib.mkDefault "dvorak";
 
   programs.fish.enable = true;
   programs.nix-ld.enable = true;
