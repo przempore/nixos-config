@@ -47,9 +47,6 @@ make help
 ### Deployments (deploy-rs)
 
 ```bash
-# Deploy to dathomir
-make deploy/dathomir
-
 # Deploy to dev-vm
 make deploy/dev-vm
 ```
@@ -139,6 +136,12 @@ This flake supports multiple machines:
 - **dev-vm** - Development VM (universal: QEMU/KVM, Hyper-V, VirtualBox)
 - **wsl** - Windows Subsystem for Linux configuration
 
+Machine settings are kept in `lib/machines.nix`. To add a machine:
+
+1. Add `hosts/<name>/configuration.nix` and `hosts/<name>/home/default.nix`.
+2. Add one entry to `lib/machines.nix` with its `user` and optional hardware, feature, or deployment settings.
+3. Run `nix flake check`.
+
 ## Architecture
 
 - **Modular design** - Shared configuration with host-specific overrides
@@ -164,6 +167,7 @@ This flake supports multiple machines:
 
 - `flake.nix` - Main flake configuration
 - `lib/mkSystem.nix` - System configuration factory
+- `lib/machines.nix` - Machine registry used to generate flake outputs
 - `hosts/` - Machine-specific configurations
 - `Makefile` - Development workflow automation
 - `CLAUDE.md` - Claude Code assistant reference

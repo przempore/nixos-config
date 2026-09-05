@@ -1,9 +1,6 @@
 { inputs, lib, ... }:
-{ machine, system, nixos-hardware ? null, user, wsl ? false, dev-vm ? false, enableGhostty ? true, enableGui ? true }:
+{ machine, system, hardwareModules ? null, user, isWSL ? false, enableGhostty ? true, enableGui ? true }:
 let
-  isWSL = wsl;
-  isDevVm = dev-vm;
-
   allowed-unfree-packages = [
     "netflix-via-google-chrome"
     "netflix-icon"
@@ -88,7 +85,7 @@ in
       inherit system;
       specialArgs = { inherit pkgs-unstable nixai; };
       modules =
-        normalize nixos-hardware  ++
+        normalize hardwareModules ++
         lib.optional isWSL inputs.nixos-wsl.nixosModules.wsl ++
         [
           { nixpkgs.hostPlatform.system = system; }
