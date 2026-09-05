@@ -1,5 +1,7 @@
 { pkgs, lib, config, ... }:
 {
+  imports = [ ./keyboard ];
+
   location.provider = "geoclue2";
   services.geoclue2.enable = true;
 
@@ -26,14 +28,6 @@
     dpi = lib.mkDefault 90;
     autoRepeatDelay = 250;
     autoRepeatInterval = 25;
-    xkb = {
-      layout = "real-prog-dvorak";
-      extraLayouts.real-prog-dvorak = {
-        description = "Real proogrammer dvorak";
-        languages = [ "pl" ];
-        symbolsFile = ./keyboard/symbols/real-prog-dvorak.xkb;
-      };
-    };
   };
 
   services.blueman.enable = true;

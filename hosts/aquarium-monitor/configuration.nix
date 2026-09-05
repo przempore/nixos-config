@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ../common/base.nix
+      ../common/keyboard
       ./hardware-configuration.nix
     ];
 
