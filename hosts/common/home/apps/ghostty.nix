@@ -9,7 +9,6 @@ let
 in
 {
   home.packages = [
-    # ghostty.packages.x86_64-linux.default
     pkgs-unstable.ghostty
 
   ];

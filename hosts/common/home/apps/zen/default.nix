@@ -1,7 +1,7 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 {
   home.packages = [
-    inputs.zen-browser.packages.x86_64-linux.twilight
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.twilight
   ];
 
 }

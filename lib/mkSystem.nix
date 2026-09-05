@@ -82,7 +82,7 @@ in
         normalize hardwareModules ++
         lib.optional isWSL inputs.nixos-wsl.nixosModules.wsl ++
         [
-          { nixpkgs.hostPlatform.system = system; }
+          { nixpkgs.hostPlatform = system; }
           unfree-config
           ../hosts/${machine}/configuration.nix
 

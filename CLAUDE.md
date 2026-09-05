@@ -18,8 +18,7 @@ make switch           # Switch NixOS configuration
 make home-switch      # Switch home-manager configuration
 make update           # Update flake inputs
 make check            # Check flake configuration
-make deploy           # Deploy to remote systems (dathomir)
-make deploy-local     # Deploy locally with sudo
+deploy .#<deployment>  # Deploy a configured node with deploy-rs
 
 # VM development workflow
 make vm/setup-help    # Show VM setup instructions
