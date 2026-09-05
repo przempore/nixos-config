@@ -7,19 +7,13 @@
 {
   imports =
     [ # Include the results of the hardware scan.
+      ../common/base.nix
       ./hardware-configuration.nix
     ];
 
   system.autoUpgrade.enable = true;
   system.autoUpgrade.operation = "boot";
   system.autoUpgrade.dates = "weekly";
-
-  # Perform garbage collection weekly to maintain low disk usage
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 5d";
-  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -83,11 +77,6 @@
     packages = with pkgs; [
     ];
   };
-
-  nix.settings.trusted-users = [
-    "root"
-    "przemek"
-  ];
 
   services.logind.settings.Login = {
     HandleLidSwitch = "ignore";

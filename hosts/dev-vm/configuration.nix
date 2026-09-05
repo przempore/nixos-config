@@ -5,7 +5,8 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../common/configuration.nix
+    ../common/base.nix
+    ../common/desktop.nix
   ];
 
   # VM-specific system configuration

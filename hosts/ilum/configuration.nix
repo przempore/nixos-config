@@ -2,7 +2,8 @@
 {
   imports =
     [
-      ../common/configuration.nix
+      ../common/base.nix
+      ../common/desktop.nix
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./nvidia-drivers.nix

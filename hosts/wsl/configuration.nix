@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../common/configuration.nix
+    ../common/base.nix
   ];
 
   wsl = {
