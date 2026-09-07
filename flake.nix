@@ -24,7 +24,6 @@
       url = "github:omerxx/tmux-sessionx";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ghostty.url = "github:ghostty-org/ghostty";
     deploy-rs.url = "github:serokell/deploy-rs/16901271e5b30b591e56f7a84f25f186fb20f3e1"; # todo: unpin when the download is available again
     neovim.url = "github:nix-community/neovim-nightly-overlay";
     nixai.url = "github:olafkfreund/nix-ai-help";
