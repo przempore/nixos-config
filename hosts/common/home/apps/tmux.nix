@@ -1,6 +1,5 @@
 { pkgs
 , pkgs-unstable
-, inputs
 , ...
 }: {
   programs.tmux = {
@@ -14,16 +13,7 @@
     escapeTime = 0; # Stop tmux+escape craziness.
     terminal = "tmux-256color";
 
-    plugins = [
-      {
-        plugin = inputs.tmux-sessionx.packages.${pkgs.stdenv.hostPlatform.system}.default;
-        extraConfig = ''
-          set -g @sessionx-bind "o"
-          set-environment -gu TMUX_PLUGIN_MANAGER_PATH
-        '';
-
-      }
-    ] ++ (with pkgs.tmuxPlugins; [
+    plugins =  with pkgs.tmuxPlugins; [
       better-mouse-mode
       {
         plugin = catppuccin;
@@ -54,7 +44,7 @@
           set -g @continuum-save-interval '10'
         '';
       }
-    ]);
+    ];
 
     extraConfig = ''
       # vi is good
