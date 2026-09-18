@@ -35,6 +35,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    aquarium-monitor = {
+      url = "git+https://github.com/przempore/aquarium-monitor.git?ref=generated/ezo-ec-collector-milestones";
+    };
+
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
   };

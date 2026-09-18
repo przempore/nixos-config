@@ -8,7 +8,7 @@
     enableGui = false;
     deployments = {
       aquarium-monitor = {
-        hostname = "192.168.178.29";
+        hostname = "100.78.207.28";
         sshUser = "przemek";
         fastConnection = true;
       };

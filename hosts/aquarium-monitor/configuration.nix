@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, pkgs-unstable, ... }:
+{ config, lib, pkgs, pkgs-unstable, inputs, ... }:
 
 {
   imports =
@@ -10,6 +10,7 @@
       ../common/base.nix
       ../common/keyboard
       ./hardware-configuration.nix
+      inputs.aquarium-monitor.nixosModules.default
     ];
 
   system.autoUpgrade.enable = true;
@@ -39,6 +40,62 @@
     enable = true;
     package = pkgs-unstable.tailscale;
   };
+
+  sops.secrets."aquarium-monitor/influxdb-init" = {
+    sopsFile = ../../secrets/aquarium-monitor.yaml;
+    key = "aquarium_monitor_influxdb_init";
+  };
+
+  sops.secrets."aquarium-monitor/influxdb-token" = {
+    sopsFile = ../../secrets/aquarium-monitor.yaml;
+    key = "aquarium_monitor_influxdb_token";
+  };
+
+  sops.secrets."aquarium-monitor/grafana-environment" = {
+    sopsFile = ../../secrets/aquarium-monitor.yaml;
+    key = "aquarium_monitor_grafana_environment";
+  };
+
+  services.aquarium-monitor = {
+    simulator = {
+      enable = true;
+      tankId = "demo-tank";
+      temperatureC = 26.5;
+      intervalSeconds = 1;
+    };
+
+    influxdb = {
+      enable = true;
+      healthCheck.enable = false;
+      organization = "aquarium";
+      bucket = "telemetry";
+      retention = "30d";
+      environmentFile = config.sops.secrets."aquarium-monitor/influxdb-init".path;
+      tokenFile = config.sops.secrets."aquarium-monitor/influxdb-token".path;
+    };
+
+    influxBatchSize = 10;
+    influxAlarmOutput = true;
+    alarmOutput = "stderr";
+
+    # Demonstration limits; replace after real sensor calibration.
+    temperatureMinimum = 20.0;
+    temperatureMaximum = 30.0;
+    temperatureSeverity = "warning";
+
+    grafana = {
+      enable = true;
+      healthCheck.enable = false;
+      listenAddress = "100.78.207.28";
+      provisioning = {
+        enable = true;
+        tokenEnvironmentFile = config.sops.secrets."aquarium-monitor/grafana-environment".path;
+      };
+      dashboard.enable = true;
+    };
+  };
+
+  networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 3000 ];
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
