@@ -119,7 +119,6 @@ The configuration integrates multiple external flakes including:
 - **zen-browser**, **ghostty**: Modern application alternatives
 - **lix-module**: Alternative Nix implementation (version 2.93.0)
 - **neovim-nightly**: Latest editor features
-- **nixai**: AI assistant integration
 - **nixos-wsl**: WSL support for NixOS
 
 ## Development Guidelines

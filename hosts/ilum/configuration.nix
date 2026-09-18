@@ -1,4 +1,4 @@
-{ pkgs, nixai, pkgs-unstable, ... }:
+{ pkgs, pkgs-unstable, ... }:
 {
   imports =
     [
@@ -76,7 +76,6 @@
       chromium
       deploy-rs
       ollama
-      nixai.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
   };
 

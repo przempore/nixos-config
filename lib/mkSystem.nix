@@ -39,7 +39,6 @@ let
   };
 
   legacyPkgs = inputs.legacy-nixpkgs.legacyPackages.${system};
-  nixai = inputs.nixai;
 
   unfree-config = { lib, ... }: {
     options.permittedInsecurePackages = lib.mkOption {
@@ -52,7 +51,7 @@ let
     };
   };
   extraSpecialArgs = {
-    inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages legacyPkgs machine nixai isWSL enableGhostty enableGui;
+    inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages legacyPkgs machine isWSL enableGhostty enableGui;
     inherit inputs;
   };
 
@@ -77,7 +76,7 @@ in
   nixosConfiguration = {
     ${machine} = inputs.nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = { inherit inputs pkgs-unstable nixai; };
+      specialArgs = { inherit inputs pkgs-unstable; };
       modules =
         normalize hardwareModules ++
         lib.optional isWSL inputs.nixos-wsl.nixosModules.wsl ++
