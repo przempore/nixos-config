@@ -159,6 +159,24 @@
         "type": "github"
       }
     },
+    "doom-emacs": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1788654597,
+        "narHash": "sha256-+b0yNSXBTNroSuwH89Mp5wtJojaGfRgDn9G2ooorurM=",
+        "ref": "refs/heads/master",
+        "rev": "01d68aaf6bd7db073365385cd82e1ad7e815295c",
+        "revCount": 21385,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/doomemacs/doomemacs.git"
+      },
+      "original": {
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/doomemacs/doomemacs.git"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -899,6 +917,7 @@
         "aquarium-monitor": "aquarium-monitor",
         "catppuccin": "catppuccin",
         "deploy-rs": "deploy-rs",
+        "doom-emacs": "doom-emacs",
         "flake-parts": "flake-parts_2",
         "home-manager": "home-manager",
         "home-manager-unstable": "home-manager-unstable",

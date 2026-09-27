@@ -18,6 +18,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager-unstable.url = "github:nix-community/home-manager";
+    doom-emacs = {
+      url = "git+https://github.com/doomemacs/doomemacs.git?submodules=1";
+      flake = false;
+    };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     deploy-rs.url = "github:serokell/deploy-rs/16901271e5b30b591e56f7a84f25f186fb20f3e1"; # todo: unpin when the download is available again
