@@ -55,6 +55,7 @@
              syntax
 
              :tools
+             direnv
              (eval +overlay)
              lookup
              (lsp +eglot)
