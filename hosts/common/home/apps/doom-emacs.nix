@@ -1,5 +1,11 @@
 { inputs, pkgs, ... }:
 {
+  home.sessionVariables = {
+    EMACSDIR = "$HOME/.config/emacs";
+    DOOMDIR = "$HOME/.config/doom";
+    DOOMLOCALDIR = "$HOME/.cache/doom";
+  };
+
   home.sessionPath = [
     "$HOME/.config/emacs/bin"
   ];
