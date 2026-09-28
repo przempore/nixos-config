@@ -63,17 +63,17 @@
              tree-sitter
 
              :lang
-             (cc +lsp)
+             (cc +lsp +tree-sitter)
              emacs-lisp
              json
              lua
              markdown
              nim
-             nix
+             (nix +tree-sitter)
              org
-             (python +lsp)
+             (python +lsp +tree-sitter)
              qt
-             (rust +lsp)
+             (rust +lsp +tree-sitter)
              sh
 
              :app
@@ -108,7 +108,8 @@
                :desc "Claude" "c" #'claudemacs-transient-menu)))
 
       (use-package! ghostel
-        :bind (("C-x m" . ghostel)
+        :bind (("C-x m" . ghostel-project)
+               ("C-x M" . ghostel-list-buffers)
                :map ghostel-semi-char-mode-map
                ("C-s" . consult-line)
                :map project-prefix-map
