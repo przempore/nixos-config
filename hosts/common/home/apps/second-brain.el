@@ -120,6 +120,8 @@
 (setq org-capture-templates
       `(("t" "Task" entry (file+headline ,(expand-file-name "inbox.org" org-directory) "Tasks")
          "* TODO %?\nCREATED: %U\n%a\n")
+        ("w" "Sometime this week" entry (file+headline ,(expand-file-name "inbox.org" org-directory) "Tasks")
+         "* TODO %? :thisweek:\nCREATED: %U\n%a\n")
         ("n" "Note" entry (file+headline ,(expand-file-name "notes.org" org-directory) "Notes")
          "* %?\nCREATED: %U\n%a\n")
         ("e" "Calendar event" entry (file+headline ,(expand-file-name "calendar.org" org-directory) "Events")
@@ -128,6 +130,10 @@
 (setq org-agenda-custom-commands
       '(("b" "Second brain: week and tasks"
          ((agenda "")
+          (tags-todo "thisweek"
+                     ((org-agenda-overriding-header "Sometime this week")
+                      (org-agenda-skip-function
+                       '(org-agenda-skip-entry-if 'scheduled))))
           (todo "NEXT" ((org-agenda-overriding-header "Next actions")))
           (todo "TODO" ((org-agenda-overriding-header "Tasks to plan")))
           (todo "WAIT" ((org-agenda-overriding-header "Waiting for")))))))

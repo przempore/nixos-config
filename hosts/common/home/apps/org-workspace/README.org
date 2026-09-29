@@ -4,14 +4,14 @@
 Your Org workspace is =~/Projects/second-brain/org/=. Existing Obsidian notes
 remain in the parent vault. This is a fresh workspace; old tasks are not imported.
 
-| Doom keys | Command | Purpose |
-|-----------+---------+---------|
-| SPC n b d | M-x second-brain-daily | Create/open today's daily note |
-| SPC u SPC n b d | C-u M-x second-brain-daily | Choose another date |
-| SPC n b a | M-x second-brain-agenda | Weekly agenda and all open tasks |
-| SPC n b c | M-x org-capture | t: task, n: note, e: calendar event |
-| SPC n b k | M-x calendar | Month calendar |
-| SPC n b h | M-x second-brain-home | This guide |
+| Doom keys       | Command                    | Purpose                             |
+|-----------------+----------------------------+-------------------------------------|
+| SPC n b d       | M-x second-brain-daily     | Create/open today's daily note      |
+| SPC u SPC n b d | C-u M-x second-brain-daily | Choose another date                 |
+| SPC n b a       | M-x second-brain-agenda    | Weekly agenda and all open tasks    |
+| SPC n b c       | M-x org-capture            | t: task, n: note, e: calendar event |
+| SPC n b k       | M-x calendar               | Month calendar                      |
+| SPC n b h       | M-x second-brain-home      | This guide                          |
 
 In capture, finish with C-c C-c or cancel with C-c C-k.
 
@@ -53,6 +53,26 @@ Capture events with e into [[file:calendar.org][Calendar]]; enter a date and opt
 An active timestamp makes an event appear in the agenda. M-x calendar is a
 date browser; the agenda is the view of your events. No external calendar
 service or Obsidian plugin integration is configured.
+
+* Sometime this week
+Use SPC n b c, then w, to capture a task without choosing a day. Finish with
+C-c C-c. It appears under "Sometime this week" in SPC n b a.
+
+To include an existing task, add the =thisweek= tag with C-c C-q:
+#+begin_example
+* TODO Read the Org guide :thisweek:
+#+end_example
+
+When you choose a day, schedule it with C-c C-s. It then appears on that day
+in the agenda and leaves the undated weekly section. A deadline alone does
+not remove it: you can still choose when to work on it before the deadline.
+Marking it DONE removes it from the weekly section as well.
+
+This is a rolling list, not a date-bound week: unfinished tasks stay visible
+next week. During your weekly review, keep the tag on tasks you still intend
+to do, or remove it with C-c C-q to return them to the general backlog.
+Browsing another agenda week does not change this list. Tagged tasks also
+remain visible in the general TODO/NEXT/WAIT lists.
 
 * Configuration
 The Emacs configuration is managed in nixos-config:
