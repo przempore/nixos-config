@@ -51,6 +51,9 @@
              undo
              vc
 
+             :term
+             (ghostel +everywhere)
+
              :checkers
              syntax
 
@@ -122,13 +125,6 @@
         (add-to-list 'ghostel-eval-cmds
                      '("magit-status-setup-buffer" magit-status-setup-buffer)))
 
-      (use-package! evil-ghostel
-        :after (ghostel evil)
-        :hook (ghostel-mode . evil-ghostel-mode))
-
-      (use-package! ghostel-comint
-        :hook (after-init . ghostel-comint-global-mode))
-
       (use-package! ghostel-org
         :after org)
 
@@ -147,13 +143,6 @@
         :recipe (:host github
                  :repo "cpoile/claudemacs"
                  :files ("*.el")))
-
-      (package! ghostel
-        :recipe (:host github :repo "dakra/ghostel"))
-
-      (package! evil-ghostel
-        :recipe (:host github :repo "dakra/ghostel"
-                 :files ("extensions/evil-ghostel/evil-ghostel.el")))
 
       (package! drag-stuff)
 
