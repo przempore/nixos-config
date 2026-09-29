@@ -91,7 +91,10 @@
 
       (setq doom-theme 'catppuccin-mocha
             display-line-numbers-type 'relative
-            org-directory "~/org/")
+            org-directory "~/Projects/second-brain/org/")
+
+      (after! org
+        (load! "second-brain"))
 
       ;; Switch between headers and sources in C and C++ buffers.
       (map! :after cc-mode
@@ -135,6 +138,8 @@
               "J" #'drag-stuff-down
               "K" #'drag-stuff-up))
     '';
+
+    ".config/doom/second-brain.el".source = ./second-brain.el;
 
     ".config/doom/packages.el".text = ''
       ;;; $DOOMDIR/packages.el -*- lexical-binding: t; no-byte-compile: t; -*-

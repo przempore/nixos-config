@@ -1,0 +1,9 @@
+#+title: Projects and planning
+
+* Weekly review
+- Review the inbox and choose NEXT actions.
+- Schedule work with C-c C-s; add deadlines with C-c C-d.
+- Check the coming week's calendar and waiting tasks.
+- Record what went well, what could improve, and next week's priorities.
+
+* Projects

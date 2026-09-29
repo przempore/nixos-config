@@ -1,0 +1,63 @@
+#+title: Second brain in Org
+
+* Start here
+Your Org workspace is =~/Projects/second-brain/org/=. Existing Obsidian notes
+remain in the parent vault. This is a fresh workspace; old tasks are not imported.
+
+| Doom keys | Command | Purpose |
+|-----------+---------+---------|
+| SPC n b d | M-x second-brain-daily | Create/open today's daily note |
+| SPC u SPC n b d | C-u M-x second-brain-daily | Choose another date |
+| SPC n b a | M-x second-brain-agenda | Weekly agenda and all open tasks |
+| SPC n b c | M-x org-capture | t: task, n: note, e: calendar event |
+| SPC n b k | M-x calendar | Month calendar |
+| SPC n b h | M-x second-brain-home | This guide |
+
+In capture, finish with C-c C-c or cancel with C-c C-k.
+
+* Daily notes: only when requested
+Notes use =Timestamps/YYYY/MM-Month/YYYY-MM-DD-Weekday.org=, matching your
+active Obsidian template's title, prompts, Daily Thoughts and navigation.
+Opening Emacs, the calendar or agenda never creates a daily note.
+Yesterday/Tomorrow links create/open their note only when followed with C-c C-o.
+Reopening a note preserves its contents. Dates and filenames use English names.
+
+The two activity lists replace Dataview with native Org dynamic blocks.
+Put the cursor on a BEGIN line and press C-c C-x C-u to refresh, or use
+M-x org-update-all-dblocks. They list Org files in this workspace only.
+Created lists use =#+created: [YYYY-MM-DD Day HH:MM]= metadata, which daily
+notes receive automatically; add it to other files when creating them.
+Modified lists use file modification time. Captured entries are headings,
+not separate files. Lists are snapshots until refreshed.
+
+* Tasks and planning
+Capture tasks into [[file:inbox.org][Inbox]]. Use C-c C-t on a heading to change its state:
+TODO -> NEXT -> WAIT -> DONE / CANCELLED. WAIT requests a note.
+Use C-c C-s to schedule a task and C-c C-d to set a deadline; select a date
+in the prompt's calendar. Use C-c C-w to refile into [[file:projects.org][Projects]].
+
+Daily checkboxes preserve your old template but do not appear in the agenda.
+For an agenda task inside any daily note, add a heading such as:
+#+begin_example
+** TODO Prepare presentation
+   SCHEDULED: <2026-10-01 Thu>
+#+end_example
+
+The weekly dashboard includes scheduled work, deadlines, dated events and
+unscheduled TODO/NEXT/WAIT items. Press r to refresh; use M-x org-agenda
+and t for the standard todo list. All existing daily notes are included.
+For repeating tasks, add a repeater to the scheduled date, e.g.
+=<2026-10-01 Thu +1w>=. Marking one DONE advances it to its next occurrence.
+
+Capture events with e into [[file:calendar.org][Calendar]]; enter a date and optional time.
+An active timestamp makes an event appear in the agenda. M-x calendar is a
+date browser; the agenda is the view of your events. No external calendar
+service or Obsidian plugin integration is configured.
+
+* Configuration
+The Emacs configuration is managed in nixos-config:
+=hosts/common/home/apps/second-brain.el= and =doom-emacs.nix=.
+Apply your usual Home Manager/NixOS rebuild and restart Emacs for permanent
+activation. For immediate use without rebuilding, run M-x load-file and choose
+=~/Projects/nixos-config/hosts/common/home/apps/second-brain.el=.
+No new packages or doom sync are needed.
