@@ -3,7 +3,7 @@
   imports = [
     # ./firefox.nix
     ./direnv.nix
-    ./doom-emacs.nix
+    ./emacs
     ./fish.nix
     ./git.nix
     ./herdr.nix

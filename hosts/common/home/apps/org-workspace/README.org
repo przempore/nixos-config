@@ -76,8 +76,8 @@ remain visible in the general TODO/NEXT/WAIT lists.
 
 * Configuration
 The Emacs configuration is managed in nixos-config:
-=hosts/common/home/apps/second-brain.el= and =doom-emacs.nix=.
+=hosts/common/home/apps/emacs/second-brain.el= and =emacs/default.nix=.
 Apply your usual Home Manager/NixOS rebuild and restart Emacs for permanent
 activation. For immediate use without rebuilding, run M-x load-file and choose
-=~/Projects/nixos-config/hosts/common/home/apps/second-brain.el=.
+=~/Projects/nixos-config/hosts/common/home/apps/emacs/second-brain.el=.
 No new packages or doom sync are needed.
