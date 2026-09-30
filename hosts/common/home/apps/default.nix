@@ -6,7 +6,7 @@
     ./emacs
     ./fish.nix
     ./git.nix
-    ./herdr.nix
+    # ./herdr.nix
     ./kitty
     ./mpv.nix
     ./nvim
