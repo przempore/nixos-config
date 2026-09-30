@@ -40,6 +40,8 @@
       org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELLED(c@)"))
       org-log-done 'time
       org-log-into-drawer t
+      ;; Override Doom's look-back offset so Monday anchors the current week.
+      org-agenda-start-day nil
       org-agenda-start-on-weekday 1
       calendar-week-start-day 1
       org-agenda-span 'week
@@ -88,7 +90,7 @@
                (org-read-date nil nil "++1d" nil time))
        "* 📅 Daily Questions\n** 🌜 Last night, after work, I...\n- \n\n"
        "** 🙌 One thing I'm excited about right now is...\n- \n\n"
-       "** 🚀 One+ thing I plan to accomplish today is...\n- [ ] \n\n"
+       "** 🚀 One+ thing I plan to accomplish today is...\n*** TODO \n\n"
        "** 👎 One thing I'm struggling with today is...\n- \n\n"
        "* 📝 Notes\n** 🔹 Daily Thoughts\n- \n\n"
        (format "* Notes created today\n#+BEGIN: second-brain-activity :date \"%s\" :kind created\n#+END:\n\n" date)
