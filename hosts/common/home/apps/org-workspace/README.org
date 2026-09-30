@@ -75,9 +75,11 @@ Browsing another agenda week does not change this list. Tagged tasks also
 remain visible in the general TODO/NEXT/WAIT lists.
 
 * Configuration
-The Emacs configuration is managed in nixos-config:
-=hosts/common/home/apps/emacs/second-brain.el= and =emacs/default.nix=.
-Apply your usual Home Manager/NixOS rebuild and restart Emacs for permanent
-activation. For immediate use without rebuilding, run M-x load-file and choose
-=~/Projects/nixos-config/hosts/common/home/apps/emacs/second-brain.el=.
-No new packages or doom sync are needed.
+The Emacs configuration is shared with Windows in
+[[https://github.com/przempore/doom-config][przempore/doom-config]], with Org settings in =lisp/second-brain.el=.
+The =doom-config= flake input pins its revision; Home Manager installs it through
+=hosts/common/home/apps/emacs/default.nix=.
+After publishing a configuration change, run =nix flake update doom-config=,
+apply your usual Home Manager/NixOS rebuild, and restart Emacs.
+Run =doom sync= when modules or package declarations change; Org-only changes
+do not need it.

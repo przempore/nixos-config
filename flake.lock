@@ -158,6 +158,23 @@
         "type": "github"
       }
     },
+    "doom-config": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1790790317,
+        "narHash": "sha256-amVuTFbanjtLCRmAmLQXFy988VRwdDsySOXYsOayJtc=",
+        "ref": "main",
+        "rev": "032c257037d4856e676b0c3e0847009dcf34f217",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git@github.com/przempore/doom-config.git"
+      },
+      "original": {
+        "ref": "main",
+        "type": "git",
+        "url": "ssh://git@github.com/przempore/doom-config.git"
+      }
+    },
     "doom-emacs": {
       "flake": false,
       "locked": {
@@ -916,6 +933,7 @@
         "aquarium-monitor": "aquarium-monitor",
         "catppuccin": "catppuccin",
         "deploy-rs": "deploy-rs",
+        "doom-config": "doom-config",
         "doom-emacs": "doom-emacs",
         "flake-parts": "flake-parts_2",
         "home-manager": "home-manager",

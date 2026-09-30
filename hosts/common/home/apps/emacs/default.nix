@@ -17,9 +17,9 @@
 
   home.file = {
     ".config/emacs".source = inputs.doom-emacs;
-    ".config/doom/init.el".source = ./init.el;
-    ".config/doom/config.el".source = ./config.el;
-    ".config/doom/second-brain.el".source = ./second-brain.el;
-    ".config/doom/packages.el".source = ./packages.el;
+    ".config/doom" = {
+      source = inputs.doom-config;
+      recursive = true;
+    };
   };
 }

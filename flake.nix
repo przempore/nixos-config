@@ -22,6 +22,10 @@
       url = "git+https://github.com/doomemacs/doomemacs.git?submodules=1";
       flake = false;
     };
+    doom-config = {
+      url = "git+ssh://git@github.com/przempore/doom-config.git?ref=main";
+      flake = false;
+    };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     deploy-rs.url = "github:serokell/deploy-rs";
