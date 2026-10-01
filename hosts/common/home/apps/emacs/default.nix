@@ -15,6 +15,16 @@
     package = pkgs-unstable.emacs-pgtk;
   };
 
+  services.emacs = {
+    enable = true;
+    package = pkgs-unstable.emacs-pgtk;
+  };
+
+  systemd.user.services.emacs.Service.Environment = [
+    "DOOMLOCALDIR=%h/.cache/doom"
+    "EMACS_TREESIT_GRAMMAR_PATH=${treesitGrammarPath}"
+  ];
+
   home.file = {
     ".config/emacs".source = inputs.doom-emacs;
     ".config/doom" = {

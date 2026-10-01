@@ -73,15 +73,6 @@
     };
   };
 
-  services.emacs = {
-    enable = true;
-    package = pkgs.emacs-pgtk;
-  };
-
-  systemd.user.services.emacs.environment = {
-    DOOMLOCALDIR = "%h/.cache/doom";
-  };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages =
