@@ -42,6 +42,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    orgbrain = {
+      url = "git+ssh://git@github.com/przempore/OrgBrain.git?ref=main";
+    };
+
     aquarium-monitor = {
       url = "git+https://github.com/przempore/aquarium-monitor.git?ref=generated/ezo-ec-collector-milestones";
     };
