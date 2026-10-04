@@ -15,6 +15,11 @@
   networking.hostName = "ilum";
   networking.interfaces.enp2s0.wakeOnLan.enable = true;
 
+  # Expose the Windows EFI partition through systemd-boot's UEFI shell so we
+  # can identify its firmware device handle and add it to the boot menu.
+  boot.loader.systemd-boot.edk2-uefi-shell.enable = true;
+  boot.loader.timeout = 5;
+
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 

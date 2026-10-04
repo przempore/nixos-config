@@ -8,7 +8,7 @@
   # Limit the number of generations to keep
   boot.loader.systemd-boot.configurationLimit = lib.mkDefault 5;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.timeout = 2;
+  boot.loader.timeout = lib.mkDefault 2;
 
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
