@@ -50,6 +50,9 @@ deploy-dooku:
 deploy-dooku-local:
     deploy .#dooku_local -- --show-trace
 
+deploy-aquarium-monitor:
+    deploy .#aquarium-monitor -- --show-trace
+
 alias gc := garbage-collection
 
 # Run Nix store garbage collection for paths older than three days.
