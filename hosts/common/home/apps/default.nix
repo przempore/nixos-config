@@ -1,4 +1,4 @@
-{ lib, isWSL ? false, enableGhostty ? true, enableGui ? true, ... }:
+{ lib, enableGhostty ? true, enableGui ? true, ... }:
 {
   imports = [
     # ./firefox.nix
