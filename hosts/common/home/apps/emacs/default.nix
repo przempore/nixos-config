@@ -42,6 +42,10 @@ in
     package = pkgs-unstable.emacs-pgtk;
   };
 
+  home.packages = [ pkgs.stdenv.cc ];
+
+  home.sessionVariables.EMACS_TREESIT_GRAMMAR_PATH = "${treesitGrammarPath}";
+
   services.emacs = {
     enable = true;
     package = pkgs-unstable.emacs-pgtk;
