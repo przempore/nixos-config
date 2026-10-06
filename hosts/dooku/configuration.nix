@@ -25,6 +25,16 @@
   # boot.initrd.kernelModules = [ "i915" ];
 
   networking.hostName = "dooku"; # Define your hostname.
+  networking.networkmanager.ensureProfiles.profiles."Auto Ethernet" = {
+    connection = {
+      id = "Auto Ethernet";
+      type = "ethernet";
+      interface-name = "enp0s31f6";
+    };
+    "802-3-ethernet".wake-on-lan = "magic";
+    ipv4.method = "auto";
+    ipv6.method = "auto";
+  };
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.nameservers = [ "8.8.8.8" "8.8.4.4" ];
   systemd.services.NetworkManager-wait-online.enable = false;
