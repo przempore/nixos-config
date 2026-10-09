@@ -18,6 +18,8 @@
   # Set your time zone.
   time.timeZone = lib.mkDefault "Europe/Berlin";
 
+  i18n.supportedLocales = [ "de_DE.UTF-8/UTF-8" "en_GB.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" ];
+
   # Perform garbage collection weekly to maintain low disk usage
   nix.gc = {
     automatic = true;
