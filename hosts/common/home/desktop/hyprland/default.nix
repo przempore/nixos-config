@@ -14,6 +14,13 @@ let
     env = __GLX_VENDOR_LIBRARY_NAME,nvidia
     env = WLR_NO_HARDWARE_CURSORS,1
     env = WLR_RENDERER,vulkan
+
+    # Give the M570 adaptive acceleration with a slightly faster curve.
+    device {
+      name = logitech-m570
+      sensitivity = 0.3
+      accel_profile = adaptive
+    }
   '';
   dookuPart = ''
     monitor=,preferred,auto,1
