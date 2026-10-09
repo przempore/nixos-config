@@ -27,7 +27,7 @@ build:
 
 # Update flake inputs.
 update:
-    git fetch --all && git rebase && git submodule update --init
+    git fetch --all && git rebase --autostash && git submodule update --init
     nix flake update --commit-lock-file
 
 # Check flake configuration.
