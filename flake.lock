@@ -247,11 +247,11 @@
     "doom-config": {
       "flake": false,
       "locked": {
-        "lastModified": 1791293685,
-        "narHash": "sha256-e4hiKos3Zr5GAbNaCfHk/t5sdPsnBhqykWue2nVzIMQ=",
+        "lastModified": 1791580775,
+        "narHash": "sha256-+84OHA8syvE7/x/BFXaEixGBr2tP80MeBLifcv7Tkh0=",
         "ref": "main",
-        "rev": "6e9225fd0749903111e4c57d74bbc0755c0f2d9c",
-        "revCount": 11,
+        "rev": "203ba105db5380244142307a7b387b6cf1e90917",
+        "revCount": 12,
         "type": "git",
         "url": "ssh://git@github.com/przempore/doom-config.git"
       },
