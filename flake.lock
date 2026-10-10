@@ -247,10 +247,10 @@
     "doom-config": {
       "flake": false,
       "locked": {
-        "lastModified": 1791584147,
-        "narHash": "sha256-5ksmMrLITr1IKdCGJr3Y8LpWFVeOikE/gey8RlK6bik=",
+        "lastModified": 1791585351,
+        "narHash": "sha256-4SRIyOLnqeRUl0GgDA/46riorW6+QnvFZo1oWP04wuA=",
         "ref": "main",
-        "rev": "f77e73941e1c2443ad78b4d33f0bea8aeffc1113",
+        "rev": "6c4bade237bd348fd4525f3c3a080202f75f450d",
         "revCount": 14,
         "type": "git",
         "url": "ssh://git@github.com/przempore/doom-config.git"
@@ -1473,11 +1473,11 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1791521685,
-        "narHash": "sha256-S4ZBR4y3cQ6NbLDJqoQR48718TWCM1ofpjt8Mzo83Hg=",
+        "lastModified": 1791587008,
+        "narHash": "sha256-LOIfH4MtVc2KIFQI8ElOOgmgrgUzJjfx3OYu4VnTvIU=",
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "rev": "841dba01deda5e994a9838da9d2216f493fbaea9",
+        "rev": "a6359784912804e2bad0826b63454cf4493e885e",
         "type": "github"
       },
       "original": {
