@@ -247,11 +247,11 @@
     "doom-config": {
       "flake": false,
       "locked": {
-        "lastModified": 1791585351,
-        "narHash": "sha256-4SRIyOLnqeRUl0GgDA/46riorW6+QnvFZo1oWP04wuA=",
+        "lastModified": 1791628257,
+        "narHash": "sha256-zqRz3zCVzJnZ6w/N+eSBWIyQxa/BsPqjQ+9uiH7z1sQ=",
         "ref": "main",
-        "rev": "6c4bade237bd348fd4525f3c3a080202f75f450d",
-        "revCount": 14,
+        "rev": "1092fa37ae9183310493e6b755a0b1d9ea1fb8ea",
+        "revCount": 16,
         "type": "git",
         "url": "ssh://git@github.com/przempore/doom-config.git"
       },
@@ -636,11 +636,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1791569574,
-        "narHash": "sha256-5sViLmjhTCtBTvhjSXXvd5LDrAFMydFFKZQisjE8Vds=",
+        "lastModified": 1791600313,
+        "narHash": "sha256-/2gb2WTztITD/JU1XUCg63vDsIfJGLr0LDsjSCTTJc8=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "6b88c12cc6d234de4888f5d21076fb11199d0844",
+        "rev": "427c74a88a93cc9f856c8bb99bf6b4a5187a6b33",
         "type": "github"
       },
       "original": {
