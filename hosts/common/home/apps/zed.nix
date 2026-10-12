@@ -74,24 +74,6 @@
         };
       };
 
-      lsp = {
-        nixd = {
-          binary = {
-            path = lib.getExe pkgs.nixd;
-          };
-        };
-        nil = {
-          binary = {
-            path = lib.getExe pkgs.nil;
-          };
-        };
-        rust-analyzer = {
-          binary = {
-            path = lib.getExe pkgs-unstable.rust-analyzer;
-          };
-        };
-      };
-
       languages = {
 
       };
@@ -103,8 +85,7 @@
         toggle_relative_line_numbers = true;
       };
 
-      # load_direnv = "shell_hook";
-      load_direnv = "disabled";
+      load_direnv = "shell_hook";
       base_keymap = "SublimeText";
 
       theme = {
