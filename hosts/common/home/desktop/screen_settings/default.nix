@@ -4,7 +4,10 @@
     feh
   ];
 
-  xdg.mimeApps.defaultApplications."image/jpeg" = [ "feh.desktop" ];
+  xdg.mimeApps.defaultApplications = {
+    "image/jpeg" = [ "feh.desktop" ];
+    "image/png" = [ "feh.desktop" ];
+  };
 
   home.file.".background-image" = {
     source = ./wallpaper/nature_of_fear_Nicola_Samori.jpg;
