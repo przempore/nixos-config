@@ -1,4 +1,4 @@
-{ inputs, lib, pkgs, pkgs-unstable, ... }:
+{ config, inputs, lib, pkgs, pkgs-unstable, ... }:
 let
   grammars = {
     bash = pkgs-unstable.tree-sitter-grammars.tree-sitter-bash;
@@ -42,7 +42,7 @@ in
     package = pkgs-unstable.emacs-pgtk;
   };
 
-  home.packages = [ pkgs.stdenv.cc ];
+  home.packages = [ pkgs.stdenv.cc pkgs-unstable.nodejs ];
 
   home.sessionVariables.EMACS_TREESIT_GRAMMAR_PATH = "${treesitGrammarPath}";
 
@@ -54,6 +54,7 @@ in
   systemd.user.services.emacs.Service.Environment = [
     "DOOMLOCALDIR=%h/.cache/doom"
     "EMACS_TREESIT_GRAMMAR_PATH=${treesitGrammarPath}"
+    "PATH=${lib.makeBinPath [ pkgs-unstable.nodejs pkgs-unstable.opencode ]}:${config.home.profileDirectory}/bin:/run/wrappers/bin:/run/current-system/sw/bin"
   ];
 
   home.file = {
