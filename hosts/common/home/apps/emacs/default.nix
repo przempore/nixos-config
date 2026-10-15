@@ -42,7 +42,16 @@ in
     package = pkgs-unstable.emacs-pgtk;
   };
 
-  home.packages = [ pkgs.stdenv.cc pkgs-unstable.nodejs ];
+  home.packages = [
+    pkgs.stdenv.cc
+    pkgs-unstable.nodejs
+    (pkgs.aspellWithDicts (dicts: [
+        dicts.en
+        dicts.en-computers
+        dicts.de
+        dicts.pl
+    ]))
+  ];
 
   home.sessionVariables.EMACS_TREESIT_GRAMMAR_PATH = "${treesitGrammarPath}";
 
