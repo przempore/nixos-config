@@ -81,7 +81,6 @@
     extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "dialout" ];
     packages = with pkgs; [
       chromium
-      deploy-rs
       ollama
     ];
   };
