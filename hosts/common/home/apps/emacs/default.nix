@@ -40,6 +40,10 @@ in
   programs.emacs = {
     enable = true;
     package = pkgs-unstable.emacs-pgtk;
+    extraPackages = epkgs: [
+        epkgs.nix-mode
+        epkgs.nixfmt
+    ];
   };
 
   home.packages = [
