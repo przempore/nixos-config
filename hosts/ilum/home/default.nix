@@ -5,6 +5,7 @@
     ../../common/home/apps/zed.nix
     ../../common/home/desktop
     ../../common/home/desktop/hyprland
+    ../../common/niri/home.nix
     ./niri.nix
   ];
 

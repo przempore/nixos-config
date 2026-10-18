@@ -4,6 +4,7 @@
   imports = [
     ../../common/home
     ../../common/home/desktop
+    ../../common/niri/home.nix
     ../../common/home/apps/teleport.nix
     ../../common/home/apps/google-cloud.nix
     ../../common/home/apps/zed.nix
