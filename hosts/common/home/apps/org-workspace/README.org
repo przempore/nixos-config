@@ -80,6 +80,7 @@ The Emacs configuration is shared with Windows in
 The =doom-config= flake input pins its revision; Home Manager installs it through
 =hosts/common/home/apps/emacs/default.nix=.
 After publishing a configuration change, run =nix flake update doom-config=,
-apply your usual Home Manager/NixOS rebuild, and restart Emacs.
-Run =doom sync= when modules or package declarations change; Org-only changes
-do not need it.
+apply your usual Home Manager/NixOS rebuild, and restart Emacs. Unstraightened
+builds Doom and its declared packages through Nix, so do not run =doom sync= on
+NixOS. The Windows installation still uses Doom's CLI and needs =doom sync= when
+modules or package declarations change.

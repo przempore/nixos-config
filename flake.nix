@@ -21,13 +21,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager-unstable.url = "github:nix-community/home-manager";
-    doom-emacs = {
-      url = "git+https://github.com/doomemacs/doomemacs.git?submodules=1";
-      flake = false;
-    };
     doom-config = {
       url = "git+ssh://git@github.com/przempore/doom-config.git?ref=main";
       flake = false;
+    };
+    nix-doom-emacs-unstraightened = {
+      url = "github:marienz/nix-doom-emacs-unstraightened";
+      inputs = {
+        doomdir.follows = "doom-config";
+        nixpkgs.follows = "nixpkgs-unstable";
+      };
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     zen-browser.url = "github:0xc000022070/zen-browser-flake/1fd1ee43a0fd0bff17a8ba07e2a281406a92991f"; # last verison without disappearing sidebar

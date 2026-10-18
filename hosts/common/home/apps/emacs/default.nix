@@ -1,48 +1,82 @@
 { config, inputs, lib, pkgs, pkgs-unstable, ... }:
 let
-  grammars = {
-    bash = pkgs-unstable.tree-sitter-grammars.tree-sitter-bash;
-    c = pkgs-unstable.tree-sitter-grammars.tree-sitter-c;
-    cmake = pkgs-unstable.tree-sitter-grammars.tree-sitter-cmake;
-    cpp = pkgs-unstable.tree-sitter-grammars.tree-sitter-cpp;
-    just = pkgs-unstable.tree-sitter-grammars.tree-sitter-just;
-    json = pkgs-unstable.tree-sitter-grammars.tree-sitter-json;
-    lua = pkgs-unstable.tree-sitter-grammars.tree-sitter-lua;
-    make = pkgs-unstable.tree-sitter-grammars.tree-sitter-make;
-    markdown = pkgs-unstable.tree-sitter-grammars.tree-sitter-markdown;
-    markdown-inline = pkgs-unstable.tree-sitter-grammars.tree-sitter-markdown-inline;
-    nim = pkgs-unstable.tree-sitter-grammars.tree-sitter-nim;
-    nix = pkgs-unstable.tree-sitter-grammars.tree-sitter-nix;
-    python = pkgs-unstable.tree-sitter-grammars.tree-sitter-python;
-    rust = pkgs-unstable.tree-sitter-grammars.tree-sitter-rust;
-    toml = pkgs-unstable.tree-sitter-grammars.tree-sitter-toml;
-    yaml = pkgs-unstable.tree-sitter-grammars.tree-sitter-yaml;
-  };
-
-  treesitGrammarPath = pkgs-unstable.runCommand "emacs-tree-sitter-grammars" { } ''
+  # Patch a Nix-store copy; the shared Doom config remains usable unchanged on Windows.
+  # Unstraightened needs an explicit URL for GitLab recipes.
+  nixosDoomConfig = pkgs.runCommand "doom-config-with-nix-pins" { } ''
     mkdir -p "$out"
-    ${lib.concatStringsSep "\n" (lib.mapAttrsToList (language: grammar: ''
-      ln -s "${grammar}/parser" "$out/libtree-sitter-${language}.so"
-    '') grammars)}
+    cp -R "${inputs.doom-config}/." "$out/"
+    chmod -R u+w "$out"
+    # Nixpkgs Ghostel exposes ghostel-mode-map; Windows uses a newer map name.
+    substituteInPlace "$out/config.el" \
+      --replace-fail ':map ghostel-semi-char-mode-map' \
+      ':map ghostel-mode-map'
+    substituteInPlace "$out/packages.el" \
+      --replace-fail '(package! claudemacs' \
+      '(package! claudemacs :pin "354ba3537401b4dc35012b46d24d70028ff9c197"'
+    substituteInPlace "$out/packages.el" \
+      --replace-fail '(package! emacs-opencode' \
+      '(package! emacs-opencode :pin "8022628a62958d53e0d792ad8f20082cdc522dbf"'
+    substituteInPlace "$out/packages.el" \
+      --replace-fail '(package! modus-catppuccin' \
+      '(package! modus-catppuccin :pin "a0f7bd9e258b717f9c2b398fae1085d50615c5d2"'
+    substituteInPlace "$out/packages.el" \
+      --replace-fail '(package! window-stool' \
+      '(package! window-stool :pin "deb8200f7a6bcfb3a317c62f637e56d2c5af7263"'
+    substituteInPlace "$out/packages.el" \
+      --replace-fail ':host gitlab' ':host nil' \
+      --replace-fail ':repo "magus/modus-catppuccin"' \
+      ':repo "https://gitlab.com/magus/modus-catppuccin.git"'
   '';
 in
 {
-  home.sessionVariables = {
-    EMACSDIR = "$HOME/.config/emacs";
-    DOOMDIR = "$HOME/.config/doom";
-    DOOMLOCALDIR = "$HOME/.cache/doom";
-  };
+  imports = [ inputs.nix-doom-emacs-unstraightened.homeModule ];
 
-  home.sessionPath = [
-    "$HOME/.config/emacs/bin"
-  ];
-
-  programs.emacs = {
+  programs.doom-emacs = {
     enable = true;
-    package = pkgs-unstable.emacs-pgtk;
+    emacs = pkgs-unstable.emacs-pgtk;
+    doomDir = nixosDoomConfig;
+    doomLocalDir = "${config.home.homeDirectory}/.cache/doom";
+    # These packages use dependencies absent from their package headers.
+    emacsPackageOverrides = _eself: esuper: {
+      claudemacs = esuper.claudemacs.overrideAttrs (old: {
+        packageRequires = lib.unique (
+          (old.packageRequires or [ ]) ++ [
+            esuper.eat
+            esuper.ghostel
+          ]
+        );
+      });
+      emacs-opencode = esuper.emacs-opencode.overrideAttrs (old: {
+        packageRequires = lib.unique (
+          (old.packageRequires or [ ]) ++ [ esuper.request ]
+        );
+      });
+      evil-ghostel = esuper.evil-ghostel.overrideAttrs (_old: {
+        src = esuper.ghostel.src;
+        commit = esuper.ghostel.commit;
+      });
+    };
     extraPackages = epkgs: [
-        epkgs.nix-mode
-        epkgs.nixfmt
+      epkgs.nix-mode
+      epkgs.nixfmt
+      (epkgs.treesit-grammars.with-grammars (grammars: with grammars; [
+        tree-sitter-bash
+        tree-sitter-c
+        tree-sitter-cmake
+        tree-sitter-cpp
+        tree-sitter-just
+        tree-sitter-json
+        tree-sitter-lua
+        tree-sitter-make
+        tree-sitter-markdown
+        tree-sitter-markdown-inline
+        tree-sitter-nim
+        tree-sitter-nix
+        tree-sitter-python
+        tree-sitter-rust
+        tree-sitter-toml
+        tree-sitter-yaml
+      ]))
     ];
   };
 
@@ -57,30 +91,15 @@ in
     ]))
   ];
 
-  home.sessionVariables.EMACS_TREESIT_GRAMMAR_PATH = "${treesitGrammarPath}";
-
   services.emacs = {
     enable = true;
-    package = pkgs-unstable.emacs-pgtk;
-    extraOptions = [
-      "--init-directory"
-      "${config.home.homeDirectory}/.config/emacs"
-    ];
   };
 
   systemd.user.services.emacs.Service.Environment = [
-    "EMACSDIR=%h/.config/emacs"
-    "DOOMDIR=%h/.config/doom"
-    "DOOMLOCALDIR=%h/.cache/doom"
-    "EMACS_TREESIT_GRAMMAR_PATH=${treesitGrammarPath}"
     "PATH=${lib.makeBinPath [ pkgs-unstable.nodejs pkgs-unstable.opencode ]}:${config.home.profileDirectory}/bin:/run/wrappers/bin:/run/current-system/sw/bin"
   ];
 
-  home.file = {
-    ".config/emacs".source = inputs.doom-emacs;
-    ".config/doom" = {
-      source = inputs.doom-config;
-      recursive = true;
-    };
-  };
+  home.activation.createDoomProfileStateDirectory = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    $DRY_RUN_CMD mkdir -p ${lib.escapeShellArg "${config.home.homeDirectory}/.local/state/doom/nix"} $VERBOSE_ARG
+  '';
 }
