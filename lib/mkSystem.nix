@@ -94,10 +94,16 @@ in
           inputs.home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
+            home-manager.useUserPackages = false;
+            home-manager.startAsUserService = true;
             home-manager.users.${user} = ../hosts/${machine}/home;
             home-manager.extraSpecialArgs = extraSpecialArgs;
             home-manager.backupFileExtension = "backup-${inputs.self.rev or "dirty"}";
+
+            # Home Manager is applied on `nh os switch` through
+            # nixos-activation.service. Don't also run it on login: that would
+            # overwrite a newer standalone `nh home switch` at boot.
+            systemd.user.services.nixos-activation.wantedBy = lib.mkForce [ ];
           }
         ];
     };
