@@ -62,9 +62,15 @@ in
   services.emacs = {
     enable = true;
     package = pkgs-unstable.emacs-pgtk;
+    extraOptions = [
+      "--init-directory"
+      "${config.home.homeDirectory}/.config/emacs"
+    ];
   };
 
   systemd.user.services.emacs.Service.Environment = [
+    "EMACSDIR=%h/.config/emacs"
+    "DOOMDIR=%h/.config/doom"
     "DOOMLOCALDIR=%h/.cache/doom"
     "EMACS_TREESIT_GRAMMAR_PATH=${treesitGrammarPath}"
     "PATH=${lib.makeBinPath [ pkgs-unstable.nodejs pkgs-unstable.opencode ]}:${config.home.profileDirectory}/bin:/run/wrappers/bin:/run/current-system/sw/bin"
