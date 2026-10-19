@@ -27,6 +27,7 @@ let
       --replace-fail ':repo "magus/modus-catppuccin"' \
       ':repo "https://gitlab.com/magus/modus-catppuccin.git"'
   '';
+  unstableEmacsPackages = pkgs-unstable.emacsPackagesFor pkgs-unstable.emacs-pgtk;
 in
 {
   imports = [ inputs.nix-doom-emacs-unstraightened.homeModule ];
@@ -37,12 +38,15 @@ in
     doomDir = nixosDoomConfig;
     doomLocalDir = "${config.home.homeDirectory}/.cache/doom";
     # These packages use dependencies absent from their package headers.
-    emacsPackageOverrides = _eself: esuper: {
+    emacsPackageOverrides = eself: esuper: {
+      # Doom's :term ghostel +everywhere module uses ghostel-comint-mode,
+      # which is missing from the older Ghostel in the stable package set.
+      ghostel = unstableEmacsPackages.ghostel;
       claudemacs = esuper.claudemacs.overrideAttrs (old: {
         packageRequires = lib.unique (
           (old.packageRequires or [ ]) ++ [
             esuper.eat
-            esuper.ghostel
+            eself.ghostel
           ]
         );
       });
@@ -51,10 +55,7 @@ in
           (old.packageRequires or [ ]) ++ [ esuper.request ]
         );
       });
-      evil-ghostel = esuper.evil-ghostel.overrideAttrs (_old: {
-        src = esuper.ghostel.src;
-        commit = esuper.ghostel.commit;
-      });
+      evil-ghostel = unstableEmacsPackages.evil-ghostel;
     };
     extraPackages = epkgs: [
       epkgs.nix-mode
