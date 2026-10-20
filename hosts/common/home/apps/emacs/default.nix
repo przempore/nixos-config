@@ -15,7 +15,7 @@ let
       '(package! claudemacs :pin "354ba3537401b4dc35012b46d24d70028ff9c197"'
     substituteInPlace "$out/packages.el" \
       --replace-fail '(package! emacs-opencode' \
-      '(package! emacs-opencode :pin "8022628a62958d53e0d792ad8f20082cdc522dbf"'
+      '(package! emacs-opencode :pin "0dc2bda91abf95643805c8891aad034aa96d19a9"'
     substituteInPlace "$out/packages.el" \
       --replace-fail '(package! modus-catppuccin' \
       '(package! modus-catppuccin :pin "a0f7bd9e258b717f9c2b398fae1085d50615c5d2"'
