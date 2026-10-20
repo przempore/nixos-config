@@ -33,7 +33,7 @@
       };
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    zen-browser.url = "github:0xc000022070/zen-browser-flake/1fd1ee43a0fd0bff17a8ba07e2a281406a92991f"; # last verison without disappearing sidebar
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
     deploy-rs.url = "github:serokell/deploy-rs";
     neovim.url = "github:nix-community/neovim-nightly-overlay";
     sonora.url = "github:nolight132/sonora";
