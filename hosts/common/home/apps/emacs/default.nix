@@ -52,7 +52,7 @@ in
       });
       emacs-opencode = esuper.emacs-opencode.overrideAttrs (old: {
         packageRequires = lib.unique (
-          (old.packageRequires or [ ]) ++ [ esuper.request ]
+          (old.packageRequires or [ ]) ++ [ esuper.request esuper.magit ]
         );
       });
       evil-ghostel = unstableEmacsPackages.evil-ghostel;
