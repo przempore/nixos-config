@@ -14,11 +14,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1792709797,
-        "narHash": "sha256-5Fhhi+Tqm4nlvkczlAxYH00Cw3QwMNhtdjyTZpMBAZU=",
+        "lastModified": 1792710929,
+        "narHash": "sha256-uyRjQxk+2zcV2sZsHQBoNsf9snF4RRvhCSly/SiOfhQ=",
         "ref": "generated/ezo-ec-collector-milestones",
-        "rev": "d33a8b456cb459d1442869254b8eea9cc2b18b18",
-        "revCount": 37,
+        "rev": "585d30f31d92b89c5c9ad868540c8dd2cc316657",
+        "revCount": 38,
         "type": "git",
         "url": "https://github.com/przempore/aquarium-monitor.git"
       },
