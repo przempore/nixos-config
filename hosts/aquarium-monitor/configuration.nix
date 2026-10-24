@@ -98,41 +98,41 @@
     };
   };
 
-  services.orgbrain = {
-    enable = true;
-    package = inputs.orgbrain.packages.x86_64-linux.default;
-    owner = "przempore@gmail.com";
-    publicUrl = "https://aquarium-monitor.tailb9a1a1.ts.net:8443";
-    port = 8787;
-    repository = "/var/lib/orgbrain/repository";
-    orgSubdirectory = "org";
-    branch = "main";
-    settings = {
-      inbox = "inbox.org";
-      # Calendar credentials can be added separately through runtime files.
-    };
-  };
+  # services.orgbrain = {
+  #   enable = true;
+  #   package = inputs.orgbrain.packages.x86_64-linux.default;
+  #   owner = "przempore@gmail.com";
+  #   publicUrl = "https://aquarium-monitor.tailb9a1a1.ts.net:8443";
+  #   port = 8787;
+  #   repository = "/var/lib/orgbrain/repository";
+  #   orgSubdirectory = "org";
+  #   branch = "main";
+  #   settings = {
+  #     inbox = "inbox.org";
+  #     # Calendar credentials can be added separately through runtime files.
+  #   };
+  # };
 
-  # Add one HTTPS listener without resetting other Tailscale Serve routes.
-  # Grafana remains available at the existing Tailscale address on port 3000.
-  systemd.services.orgbrain-tailscale-serve = {
-    description = "Expose OrgBrain privately over Tailscale HTTPS";
-    wantedBy = [ "multi-user.target" ];
-    wants = [ "network-online.target" ];
-    requires = [ "tailscaled.service" "orgbrain.service" ];
-    after = [ "network-online.target" "tailscaled.service" "orgbrain.service" ];
-    path = [ config.services.tailscale.package ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-      Restart = "on-failure";
-      RestartSec = 15;
-      TimeoutStartSec = 60;
-    };
-    script = ''
-      tailscale serve --bg --yes --https=8443 http://127.0.0.1:8787
-    '';
-  };
+  # # Add one HTTPS listener without resetting other Tailscale Serve routes.
+  # # Grafana remains available at the existing Tailscale address on port 3000.
+  # systemd.services.orgbrain-tailscale-serve = {
+  #   description = "Expose OrgBrain privately over Tailscale HTTPS";
+  #   wantedBy = [ "multi-user.target" ];
+  #   wants = [ "network-online.target" ];
+  #   requires = [ "tailscaled.service" "orgbrain.service" ];
+  #   after = [ "network-online.target" "tailscaled.service" "orgbrain.service" ];
+  #   path = [ config.services.tailscale.package ];
+  #   serviceConfig = {
+  #     Type = "oneshot";
+  #     RemainAfterExit = true;
+  #     Restart = "on-failure";
+  #     RestartSec = 15;
+  #     TimeoutStartSec = 60;
+  #   };
+  #   script = ''
+  #     tailscale serve --bg --yes --https=8443 http://127.0.0.1:8787
+  #   '';
+  # };
 
   networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 3000 8443 ];
 
