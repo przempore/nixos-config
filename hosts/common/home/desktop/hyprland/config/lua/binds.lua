@@ -1,0 +1,10 @@
+hl.bind("SUPER + RETURN", hl.dsp.exec_cmd("ghostty"))
+hl.bind("SUPER + KP_ENTER", hl.dsp.exec_cmd("wezterm start --always-new-process"))
+hl.bind("SUPER + SHIFT + RETURN", hl.dsp.exec_cmd("thunar"))
+
+hl.bind("CTRL + ALT + G", hl.dsp.exec_cmd("brave"))
+hl.bind("CTRL + ALT + E", hl.dsp.exec_cmd("emacsclient -c"))
+hl.bind("CTRL + ALT + F", hl.dsp.exec_cmd("firefox-nightly"))
+hl.bind("CTRL + ALT + Z", hl.dsp.exec_cmd("zen-twilight"))
+hl.bind("CTRL + ALT + K", hl.dsp.exec_cmd("keepassxc"))
+hl.bind("CTRL + ALT + W", hl.dsp.exec_cmd("wezterm start --always-new-process"))

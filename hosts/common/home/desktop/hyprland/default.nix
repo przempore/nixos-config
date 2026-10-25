@@ -1,65 +1,42 @@
-{ pkgs, lib, machine, ... }:
+{ lib, machine, ... }:
 let
-  wallpaper = ../screen_settings/wallpaper/nature_of_fear_Nicola_Samori.jpg;
-  hyprpaperMonitor = if machine == "ilum" then "DP-2" else "eDP-1";
+  hostLua = if machine == "ilum" || machine == "dooku" then machine else "default";
 
-  ilumPart = ''
-    monitor=DP-2,3840x1600@144,0x0,1
-    monitor=HDMI-A-1,disable
-    monitor=HDMI-A-2,disable
-
-    env = NVD_BACKEND,direct
-    env = LIBVA_DRIVER_NAME,nvidia
-    env = GBM_BACKEND,nvidia-drm
-    env = __GLX_VENDOR_LIBRARY_NAME,nvidia
-    env = WLR_NO_HARDWARE_CURSORS,1
-    env = WLR_RENDERER,vulkan
-
-    # Give the M570 adaptive acceleration with a slightly faster curve.
-    device {
-      name = logitech-m570
-      sensitivity = 0.3
-      accel_profile = adaptive
-    }
-  '';
-  dookuPart = ''
-    monitor=,preferred,auto,1
-
-    device {
-      name        = at-translated-set-2-keyboard
-      kb_layout   = real-prog-dvorak,us
-      kb_options  = ctrl:swapcaps,altwin:swap_lalt_lwin
-    }
-  '';
-  commonPart = ''
-    ${if machine == "ilum" then ilumPart else if machine == "dooku" then dookuPart else ""}
-    ${builtins.readFile ./config/common_hyprland.conf}
-  '';
+  hyprlandEnvironment = lib.optionalAttrs (machine == "ilum") {
+    ".config/uwsm/env-hyprland".text = ''
+      export NVD_BACKEND=direct
+      export LIBVA_DRIVER_NAME=nvidia
+      export GBM_BACKEND=nvidia-drm
+      export __GLX_VENDOR_LIBRARY_NAME=nvidia
+      export WLR_NO_HARDWARE_CURSORS=1
+      export WLR_RENDERER=vulkan
+    '';
+  };
 in
 {
-  imports = [
-    ./dunst.nix
-    ./waybar
-    ./wlsunset.nix
-  ];
+  imports = [ ./dunst.nix ];
 
-  home.file.".config/hypr" = {
-    source = ./config;
-    recursive = true;
-  };
+  home.file = {
+    # Declare leaf files so Home Manager links them into the existing config dir.
+    ".config/hypr/lua/binds.lua".source = ./config/lua/binds.lua;
+    ".config/hypr/lua/hosts/default.lua".source = ./config/lua/hosts/default.lua;
+    ".config/hypr/lua/hosts/dooku.lua".source = ./config/lua/hosts/dooku.lua;
+    ".config/hypr/lua/hosts/ilum.lua".source = ./config/lua/hosts/ilum.lua;
+    ".config/hypr/lua/noctalia.lua".source = ./config/lua/noctalia.lua;
+    ".config/hypr/lua/settings.lua".source = ./config/lua/settings.lua;
+    ".config/hypr/scripts/enable_projector_display.sh".source = ./config/scripts/enable_projector_display.sh;
+    ".config/hypr/scripts/toggle_projector.sh".source = ./config/scripts/toggle_projector.sh;
 
-  home.file.".config/hypr/hyprland.conf".text = lib.strings.trim commonPart;
-  home.file.".config/hypr/hyprpaper.conf".text = ''
-    wallpaper {
-      monitor = ${hyprpaperMonitor}
-      path = ${wallpaper}
-    }
-  '';
+    ".config/hypr/hyprland.lua".text = ''
+      require("lua.settings")
+      require("lua.hosts.${hostLua}")
+      require("lua.binds")
+      require("lua.noctalia")
+    '';
 
-  home.packages = with pkgs; [
-    wofi
-    grim
-    slurp
-    swappy
-  ];
+    ".config/uwsm/env".text = ''
+      export XCURSOR_THEME=catppuccin-mocha-dark-cursors
+      export XCURSOR_SIZE=24
+    '';
+  } // hyprlandEnvironment;
 }

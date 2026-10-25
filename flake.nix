@@ -11,6 +11,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     legacy-nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    noctalia.url = "github:noctalia-dev/noctalia/cachix";
     catppuccin = {
       url = "github:catppuccin/nix/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";

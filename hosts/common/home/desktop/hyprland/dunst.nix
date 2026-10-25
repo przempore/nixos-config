@@ -9,9 +9,12 @@ let
   };
 in
 {
-  services.dunst = {
-    enable = true;
-    configFile = "${catppuccinDunst}/themes/mocha.conf";
+  services.dunst.enable = false;
+
+  home.packages = [ pkgs.dunst ];
+
+  home.file.".config/dunst/dunstrc" = {
+    source = "${catppuccinDunst}/themes/mocha.conf";
   };
 }
 

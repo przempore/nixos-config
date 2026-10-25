@@ -50,6 +50,7 @@
       run $HOME/.config/polybar/launcher.sh
 
       run keepassxc
+      run dunst
       run blueman-applet
       run xfce4-clipman
       run nm-applet
