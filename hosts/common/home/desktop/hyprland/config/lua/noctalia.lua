@@ -52,18 +52,18 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(ipc .. "brightness-down current
 hl.bind("ALT + PRIOR", hl.dsp.exec_cmd(ipc .. "brightness-up current 5%"))
 hl.bind("ALT + NEXT", hl.dsp.exec_cmd(ipc .. "brightness-down current 5%"))
 
-hl.bind("SUPER + CTRL + K", hl.dsp.exec_cmd([[hyprctl devices -j | jq -r '.keyboards[].name' | while read -r kb; do hyprctl switchxkblayout "$kb" next; done]]))
+hl.bind("SUPER + CTRL + K", hl.dsp.exec_cmd("hyprctl switchxkblayout all next"))
 
-hl.bind("SUPER + F", hl.dsp.exec_cmd("hyprctl dispatch fullscreen 0"))
-hl.bind("SUPER + P", hl.dsp.exec_cmd("hyprctl dispatch pseudo"))
-hl.bind("SUPER + O", hl.dsp.exec_cmd("hyprctl dispatch togglefloating"))
+hl.bind("SUPER + F", hl.dsp.window.fullscreen({ action = "toggle", mode = "fullscreen" }))
+hl.bind("SUPER + P", hl.dsp.window.pseudo({ action = "toggle" }))
+hl.bind("SUPER + O", hl.dsp.window.float({ action = "toggle" }))
 hl.bind("SUPER + Q", hl.dsp.window.close())
-hl.bind("SUPER + SPACE", hl.dsp.exec_cmd("hyprctl dispatch togglespecialworkspace"))
-hl.bind("SUPER + BACKSPACE", hl.dsp.exec_cmd("hyprctl dispatch focusmonitor next"))
-hl.bind("SUPER + SHIFT + LEFT", hl.dsp.exec_cmd("hyprctl dispatch movetoworkspace +1"))
-hl.bind("SUPER + SHIFT + RIGHT", hl.dsp.exec_cmd("hyprctl dispatch movetoworkspace -1"))
-hl.bind("SUPER + SHIFT + UP", hl.dsp.exec_cmd("hyprctl dispatch movetoworkspace +1"))
-hl.bind("SUPER + SHIFT + DOWN", hl.dsp.exec_cmd("hyprctl dispatch movetoworkspace -1"))
+hl.bind("SUPER + SPACE", hl.dsp.workspace.toggle_special(""))
+hl.bind("SUPER + BACKSPACE", hl.dsp.focus({ monitor = "next" }))
+hl.bind("SUPER + SHIFT + LEFT", hl.dsp.window.move({ workspace = "+1" }))
+hl.bind("SUPER + SHIFT + RIGHT", hl.dsp.window.move({ workspace = "-1" }))
+hl.bind("SUPER + SHIFT + UP", hl.dsp.window.move({ workspace = "+1" }))
+hl.bind("SUPER + SHIFT + DOWN", hl.dsp.window.move({ workspace = "-1" }))
 
 for _, direction in ipairs({ "h", "j", "k", "l" }) do
     local dispatch_direction = ({ h = "l", j = "d", k = "u", l = "r" })[direction]
@@ -73,17 +73,17 @@ for _, direction in ipairs({ "h", "j", "k", "l" }) do
 end
 
 hl.bind("SUPER + E", hl.dsp.layout("togglesplit"))
-hl.bind("SUPER + A", hl.dsp.exec_cmd("hyprctl dispatch layoutmsg swapsplit"))
-hl.bind("SUPER + D", hl.dsp.exec_cmd("hyprctl dispatch layoutmsg preselect down"))
+hl.bind("SUPER + A", hl.dsp.layout("swapsplit"))
+hl.bind("SUPER + D", hl.dsp.layout("preselect down"))
 
-hl.bind("SUPER + ALT + LEFT", hl.dsp.exec_cmd("hyprctl dispatch resizeactive -20 0"))
-hl.bind("SUPER + ALT + DOWN", hl.dsp.exec_cmd("hyprctl dispatch resizeactive 0 20"))
-hl.bind("SUPER + ALT + UP", hl.dsp.exec_cmd("hyprctl dispatch resizeactive 0 -20"))
-hl.bind("SUPER + ALT + RIGHT", hl.dsp.exec_cmd("hyprctl dispatch resizeactive 20 0"))
-hl.bind("SUPER + CTRL + LEFT", hl.dsp.exec_cmd("hyprctl dispatch moveactive -20 0"))
-hl.bind("SUPER + CTRL + DOWN", hl.dsp.exec_cmd("hyprctl dispatch moveactive 0 20"))
-hl.bind("SUPER + CTRL + UP", hl.dsp.exec_cmd("hyprctl dispatch moveactive 0 -20"))
-hl.bind("SUPER + CTRL + RIGHT", hl.dsp.exec_cmd("hyprctl dispatch moveactive 20 0"))
+hl.bind("SUPER + ALT + LEFT", hl.dsp.window.resize({ x = -20, y = 0, relative = true }))
+hl.bind("SUPER + ALT + DOWN", hl.dsp.window.resize({ x = 0, y = 20, relative = true }))
+hl.bind("SUPER + ALT + UP", hl.dsp.window.resize({ x = 0, y = -20, relative = true }))
+hl.bind("SUPER + ALT + RIGHT", hl.dsp.window.resize({ x = 20, y = 0, relative = true }))
+hl.bind("SUPER + CTRL + LEFT", hl.dsp.window.move({ x = -20, y = 0, relative = true }))
+hl.bind("SUPER + CTRL + DOWN", hl.dsp.window.move({ x = 0, y = 20, relative = true }))
+hl.bind("SUPER + CTRL + UP", hl.dsp.window.move({ x = 0, y = -20, relative = true }))
+hl.bind("SUPER + CTRL + RIGHT", hl.dsp.window.move({ x = 20, y = 0, relative = true }))
 
 hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
@@ -98,5 +98,27 @@ for workspace, key in ipairs(workspace_keys) do
     hl.bind("SUPER + SHIFT + " .. key, hl.dsp.window.move({ workspace = workspace }))
 end
 
-hl.bind("SUPER + G", hl.dsp.exec_cmd([[hyprctl keyword general:gaps_in "$(($(hyprctl getoption general:gaps_in -j | jq '.int') + 2))"]]))
-hl.bind("SUPER + SHIFT + G", hl.dsp.exec_cmd([[hyprctl keyword general:gaps_in "$(($(hyprctl getoption general:gaps_in -j | jq '.int') - 2))"]]))
+local function adjust_inner_gaps(delta)
+    local gaps = hl.get_config("general.gaps_in")
+    local function adjusted(value)
+        return math.max(0, value + delta)
+    end
+
+    hl.config({
+        general = {
+            gaps_in = {
+                top = adjusted(gaps.top),
+                right = adjusted(gaps.right),
+                bottom = adjusted(gaps.bottom),
+                left = adjusted(gaps.left),
+            },
+        },
+    })
+end
+
+hl.bind("SUPER + G", function()
+    adjust_inner_gaps(2)
+end)
+hl.bind("SUPER + SHIFT + G", function()
+    adjust_inner_gaps(-2)
+end)
