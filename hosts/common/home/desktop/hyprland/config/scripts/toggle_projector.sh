@@ -86,6 +86,29 @@ get_main_width() {
   fi
 }
 
+# Monitor rules are Lua config in this setup, so change them through eval rather
+# than the legacy `keyword monitor` parser.
+eval_hyprland_lua() {
+  local lua="$1" response
+  if ! response="$(hyprctl eval "$lua" 2>&1)"; then
+    printf 'Hyprland rejected monitor change: %s\n' "$response" >&2
+    return 1
+  fi
+  if [[ "$response" != "ok" ]]; then
+    printf 'Hyprland rejected monitor change: %s\n' "$response" >&2
+    return 1
+  fi
+}
+
+set_monitor() {
+  local output="$1" mode="$2" position="$3"
+  eval_hyprland_lua "hl.monitor({ output = \"$output\", disabled = false, mode = \"$mode\", position = \"$position\", scale = 1 })"
+}
+
+disable_monitor() {
+  eval_hyprland_lua "hl.monitor({ output = \"$1\", disabled = true })"
+}
+
 disabled="$(read_disabled_flag)"
 
 if [[ "$disabled" == "__not_found__" ]]; then
@@ -106,13 +129,13 @@ if [[ "$disabled" == "true" ]]; then
   offset_y=$(( -pmode_h ))
 
   # Projector is OFF → enable dual setup
-  hyprctl keyword monitor "$MAIN, $MAIN_MODE, 0x0, 1"
-  hyprctl keyword monitor "$PROJECTOR, $PROJECTOR_MODE, ${offset_x}x${offset_y}, 1"
+  set_monitor "$MAIN" "$MAIN_MODE" "0x0"
+  set_monitor "$PROJECTOR" "$PROJECTOR_MODE" "${offset_x}x${offset_y}"
   echo "Projector enabled, dual setup applied."
 elif [[ "$disabled" == "false" ]]; then
   # Projector is ON → disable it and keep only main
-  hyprctl keyword monitor "$PROJECTOR, disable"
-  hyprctl keyword monitor "$MAIN, $MAIN_MODE, 0x0, 1"
+  disable_monitor "$PROJECTOR"
+  set_monitor "$MAIN" "$MAIN_MODE" "0x0"
   echo "Projector disabled, single-monitor setup applied."
 else
   echo "Could not determine projector state (got: $disabled). Check names or Hyprland output format." >&2

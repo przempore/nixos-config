@@ -27,7 +27,6 @@ in
     ".config/hypr/lua/hosts/ilum.lua".source = ./config/lua/hosts/ilum.lua;
     ".config/hypr/lua/noctalia.lua".source = ./config/lua/noctalia.lua;
     ".config/hypr/lua/settings.lua".source = ./config/lua/settings.lua;
-    ".config/hypr/scripts/enable_projector_display.sh".source = ./config/scripts/enable_projector_display.sh;
     ".config/hypr/scripts/toggle_projector.sh".source = ./config/scripts/toggle_projector.sh;
 
     ".config/hypr/hyprland.lua".text = ''
