@@ -14,7 +14,10 @@ let
   };
 in
 {
-  imports = [ ./dunst.nix ];
+  imports = [
+    ./dunst.nix
+    ../noctalia.nix
+  ];
 
   home.file = {
     # Declare leaf files so Home Manager links them into the existing config dir.

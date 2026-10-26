@@ -72,7 +72,7 @@ for _, direction in ipairs({ "h", "j", "k", "l" }) do
     hl.bind("SUPER + CTRL + SHIFT + " .. direction, hl.dsp.window.move({ direction = dispatch_direction }))
 end
 
-hl.bind("SUPER + E", hl.dsp.exec_cmd("hyprctl dispatch layoutmsg togglesplit"))
+hl.bind("SUPER + E", hl.dsp.layout("togglesplit"))
 hl.bind("SUPER + A", hl.dsp.exec_cmd("hyprctl dispatch layoutmsg swapsplit"))
 hl.bind("SUPER + D", hl.dsp.exec_cmd("hyprctl dispatch layoutmsg preselect down"))
 
