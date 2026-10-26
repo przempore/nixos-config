@@ -33,6 +33,11 @@ in
         builtin = "Catppuccin";
       };
 
+      keybinds = {
+        up = [ "up" "ctrl+p" ];
+        down = [ "down" "ctrl+n" ];
+      };
+
       shell = {
         setup_wizard_enabled = false;
         clipboard_enabled = true;
