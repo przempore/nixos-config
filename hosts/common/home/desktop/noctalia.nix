@@ -112,19 +112,27 @@ in
 
       widget = {
         active_window.max_length = 50;
+        # Distinct Catppuccin accents make adjacent status widgets easier to scan.
+        keyboard_layout.color = "#b4befe";
+        network.color = "#94e2d5";
+        battery.color = "#a6e3a1";
         clock = {
+          color = "#f9e2af";
           format = " {:%d-%m-%Y %H:%M}";
         };
         memory = {
           type = "sysmon";
           stat = "ram_pct";
           visualization = "none";
+          color = "#cba6f7";
         };
         cpu = {
           type = "sysmon";
           stat = "cpu_usage";
           visualization = "none";
+          color = "#fab387";
         };
+        volume.color = "#89b4fa";
         volume.actions = {
           left = "volume-mute";
           right = "panel-toggle control-center audio";
