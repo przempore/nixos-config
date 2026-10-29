@@ -7,6 +7,17 @@
 
   services.displayManager.defaultSession = lib.mkDefault "hyprland-uwsm";
 
+  # Stopping either unit during a rebuild tears down the active desktop session.
+  systemd.user.services = lib.genAttrs [
+    "wayland-wm@"
+    "wayland-session-bindpid@"
+  ]
+    (_: {
+      restartIfChanged = false;
+      # Keep the PATH imported by UWSM instead of adding a minimal service PATH.
+      enableDefaultPath = false;
+    });
+
   environment.systemPackages = with pkgs; [
     wl-clipboard
     xdg-desktop-portal-hyprland # For screen sharing, file dialogs
