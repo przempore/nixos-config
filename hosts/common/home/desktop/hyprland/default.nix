@@ -1,6 +1,7 @@
 { lib, machine, ... }:
 let
   hostLua = if machine == "ilum" || machine == "dooku" then machine else "default";
+  workspaceLabels = import ../workspace-labels.nix;
 
   hyprlandEnvironment = lib.optionalAttrs (machine == "ilum") {
     ".config/uwsm/env-hyprland".text = ''
@@ -27,6 +28,12 @@ in
     ".config/hypr/lua/hosts/ilum.lua".source = ./config/lua/hosts/ilum.lua;
     ".config/hypr/lua/noctalia.lua".source = ./config/lua/noctalia.lua;
     ".config/hypr/lua/settings.lua".source = ./config/lua/settings.lua;
+    ".config/hypr/lua/workspaces.lua".source = ./config/lua/workspaces.lua;
+    ".config/hypr/lua/workspace_labels.lua".text = ''
+      return {
+        ${builtins.concatStringsSep "\n  " (map (label: "${builtins.toJSON label},") workspaceLabels)}
+      }
+    '';
     ".config/hypr/scripts/toggle_projector.sh".source = ./config/scripts/toggle_projector.sh;
 
     ".config/hypr/hyprland.lua".text = ''

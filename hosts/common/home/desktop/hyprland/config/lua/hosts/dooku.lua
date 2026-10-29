@@ -1,3 +1,5 @@
+local setup_workspaces = require("lua.workspaces")
+
 hl.monitor({
     output = "",
     mode = "preferred",
@@ -11,9 +13,4 @@ hl.device({
     kb_options = "ctrl:swapcaps,altwin:swap_lalt_lwin",
 })
 
-for workspace = 1, 10 do
-    hl.workspace_rule({
-        workspace = tostring(workspace),
-        persistent = true,
-    })
-end
+setup_workspaces()

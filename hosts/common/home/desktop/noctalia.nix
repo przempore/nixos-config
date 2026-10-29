@@ -111,6 +111,12 @@ in
       };
 
       widget = {
+        workspaces = {
+          hide_when_empty = true;
+          label_source = "name";
+          max_label_chars = 8;
+          font_family = "JetBrainsMono Nerd Font";
+        };
         active_window.max_length = 50;
         # Distinct Catppuccin accents make adjacent status widgets easier to scan.
         keyboard_layout.color = "#b4befe";

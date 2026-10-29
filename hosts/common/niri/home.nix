@@ -2,5 +2,5 @@
 {
   imports = [ ../home/desktop/noctalia.nix ];
 
-  home.file.".config/niri/config.kdl".source = ./config.kdl;
+  home.file.".config/niri/config.kdl".text = import ./config.nix;
 }

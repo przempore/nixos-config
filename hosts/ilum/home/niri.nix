@@ -2,7 +2,7 @@
 {
   home.file.".config/niri/config.kdl" = lib.mkForce {
     text = ''
-      ${builtins.readFile ../../common/niri/config.kdl}
+      ${import ../../common/niri/config.nix}
 
       output "DP-2" {
           mode "3840x1600@144"

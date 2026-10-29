@@ -1,3 +1,5 @@
+local setup_workspaces = require("lua.workspaces")
+
 hl.monitor({
     output = "DP-2",
     mode = "3840x1600@144",
@@ -15,10 +17,4 @@ hl.device({
     accel_profile = "adaptive",
 })
 
-for workspace = 1, 10 do
-    hl.workspace_rule({
-        workspace = tostring(workspace),
-        monitor = "DP-2",
-        persistent = true,
-    })
-end
+setup_workspaces({ monitor = "DP-2" })

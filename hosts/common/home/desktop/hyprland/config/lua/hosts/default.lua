@@ -1,3 +1,5 @@
+local setup_workspaces = require("lua.workspaces")
+
 hl.monitor({
     output = "",
     mode = "preferred",
@@ -5,9 +7,4 @@ hl.monitor({
     scale = 1,
 })
 
-for workspace = 1, 10 do
-    hl.workspace_rule({
-        workspace = tostring(workspace),
-        persistent = true,
-    })
-end
+setup_workspaces()
