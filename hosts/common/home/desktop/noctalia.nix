@@ -117,7 +117,11 @@ in
           max_label_chars = 8;
           font_family = "JetBrainsMono Nerd Font";
         };
-        active_window.max_length = 50;
+        active_window = {
+          max_length = 480; # Pixel width, including the icon.
+          icon_size = 22;
+          font_scale = 1.0;
+        };
         # Distinct Catppuccin accents make adjacent status widgets easier to scan.
         keyboard_layout.color = "#b4befe";
         network.color = "#94e2d5";
