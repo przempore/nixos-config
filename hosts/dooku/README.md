@@ -28,3 +28,14 @@ separately from the NixOS configuration.
 
 For Steam games, use `gamemoderun %command%` in the game's launch options to
 request GameMode. Add `mangohud` after `gamemoderun` to enable the overlay.
+
+## Keyboard layouts in Wine games
+
+Click the bar's keyboard layout indicator or press **Super+Ctrl+K** to switch
+between custom Dvorak and US QWERTY. The toggle puts the selected layout first
+in the keymap and activates it, changing the base layout exposed to Wine as
+well as the layout used for typing. Dvorak remains the default on login.
+
+Select **EN** for gaming and **DV** to return to Dvorak. If WoW still uses its
+previous movement keys, fully exit WoW and Battle.net and relaunch them with
+**EN** selected so Wine can pick up the new keymap.

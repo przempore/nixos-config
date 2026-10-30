@@ -52,7 +52,7 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(ipc .. "brightness-down current
 hl.bind("ALT + PRIOR", hl.dsp.exec_cmd(ipc .. "brightness-up current 5%"))
 hl.bind("ALT + NEXT", hl.dsp.exec_cmd(ipc .. "brightness-down current 5%"))
 
-hl.bind("SUPER + CTRL + K", hl.dsp.exec_cmd("hyprctl switchxkblayout all next"))
+hl.bind("SUPER + CTRL + K", hl.dsp.exec_cmd("hyprland-keyboard-layout-switch"))
 
 hl.bind("SUPER + F", hl.dsp.window.fullscreen({ action = "toggle", mode = "fullscreen" }))
 hl.bind("SUPER + P", hl.dsp.window.pseudo({ action = "toggle" }))
