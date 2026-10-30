@@ -11,6 +11,7 @@
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./hardware-thinkpad-p15v.nix
+      ./gaming.nix
       ../common/hyprland.nix
       ../common/niri
     ];
