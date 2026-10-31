@@ -1,4 +1,4 @@
-{ config, inputs, lib, pkgs, pkgs-unstable, ... }:
+{ config, inputs, lib, pkgs, pkgs-unstable, enableGui ? true, ... }:
 let
   # Patch a Nix-store copy; the shared Doom config remains usable unchanged on Windows.
   # Unstraightened needs an explicit URL for GitLab recipes.
@@ -94,6 +94,8 @@ in
 
   services.emacs = {
     enable = true;
+    # Wait for the display environment so clipboard helpers can reach Wayland.
+    startWithUserSession = if enableGui then "graphical" else true;
   };
 
   systemd.user.services.emacs.Service.Environment = [
