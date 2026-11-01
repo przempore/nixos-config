@@ -107,8 +107,14 @@
     zstd
   ];
 
+  # Forward terminal true-color support to SSH sessions.
+  programs.ssh.extraConfig = ''
+    SendEnv COLORTERM
+  '';
+
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  services.openssh.settings.AcceptEnv = [ "COLORTERM" ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
