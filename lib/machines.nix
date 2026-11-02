@@ -53,10 +53,4 @@
   ilum = {
     user = "przemek";
   };
-
-  wsl = {
-    user = "przemek";
-    isWSL = true;
-    enableGhostty = false;
-  };
 }

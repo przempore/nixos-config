@@ -60,11 +60,6 @@ garbage-collection:
     @echo "Running Nix GC (deleting paths older than 3d)..."
     sudo nix-collect-garbage --delete-older-than 3d
 
-# Build the WSL root filesystem installer tarball.
-wsl:
-    nix build ".?submodules=1#nixosConfigurations.wsl.config.system.build.tarballBuilder" && \
-        sudo result/bin/nixos-wsl-tarball-builder
-
 # Bootstrap a new VM, step 1: prepare the system.
 vm-bootstrap0:
     ssh {{SSH_OPTIONS}} root@{{NIXADDR}} " \

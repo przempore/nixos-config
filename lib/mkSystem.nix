@@ -1,5 +1,5 @@
 { inputs, lib, ... }:
-{ machine, system, hardwareModules ? null, user, isWSL ? false, enableGhostty ? true, enableGui ? true }:
+{ machine, system, hardwareModules ? null, user, enableGhostty ? true, enableGui ? true }:
 let
   allowed-unfree-packages = [
     "netflix-via-google-chrome"
@@ -51,7 +51,7 @@ let
     };
   };
   extraSpecialArgs = {
-    inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages legacyPkgs machine isWSL enableGhostty enableGui;
+    inherit allowed-unfree-packages pkgs-unstable permittedInsecurePackages legacyPkgs machine enableGhostty enableGui;
     inherit inputs;
   };
 
@@ -79,7 +79,6 @@ in
       specialArgs = { inherit inputs pkgs-unstable; };
       modules =
         normalize hardwareModules ++
-        lib.optional isWSL inputs.nixos-wsl.nixosModules.wsl ++
         [
           { nixpkgs.hostPlatform = system; }
           unfree-config

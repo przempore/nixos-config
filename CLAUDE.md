@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is a comprehensive NixOS configuration repository using Nix Flakes for declarative system and user environment management across multiple machines (ilum, dathomir, dooku, dev-vm, wsl). The architecture is modular with shared configurations and host-specific overrides.
+This is a comprehensive NixOS configuration repository using Nix Flakes for declarative system and user environment management across multiple machines (ilum, dathomir, dooku, dev-vm). The architecture is modular with shared configurations and host-specific overrides.
 
 ## Common Commands
 
@@ -32,9 +32,6 @@ make vm/reboot        # Reboot the VM
 # Fresh installation
 make install/fresh    # Install NixOS on fresh system
 make install/generate-config  # Generate hardware configuration
-
-# WSL
-make wsl               # Build WSL root-fs installer tarball
 
 # Maintenance
 make gc                # Run garbage collection (delete paths >3d old)
@@ -91,7 +88,7 @@ find -L /nix/var/nix/gcroots/per-user/$USER -maxdepth 1 -type l -delete
 - **`flake.nix`**: Central configuration defining inputs and outputs for all machines
 - **`lib/mkSystem.nix`**: Factory function creating both NixOS and home-manager configurations
 - **`hosts/common/`**: Shared configuration across all machines
-- **`hosts/{ilum,dathomir,dooku,dev-vm,wsl}/`**: Host-specific configurations
+- **`hosts/{ilum,dathomir,dooku,dev-vm}/`**: Host-specific configurations
 - **`Makefile`**: Development workflow automation for system management and VM operations
 
 ### Key Components
@@ -119,7 +116,6 @@ The configuration integrates multiple external flakes including:
 - **zen-browser**, **ghostty**: Modern application alternatives
 - **lix-module**: Alternative Nix implementation (version 2.93.0)
 - **neovim-nightly**: Latest editor features
-- **nixos-wsl**: WSL support for NixOS
 
 ## Development Guidelines
 
@@ -148,42 +144,6 @@ The configuration integrates multiple external flakes including:
 2. **On HOST**: `export NIXADDR=przemek@VM_IP && make vm/bootstrap`
 3. **Daily**: `make vm/switch` (deploy changes), `make vm/ssh` (access VM)
 
-### WSL Development Workflow
-- **Build WSL tarball**: `make wsl` creates the WSL distribution tarball
-- **CLI-focused**: WSL configuration includes only CLI applications from dev-vm (no GUI)
-- **Lightweight**: Optimized for Windows WSL environment with essential development tools
-
-#### Installing WSL Tarball on Windows:
-1. **Build the tarball**: Run `make wsl` to create the WSL distribution
-2. **Run tarball builder**: Execute `sudo result/bin/nixos-wsl-tarball-builder` to generate `nixos.wsl` file
-3. **Transfer to Windows**: Copy the `nixos.wsl` file to your Windows machine
-4. **Install WSL distribution**:
-   ```powershell
-   # Open PowerShell as Administrator
-   wsl --import NixOS C:\WSL\NixOS C:\path\to\nixos.wsl
-   ```
-5. **Set as default** (optional):
-   ```powershell
-   wsl --set-default NixOS
-   ```
-6. **Launch NixOS WSL**:
-   ```powershell
-   wsl -d NixOS
-   ```
-
-#### WSL Management Commands:
-- **List distributions**: `wsl --list --verbose`
-- **Stop distribution**: `wsl --terminate NixOS`
-- **Uninstall**: `wsl --unregister NixOS`
-- **Update**: Rebuild tarball and re-import
-
-#### First Boot Experience:
-- Automatically logged in as `przemek` user
-- Fish shell with completion and syntax highlighting
-- All CLI development tools available (git, nvim, tmux, fzf, etc.)
-- Nix package manager with flakes enabled
-- SSH and Tailscale services ready
-
 ### Secret Management
 - API keys and credentials are currently in private configurations
 - Consider migrating to sops-nix or agenix for better secret management
@@ -205,7 +165,6 @@ The configuration integrates multiple external flakes including:
 - **`hosts/common/home/apps/superfile/`**: Vim-style file manager configuration
 - **`hosts/common/hyprland.nix`**: Wayland compositor configuration
 - **`hosts/dev-vm/`**: VM-optimized configuration using bspwm for lightweight GUI
-- **`hosts/wsl/`**: WSL-specific NixOS configuration with CLI tools optimized for Windows WSL
 - **`hosts/common/home/private/`**: Personal configurations and sensitive data (not tracked)
 - **`hosts/common/home/apps/`**: Application-specific configurations (nvim, firefox, ghostty, etc.)
 - **`Makefile`**: Development workflow automation for system and VM management
