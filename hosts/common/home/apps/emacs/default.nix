@@ -84,11 +84,10 @@ in
   home.packages = [
     pkgs.stdenv.cc
     pkgs-unstable.nodejs
-    (pkgs.aspellWithDicts (dicts: [
-        dicts.en
-        dicts.en-computers
-        dicts.de
-        dicts.pl
+    (pkgs.hunspell.withDicts (dicts: [
+      dicts.pl_PL
+      dicts.en_US
+      dicts.de_DE
     ]))
   ];
 
