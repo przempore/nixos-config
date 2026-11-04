@@ -26,3 +26,12 @@ default expectations for AI coding agents working in this workspace.
 - Be concise; summarize what changed and why.
 - Point to exact file paths for edits.
 - Suggest next steps only when useful (e.g., `nixos-rebuild`, tests).
+
+## Maintenance follow-ups
+- When updating `nixpkgs-unstable` or working on OpenCode, review the temporary
+  dependency hash override in `lib/mkSystem.nix` (added 2026-11-04 for OpenCode
+  2.2.5). The guarded version and original hash identify the affected recipe.
+- If the upstream recipe no longer matches that guard, remove the obsolete
+  override and this follow-up after validating Nix evaluation and, when practical,
+  an OpenCode build without the override. If the guard still matches, keep the
+  workaround unless a successful unmodified build proves it is unnecessary.
