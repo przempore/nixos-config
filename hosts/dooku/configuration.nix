@@ -65,6 +65,18 @@
   };
 
   services.qemuGuest.enable = true;
+  services.keyd = {
+    enable = true;
+    keyboards.laptop = {
+      ids = [ "0001:0001" ];
+      settings.main = {
+        capslock = "leftcontrol";
+        leftcontrol = "capslock";
+        leftalt = "leftmeta";
+        leftmeta = "leftalt";
+      };
+    };
+  };
   services.teamviewer.enable = false;
   services.tailscale = {
     enable = true;
