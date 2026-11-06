@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 {
   home.packages = with pkgs; [
     wireguard-tools
@@ -7,8 +7,8 @@
     zathura
     spotify
     keepassxc
-    brave
     onlyoffice-desktopeditors
+    pkgs-unstable.brave-origin
   ];
 
 }
