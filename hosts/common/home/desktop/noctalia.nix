@@ -3,6 +3,13 @@ let
   noctaliaPackage = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
   wallpaper = ./screen_settings/wallpaper/nature_of_fear_Nicola_Samori.jpg;
 
+  keyboardLayoutSwitch = pkgs.writeShellApplication {
+    # Keep the existing command name for terminal users and Hyprland bindings.
+    name = "hyprland-keyboard-layout-switch";
+    runtimeInputs = [ pkgs.niri pkgs.hyprland pkgs.jq ];
+    text = builtins.readFile ./hyprland/waybar/config/scripts/keyboard_layout_switch.sh;
+  };
+
   commandRunner = pkgs.writeShellApplication {
     name = "noctalia-command-runner";
     runtimeInputs = [ pkgs.coreutils pkgs.findutils pkgs.bash noctaliaPackage ];
@@ -124,6 +131,8 @@ in
         };
         # Distinct Catppuccin accents make adjacent status widgets easier to scan.
         keyboard_layout.color = "#b4befe";
+        keyboard_layout.actions.left =
+          "exec ${keyboardLayoutSwitch}/bin/hyprland-keyboard-layout-switch";
         network.color = "#94e2d5";
         battery.color = "#a6e3a1";
         clock = {
@@ -153,5 +162,5 @@ in
     };
   };
 
-  home.packages = [ commandRunner ];
+  home.packages = [ commandRunner keyboardLayoutSwitch ];
 }

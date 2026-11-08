@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Both compositor modules can be installed; use the active session.
+if [ -n "${NIRI_SOCKET:-}" ]; then
+  exec niri msg action switch-layout next
+fi
+
 active_keymap=$(
   hyprctl -j devices |
     jq -er '.keyboards | (map(select(.main)) + .) | .[0].active_keymap'

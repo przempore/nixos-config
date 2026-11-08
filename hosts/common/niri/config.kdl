@@ -9,6 +9,8 @@
 input {
     keyboard {
         xkb {
+            layout "real-prog-dvorak,us"
+
             // You can set rules, model, layout, variant and options.
             // For more information, see xkeyboard-config(7).
 
@@ -630,7 +632,7 @@ binds {
     // a matching layout switch hotkey configured in xkb options above.
     // Having both at once on the same hotkey will break the switching,
     // since it will switch twice upon pressing the hotkey (once by xkb, once by niri).
-    // Mod+Space       { switch-layout "next"; }
+    Super+Ctrl+K { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
     Alt+Ctrl+P { spawn-sh "noctalia msg screenshot-region --annotate"; }

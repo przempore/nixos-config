@@ -1,13 +1,7 @@
-{ lib, machine, pkgs, ... }:
+{ lib, machine, ... }:
 let
   hostLua = if machine == "ilum" || machine == "dooku" then machine else "default";
   workspaceLabels = import ../workspace-labels.nix;
-
-  keyboardLayoutSwitch = pkgs.writeShellApplication {
-    name = "hyprland-keyboard-layout-switch";
-    runtimeInputs = [ pkgs.hyprland pkgs.jq ];
-    text = builtins.readFile ./waybar/config/scripts/keyboard_layout_switch.sh;
-  };
 
   hyprlandEnvironment = lib.optionalAttrs (machine == "ilum") {
     ".config/uwsm/env-hyprland".text = ''
@@ -25,11 +19,6 @@ in
     ./dunst.nix
     ../noctalia.nix
   ];
-
-  home.packages = [ keyboardLayoutSwitch ];
-
-  programs.noctalia.settings.widget.keyboard_layout.actions.left =
-    "exec ${keyboardLayoutSwitch}/bin/hyprland-keyboard-layout-switch";
 
   home.file = {
     # Declare leaf files so Home Manager links them into the existing config dir.
