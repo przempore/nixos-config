@@ -9,6 +9,7 @@
     keepassxc
     onlyoffice-desktopeditors
     pkgs-unstable.brave-origin
+    pkgs-unstable.discord
   ];
 
 }
