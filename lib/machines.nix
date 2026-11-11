@@ -33,9 +33,9 @@
   dooku = {
     user = "porebski";
     hardwareModules = [
-      nixos-hardware.nixosModules.lenovo-thinkpad
-      nixos-hardware.nixosModules.common-cpu-intel
-      nixos-hardware.nixosModules.common-pc-ssd
+      # Reuse the P15v Gen 3 Intel support without its NVIDIA-specific imports.
+      "${nixos-hardware}/lenovo/thinkpad/p15v"
+      "${nixos-hardware}/common/cpu/intel/alder-lake"
     ];
     deployments = {
       dooku = {
