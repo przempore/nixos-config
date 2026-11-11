@@ -10,6 +10,11 @@
     # nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # Keep Codex 0.166.0 until the newer recipe's AWS-LC build failure is fixed.
+    nixpkgs-codex = {
+      url = "github:NixOS/nixpkgs/f9a75f41be3a74eab55d3a7679d34ad6cc0da977";
+      flake = false;
+    };
     legacy-nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
     catppuccin = {

@@ -35,3 +35,9 @@ default expectations for AI coding agents working in this workspace.
   override and this follow-up after validating Nix evaluation and, when practical,
   an OpenCode build without the override. If the guard still matches, keep the
   workaround unless a successful unmodified build proves it is unnecessary.
+- On the next nixpkgs update, review `nixpkgs-codex` in `flake.nix`, pinned to
+  `f9a75f41be3a74eab55d3a7679d34ad6cc0da977` for Codex 0.166.0 and codex-acp
+  2.1.1. Codex 0.167.0 failed because its recipe requested system AWS-LC but
+  discovered OpenSSL instead. Test both packages from the updated unstable input;
+  if they build successfully, remove the dedicated input and lock entry, switch
+  the common Home Manager packages back to `pkgs-unstable`, and remove this note.

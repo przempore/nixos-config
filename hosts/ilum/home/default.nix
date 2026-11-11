@@ -17,7 +17,6 @@
     packages = [
       pkgs-unstable.remmina
       pkgs-unstable.freerdp
-      pkgs-unstable.codex
     ];
   };
 

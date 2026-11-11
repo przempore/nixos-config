@@ -21,7 +21,6 @@
       pkgs-unstable.remmina
       pkgs-unstable.freerdp
       pkgs-unstable.rclone
-      pkgs-unstable.codex
       pkgs-unstable.rustdesk
     ];
   };

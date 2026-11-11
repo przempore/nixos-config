@@ -3,7 +3,13 @@
 , lib
 , inputs
 , ...
-}: {
+}:
+let
+  pkgs-codex = import inputs.nixpkgs-codex {
+    system = pkgs.stdenv.hostPlatform.system;
+  };
+in
+{
   imports = [
     ./apps
     ./catppuccin.nix
@@ -33,7 +39,8 @@
       # claude-code
       superfile
       opencode
-      codex-acp
+      pkgs-codex.codex
+      pkgs-codex.codex-acp
     ] ++ (with pkgs; [
       cachix
       inputs.sonora.packages.${pkgs.stdenv.hostPlatform.system}.default
