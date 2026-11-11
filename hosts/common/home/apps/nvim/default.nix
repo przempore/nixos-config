@@ -41,8 +41,9 @@ in
 
     plugins = map explicitPluginType plugins;
 
-    extraPackages = with pkgs-unstable; [
+    extraPackages = (with pkgs; [
       neocmakelsp
+    ]) ++ (with pkgs-unstable; [
       nixd
       cscope
 
@@ -59,6 +60,6 @@ in
       vscode-langservers-extracted
       yaml-language-server
       terraform-ls
-    ];
+    ]);
   };
 }
