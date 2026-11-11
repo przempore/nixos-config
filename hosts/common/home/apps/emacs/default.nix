@@ -27,21 +27,25 @@ let
       --replace-fail ':repo "magus/modus-catppuccin"' \
       ':repo "https://gitlab.com/magus/modus-catppuccin.git"'
   '';
-  unstableEmacsPackages = pkgs-unstable.emacsPackagesFor pkgs-unstable.emacs-pgtk;
+  # Pin the complete pair to reuse the installed Ghostel native module.
+  pkgs-emacs = import inputs.nixpkgs-emacs {
+    system = pkgs.stdenv.hostPlatform.system;
+  };
+  pinnedEmacsPackages = pkgs-emacs.emacsPackagesFor pkgs-emacs.emacs-pgtk;
 in
 {
   imports = [ inputs.nix-doom-emacs-unstraightened.homeModule ];
 
   programs.doom-emacs = {
     enable = true;
-    emacs = pkgs-unstable.emacs-pgtk;
+    emacs = pkgs-emacs.emacs-pgtk;
     doomDir = nixosDoomConfig;
     doomLocalDir = "${config.home.homeDirectory}/.cache/doom";
     # These packages use dependencies absent from their package headers.
     emacsPackageOverrides = eself: esuper: {
       # Doom's :term ghostel +everywhere module uses ghostel-comint-mode,
       # which is missing from the older Ghostel in the stable package set.
-      ghostel = unstableEmacsPackages.ghostel;
+      ghostel = pinnedEmacsPackages.ghostel;
       claudemacs = esuper.claudemacs.overrideAttrs (old: {
         packageRequires = lib.unique (
           (old.packageRequires or [ ]) ++ [
@@ -55,7 +59,7 @@ in
           (old.packageRequires or [ ]) ++ [ esuper.request esuper.magit ]
         );
       });
-      evil-ghostel = unstableEmacsPackages.evil-ghostel;
+      evil-ghostel = pinnedEmacsPackages.evil-ghostel;
     };
     extraPackages = epkgs: [
       epkgs.nix-mode
