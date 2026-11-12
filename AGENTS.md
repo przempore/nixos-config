@@ -28,13 +28,6 @@ default expectations for AI coding agents working in this workspace.
 - Suggest next steps only when useful (e.g., `nixos-rebuild`, tests).
 
 ## Maintenance follow-ups
-- When updating `nixpkgs-unstable` or working on OpenCode, review the temporary
-  dependency hash override in `lib/mkSystem.nix` (added 2026-11-04 for OpenCode
-  2.2.5). The guarded version and original hash identify the affected recipe.
-- If the upstream recipe no longer matches that guard, remove the obsolete
-  override and this follow-up after validating Nix evaluation and, when practical,
-  an OpenCode build without the override. If the guard still matches, keep the
-  workaround unless a successful unmodified build proves it is unnecessary.
 - On the next nixpkgs update, review `nixpkgs-codex` in `flake.nix`, pinned to
   `f9a75f41be3a74eab55d3a7679d34ad6cc0da977` for Codex 0.166.0 and codex-acp
   2.1.1. Codex 0.167.0 failed because its recipe requested system AWS-LC but

@@ -31,19 +31,6 @@ let
 
   pkgs-unstable = import inputs.nixpkgs-unstable {
     inherit system;
-    overlays = [
-      (_final: prev: {
-        # Work around the dependency hash mismatch in the pinned OpenCode recipe.
-        opencode = prev.opencode.overrideAttrs (old: lib.optionalAttrs
-          (old.version == "2.2.5"
-            && old.node_modules.outputHash == "sha256-xfOVcw1+waLVNhFDwzOtzxrUSQEogvn88YomydOlhwc=")
-          {
-            node_modules = old.node_modules.overrideAttrs {
-              outputHash = "sha256-prx9dX7kUvs/E3zopkaPk5LXh3xJAy5sZeum/W8L7cA=";
-            };
-          });
-      })
-    ];
     config = {
       allowUnfree = true;
       allowUnfreePredicate = (pkg: builtins.elem (inputs.nixpkgs.lib.getName pkg) allowed-unfree-packages);
