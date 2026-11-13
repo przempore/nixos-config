@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 {
   imports = [
     ./picom.nix
@@ -6,6 +6,35 @@
     ./sxhkd.nix
     ./redshift.nix
   ];
+
+  # Wayland compositors also start graphical-session.target and tray.target.
+  xsession.importedVariables = [ "XDG_SESSION_TYPE" ];
+  systemd.user.services = lib.genAttrs
+    (lib.filter (name: config.services.${name}.enable) [ "picom" "polybar" "redshift" ])
+    (_: {
+      # DISPLAY alone also matches Xwayland. Some X11 sessions don't import a type.
+      Unit.ConditionEnvironment = [ "DISPLAY" "!WAYLAND_DISPLAY" "!XDG_SESSION_TYPE=wayland" ];
+    });
+
+  xdg.configFile = {
+    # Home Manager starts picom as a service; skip the package's duplicate entry.
+    "autostart/picom.desktop".text = ''
+      [Desktop Entry]
+      Type=Application
+      Name=picom
+      Hidden=true
+    '';
+
+    # BSPWM runs autorandr in bspwmrc. Keep desktop autostart for XFCE only.
+    "autostart/autorandr.desktop".text = ''
+      [Desktop Entry]
+      Type=Application
+      Name=Autorandr
+      Exec=${pkgs.autorandr}/bin/autorandr -c --default default
+      OnlyShowIn=XFCE;
+    '';
+  };
+
   home.packages = with pkgs; [
     betterlockscreen
     flameshot
