@@ -229,11 +229,11 @@
     "doom-config": {
       "flake": false,
       "locked": {
-        "lastModified": 1794577500,
-        "narHash": "sha256-rod8MqY2k32i9ja2YbanwkIRoAI/J3O58r2H7+7Rvs0=",
+        "lastModified": 1794578871,
+        "narHash": "sha256-NYrxllh7rCPMnd2+QZUx37mQEdv7gtWx9DEByX1sXXQ=",
         "ref": "main",
-        "rev": "e720e27e956460232535173922ed4c3827dcfdd4",
-        "revCount": 48,
+        "rev": "8794b203fc15c8834c89732765085b6f36f84560",
+        "revCount": 49,
         "type": "git",
         "url": "ssh://git@github.com/przempore/doom-config.git"
       },
@@ -1227,11 +1227,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1794530356,
-        "narHash": "sha256-GnM9THPPqWOL3QZnTYHeG4PHSmsqW53o6zhECipuih0=",
+        "lastModified": 1794576308,
+        "narHash": "sha256-p2RUC60+H9I0dYpCRrHV4l4EQTOabbEZgsbwznxCLyc=",
         "owner": "noctalia-dev",
         "repo": "noctalia",
-        "rev": "12d96bd9d9c15a5488a9985336ca65d8eaddddf5",
+        "rev": "aed27e951e55fb1e9f28134730444322959f27eb",
         "type": "github"
       },
       "original": {
