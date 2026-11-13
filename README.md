@@ -44,6 +44,31 @@ make update
 make help
 ```
 
+### Codex history and recall (Hansard)
+
+The common Home Manager configuration installs a pinned Hansard package and
+starts `hansard.service` at login. On first start it creates a local archive,
+watches Codex CLI/ACP sessions, and installs Hansard's MCP server, hooks, and
+recall skills in Codex's existing writable configuration. The watcher uses
+Hansard's default 30-day look-back window; already archived sessions remain
+available. Later service starts refresh the integration after package upgrades.
+
+After applying Home Manager, start a new Codex session in Emacs agent-shell.
+Ask it to recall an earlier decision, or use `$recall <topic>` and
+`$recall-memories <topic>`. The Emacs service already includes the user profile
+on its PATH, and codex-acp uses the same Codex configuration and session store.
+
+```bash
+systemctl --user status hansard
+hansard integrations status
+hansard web
+```
+
+The archive and mutable settings live under `~/.hansard`. Home Manager owns
+login startup, so use `systemctl --user restart hansard` after configuration
+changes rather than `hansard watcher login enable`. Windows/work history and
+other machines remain separate unless Personal Sync is explicitly configured.
+
 ### Deployments (deploy-rs)
 
 ```bash
