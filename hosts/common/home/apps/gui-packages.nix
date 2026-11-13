@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
     wireguard-tools
@@ -8,7 +8,6 @@
     spotify
     keepassxc
     onlyoffice-desktopeditors
-    pkgs-unstable.discord
   ];
 
 }

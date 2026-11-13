@@ -29,7 +29,7 @@ switch: ## Switch NixOS configuration on local system
 
 .PHONY: home-switch
 home-switch: ## Switch home-manager configuration on local system
-	nh home switch --configuration $(HOSTNAME) '.?submodules=1' -- --impure
+	nh home switch --configuration $(HOSTNAME) --show-activation-logs --backup-extension "backup-$$(date +%Y%m%d-%H%M%S)" '.?submodules=1' -- --impure
 
 .PHONY: build
 build: ## Builds NixOS configuration on local system

@@ -19,7 +19,7 @@ switch:
 
 # Switch Home Manager configuration on the local system.
 home-switch:
-    nh home switch --configuration {{HOSTNAME}} '.?submodules=1' -- --impure
+    nh home switch --configuration {{HOSTNAME}} --show-activation-logs --backup-extension "backup-$(date +%Y%m%d-%H%M%S)" '.?submodules=1' -- --impure
 
 # Build the NixOS configuration on the local system.
 build:

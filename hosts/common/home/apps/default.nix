@@ -20,6 +20,7 @@
     ./zen
     ./zsh.nix
   ] ++ lib.optionals enableGui [
+    ./discord.nix
     ./gui-packages.nix
   ] ++ lib.optionals enableGhostty [
     ./ghostty.nix
