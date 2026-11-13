@@ -7,7 +7,7 @@
     ./fish.nix
     ./git.nix
     ./hansard
-    # ./herdr.nix
+    ./herdr.nix
     ./kitty
     ./mpv.nix
     ./nvim
