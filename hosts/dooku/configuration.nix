@@ -2,12 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, lib, pkgs, pkgs-unstable, ... }:
+{ lib, pkgs, pkgs-unstable, ... }:
 {
   imports =
     [
       ../common/base.nix
       ../common/desktop.nix
+      ../common/noctalia-greeter.nix
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./hardware-thinkpad-p15v.nix
@@ -56,12 +57,6 @@
     LC_PAPER = "de_DE.UTF-8";
     LC_TELEPHONE = "de_DE.UTF-8";
     LC_TIME = "en_GB.UTF-8";
-  };
-
-  services.xserver.displayManager.lightdm.enable = false;
-  services.displayManager = {
-    sddm.enable = true;
-    defaultSession = "hyprland-uwsm";
   };
 
   services.qemuGuest.enable = true;
