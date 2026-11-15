@@ -14,10 +14,16 @@
     username = "przemek";
     homeDirectory = "/home/przemek";
 
-    packages = [
-      pkgs-unstable.remmina
-      pkgs-unstable.freerdp
-    ];
+    packages = with pkgs-unstable; [
+      claude-code
+      claude-agent-acp
+      opencode
+      pkgs-codex.codex
+      pkgs-codex.codex-acp
+
+      obs-studio
+    ] ++ (with pkgs; [
+    ]);
   };
 
   services.picom.settings = {

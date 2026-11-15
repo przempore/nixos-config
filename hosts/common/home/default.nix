@@ -36,12 +36,7 @@ in
     };
 
     packages = with pkgs-unstable; [
-      claude-code
-      claude-agent-acp
       superfile
-      opencode
-      pkgs-codex.codex
-      pkgs-codex.codex-acp
     ] ++ (with pkgs; [
       cachix
       inputs.sonora.packages.${pkgs.stdenv.hostPlatform.system}.default

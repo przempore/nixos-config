@@ -23,16 +23,24 @@
     homeDirectory = "/home/porebski";
 
     # set rdp_use_client_keymap=1 in ~/.config/remmina/remmina.pref
-    packages = [
-      pkgs.remmina
-      pkgs.freerdp
-      # pkgs.dbeaver-bin
+    packages = with pkgs-unstable; [
+      claude-code
+      claude-agent-acp
+      opencode
+      pkgs-codex.codex
+      pkgs-codex.codex-acp
 
+      obs-studio
       # pkgs-unstable.zoom-us
-      # pkgs.rustdesk
-      pkgs-unstable.teams-for-linux
-      pkgs.rclone
-      pkgs.cups
-    ];
+    ] ++ (with pkgs; [
+      remmina
+      freerdp
+      # dbeaver-bin
+
+      # rustdesk
+      unstable.teams-for-linux
+      rclone
+      cups
+    ]);
   };
 }
