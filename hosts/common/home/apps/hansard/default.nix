@@ -17,7 +17,12 @@ let
     # Nix manages upgrades and login startup. Refresh recall after upgrades,
     # preserving the rest of Codex's writable config and existing skill files.
     ${lib.getExe hansard} config set updates.checkOnStartup false
+
+    # Archive Claude Code CLI and Agent SDK (claude-agent-acp) sessions next to
+    # Codex so recall in either agent searches both histories. Idempotent.
+    ${lib.getExe hansard} config sources enable claude,claude-sdk
     ${lib.getExe hansard} integrations add-to codex
+    ${lib.getExe hansard} integrations add-to claude
   '';
 in
 {
@@ -26,7 +31,7 @@ in
   # Codex ACP in Emacs uses the same ~/.codex/config.toml and session store
   # as the CLI. Its MCP entry uses the installed Node/Hansard store paths.
   systemd.user.services.hansard = {
-    Unit.Description = "Hansard background archive for Codex";
+    Unit.Description = "Hansard background archive for Codex and Claude Code";
     Service = {
       ExecStartPre = "${setup}";
       ExecStart = "${lib.getExe hansard} watcher start --foreground";

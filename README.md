@@ -44,14 +44,15 @@ make update
 make help
 ```
 
-### Codex history and recall (Hansard)
+### Codex and Claude Code history and recall (Hansard)
 
 The common Home Manager configuration installs a pinned Hansard package and
 starts `hansard.service` at login. On first start it creates a local archive,
-watches Codex CLI/ACP sessions, and installs Hansard's MCP server, hooks, and
-recall skills in Codex's existing writable configuration. The watcher uses
-Hansard's default 30-day look-back window; already archived sessions remain
-available. Later service starts refresh the integration after package upgrades.
+watches Codex CLI/ACP and Claude Code CLI/ACP sessions, and installs Hansard's
+MCP server, hooks, and recall skills in both agents' writable configuration
+(`~/.codex`, `~/.claude`, `~/.claude.json`), so either agent can recall the
+other's sessions. The watcher uses Hansard's default 30-day look-back window;
+already archived sessions remain available. Later service starts refresh the integration after package upgrades.
 
 After applying Home Manager, start a new Codex session in Emacs agent-shell.
 Ask it to recall an earlier decision, or use `$recall <topic>` and

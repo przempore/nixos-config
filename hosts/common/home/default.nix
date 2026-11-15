@@ -36,7 +36,8 @@ in
     };
 
     packages = with pkgs-unstable; [
-      # claude-code
+      claude-code
+      claude-agent-acp
       superfile
       opencode
       pkgs-codex.codex
