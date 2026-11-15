@@ -436,7 +436,10 @@ binds {
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,
     // or do a four-finger swipe up on a touchpad.
-    Mod+V repeat=false { toggle-overview; }
+    Mod+Ctrl+V repeat=false { toggle-overview; }
+
+    // Clipboard history (Noctalia clipboard panel).
+    Mod+V repeat=false hotkey-overlay-title="Clipboard history: Noctalia" { spawn-sh "noctalia msg panel-toggle clipboard"; }
 
     Mod+Q repeat=false { close-window; }
 
