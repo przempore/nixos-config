@@ -1,5 +1,9 @@
-{ pkgs, pkgs-unstable, ... }:
-
+{ pkgs-unstable, pkgs, inputs, ... }:
+let
+  pkgs-codex = import inputs.nixpkgs-codex {
+    system = pkgs.stdenv.hostPlatform.system;
+  };
+in
 {
   imports = [
     ../../common/home
@@ -38,7 +42,7 @@
       # dbeaver-bin
 
       # rustdesk
-      unstable.teams-for-linux
+      pkgs-unstable.teams-for-linux
       rclone
       cups
     ]);

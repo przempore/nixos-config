@@ -4,11 +4,6 @@
 , inputs
 , ...
 }:
-let
-  pkgs-codex = import inputs.nixpkgs-codex {
-    system = pkgs.stdenv.hostPlatform.system;
-  };
-in
 {
   imports = [
     ./apps
