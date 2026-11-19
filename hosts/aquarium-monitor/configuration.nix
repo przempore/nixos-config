@@ -12,6 +12,7 @@
       ./hardware-configuration.nix
       inputs.aquarium-monitor.nixosModules.default
       inputs.orgbrain.nixosModules.default
+      inputs.hey-mirror.nixosModules.default
     ];
 
   system.autoUpgrade.enable = true;
@@ -96,6 +97,28 @@
       };
       dashboard.enable = true;
     };
+  };
+
+  # HEY layer: the owner's Gmail and Calendar at
+  # https://aquarium-monitor.tailb9a1a1.ts.net (tailnet only, owner's login only).
+  # Sign in from the laptop:
+  #   ssh -t -L 8765:127.0.0.1:8765 przemek@aquarium-monitor sudo hey-layer-login
+  sops.secrets."hey-layer/client-config" = {
+    sopsFile = ../../secrets/hey-layer.yaml;
+    key = "hey_layer_client_config";
+  };
+
+  sops.secrets."hey-layer/credential-key" = {
+    sopsFile = ../../secrets/hey-layer.yaml;
+    key = "hey_layer_credential_key";
+  };
+
+  services.hey-layer = {
+    enable = true;
+    tailnetHost = "aquarium-monitor.tailb9a1a1.ts.net";
+    tailnetUser = "przempore@gmail.com";
+    clientConfigFile = config.sops.secrets."hey-layer/client-config".path;
+    credentialKeyFile = config.sops.secrets."hey-layer/credential-key".path;
   };
 
   # services.orgbrain = {

@@ -66,6 +66,11 @@
     aquarium-monitor = {
       url = "git+https://github.com/przempore/aquarium-monitor.git?ref=generated/ezo-ec-collector-milestones";
     };
+
+    # HEY layer over Gmail, served on aquarium-monitor over Tailscale.
+    hey-mirror = {
+      url = "git+ssh://git@github.com/przempore/HEY_mirror.git?ref=server-on-aquarium-monitor";
+    };
   };
 
   outputs = inputs@{ self, flake-parts, nixos-hardware, deploy-rs, ... }:
