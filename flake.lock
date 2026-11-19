@@ -742,16 +742,16 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1795074917,
-        "narHash": "sha256-uF5cPKTPixE15BbkUNh76QmNHvU/nJeKgG83HQdbG1k=",
-        "ref": "server-on-aquarium-monitor",
-        "rev": "8fe92cb7363ac9b1d6eed45f6e5f5bf1fd7a195f",
-        "revCount": 176,
+        "lastModified": 1795080694,
+        "narHash": "sha256-+jUIHQns2h+Xyg7kwyM/9VVr5A6FCx01aJaY8N8tlSA=",
+        "ref": "main",
+        "rev": "50e88adf895e829f444a79a4891cefc86a322dfc",
+        "revCount": 182,
         "type": "git",
         "url": "ssh://git@github.com/przempore/HEY_mirror.git"
       },
       "original": {
-        "ref": "server-on-aquarium-monitor",
+        "ref": "main",
         "type": "git",
         "url": "ssh://git@github.com/przempore/HEY_mirror.git"
       }

@@ -69,7 +69,7 @@
 
     # HEY layer over Gmail, served on aquarium-monitor over Tailscale.
     hey-mirror = {
-      url = "git+ssh://git@github.com/przempore/HEY_mirror.git?ref=server-on-aquarium-monitor";
+      url = "git+ssh://git@github.com/przempore/HEY_mirror.git?ref=main";
     };
   };
 
